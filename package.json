@@ -1,0 +1,30 @@
+{
+  "name": "panze",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@data-slot/dialog": "^0.2.166",
+    "@data-slot/navigation-menu": "^0.2.166",
+    "@tailwindcss/vite": "^4.3.1",
+    "astro": "^7.0.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-static": "^1.21.0",
+    "simple-icons": "^16.24.0",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^4.3.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "typescript": "^6.0.3"
+  }
+}

@@ -1,0 +1,47 @@
+---
+import NavHeader from "../NavHeader.astro";
+import panzeLogo from "../../assets/panzeLogo.svg";
+import navrighticon from "../../assets/navrighticon.svg";
+---
+
+<NavHeader
+  logo={{
+    src: panzeLogo,
+    alt: "Panze",
+    href: "/",
+  }}
+  navigation={[
+    {
+      label: "HOME",
+      href: "/",
+    },
+    {
+      label: "ABOUT",
+      href: "/about",
+    },
+    {
+      label: "SERVICES",
+      href: "#",
+      description: "Focused workflows for teams that need more context.",
+      links: [
+        {
+          label: "Marketing",
+          href: "#",
+          description: "Launch campaigns with shared assets and reporting.",
+          icon: "megaphone",
+        },
+        {
+          label: "Operations",
+          href: "#",
+          description: "Coordinate approvals, handoffs, and recurring work.",
+          icon: "settings-2",
+        },
+      ],
+    },
+    { label: "WORKS", href: "/works" },
+    { label: "PRICING", href: "/pricing" },
+    { label: "BLOG", href: "/blog" },
+    { label: "CAREER", href: "/blog" },
+  ]}
+  button={{ label: "Start trial", href: "#", icon: navrighticon }}
+/>
