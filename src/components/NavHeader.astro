@@ -31,18 +31,9 @@ type Props = {
   navigation: {
     label: string;
     href: string;
-    description?: string;
-    active?: boolean;
-    image?: {
-      src: ImageMetadata;
-      alt: string;
-    };
     links?: {
       label: string;
       href: string;
-      description?: string;
-      icon?: string;
-      active?: boolean;
     }[];
   }[];
   button: {
@@ -79,62 +70,46 @@ const pathname = Astro.url.pathname;
           navigation.map((item, index) =>
             item.links?.length ? (
               <NavigationMenuItem value={`nav-${index}`}>
-                <NavigationMenuTrigger
-                  class={
-                    "font-dm-mono  font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%] "
-                  }
-                >
-                  {item.label}
+                <NavigationMenuTrigger>
+                  <NavigationMenuLink
+                    href={item.href}
+                    class={`${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%] ${
+                      pathname === item.href
+                        ? "text-[#E8704E] "
+                        : "text-gray-900 hover:text-[#E8704E] "
+                    }`}
+                  >
+                    {item.label}
+                  </NavigationMenuLink>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div class="grid w-[min(46rem,calc(100vw-2rem))] gap-2 p-1 lg:grid-cols-[1fr_1.1fr]">
-                    <NavigationMenuLink
-                      href={item.href}
-                      active={item.active}
-                      class="bg-muted/50 hover:bg-muted focus:bg-muted flex min-h-40 flex-col items-start justify-end gap-3 p-4 text-left"
-                    >
-                      {/* <span
-                        class={
-                          "font-dm-mono  font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%] "
-                        }
-                      >
-                        {item.label}
-                      </span> */}
-                    </NavigationMenuLink>
-                    <div class="grid gap-1">
+                  <div>
                       {item.links.map((link) => (
                         <NavigationMenuLink
                           href={link.href}
-                          active={link.active}
                           class="items-start gap-3 p-3"
                         >
-                          {link.icon && (
-                            <Icon
-                              name={link.icon}
-                              class="text-muted-foreground mt-0.5"
-                            />
-                          )}
                           <span class="grid gap-1">
-                            <span class="font-medium font-dm-mono">
-                              {link.label}{" "}
+                            <span
+                              class={`${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%] ${
+                                pathname === item.href
+                                  ? "text-[#E8704E] "
+                                  : "text-gray-900 hover:text-[#E8704E] "
+                              }`}
+                            >
+                              {link.label}
                             </span>
-                            {link.description && (
-                              <span class="text-muted-foreground text-sm leading-relaxed">
-                                {link.description}
-                              </span>
-                            )}
                           </span>
                         </NavigationMenuLink>
                       ))}
-                    </div>
+                   
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
             ) : (
-              <NavigationMenuItem value={`nav-${index}`} >
+              <NavigationMenuItem value={`nav-${index}`}>
                 <NavigationMenuLink
                   href={item.href}
-                  active={item.active}
                   class={`${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%] ${
                     pathname === item.href
                       ? "text-[#E8704E] "
@@ -153,7 +128,8 @@ const pathname = Astro.url.pathname;
     <!-- right side -->
     <HeaderGroup class="ml-auto hidden justify-end lg:flex">
       <slot />
-      <NavigationMenuLink href={"/contact"}
+      <NavigationMenuLink
+        href={"/contact"}
         class="bg-primary w-51.75 text-center py-3 px-5 flex justify-center items-center gap-2 cursor-pointer rounded-none hover:bg-primary"
       >
         <img src={navrighticon.src} alt="icon" class="h-5 w-5" />
@@ -178,14 +154,11 @@ const pathname = Astro.url.pathname;
               navigation.map((item) => (
                 <div class="grid gap-1">
                   <SheetClose variant="ghost" class="justify-start font-medium">
-                    {/* {item.label} */}
-
                     <NavigationMenuLink
                       href={item.href}
-                      active={item.active}
-                      class={`${navigationMenuTriggerStyle()} font-dm-mono ${
+                      class={`${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%]  ${
                         pathname === item.href
-                          ? "text-[#E8704E] font-semibold"
+                          ? "text-[#E8704E] "
                           : "text-gray-900 hover:text-[#E8704E]"
                       }`}
                     >
@@ -199,7 +172,6 @@ const pathname = Astro.url.pathname;
                           variant="ghost"
                           class="text-muted-foreground justify-start font-dm-mono"
                         >
-                          {link.icon && <Icon name={link.icon} />}
                           {link.label}
                         </SheetClose>
                       ))}
