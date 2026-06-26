@@ -17,9 +17,6 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import navbgvector from "../assets/navbgvector.svg";
@@ -56,7 +53,7 @@ type Props = {
 };
 import navrighticon from "../assets/navrighticon.svg";
 
-const { class: className, logo, navigation, button } = Astro.props;
+const { class: className, logo, navigation } = Astro.props;
 const pathname = Astro.url.pathname;
 ---
 
@@ -82,7 +79,13 @@ const pathname = Astro.url.pathname;
           navigation.map((item, index) =>
             item.links?.length ? (
               <NavigationMenuItem value={`nav-${index}`}>
-                <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
+                <NavigationMenuTrigger
+                  class={
+                    "font-dm-mono  font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%] "
+                  }
+                >
+                  {item.label}
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div class="grid w-[min(46rem,calc(100vw-2rem))] gap-2 p-1 lg:grid-cols-[1fr_1.1fr]">
                     <NavigationMenuLink
@@ -90,21 +93,13 @@ const pathname = Astro.url.pathname;
                       active={item.active}
                       class="bg-muted/50 hover:bg-muted focus:bg-muted flex min-h-40 flex-col items-start justify-end gap-3 p-4 text-left"
                     >
-                      {item.image && (
-                        <Image
-                          src={item.image.src}
-                          alt={item.image.alt}
-                          class="mb-auto aspect-video w-full rounded-md object-cover"
-                          widths={[320, 480, 640]}
-                          sizes="(min-width: 1024px) 22rem, 100vw"
-                        />
-                      )}
-                      <span class="text-base font-medium">{item.label}</span>
-                      {item.description && (
-                        <span class="text-muted-foreground text-sm leading-relaxed">
-                          {item.description}
-                        </span>
-                      )}
+                      {/* <span
+                        class={
+                          "font-dm-mono  font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%] "
+                        }
+                      >
+                        {item.label}
+                      </span> */}
                     </NavigationMenuLink>
                     <div class="grid gap-1">
                       {item.links.map((link) => (
@@ -120,7 +115,9 @@ const pathname = Astro.url.pathname;
                             />
                           )}
                           <span class="grid gap-1">
-                            <span class="font-medium">{link.label} </span>
+                            <span class="font-medium font-dm-mono">
+                              {link.label}{" "}
+                            </span>
                             {link.description && (
                               <span class="text-muted-foreground text-sm leading-relaxed">
                                 {link.description}
@@ -134,14 +131,14 @@ const pathname = Astro.url.pathname;
                 </NavigationMenuContent>
               </NavigationMenuItem>
             ) : (
-              <NavigationMenuItem value={`nav-${index}`}>
+              <NavigationMenuItem value={`nav-${index}`} >
                 <NavigationMenuLink
                   href={item.href}
                   active={item.active}
-                  class={`${navigationMenuTriggerStyle()} ${
+                  class={`${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%] ${
                     pathname === item.href
-                      ? "text-[#E8704E] font-semibold"
-                      : "text-gray-900 hover:text-[#E8704E]"
+                      ? "text-[#E8704E] "
+                      : "text-gray-900 hover:text-[#E8704E] "
                   }`}
                 >
                   {item.label}
@@ -156,13 +153,15 @@ const pathname = Astro.url.pathname;
     <!-- right side -->
     <HeaderGroup class="ml-auto hidden justify-end lg:flex">
       <slot />
-      <div class="bg-primary w-51.75 text-center py-3 px-5 flex justify-center items-center gap-2">
+      <NavigationMenuLink href={"/contact"}
+        class="bg-primary w-51.75 text-center py-3 px-5 flex justify-center items-center gap-2 cursor-pointer rounded-none hover:bg-primary"
+      >
         <img src={navrighticon.src} alt="icon" class="h-5 w-5" />
-        <p class="text-white text-base">Contact</p>
-      </div>
+        <p class="text-white text-base font-dm-mono">Contact</p>
+      </NavigationMenuLink>
     </HeaderGroup>
 
-    <Sheet class="lg:hidden">
+    <Sheet class="lg:hidden pt-2 pr-4">
       <SheetTrigger
         variant="ghost"
         size="icon-sm"
@@ -171,25 +170,34 @@ const pathname = Astro.url.pathname;
       >
         <Icon name="menu" />
       </SheetTrigger>
+
       <SheetContent side="right" class="p-0">
-        <SheetHeader class="sr-only">
-          <SheetTitle>Menu</SheetTitle>
-          <SheetDescription>Site navigation and actions.</SheetDescription>
-        </SheetHeader>
         <div class="flex h-full flex-col gap-6 overflow-y-auto px-4 py-12">
           <nav aria-label="Main navigation" class="flex flex-col gap-4">
             {
               navigation.map((item) => (
                 <div class="grid gap-1">
                   <SheetClose variant="ghost" class="justify-start font-medium">
-                    {item.label}
+                    {/* {item.label} */}
+
+                    <NavigationMenuLink
+                      href={item.href}
+                      active={item.active}
+                      class={`${navigationMenuTriggerStyle()} font-dm-mono ${
+                        pathname === item.href
+                          ? "text-[#E8704E] font-semibold"
+                          : "text-gray-900 hover:text-[#E8704E]"
+                      }`}
+                    >
+                      {item.label}
+                    </NavigationMenuLink>
                   </SheetClose>
                   {item.links?.length && (
                     <div class="border-border ml-3 grid gap-1 border-l pl-3">
                       {item.links.map((link) => (
                         <SheetClose
                           variant="ghost"
-                          class="text-muted-foreground justify-start"
+                          class="text-muted-foreground justify-start font-dm-mono"
                         >
                           {link.icon && <Icon name={link.icon} />}
                           {link.label}
