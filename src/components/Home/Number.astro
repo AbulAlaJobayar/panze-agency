@@ -1,0 +1,52 @@
+---
+import { Image } from "astro:assets";
+import network from "@/assets/number/network.svg";
+import * as data from "@/content/number-content.md";
+---
+
+<section class="border-b my-6 md:my-10 overflow-hidden">
+  <div class="flex flex-col lg:flex-row items-stretch lg:items-center">
+    <!-- leftside - fixed width 400px -->
+    <div
+      class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16"
+    >
+      <div class="flex items-center gap-3 mb-6 md:mb-8">
+        <Image
+          src={network}
+          alt="number section"
+          class="w-5 h-5 md:w-auto md:h-auto"
+        />
+        <h6
+          class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+        >
+          {data.frontmatter.title}
+        </h6>
+      </div>
+      <p
+        class="font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase pb-6 md:pb-8 lg:pb-10"
+      >
+        {data.frontmatter.description}
+      </p>
+    </div>
+
+    <!-- right side - fills remaining space -->
+    <div class="flex-1 min-w-0">
+      <div
+        class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      >
+        {
+          data.frontmatter.content.map((item: any) => (
+            <div class="border-b sm:border-b-0 border-r last:border-r-0 px-4 sm:px-5 md:px-6 py-10 md:py-12 lg:py-16">
+              <h3 class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary pb-4 md:pb-6 lg:pb-15">
+                {item.title}
+              </h3>
+              <p class="font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase pb-4 md:pb-6 lg:pb-10">
+                {item.number}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
