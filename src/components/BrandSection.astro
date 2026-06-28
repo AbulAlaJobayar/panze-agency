@@ -1,0 +1,54 @@
+---
+import * as brandsData from "@/content/brand-content.md";
+
+
+const { brands } = brandsData.frontmatter;
+
+// Dynamic function to split brands into rows
+function splitIntoRows(brandsArray:any, rowSizes = [6, 5, 6]) {
+  const rows = [];
+  let startIndex = 0;
+
+  for (const size of rowSizes) {
+    if (startIndex < brandsArray.length) {
+      rows.push(brandsArray.slice(startIndex, startIndex + size));
+      startIndex += size;
+    }
+  }
+
+  return rows;
+}
+
+const brandRows = splitIntoRows(brands);
+---
+
+<!-- Brands Section - Dynamic Rows -->
+<section class="py-12 md:py-16 lg:py-20 ">
+  <div class="container mx-auto px-4 md:px-6">
+    <!-- Dynamic Rows -->
+    {
+      brandRows.map((row, rowIndex) => (
+        <div
+          class={`
+          grid gap-6 md:gap-8 
+          ${row.length === 5 ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-5 max-w-4xl mx-auto" : "grid-cols-2 sm:grid-cols-3 md:grid-cols-6"}
+          ${rowIndex < brandRows.length - 1 ? "mb-0 " : ""}
+        `}
+        >
+          {row.map((brand:any, index:any) => (
+            <div
+           
+              class="flex items-center justify-center py-4"
+            >
+              <img
+                src={brand.image}
+                alt={`Brand ${rowIndex * 6 + index + 1}`}
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</section>
