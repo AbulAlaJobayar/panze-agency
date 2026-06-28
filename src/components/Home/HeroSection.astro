@@ -1,11 +1,11 @@
 ---
 import { NavigationMenuLink } from "../ui/navigation-menu";
-import ctaIcon from "@/assets/heroimage/ctaActionIcon.svg";
-import flag from "@/assets/heroimage/usflag.svg";
-import bg from "@/assets/heroimage/bg.svg";
-import firstimage from "@/assets/heroimage/herofirstimg.svg";
-import secondimage from "@/assets/heroimage/heroseimg.svg";
-import thirdimage from "@/assets/heroimage/herothirdimage.png";
+import ctaIcon from "@/assets/home/heroimage/ctaActionIcon.svg";
+import flag from "@/assets/home/heroimage/usflag.svg";
+import bg from "@/assets/home/heroimage/bg.svg";
+import firstimage from "@/assets/home/heroimage/herofirstimg.svg";
+import secondimage from "@/assets/home/heroimage/heroseimg.svg";
+import thirdimage from "@/assets/home/heroimage/herothirdimage.png";
 import { Image } from "astro:assets";
 import Autoplay from "embla-carousel-autoplay";
 import {
@@ -26,10 +26,10 @@ const autoplayPlugin = Autoplay({
 <!-- hero section -->
 <div>
   <!-- dextop screen -->
-  <div class="hidden md:block pb-10">
+  <div class="hidden md:block ">
     <div class="flex">
       <!-- left container -->
-      <div class="w-100 border-r ml-10">
+      <div class="w-100 border-r ml-10 pb-20">
         <div class="w-83.75">
           <h3
             class="font-commissioner font-semibold text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary py-14"
@@ -69,7 +69,7 @@ const autoplayPlugin = Autoplay({
           </div>
 
           <h1
-            class="font-commissioner font-semibold text-[50px] lg:text-[110px] uppercase leading-[150%]  xl:-mt-6 tracking-[-4%] text-[#301C1B]"
+            class="font-commissioner font-semibold text-[50px] lg:text-[110px] uppercase leading-[150%] xl:-mt-6 tracking-[-4%] text-[#301C1B]"
           >
             {hero.frontmatter.title}
           </h1>
@@ -103,7 +103,7 @@ const autoplayPlugin = Autoplay({
   <div class="block md:hidden">
     <div class="mt-10">
       <!-- top -->
-      <div class="pl-2 ">
+      <div class="pl-2">
         <div class="flex items-center gap-2">
           <Image src={flag} alt="icon" width={12} height={8} />
           <p
