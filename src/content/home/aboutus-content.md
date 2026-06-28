@@ -6,13 +6,23 @@ description: "Panze is a white label digital product design agency. We work behi
 buttonText: "About PANZE"
 buttonLink: "/about"
 
+
+
+
+
 # Images - Store as string paths
-abouticon: "/src/assets/home/aboutus/aboutus.svg"
-background: "/src/assets/home/aboutus/dottedbg.svg"
-image1: "/src/assets/home/aboutus/first.svg"
-image2: "/src/assets/home/aboutus/second.svg"
-image3: "/src/assets/home/aboutus/third.svg"
-image4: "/src/assets/home/aboutus/forth.svg"
+abouticon: "https://i.ibb.co.com/PqnmCT7/aboutus.jpg"
+background: "https://i.ibb.co.com/sDpMryC/Dotted-BG.png"
+image1: "https://i.ibb.co.com/MktyqyGd/first.png"
+image2: "https://i.ibb.co.com/35Hj10NP/2nd.png"
+image3: "https://i.ibb.co.com/d4nWjqpF/3rd.png"
+image4: "https://i.ibb.co.com/G694Z8x/4th.png"
+# abouticon: "/src/assets/home/aboutus/aboutus.svg"
+# background: "/src/assets/home/aboutus/dottedbg.svg"
+# image1: "/src/assets/home/aboutus/first.svg"
+# image2: "/src/assets/home/aboutus/second.svg"
+# image3: "/src/assets/home/aboutus/third.svg"
+# image4: "/src/assets/home/aboutus/forth.svg"
 
 # Image Alt Texts
 imageAlt1: "Team "
