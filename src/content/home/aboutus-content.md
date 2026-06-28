@@ -11,7 +11,7 @@ buttonLink: "/about"
 
 
 # Images - Store live link
-abouticon: "https://i.ibb.co.com/5ZXZ0PC/Vector-2x.png"
+abouticon: "https://i.ibb.co.com/MDrV7Rcc/Vector-1.png"
 background: "https://i.ibb.co.com/sDpMryC/Dotted-BG.png"
 image1: "https://i.ibb.co.com/MktyqyGd/first.png"
 image2: "https://i.ibb.co.com/35Hj10NP/2nd.png"
