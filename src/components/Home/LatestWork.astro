@@ -1,0 +1,134 @@
+---
+import * as aboutData from "@/content/home/latestwork-content.md";
+import { Image } from "astro:assets";
+
+const {
+  title,
+  subTitle,
+  description,
+  buttonText,
+  buttonLink,
+  latesticon,
+  background,
+  image1,
+  image2,
+  image3,
+  image4,
+  imageAlt1,
+  imageAlt2,
+  imageAlt3,
+  imageAlt4,
+} = aboutData.frontmatter;
+---
+
+<section class="bg-primary">
+  <div class="container mx-auto px-4 md:px-6">
+    <!-- Top Container - Header Section -->
+    <div class="flex flex-col lg:flex-row border-b border-white/20">
+      <!-- Left: Icon + Title -->
+      <div
+        class="w-full lg:w-[20%] border-b lg:border-b-0 lg:border-r border-white/20 px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16"
+      >
+        <div class="flex items-center gap-3">
+          <Image
+            src={latesticon}
+            alt="Latest icon"
+            width={16}
+            height={14}
+            class="w-5 h-5 md:w-auto md:h-auto"
+          />
+          <h6
+            class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-white"
+          >
+            {title}
+          </h6>
+        </div>
+      </div>
+
+      <!-- Middle: SubTitle -->
+      <div
+        class="w-full lg:w-[40%] border-b lg:border-b-0 lg:border-r border-white/20 px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16"
+      >
+        <p
+          class="font-commissioner font-semibold text-[25px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-white"
+        >
+          {subTitle}
+        </p>
+      </div>
+
+      <!-- Right: Description -->
+      <div
+        class="w-full lg:w-[40%] px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16"
+      >
+        <p
+          class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white/80"
+        >
+          {description}
+        </p>
+      </div>
+    </div>
+
+    <!-- Bottom Container - Images Grid with Full Height Image -->
+    <div class="w-full bg-primary">
+      <div
+        class="flex flex-col md:flex-row items-stretch min-h-75 md:min-h-125 lg:min-h-162.5 px-6"
+      >
+        <!-- Left Box 1 -->
+        <div
+          class="w-full md:w-20 lg:w-24 h-20 md:h-auto border-b md:border-b-0 md:border-l border-white/20 flex items-center justify-center bg-primary/50 hover:bg-primary/70 transition-colors duration-300 shrink-0"
+        >
+          <h1
+            class="-rotate-90 whitespace-nowrap text-white text-xs sm:text-sm md:text-base lg:text-lg font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] uppercase"
+          >
+            EDCA
+          </h1>
+        </div>
+
+        <!-- Left Box 2 -->
+        <div
+          class="w-full md:w-20 lg:w-24 h-20 md:h-auto border-b md:border-b-0 md:border-l border-white/20 flex items-center justify-center bg-primary/50 hover:bg-primary/70 transition-colors duration-300 shrink-0"
+        >
+          <h1
+            class="-rotate-90 whitespace-nowrap text-white text-xs sm:text-sm md:text-base lg:text-lg font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] uppercase"
+          >
+            ZALON
+          </h1>
+        </div>
+
+        <!-- Middle Image - Full Container Height -->
+        <div
+          class="flex-1 h-64 md:h-auto flex items-center justify-center overflow-hidden"
+        >
+          <img
+            src={image1}
+            alt="Center Image"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Right Box 1 -->
+        <div
+          class="w-full md:w-20 lg:w-24 h-20 md:h-auto border-t md:border-t-0 md:border-r border-white/20 flex items-center justify-center bg-primary/50 hover:bg-primary/70 transition-colors duration-300 shrink-0"
+        >
+          <h1
+            class="-rotate-90 whitespace-nowrap text-white text-xs sm:text-sm md:text-base lg:text-lg font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] uppercase"
+          >
+            HANWAKI
+          </h1>
+        </div>
+
+        <!-- Right Box 2 -->
+        <div
+          class="w-full md:w-20 lg:w-24 h-20 md:h-auto border-t md:border-t-0 md:border-r border-white/20 flex items-center justify-center bg-primary/50 hover:bg-primary/70 transition-colors duration-300 shrink-0"
+        >
+          <h1
+            class="-rotate-90 whitespace-nowrap text-white text-xs sm:text-sm md:text-base lg:text-lg  font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] uppercase"
+          >
+            ADVAZ
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
