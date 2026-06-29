@@ -1,0 +1,98 @@
+---
+import * as sectiondata from "@/content/whatwedo/whatwedo-content.md";
+import { services } from "@/content/whatwedo";
+import TabSection from "./TabSection";
+import { Image } from "astro:assets";
+
+const { label, description, icon } = sectiondata.frontmatter;
+
+// Helper function to clean text
+const cleanText = (text: string) => {
+  if (!text) return "";
+  return text
+    .trim()
+    .replace(/\bAl\b/g, "AI")
+    .replace(/Al-/g, "AI-")
+    .replace(/\s+/g, " ")
+    .replace(/\.\./g, ".");
+};
+
+// Helper function to clean features array
+const cleanFeatures = (features: string[]) => {
+  if (!Array.isArray(features)) return [];
+  return features
+    .map((feature: string) => {
+      let cleaned = feature.trim();
+      cleaned = cleaned.replace(/^Al\s/, "AI ").replace(/\bAl\b/g, "AI");
+      cleaned = cleaned.replace(/^-\s*/, "").trim();
+      return cleaned;
+    })
+    .filter((feature: string) => feature.length > 0);
+};
+
+// Sanitize the services data
+const sanitizedServices = Array.isArray(services)
+  ? services
+      .map((service: any) => {
+        const fm = service.frontmatter || service;
+
+        return {
+          value: cleanText(fm.value),
+          slug: fm.slug === "Ai" ? "ai-product" : cleanText(fm.slug),
+          tabTitle: cleanText(fm.tabTitle),
+          tabSubtitle: cleanText(fm.tabSubtitle),
+          title: cleanText(fm.title),
+          description: cleanText(fm.description),
+          image: fm.image?.trim() || "",
+          buttonText: cleanText(fm.buttonText),
+          features: cleanFeatures(fm.features),
+        };
+      })
+      .filter(
+        (service: any) =>
+          service.value &&
+          service.slug &&
+          service.title &&
+          service.description &&
+          service.features.length > 0,
+      )
+  : [];
+
+// Optional: Sort services (e.g., by value or title)
+const sortedServices = sanitizedServices.sort((a, b) =>
+  a.value.localeCompare(b.value),
+);
+---
+
+<section>
+  <div class="bg-[#1E1212] py-14">
+    <div class="flex items-start gap-6 pt-8 pb-4 px-10">
+      <div class="w-66 flex items-center gap-3 mb-6 md:mb-8">
+        <Image
+          src={icon}
+          alt="number section"
+          width={20}
+          height={20}
+          class="w-5 h-5 md:w-auto md:h-auto"
+        />
+        <h6
+          class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+        >
+          {label}
+        </h6>
+      </div>
+      <p
+        class="max-w-130 font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase pb-6 md:pb-8 lg:pb-10 text-white"
+      >
+        {description}
+      </p>
+    </div>
+    <TabSection
+      client:load
+      services={sortedServices}
+      label={label}
+      description={description}
+      icon={icon}
+    />
+  </div>
+</section>

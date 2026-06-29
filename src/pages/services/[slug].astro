@@ -1,0 +1,52 @@
+---
+import { services } from "@/content/whatwedo";
+
+export async function getStaticPaths() {
+  return services.map(({ frontmatter }) => ({
+    params: {
+      slug: frontmatter.slug,
+    },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const service = services.find(({ frontmatter }) => frontmatter.slug === slug);
+
+if (!service) {
+  throw new Error(`Service "${slug}" not found.`);
+}
+
+const { frontmatter, Content } = service;
+---
+
+<section class="mx-auto max-w-7xl py-20">
+  <img
+    src={frontmatter.image}
+    alt={frontmatter.title}
+    class="mb-12 h-125 w-full rounded-xl object-cover"
+  />
+
+  <h1 class="mb-6 text-5xl font-bold">
+    {frontmatter.title}
+  </h1>
+
+  <p class="mb-10 text-lg text-gray-500">
+    {frontmatter.description}
+  </p>
+
+  <div class="mb-10 grid gap-3 md:grid-cols-2">
+    {
+      frontmatter.features.map((feature: string) => (
+        <div class="flex items-center gap-2">
+          <span class="size-2 rounded-full bg-orange-500" />
+          {feature}
+        </div>
+      ))
+    }
+  </div>
+
+  <article class="prose prose-invert max-w-none">
+    <Content />
+  </article>
+</section>

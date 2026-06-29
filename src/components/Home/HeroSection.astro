@@ -2,7 +2,6 @@
 import { NavigationMenuLink } from "../ui/navigation-menu";
 import ctaIcon from "@/assets/home/heroimage/ctaActionIcon.svg";
 import flag from "@/assets/home/heroimage/usflag.svg";
-import bg from "@/assets/home/heroimage/bg.svg";
 import firstimage from "@/assets/home/heroimage/herofirstimg.svg";
 import secondimage from "@/assets/home/heroimage/heroseimg.svg";
 import thirdimage from "@/assets/home/heroimage/herothirdimage.png";
@@ -15,7 +14,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-const { hero } = Astro.props;
+import * as hero from "../../content/home/hero-content.md";
+
 
 const autoplayPlugin = Autoplay({
   delay: 3000,
@@ -26,7 +26,7 @@ const autoplayPlugin = Autoplay({
 <!-- hero section -->
 <div>
   <!-- dextop screen -->
-  <div class="hidden md:block ">
+  <div class="hidden md:block">
     <div class="flex">
       <!-- left container -->
       <div class="w-100 border-r ml-10 pb-20">
