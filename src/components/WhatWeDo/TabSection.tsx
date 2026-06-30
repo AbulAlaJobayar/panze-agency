@@ -32,28 +32,28 @@ const TabSection: React.FC<TabSectionProps> = ({
   }, []);
 
   return (
-      <div className="container mx-auto ">
-        {/* Tabs Container */}
-        <div className="bg-[#1E1212] overflow-hidden">
-          <div className="flex flex-col lg:flex-row">
-            {/* LEFT: Tab List */}
-            <div
-              className="flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible border-b lg:border-b-0 lg:border-r border-white/10 bg-[#1E1212]"
-              role="tablist"
-            >
-              {services.map((service) => {
-                const isActive = activeTab === service.title;
-                return (
-                  <button
-                    key={service.title}
-                    role="tab"
-                    aria-selected={isActive}
-                    aria-controls={`panel-${service.title}`}
-                    id={`tab-${service.title}`}
-                    onClick={() => handleTabClick(service.title)}
-                    className={` 
-                      relative shrink-0 lg:shrink-0 w-50 lg:w-70 px-6 py-5 text-left transition-all duration-300 cursor-pointer
-                      border-b border-white/5 last:border-b-0 lg:border-b lg:border-white/5
+    <div className="container mx-auto border-t border-white/10 md:border-t-0  ">
+      {/* Tabs Container */}
+      <div className="bg-[#1E1212] overflow-hidden">
+        <div className="flex flex-row lg:flex-row">
+          {/* LEFT: Tab List */}
+          <div
+            className="flex flex-col lg:flex-col  overflow-x-visible border-r  border-white/10 bg-[#1E1212]"
+            role="tablist"
+          >
+            {services.map((service) => {
+              const isActive = activeTab === service.title;
+              return (
+                <button
+                  key={service.title}
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls={`panel-${service.title}`}
+                  id={`tab-${service.title}`}
+                  onClick={() => handleTabClick(service.title)}
+                  className={` 
+                      relative shrink-0 lg:shrink-0 w-35 lg:w-70 px-1 py-5 lg:px-6 lg:py-5 text-left transition-all duration-300 cursor-pointer
+                      border-b border-white/5 last:border-b-0  lg:border-white/5
                       ${
                         isActive
                           ? "bg-primary text-white"
@@ -61,111 +61,110 @@ const TabSection: React.FC<TabSectionProps> = ({
                       }
                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EF7B59]
                     `}
+                >
+                  <div
+                    className={`w-full ${isActive && "bg-[url('/public/whatwedo/bg.png')]"}`}
                   >
-                    <div
-                      className={`w-full ${isActive && "bg-[url('/public/whatwedo/bg.png')]"}`}
-                    >
-                      <h3
-                        className={` py-1
+                    <h3
+                      className={` py-1
                           font-commissioner transition-all duration-300
                           ${
                             isActive
-                              ? "text-[20px] font-semibold "
-                              : "text-[16px] font-normal"
+                              ? " text-[14px] font-normal lg:text-[20px] lg:font-semibold "
+                              : "text-[12px] lg:text-[16px] lg:font-normal"
                           }
                           leading-[130%] tracking-[-4%]
                         `}
+                    >
+                      {service.tabTitle}
+                    </h3>
+
+                    {/* Subtitle - only when active */}
+                    {isActive && service.tabSubtitle && (
+                      <p className="mt-1 hidden lg:block text-sm text-white/80 font-normal">
+                        {service.tabSubtitle}
+                      </p>
+                    )}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* MIDDLE: Image */}
+          <div className="lg:w-95 xl:w-105 relative hidden md:block overflow-hidden bg-[#2a1c1c] order-first lg:order-0">
+            {services.map((service) => {
+              const isActive = activeTab === service.title;
+              return (
+                <div
+                  key={service.title}
+                  className={`
+                      ${isActive ? "block" : "hidden"}
+                    `}
+                >
+                  <img
+                    src={service.image}
+                    alt={service.tabTitle}
+                    className="w-full  object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              );
+            })}
+          </div>
+
+          {/* RIGHT: Tab Content */}
+          <div className="flex-1 bg-[#1E1212] order-last lg:order-0">
+            {services.map((service) => {
+              const isActive = activeTab === service.title;
+              return (
+                <div
+                  key={service.title}
+                  id={`panel-${service.title}`}
+                  role="tabpanel"
+                  aria-labelledby={`tab-${service.title}`}
+                  className={`
+                      ${isActive ? "block" : "hidden"}
+                    `}
+                >
+                  <div className="px-2 md:px-10 pt-2 bg-[#1E1212]">
+                    <div>
+                      <p className="font-dm-mono text-[12px] md:text-[14px]  leading-[150%] font-normal tracking-[-4%] text-white mb-6">
+                        {service.description}
+                      </p>
+
+                      <ul className="space-y-1 md:space-y-2">
+                        {service.features.map((feature, index) => (
+                          <li
+                            key={index}
+                            className="font-dm-mono text-[12px] md:text-[14px]  leading-[150%] font-normal tracking-[-4%] text-white gap-2 flex items-start "
+                          >
+                            <span className="text-white shrink-0">-</span>
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className=" bg-primary w-40 text-center   md:py-3 py-2 mt-4 md:mt-7">
+                      <a
+                        href={`/services/${service.slug}`}
+                        className="inline-flex items-center gap-2 text-white text-[15px] font-medium transition-all duration-200  group"
                       >
-                        {service.tabTitle}
-                      </h3>
-
-                      {/* Subtitle - only when active */}
-                      {isActive && service.tabSubtitle && (
-                        <p className="mt-1 text-sm text-white/80 font-normal">
-                          {service.tabSubtitle}
-                        </p>
-                      )}
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* MIDDLE: Image */}
-            <div className="lg:w-95 xl:w-105 relative overflow-hidden bg-[#2a1c1c] order-first lg:order-0">
-              {services.map((service) => {
-                const isActive = activeTab === service.title;
-                return (
-                  <div
-                    key={service.title}
-                    className={`
-                      ${isActive ? "block" : "hidden"}
-                    `}
-                  >
-                    <img
-                      src={service.image}
-                      alt={service.tabTitle}
-                      className="w-full  object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* RIGHT: Tab Content */}
-            <div className="flex-1 bg-[#1E1212] order-last lg:order-0">
-              {services.map((service) => {
-                const isActive = activeTab === service.title;
-                return (
-                  <div
-                    key={service.title}
-                    id={`panel-${service.title}`}
-                    role="tabpanel"
-                    aria-labelledby={`tab-${service.title}`}
-                    className={`
-                      ${isActive ? "block" : "hidden"}
-                    `}
-                  >
-                    <div className="px-10 pt-2 bg-[#1E1212]">
-                      <div>
-                        <p className="font-dm-mono text-[14px]  leading-[150%] font-normal tracking-[-4%] text-white mb-6">
-                          {service.description}
-                        </p>
-
-                        <ul className="space-y-2">
-                          {service.features.map((feature, index) => (
-                            <li
-                              key={index}
-                              className="font-dm-mono text-[14px]  leading-[150%] font-normal tracking-[-4%] text-white gap-2 flex items-start "
-                            >
-                              <span className="text-white shrink-0">-</span>
-                              <span>{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div className=" bg-primary w-40 text-center py-3 mt-7">
-                        <a
-                          href={`/services/${service.slug}`}
-                          className="inline-flex items-center gap-2 text-white text-[15px] font-medium transition-all duration-200  group"
-                        >
-                          {service.buttonText}
-                          <span className="inline-block transition-transform group-hover:translate-x-1">
-                            ↗
-                          </span>
-                        </a>
-                      </div>
+                        {service.buttonText}
+                        <span className="inline-block transition-transform group-hover:translate-x-1">
+                          ↗
+                        </span>
+                      </a>
                     </div>
                   </div>
-                );
-              })}
-            </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
-    
+    </div>
   );
 };
 

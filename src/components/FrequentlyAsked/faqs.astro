@@ -1,0 +1,40 @@
+---
+import { Section, SectionContainer } from "@/components/ui/section";
+import { cn } from "@/lib/utils";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "../ui/accordion";
+
+const { class: className, faqs } = Astro.props;
+console.log(faqs, "from faqs");
+---
+
+<div class={cn("", className)}>
+  <div class="">
+    <Accordion collapsible>
+      {
+        faqs.map((item: any, index: number) => (
+          <AccordionItem value={item.id} class={" lg:w-200 px-10 py-2.5"}>
+            <AccordionTrigger
+              class={
+                "font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-[#301C1B]"
+              }
+            >
+              {index + 1}. {item.question}
+            </AccordionTrigger>
+            <AccordionContent
+              class={
+                "font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-[#301C1B]"
+              }
+            >
+              {item.answer}
+            </AccordionContent>
+          </AccordionItem>
+        ))
+      }
+    </Accordion>
+  </div>
+</div>

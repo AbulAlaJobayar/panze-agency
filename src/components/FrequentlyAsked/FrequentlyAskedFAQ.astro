@@ -1,0 +1,68 @@
+---
+import * as askedQuestion from "@/content/frequentlyAsked-content.md";
+
+import ctaIcon from "/public/ourProcess/ctaActionIcon.svg";
+import { Image } from "astro:assets";
+import { NavigationMenuLink } from "../ui/navigation-menu";
+import Faqs from "./faqs.astro";
+
+const {
+  sectionIcon,
+  title,
+  subtitle,
+  description,
+  buttonText,
+  buttonLink,
+  faqs,
+} = askedQuestion.frontmatter;
+---
+
+<section class=" overflow-hidden">
+  <div class="flex flex-col lg:flex-row items-stretch border-y">
+    <!-- Left Side - Fixed width with white background -->
+    <div
+      class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-14 bg-white"
+    >
+      <div class="flex items-center gap-3 mb-6 md:mb-8">
+        <Image
+          src={sectionIcon}
+          alt="number section"
+          width={16}
+          height={14}
+          class="w-5 h-5 md:w-auto md:h-auto"
+        />
+        <h6
+          class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+        >
+          {title}
+        </h6>
+      </div>
+      <p
+        class="font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase pb-6 md:pb-15 lg:pb-20"
+      >
+        {subtitle}
+      </p>
+      <p
+        class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] xl:pb-20"
+      >
+        {description}
+      </p>
+      <NavigationMenuLink
+        href={buttonLink}
+        class="w-36.25 h-11.25 py-3 px-2.5 bg-primary mt-10 hover:bg-primary cursor-pointer flex items-center justify-center gap-2 rounded-none"
+      >
+        <span
+          class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
+        >
+          {buttonText}
+        </span>
+        <img src={ctaIcon.src} alt="icon" class="h-2 w-2" />
+      </NavigationMenuLink>
+    </div>
+
+    <!-- Right Side - Background image ONLY on right side -->
+    <div class="py-5 md:py-7 lg:py-10p bg-white">
+      <Faqs faqs={faqs} client:load />
+    </div>
+  </div>
+</section>

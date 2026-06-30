@@ -1,0 +1,75 @@
+---
+import * as IndustryData from "@/content/home/IndustryServices.md";
+import { Image } from "astro:assets";
+
+// Access the frontmatter data
+const { sectionIcon, title, subtitle, description, categories } =
+  IndustryData.frontmatter;
+---
+
+<section class="py-16 px-4 md:px-8 bg-white font-sans">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="flex flex-col lg:flex-row border-b border-white/20">
+      <!-- Left: Icon + Title -->
+      <div
+        class="w-full lg:w-[20%] border-b lg:border-b-0 lg:border-r border-white/20 px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16"
+      >
+        <div class="flex items-center gap-3">
+          <Image
+            src={sectionIcon}
+            alt="Latest icon"
+            width={16}
+            height={14}
+            class="w-5 h-5 md:w-auto md:h-auto"
+          />
+          <h6
+            class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+          >
+            {title}
+          </h6>
+        </div>
+      </div>
+
+      <!-- Middle: SubTitle -->
+      <div
+        class="w-full lg:w-[40%] border-b lg:border-b-0 lg:border-r border-white/20 px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16"
+      >
+        <p
+          class="font-commissioner font-semibold text-[25px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-[#301C1B]"
+        >
+          {subtitle}
+        </p>
+      </div>
+
+      <!-- Right: Description -->
+      <div
+        class="w-full lg:w-[40%] px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16"
+      >
+        <p
+          class="text-[#301C1B] font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
+        >
+          {description}
+        </p>
+      </div>
+    </div>
+
+    <!-- Dynamic Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
+      {
+        categories.map((category: any) => (
+          <div class="space-y-2 border border-b-0 last:border-b md:border md:border-r-0 md:last:border-r p-10 border-primary">
+            <h3 class=" font-dm-mono text-[16px] font-medium text-[#301C1B] uppercase tracking-[-4%] leading-[150%]  pb-2">
+              {category.name}
+            </h3>
+            <ul class="space-y-1 text-base text-gray-800">
+              {category.items.map((item: any) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
