@@ -4,7 +4,6 @@ title: "Frequently Asked Questions"
 subtitle: "Everything You Need to Know Before Starting Your Project"
 description: "Explore answers to the most common questions about our services, design process, project timelines, pricing, and what you can expect when partnering with Panze Studio."
 buttonText: "Schedule a call"
-buttonLink: "https://wa.me/01928210545"
 
 faqs:
   - question: "What services does Panze Studio offer?"

@@ -5,6 +5,7 @@ import ctaIcon from "/public/ourProcess/ctaActionIcon.svg";
 import { Image } from "astro:assets";
 import { NavigationMenuLink } from "../ui/navigation-menu";
 import Faqs from "./faqs.astro";
+const whatsappUrl = import.meta.env.WHATSAPP_URL;
 
 const {
   sectionIcon,
@@ -12,12 +13,11 @@ const {
   subtitle,
   description,
   buttonText,
-  buttonLink,
   faqs,
 } = askedQuestion.frontmatter;
 ---
 
-<section class=" overflow-hidden">
+<section class="overflow-hidden">
   <div class="flex flex-col lg:flex-row items-stretch border-y">
     <!-- Left Side - Fixed width with white background -->
     <div
@@ -48,7 +48,7 @@ const {
         {description}
       </p>
       <NavigationMenuLink
-        href={buttonLink}
+        href={whatsappUrl}
         class="w-36.25 h-11.25 py-3 px-2.5 bg-primary mt-10 hover:bg-primary cursor-pointer flex items-center justify-center gap-2 rounded-none"
       >
         <span

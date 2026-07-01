@@ -1,0 +1,145 @@
+---
+import { Image } from "astro:assets";
+
+import * as contactData from "@/content/contact-content.md";
+import pattern from "@/assets/contact/bg.png";
+import meet from "@/assets/contact/googlemeet.png";
+
+import ctaIcon from "/public/ourProcess/ctaActionIcon.svg";
+import whatappIcon from "@/assets/contact/whatsapp.png";
+import { NavigationMenuLink } from "../ui/navigation-menu";
+import PanzeContactForm from "./PanzeContactForm";
+const contactUrl = import.meta.env.CONTACT_URL;
+const whatsappUrl = import.meta.env.WHATSAPP_URL;
+const {
+  name,
+  designation,
+  ceoImage,
+  sectionIcon,
+  title,
+  subtitle,
+  description,
+  meetDescription,
+} = contactData.frontmatter;
+---
+
+<section class="bg-[#1E1212] ">
+  <div>
+    <!-- top side -->
+    <div class="flex flex-col lg:flex-row border-b border-white/20">
+      <!-- Left: Icon + Title -->
+      <div
+        class="w-full lg:w-[20%] px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16"
+      >
+        <div class="flex items-center gap-3">
+          <Image
+            src={sectionIcon}
+            alt="Latest icon"
+            width={16}
+            height={14}
+            class="w-5 h-5 md:w-auto md:h-auto"
+          />
+          <h6
+            class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+          >
+            {title}
+          </h6>
+        </div>
+      </div>
+
+      <!-- Middle: SubTitle -->
+      <div
+        class="w-full lg:w-[30%] px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16"
+      >
+        <p
+          class="text-white font-commissioner font-semibold px-1 text-[25px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase"
+        >
+          {subtitle}
+        </p>
+      </div>
+
+      <!-- Right: Description -->
+      <div
+        class="w-full lg:w-[50%] px-6 sm:px-8 md:px-14 py-10 md:py-12 lg:py-16"
+      >
+        <p
+          class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
+        >
+          {description}
+        </p>
+      </div>
+    </div>
+
+    <!-- bottom side -->
+    <div
+      class="flex flex-col lg:flex-row items-stretch  border-white/20 -mb-3 px-10 border-b"
+    >
+      <!-- Left Side - Fixed width with white background -->
+      <div>
+        <div
+          class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-14 border-white/20"
+        >
+          <div class="border border-white/20">
+            {/* Image */}
+            <div
+              class="relative overflow-hidden bg-[radial-gradient(circle,rgba(249,115,22,0.15)_1px,transparent_1px)]
+         bg-size-[12px_12px]
+         sm:bg-size-[14px_14px]
+         lg:bg-size-[16px_16px]"
+              style={`background-image: url(${pattern.src}); background-size: cover;`}
+            >
+              <Image
+                src={ceoImage}
+                alt={name}
+                width={400}
+                height={500}
+                class="w-full max-h-80 object-cover object-top px-2 pt-2 transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+
+            {/* Content */}
+            <div class="text-center px-6 py-5 border-t border-white/20">
+              <h3
+                class="text-white font-dm-mono text-[18px] leading-[150%] font-medium tracking-[-4%] text-center"
+              >
+                {name}
+              </h3>
+
+              <p
+                class="text-white mt-2 font-dm-mono text-[14px] leading-[150%] font-normal tracking-[-4%] text-center"
+              >
+                {designation}
+              </p>
+            </div>
+          </div>
+          <!-- left bottom side -->
+          <div class="bg-white mt-10">
+            <img src={meet.src} alt="Google Meet" class="px-5 py-5" />
+            <h1 class="text-primary w-70 px-5">{meetDescription}</h1>
+            <div class="px-5 flex items-center gap-2">
+              <NavigationMenuLink
+                href={contactUrl}
+                class="w-36.25 h-11.25 py-3 px-2.5 bg-primary mt-14 hover:bg-primary cursor-pointer flex items-center justify-center gap-2 rounded-none"
+              >
+                <span
+                  class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
+                >
+                  Shedule call
+                </span>
+                <img src={ctaIcon.src} alt="icon" class="h-2 w-2" />
+              </NavigationMenuLink>
+              <NavigationMenuLink href={whatsappUrl} class="mt-14">
+                <img src={whatappIcon.src} alt="icon" width={45} height={45} />
+              </NavigationMenuLink>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Right Side - Background image ONLY on right side -->
+      <div class="py-5 md:py-7 lg:py-10p ">
+        <!-- <Faqs faqs={faqs} /> -->
+        <PanzeContactForm client:load />
+      </div>
+    </div>
+  </div>
+</section>
