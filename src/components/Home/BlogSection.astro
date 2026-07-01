@@ -1,0 +1,80 @@
+---
+import * as blogContent from "@/content/blog/sections/blog-content.md";
+import { NavigationMenuLink } from "../ui/navigation-menu";
+import ctaIcon from "/public/ourProcess/ctaActionIcon.svg";
+import { Image } from "astro:assets";
+import sectionIcon from "@/assets/home/blog/blogSectionIcon.png";
+const { title, subtitle, description, buttonText, buttonLink } =
+  blogContent.frontmatter;
+
+const blogs = Object.values(
+  import.meta.glob("../../content/blog/*.md", { eager: true }),
+);
+
+//   .filter((post:any) => !post.data.draft)
+//   .sort((a:any, baaaa:any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+// console.log(posts, "from astro");
+---
+
+<div class="flex flex-col lg:flex-row items-stretch border-y">
+  <!-- Left Side - Fixed width with white background -->
+  <div
+    class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-8 py-10 md:py-12 lg:py-14 bg-white"
+  >
+    <div class="flex items-center gap-3 mb-6 md:mb-8">
+      <Image
+        src={sectionIcon}
+        alt="number section"
+        width={16}
+        height={14}
+        class="w-5 h-5 md:w-auto md:h-auto"
+      />
+      <h6
+        class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+      >
+        {title}
+      </h6>
+    </div>
+    <p
+      class="font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase pb-6 md:pb-15 lg:pb-20"
+    >
+      {subtitle}
+    </p>
+    <p
+      class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] xl:pb-20"
+    >
+      {description}
+    </p>
+    <NavigationMenuLink
+      href={buttonLink}
+      class="w-36.25 h-11.25 py-3 px-2.5 bg-primary mt-14 hover:bg-primary cursor-pointer flex items-center justify-center gap-2 rounded-none"
+    >
+      <span
+        class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
+      >
+        {buttonText}
+      </span>
+      <img src={ctaIcon.src} alt="icon" class="h-2 w-2" />
+    </NavigationMenuLink>
+  </div>
+  <div class="grid sm:grid-cols-2">
+    {
+      blogs.map((blog: any) => (
+        <a href={`/blog/${blog.frontmatter.id}`} class="group p-3">
+          <div class="overflow-hidden">
+            <img
+              src={blog.frontmatter.image}
+              alt={blog.frontmatter.title}
+              
+              class="aspect-4/3 w-full object-cover transition duration-500 group-hover:scale-105"
+            />
+          </div>
+
+          <h3 class="mt-2 font-dm-mono font-medium  text-[16px] leading-[150%] tracking-[-4%] text-[#301C1B]  group-hover:text-primary transition">
+            {blog.frontmatter.title}
+          </h3>
+        </a>
+      ))
+    }
+  </div>
+</div>
