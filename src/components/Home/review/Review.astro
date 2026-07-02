@@ -1,0 +1,140 @@
+---
+import { Image } from "astro:assets";
+
+import background from "@/assets/home/review/Dotted.png";
+import clutch from "@/assets/home/review/clutch.png";
+import image from "@/assets/home/review/image.png";
+import ReviewCard from "./ReviewCard.astro";
+
+// import ReviewCard from "./ReviewCard";
+
+const blogs = Object.values(
+  import.meta.glob("../../../content/review/*.md", { eager: true }),
+).sort((a: any, b: any) => a.frontmatter.order - b.frontmatter.order);
+
+const reviews = blogs.map((blog: any) => ({
+  title: blog.frontmatter.title,
+  description: blog.frontmatter.description,
+  image: blog.frontmatter.image,
+  name: blog.frontmatter.name,
+  designation: blog.frontmatter.designation,
+  company: blog.frontmatter.company,
+  stars: blog.frontmatter.stars,
+  reviewUrl: blog.frontmatter.reviewUrl,
+  tags: blog.frontmatter.tags,
+}));
+console.log(reviews);
+---
+
+<section class="bg-[#1E1212] mb-20 mt-10">
+  <div
+    class="relative bg-cover bg-center bg-no-repeat"
+    style={`background-image:url(${background.src})`}
+  >
+    <div class="mx-auto px-6 py-20 lg:px-12">
+      <!-- Top Right -->
+      <div class="mb-5 flex justify-end">
+        <div class="flex items-center gap-8 bg-white p-4">
+          <Image src={clutch} alt="Clutch" width={150} class="h-auto w-auto" />
+
+          <a
+            href="#"
+            class="bg-[#F36B45] px-8 py-3 text-white transition hover:opacity-90"
+          >
+            See Reviews →
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="grid grid-cols-1 lg:grid-cols-[1fr_560px_1fr] items-center gap-12"
+      >
+        <!-- Left -->
+        <div
+          class="hidden w-[25%] lg:flex h-full flex-col justify-between py-24 text-white"
+        >
+          <h2
+            class="ml-10 text-center font-commissioner font-normal text-[24px] leading-[110%] tracking-[-4%]"
+          >
+            #msgly
+          </h2>
+          <h2
+            class="ml-16 text-center font-commissioner font-normal text-[36px] leading-[110%] tracking-[-4%]"
+          >
+            #wpstar
+          </h2>
+        </div>
+
+        <!-- Carousel -->
+
+        <div class="w-50%">
+          <article
+            class="w-full max-w-120 border border-[#4A2D2A] bg-[#2D1A1A] p-7"
+          >
+            {/* Image */}
+            <img
+              src={image.src}
+              alt={"title"}
+              class="h-[144px] w-[120px] object-cover"
+            />
+
+            {/* Title */}
+            <h3
+              class="font-dm-mono font-medium text-[20px] leading-[140%] tracking-[-4%] text-white my-4"
+            >
+              They were very communicative about any changes or updates and
+              listened to what we asked.
+            </h3>
+
+            {/* Description */}
+            <p
+              class="font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-white"
+            >
+              Panze - UX Design Studio delivered a pleasing product. The team
+              was highly communicative and attentive to the client's needs,
+              making changes quickly throughout the engagement. Moreover, Panze
+              - UX Design Studio's detailed work and effective communication
+              were hallmarks of their performance.
+            </p>
+
+            {/* Divider */}
+            <div class="mt-10 h-px w-full bg-[#F46B45]"></div>
+
+            {/* Footer */}
+            <div class="mt-5 flex items-center justify-between gap-5">
+              <h4
+                class="font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-[#F46B45]"
+              >
+                erin
+              </h4>
+
+              <p
+                class="text-right font-dm-mono font-medium text-[14px] leading-[150%] tracking-[-4%] text-white"
+              >
+                Founder, AI E-Commerce Solutions Company
+              </p>
+            </div>
+          </article>
+          <!-- </ReviewCard>  -->
+          <!-- <ReviewCarousel client:load reviews={reviews} /> -->
+        </div>
+
+        <!-- Right -->
+        <div
+          class="hidden w-[25%] lg:flex h-full flex-col justify-between py-24 text-right text-white"
+        >
+          <h2
+            class="-ml-14 text-center font-commissioner font-normal text-[32px] leading-[110%] tracking-[-4%]"
+          >
+            #zalon
+          </h2>
+          <h2
+            class="text-center font-commissioner font-normal text-[48px] leading-[110%] tracking-[-4%]"
+          >
+            #edca
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

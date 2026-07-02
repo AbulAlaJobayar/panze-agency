@@ -1,0 +1,53 @@
+---
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+---
+
+<Carousel
+  class="w-full max-w-xl"
+  plugins={[
+    Autoplay({
+      delay: 3000,
+      stopOnInteraction: true,
+    }),
+  ]}
+  opts={{
+    loop: true, // recommended for autoplay
+  }}
+  class="w-full max-w-xl"
+>
+  <CarouselContent class="-ml-2 md:-ml-4">
+    <CarouselItem class="pl-2 md:pl-4">
+      <div
+       
+      >
+        Slide 1
+      </div>
+    </CarouselItem>
+    <CarouselItem class="pl-2 md:pl-4">
+      <div
+        class="text-white bg-muted flex aspect-video items-center justify-center rounded-md"
+      >
+        Slide 2
+      </div>
+    </CarouselItem>
+    <CarouselItem class="pl-2 md:pl-4">
+      <div
+        class="bg-muted flex aspect-video items-center justify-center rounded-md"
+      >
+        Slide 3
+      </div>
+    </CarouselItem>
+    <CarouselItem class="pl-2 md:pl-4">
+      <div
+        class="bg-muted flex aspect-video items-center justify-center rounded-md"
+      >
+        Slide 4
+      </div>
+    </CarouselItem>
+  </CarouselContent>
+</Carousel>

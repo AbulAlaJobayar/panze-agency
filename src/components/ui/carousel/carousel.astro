@@ -1,31 +1,34 @@
 ---
-import type { HTMLAttributes } from "astro/types"
-import type { EmblaOptionsType } from "embla-carousel"
+import type { HTMLAttributes } from "astro/types";
+import type { EmblaOptionsType } from "embla-carousel";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 type Props = HTMLAttributes<"div"> & {
-  opts?: EmblaOptionsType
-  orientation?: "horizontal" | "vertical"
-}
+  opts?: EmblaOptionsType;
+  orientation?: "horizontal" | "vertical";
+  plugins?: any[];
+};
 
 const {
   class: className,
   opts,
   orientation = "horizontal",
+  plugins = [],
   ...props
-} = Astro.props
+} = Astro.props;
 
 const resolvedOpts: EmblaOptionsType = {
   ...opts,
   axis: orientation === "horizontal" ? "x" : "y",
-}
+};
 ---
 
 <div
   data-slot="carousel"
   data-orientation={orientation}
   data-carousel-options={JSON.stringify(resolvedOpts)}
+  data-carousel-plugins={JSON.stringify(plugins)}
   class={cn("group/carousel relative", className)}
   role="region"
   aria-roledescription="carousel"
@@ -38,30 +41,30 @@ const resolvedOpts: EmblaOptionsType = {
   import EmblaCarousel, {
     type EmblaCarouselType,
     type EmblaOptionsType,
-  } from "embla-carousel"
+  } from "embla-carousel";
 
   type CarouselRoot = HTMLElement & {
-    __fulldevCarouselApi?: EmblaCarouselType
-  }
+    __fulldevCarouselApi?: EmblaCarouselType;
+  };
 
   type CarouselInstance = {
-    cleanup: () => void
-  }
+    cleanup: () => void;
+  };
 
-  type CarouselStore = Map<CarouselRoot, CarouselInstance>
+  type CarouselStore = Map<CarouselRoot, CarouselInstance>;
 
   declare global {
     interface Window {
-      __fulldevCarouselInitialized?: boolean
-      __fulldevCarouselStore?: CarouselStore
+      __fulldevCarouselInitialized?: boolean;
+      __fulldevCarouselStore?: CarouselStore;
     }
   }
 
   if (!window.__fulldevCarouselInitialized) {
-    window.__fulldevCarouselInitialized = true
-    window.__fulldevCarouselStore ??= new Map<CarouselRoot, CarouselInstance>()
+    window.__fulldevCarouselInitialized = true;
+    window.__fulldevCarouselStore ??= new Map<CarouselRoot, CarouselInstance>();
 
-    const store = window.__fulldevCarouselStore
+    const store = window.__fulldevCarouselStore;
 
     const getDetails = (api: EmblaCarouselType) => ({
       api,
@@ -69,178 +72,178 @@ const resolvedOpts: EmblaOptionsType = {
       canScrollNext: api.canScrollNext(),
       selectedScrollSnap: api.selectedScrollSnap(),
       scrollSnapList: api.scrollSnapList(),
-    })
+    });
 
     const emit = (
       root: CarouselRoot,
       type: "carousel:init" | "carousel:select",
-      api: EmblaCarouselType
+      api: EmblaCarouselType,
     ) => {
       root.dispatchEvent(
         new CustomEvent(type, {
           detail: getDetails(api),
-        })
-      )
-    }
+        }),
+      );
+    };
 
     const parseOptions = (root: CarouselRoot): EmblaOptionsType => {
-      const rawOptions = root.getAttribute("data-carousel-options")
+      const rawOptions = root.getAttribute("data-carousel-options");
 
       if (!rawOptions) {
-        return {}
+        return {};
       }
 
       try {
-        return JSON.parse(rawOptions) as EmblaOptionsType
+        return JSON.parse(rawOptions) as EmblaOptionsType;
       } catch {
-        return {}
+        return {};
       }
-    }
+    };
 
     const syncButton = (button: Element | null, enabled: boolean) => {
       if (!(button instanceof HTMLButtonElement)) {
-        return
+        return;
       }
 
       if (button.dataset.manualDisabled === "true") {
-        button.disabled = true
-        return
+        button.disabled = true;
+        return;
       }
 
-      button.disabled = !enabled
-    }
+      button.disabled = !enabled;
+    };
 
     const cleanupDisconnectedCarousels = () => {
       for (const [root, instance] of store.entries()) {
         if (document.contains(root)) {
-          continue
+          continue;
         }
 
-        instance.cleanup()
-        store.delete(root)
+        instance.cleanup();
+        store.delete(root);
       }
-    }
+    };
 
     const initCarousel = (root: Element) => {
       if (!(root instanceof HTMLElement) || store.has(root)) {
-        return
+        return;
       }
 
-      const carouselRoot = root as CarouselRoot
+      const carouselRoot = root as CarouselRoot;
       const viewport = carouselRoot.querySelector(
-        '[data-slot="carousel-content"]'
-      )
+        '[data-slot="carousel-content"]',
+      );
       const prevButton = carouselRoot.querySelector(
-        '[data-slot="carousel-previous"]'
-      )
+        '[data-slot="carousel-previous"]',
+      );
       const nextButton = carouselRoot.querySelector(
-        '[data-slot="carousel-next"]'
-      )
+        '[data-slot="carousel-next"]',
+      );
 
       if (!(viewport instanceof HTMLElement)) {
-        return
+        return;
       }
 
-      const api = EmblaCarousel(viewport, parseOptions(carouselRoot))
+      const api = EmblaCarousel(viewport, parseOptions(carouselRoot));
 
       const sync = () => {
-        const details = getDetails(api)
+        const details = getDetails(api);
 
         carouselRoot.dataset.canScrollPrev = details.canScrollPrev
           ? "true"
-          : "false"
+          : "false";
         carouselRoot.dataset.canScrollNext = details.canScrollNext
           ? "true"
-          : "false"
+          : "false";
         carouselRoot.dataset.selectedScrollSnap = String(
-          details.selectedScrollSnap
-        )
+          details.selectedScrollSnap,
+        );
 
-        syncButton(prevButton, details.canScrollPrev)
-        syncButton(nextButton, details.canScrollNext)
+        syncButton(prevButton, details.canScrollPrev);
+        syncButton(nextButton, details.canScrollNext);
 
-        emit(carouselRoot, "carousel:select", api)
-      }
+        emit(carouselRoot, "carousel:select", api);
+      };
 
       const onPrevClick = () => {
-        api.scrollPrev()
-      }
+        api.scrollPrev();
+      };
 
       const onNextClick = () => {
-        api.scrollNext()
-      }
+        api.scrollNext();
+      };
 
       const onKeyDown = (event: KeyboardEvent) => {
-        const isVertical = carouselRoot.dataset.orientation === "vertical"
+        const isVertical = carouselRoot.dataset.orientation === "vertical";
 
         if (!isVertical && event.key === "ArrowLeft") {
-          event.preventDefault()
-          api.scrollPrev()
+          event.preventDefault();
+          api.scrollPrev();
         }
 
         if (!isVertical && event.key === "ArrowRight") {
-          event.preventDefault()
-          api.scrollNext()
+          event.preventDefault();
+          api.scrollNext();
         }
 
         if (isVertical && event.key === "ArrowUp") {
-          event.preventDefault()
-          api.scrollPrev()
+          event.preventDefault();
+          api.scrollPrev();
         }
 
         if (isVertical && event.key === "ArrowDown") {
-          event.preventDefault()
-          api.scrollNext()
+          event.preventDefault();
+          api.scrollNext();
         }
-      }
+      };
 
       if (prevButton instanceof HTMLElement) {
-        prevButton.addEventListener("click", onPrevClick)
+        prevButton.addEventListener("click", onPrevClick);
       }
 
       if (nextButton instanceof HTMLElement) {
-        nextButton.addEventListener("click", onNextClick)
+        nextButton.addEventListener("click", onNextClick);
       }
 
-      carouselRoot.addEventListener("keydown", onKeyDown, true)
+      carouselRoot.addEventListener("keydown", onKeyDown, true);
 
-      api.on("reInit", sync)
-      api.on("select", sync)
+      api.on("reInit", sync);
+      api.on("select", sync);
 
-      carouselRoot.__fulldevCarouselApi = api
+      carouselRoot.__fulldevCarouselApi = api;
 
-      sync()
-      requestAnimationFrame(() => emit(carouselRoot, "carousel:init", api))
+      sync();
+      requestAnimationFrame(() => emit(carouselRoot, "carousel:init", api));
 
       store.set(carouselRoot, {
         cleanup: () => {
-          api.off("reInit", sync)
-          api.off("select", sync)
+          api.off("reInit", sync);
+          api.off("select", sync);
 
           if (prevButton instanceof HTMLElement) {
-            prevButton.removeEventListener("click", onPrevClick)
+            prevButton.removeEventListener("click", onPrevClick);
           }
 
           if (nextButton instanceof HTMLElement) {
-            nextButton.removeEventListener("click", onNextClick)
+            nextButton.removeEventListener("click", onNextClick);
           }
 
-          carouselRoot.removeEventListener("keydown", onKeyDown, true)
-          delete carouselRoot.__fulldevCarouselApi
-          api.destroy()
+          carouselRoot.removeEventListener("keydown", onKeyDown, true);
+          delete carouselRoot.__fulldevCarouselApi;
+          api.destroy();
         },
-      })
-    }
+      });
+    };
 
     const initCarousels = () => {
-      cleanupDisconnectedCarousels()
+      cleanupDisconnectedCarousels();
 
       document
         .querySelectorAll('[data-slot="carousel"]')
-        .forEach((root) => initCarousel(root))
-    }
+        .forEach((root) => initCarousel(root));
+    };
 
-    initCarousels()
-    document.addEventListener("astro:page-load", initCarousels)
+    initCarousels();
+    document.addEventListener("astro:page-load", initCarousels);
   }
 </script>
