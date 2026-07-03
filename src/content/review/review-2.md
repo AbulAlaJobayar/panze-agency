@@ -1,27 +1,10 @@
 ---
-title: "They took the time to understand Alpe's values, industry, and long-term vision."
+title: "They were very punctual and professional."
 
+description: "Panze was professional and attentive throughout the collaboration. The team was punctual and communicative via email and a messaging app. The client also praised Panze's attention to reviews."
+image: "/src/assets/home/review/image.png"
 name: "Anonymous"
-
-designation: "CEO @ AI Hind Institution"
-
-company: "Clutch"
-
-image: "/reviews/review2.webp"
-
-stars: 5
-
-reviewUrl: "https://clutch.co/profile/panze"
-
-tags:
-  - "#msgly"
-  - "#wpstar"
-  - "#zalon"
-  - "#edca"
+designation: "CEO @ Al Hind Institution"
 
 order: 2
 ---
-
-Panze's work helped the client improve their brand recognition, professional image and website engagement.
-
-The team managed the project efficiently and communicated clearly.

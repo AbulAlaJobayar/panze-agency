@@ -3,8 +3,10 @@ import { Image } from "astro:assets";
 
 import background from "@/assets/home/review/Dotted.png";
 import clutch from "@/assets/home/review/clutch.png";
-import image from "@/assets/home/review/image.png";
-import ReviewCard from "./ReviewCard.astro";
+import Carousel from "@/components/ui/carousel/carousel.astro";
+import CarouselContent from "@/components/ui/carousel/carousel-content.astro";
+import CarouselItem from "@/components/ui/carousel/carousel-item.astro";
+import ctaIcon from "/src/assets/home/review/ctaActionIcon.svg";
 
 // import ReviewCard from "./ReviewCard";
 
@@ -18,12 +20,9 @@ const reviews = blogs.map((blog: any) => ({
   image: blog.frontmatter.image,
   name: blog.frontmatter.name,
   designation: blog.frontmatter.designation,
-  company: blog.frontmatter.company,
-  stars: blog.frontmatter.stars,
   reviewUrl: blog.frontmatter.reviewUrl,
   tags: blog.frontmatter.tags,
 }));
-console.log(reviews);
 ---
 
 <section class="bg-[#1E1212] mb-20 mt-10">
@@ -38,10 +37,10 @@ console.log(reviews);
           <Image src={clutch} alt="Clutch" width={150} class="h-auto w-auto" />
 
           <a
-            href="#"
-            class="bg-[#F36B45] px-8 py-3 text-white transition hover:opacity-90"
+            href="/review"
+            class="flex gap-2 bg-[#F36B45] px-8 py-3 text-white transition hover:opacity-90"
           >
-            See Reviews →
+            See Reviews <img src={ctaIcon.src} alt="review" />
           </a>
         </div>
       </div>
@@ -68,15 +67,52 @@ console.log(reviews);
         <!-- Carousel -->
 
         <div class="w-50%">
-          <article
+          <Carousel class="w-full">
+            <CarouselContent>
+              {
+                reviews.map((review: any) => (
+                  <CarouselItem class="flex justify-center basis-full">
+                    <article class="w-full max-w-120 border border-[#4A2D2A] bg-[#2D1A1A] p-7">
+                      {/* Image */}
+                      <img
+                        src={review.image}
+                        alt={review.title}
+                        class="h-36 w-30 object-cover"
+                      />
+
+                      {/* Title */}
+                      <h3 class="font-dm-mono font-medium text-[20px] leading-[140%] tracking-[-4%] text-white lg:my-4">
+                        {review.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p class="font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-white/70">
+                        {review.description}
+                      </p>
+                      {/* Divider */}
+                      <div class="mt-10 h-px w-full bg-[#F46B45]" />
+
+                      {/* Footer */}
+                      <div class="mt-5 flex items-center justify-between gap-5">
+                        <h4 class="font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-[#F46B45]">
+                          {review.name}
+                        </h4>
+
+                        <p class="text-right font-dm-mono font-medium text-[14px] leading-[150%] tracking-[-4%] text-white">
+                          {review.designation}
+                        </p>
+                      </div>
+                    </article>
+                  </CarouselItem>
+                ))
+              }
+            </CarouselContent>
+          </Carousel>
+          <!-- <article
             class="w-full max-w-120 border border-[#4A2D2A] bg-[#2D1A1A] p-7"
           >
             {/* Image */}
-            <img
-              src={image.src}
-              alt={"title"}
-              class="h-[144px] w-[120px] object-cover"
-            />
+            <img src={image.src} alt={"title"} class="h-36 w-30 object-cover" />
 
             {/* Title */}
             <h3
@@ -114,7 +150,7 @@ console.log(reviews);
                 Founder, AI E-Commerce Solutions Company
               </p>
             </div>
-          </article>
+          </article> -->
           <!-- </ReviewCard>  -->
           <!-- <ReviewCarousel client:load reviews={reviews} /> -->
         </div>

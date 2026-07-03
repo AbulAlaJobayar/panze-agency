@@ -7,14 +7,13 @@ import { cn } from "@/lib/utils";
 type Props = HTMLAttributes<"div"> & {
   opts?: EmblaOptionsType;
   orientation?: "horizontal" | "vertical";
-  plugins?: any[];
 };
 
 const {
   class: className,
   opts,
   orientation = "horizontal",
-  plugins = [],
+
   ...props
 } = Astro.props;
 
@@ -28,7 +27,6 @@ const resolvedOpts: EmblaOptionsType = {
   data-slot="carousel"
   data-orientation={orientation}
   data-carousel-options={JSON.stringify(resolvedOpts)}
-  data-carousel-plugins={JSON.stringify(plugins)}
   class={cn("group/carousel relative", className)}
   role="region"
   aria-roledescription="carousel"
@@ -38,6 +36,7 @@ const resolvedOpts: EmblaOptionsType = {
 </div>
 
 <script>
+  import Autoplay from "embla-carousel-autoplay";
   import EmblaCarousel, {
     type EmblaCarouselType,
     type EmblaOptionsType,
@@ -144,7 +143,13 @@ const resolvedOpts: EmblaOptionsType = {
         return;
       }
 
-      const api = EmblaCarousel(viewport, parseOptions(carouselRoot));
+      const api = EmblaCarousel(viewport, parseOptions(carouselRoot), [
+        Autoplay({
+          delay: 5000,
+          stopOnInteraction: false,
+          stopOnMouseEnter: true,
+        }),
+      ]);
 
       const sync = () => {
         const details = getDetails(api);
