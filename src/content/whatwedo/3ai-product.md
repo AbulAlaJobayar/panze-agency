@@ -21,6 +21,18 @@ features:
   - "Conversational UI"
   - "Al Onboarding Flows"
   - "- Copilot Design"
+
+    # sevices section
+servicesSubTitle: "Al-driven product design that turns ideas into products Panze designs intelligent digital products that feel simple. We combine Al speed with human strategy so your Al product ships faster without losing its soul."
+
+servicesDescription: "We use Al for rapid interface exploration and trust- pattern    generation, then senior designers refine every choice. Your Al product design ships in days instead of months.
+ Your product. Your brand. Our craft. Panze handles the heavy lifting while you maintain full ownership of your vision and your client relationships."
+
+whatWeDeliver: "What we deliver"
+whatWeDeliverDetails: "AI-assisted UI design, rapid wireframing, and trust-pattern interfaces refined by senior designers, helping you ship AI-powered products faster without losing quality."
+
+
+order: 3
 ---
 
 ## Why Choose Our Website Design?

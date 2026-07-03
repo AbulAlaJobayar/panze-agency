@@ -22,6 +22,15 @@ features:
   - "Usability Testing"
   - "Cross-Platform Design"
   - "App Redesign"
+
+  # sevices section
+servicesSubTitle: "Your SaaS platform is where users work, decide, and stay, or where they quietly look for something better."
+servicesDescription: "SaaS design is not general UI design with more screens. It carries user roles, permission states, data- heavy views, and workflow logic that breaks apart under development pressure if the design was not built for it."
+whatWeDeliver: "What we deliver"
+whatWeDeliverDetails: "Dashboard UI design, onboarding flows, role-based permission states, and scalable design systems built for SaaS platforms across fintech, HR tech, martech, and logistics."
+
+
+order: 2
   
 ---
 

@@ -1,9 +1,14 @@
 ---
-import * as sectiondata from "@/content/whatwedo/whatwedo-content.md";
-import { services } from "@/content/whatwedo";
+import * as sectiondata from "@/content/whatwedo/mainContent/whatwedo-content.md";
+// import { services } from "@/content/whatwedo";
 import TabSection from "./TabSection";
 import { Image } from "astro:assets";
 
+const services = Object.values(
+  import.meta.glob("../../content/whatwedo/*.md", { eager: true }),
+).sort((a: any, b: any) => a.frontmatter.order - b.frontmatter.order);
+
+// console.log(service," from service")
 const { label, description, icon } = sectiondata.frontmatter;
 
 // Helper function to clean text
@@ -66,7 +71,9 @@ const sortedServices = sanitizedServices.sort((a, b) =>
 
 <section>
   <div class="bg-[#1E1212] py-14">
-    <div class="flex flex-col md:flex-row items-start gap-6 pt-4 md:pt-8 pb-2 md:pb-4 px-4  md:px-10">
+    <div
+      class="flex flex-col md:flex-row items-start gap-6 pt-4 md:pt-8 pb-2 md:pb-4 px-4 md:px-10"
+    >
       <div class="w-66 flex items-center gap-3 mb-2 md:mb-8">
         <Image
           src={icon}

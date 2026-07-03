@@ -1,8 +1,10 @@
 ---
-import { services } from "@/content/whatwedo";
+const services = Object.values(
+  import.meta.glob("../../content/whatwedo/*.md", { eager: true }),
+).sort((a: any, b: any) => a.frontmatter.order - b.frontmatter.order);
 
 export async function getStaticPaths() {
-  return services.map(({ frontmatter }) => ({
+  return services.map(({ frontmatter }: any) => ({
     params: {
       slug: frontmatter.slug,
     },
@@ -11,13 +13,15 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 
-const service = services.find(({ frontmatter }) => frontmatter.slug === slug);
+const service = services.find(
+  ({ frontmatter }: any) => frontmatter.slug === slug,
+);
 
 if (!service) {
   throw new Error(`Service "${slug}" not found.`);
 }
 
-const { frontmatter, Content } = service;
+const { frontmatter, Content } = service as any;
 ---
 
 <section class="mx-auto max-w-7xl py-20">

@@ -1,4 +1,5 @@
 ---
+order: 1
 value: "mobile"
 slug: "mobile-ui"
 
@@ -22,6 +23,14 @@ features:
   - "Usability Testing"
   - "Cross-Platform Design"
   - "App Redesign"
+
+# sevices section
+servicesSubTitle: " Panze is a mobile app design agency that creates iOS and Android app designs for startups and SaaS companies worldwide."
+servicesDescription: "Our mobile app design process starts with user research and ends with a polished interface your users love from the first tap. We design mobile apps for fintech, healthtech, and SaaS startups that need expert UI/UX designers without hiring a full-time team."
+whatWeDeliver: "What we deliver"
+whatWeDeliverDetails: "iOS App Design, Android App Design, Web App Design, UX Research, Interactive Prototypes, Onboarding Flows, App Design System, Developer Handoff"
+
+img: 
   
 ---
 

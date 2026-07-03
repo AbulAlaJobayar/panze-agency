@@ -1,0 +1,19 @@
+---
+import ServicesCard from "@/components/Services/ServicesCard.astro";
+const services = Object.values(
+  import.meta.glob("../../content/whatwedo/*.md", { eager: true }),
+).sort((a: any, b: any) => a.frontmatter.order - b.frontmatter.order);
+---
+
+<section class="my-20 mx-10">
+  <div class="">
+    <div class="border last:border-b-0">
+      {
+        services.map((service: any) => {
+          const fm = service.frontmatter;
+          return <ServicesCard data={fm} />;
+        })
+      }
+    </div>
+  </div>
+</section>

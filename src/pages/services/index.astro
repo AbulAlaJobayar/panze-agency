@@ -1,0 +1,18 @@
+---
+import "../../styles/global.css";
+import Footer from "@/components/Footer.astro";
+import Layout from "@/layouts/Layout.astro";
+import ContactSection from "@/components/contactSection/ContactSection.astro";
+import OurProcess from "@/components/OurProcess/OurProcess.astro";
+import HeroSection from "@/components/Services/HeroSection.astro";
+import * as ourProcess from "/src/content/services/howWeWorks-contend.md";
+import Wedo from "@/components/Services/Wedo.astro";
+---
+
+<Layout title="SERVICES | PANZE">
+  <HeroSection />
+  <OurProcess ourProcess={ourProcess} />
+  <Wedo/>
+  <ContactSection />
+  <Footer />
+</Layout>

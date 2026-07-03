@@ -1,4 +1,5 @@
 ---
+order: 4
 value: "website"
 slug: "website-ui"
 
@@ -19,6 +20,16 @@ features:
   - "Admin Panel Design"
   - "Onboarding Flows Data Visualization"
   - "Design Systems"
+
+  
+      # sevices section
+servicesSubTitle: "Panze is a website UI/UX design agency that creates landing pages, marketing sites, and conversion-focused web design for startups"
+
+servicesDescription: "Our website UI/UX design team builds high- converting landing pages that turn visitors into leads for SaaS and B2B companies. We partner with agencies as a white label web design team to deliver polished websites their clients never know we built."
+
+whatWeDeliver: "What we deliver"
+whatWeDeliverDetails: "Component Libraries, Figma Annotation, Design Token Systems, Spacing Rules, Responsive Behaviour Definitions, Interaction Specs, Motion Specs, Build QA Support"
+
 ---
 
 ## Why Choose Our Website Design?

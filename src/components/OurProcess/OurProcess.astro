@@ -1,9 +1,12 @@
 ---
 import Stepper from "./Stepper";
-import * as ourProcess from "@/content/ourprocess-content.md";
+
 import { NavigationMenuLink } from "../ui/navigation-menu";
 import ctaIcon from "/public/ourProcess/ctaActionIcon.svg";
 import { Image } from "astro:assets";
+const { ourProcess } = Astro.props;
+
+
 const {
   title,
   subTitle,
@@ -11,7 +14,6 @@ const {
   buttonText,
   buttonLink,
   ourPocessIcon,
-  stepperIcon,
   steps,
 } = ourProcess.frontmatter;
 
@@ -72,7 +74,7 @@ const sanitizedSteps = Array.isArray(steps)
         >
           {buttonText}
         </span>
-        <img src={ctaIcon.src} alt="icon" class="h-2 w-2 "  />
+        <img src={ctaIcon.src} alt="icon" class="h-2 w-2" />
       </NavigationMenuLink>
     </div>
 

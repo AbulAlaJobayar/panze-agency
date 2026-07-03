@@ -20,6 +20,18 @@ features:
   - "Admin Panel Design"
   - "Onboarding Flows Data Visualization"
   - "Design Systems"
+
+      # sevices section
+servicesSubTitle: "Logo and branding design that creates strong identities Panze is a branding design agency that creates logos, visual identity systems, and brand guidelines for startups and SaaS companies."
+
+servicesDescription: "Our logo and branding design process delivers cohesive visual identities that help SaaS startups stand out in crowded markets.
+ We work as a white label branding agency for design teams that need expert brand designers without full- time hiring costs."
+
+whatWeDeliver: "What we deliver"
+whatWeDeliverDetails: "High-Fidelity UI Design, Responsive Design, Multi-Platform Design, Dark & Light Mode, Visual Design Systems, Component Libraries, Brand-Aligned Interfaces, UI Kits"
+
+
+order: 4
 ---
 
 ## Why Choose Our Website Design?

@@ -17,7 +17,7 @@ import BlogSection from "@/components/Home/BlogSection.astro";
 import ContactSection from "@/components/contactSection/ContactSection.astro";
 import Footer from "@/components/Footer.astro";
 import Review from "@/components/Home/review/Review.astro";
-
+import * as ourProcess from "@/content/ourprocess-content.md";
 ---
 
 <Layout title="HOME | PANZE">
@@ -27,14 +27,13 @@ import Review from "@/components/Home/review/Review.astro";
   <AboutSection />
   <BrandSection />
   <LatestWork />
-  <OurProcess />
+  <OurProcess ourProcess={ourProcess} />
   <WhatWeDo />
   <Industry />
-  <!-- TODO -->
-  <Review/>
+  <Review />
   <FrequentlyAskedFAQ />
-  <TeamSection/>
-  <BlogSection/>
-  <ContactSection/>
-  <Footer/>
+  <TeamSection />
+  <BlogSection />
+  <ContactSection />
+  <Footer />
 </Layout>
