@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import { Button } from "../ui/button";
 import { Icon } from "../ui/icon";
 import background from "@/assets/services/bgCard.png";
+import NavigationMenuLink from "../ui/navigation-menu/navigation-menu-link.astro";
 
 const { data } = Astro.props;
 ---
@@ -12,14 +13,14 @@ const { data } = Astro.props;
     {/* Left */}
     <div
       style={`background-image:url(${background.src})`}
-      class="flex items-center justify-center border-b border-[#E7E2DF] lg:border-b-0 lg:border-r bg-cover bg-center bg-no-repeat px-8 py-10 lg:px-12 lg:py-14"
+      class="flex items-center justify-center border-b border-[#E7E2DF] lg:border-b-0 lg:border-r bg-cover bg-center bg-no-repeat px-8 py-10"
     >
       <Image
         src={data.image}
         alt={data.title}
-        width={900}
-        height={700}
-        class="w-full max-w-115 object-contain"
+        width={500}
+        height={400}
+        class="w-full max-h-100 object-cover object-top px-2 pt-2 transition-transform duration-500 hover:scale-105"
       />
     </div>
 
@@ -39,13 +40,13 @@ const { data } = Astro.props;
         </p>
 
         <p
-          class="mt-2 font-dm-mono text-[14px] leading-[180%] tracking-[-0.04em] text-[#5A4A48]"
+          class="mt-2 font-dm-mono text-[14px] leading-[150%] tracking-[-0.04em] text-[#5A4A48]"
         >
           {data.servicesDescription}
         </p>
 
         <h3
-          class="mt-4 font-commissioner text-[18px] font-semibold leading-[120%] text-[#301C1B]"
+          class="mt-4 font-commissioner text-[16px] font-semibold leading-[150%] text-[#301C1B]"
         >
           {data.whatWeDeliver}
         </h3>
@@ -55,14 +56,15 @@ const { data } = Astro.props;
         >
           {data.whatWeDeliverDetails}
         </p>
-
-        <Button class="mt-10 rounded-none px-7 py-6">
-          <span
-            class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%]"
-            >Learn more</span
-          >
-          <Icon name="arrow-up-right" class="ml-2 h-4 w-4" />
-        </Button>
+        <a href={`/services/${data.slug}`}>
+          <Button class="mt-10 rounded-none px-7 py-6 cursor-pointer">
+            <span
+              class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%]"
+              >Learn more</span
+            >
+            <Icon name="arrow-up-right" class="ml-2 h-4 w-4" />
+          </Button>
+        </a>
       </div>
     </div>
   </div>

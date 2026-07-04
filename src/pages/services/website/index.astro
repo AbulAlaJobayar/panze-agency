@@ -1,0 +1,22 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import "../../../styles/global.css";
+import Footer from "@/components/Footer.astro";
+import ContactSection from "@/components/contactSection/ContactSection.astro";
+import BrandSection from "@/components/BrandSection.astro";
+import FrequentlyAskedFAQ from "@/components/FrequentlyAsked/FrequentlyAskedFAQ.astro";
+import WhatWeDo from "@/components/WhatWeDo/WhatWeDo.astro";
+import HeroWebsiteSection from "@/components/Services/website/HeroWebsiteSection.astro";
+import OurProcess from "@/components/Services/website/ourWebsiteProcess/OurWebsiteProcess";
+import OurWebsiteProcess from "@/components/Services/website/ourWebsiteProcess/ourWebsiteProcess.astro";
+---
+
+<Layout title="WEBSITE | PANZE">
+  <HeroWebsiteSection />
+  <OurWebsiteProcess/>
+  <WhatWeDo />
+  <FrequentlyAskedFAQ />
+  <BrandSection />
+  <ContactSection />
+  <Footer />
+</Layout>
