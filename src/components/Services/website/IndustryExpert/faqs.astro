@@ -1,0 +1,44 @@
+---
+import Accordion from "@/components/ui/accordion/accordion.astro";
+import { cn } from "@/lib/utils";
+import AccordionItem from "@/components/ui/accordion/accordion-item.astro";
+import AccordionTrigger from "@/components/ui/accordion/accordion-trigger.astro";
+import AccordionContent from "@/components/ui/accordion/accordion-content.astro";
+
+const { class: className, faqs } = Astro.props;
+---
+
+<div class={cn("", className)}>
+  <div class="">
+    <Accordion collapsible defaultValue={faqs[0].id}>
+      {
+        faqs.map((item: any, index: number) => (
+          <AccordionItem value={item.id} class={"px-5 border-white/20"}>
+            <AccordionTrigger
+              iconActive={false}
+              class={
+                "font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] text-white data-[state=open]:hidden"
+              }
+            >
+              {item.question}
+            </AccordionTrigger>
+            <AccordionContent>
+              <div class="grid lg:grid-cols-2 pt-2 items-center">
+                <img src={item.image} alt={item.question} />
+
+                <div class="lg:-ml-20">
+                  <h3 class="font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-white mb-5">
+                    {item.question}
+                  </h3>
+                  <p class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white">
+                    {item.answer}
+                  </p>
+                </div>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        ))
+      }
+    </Accordion>
+  </div>
+</div>

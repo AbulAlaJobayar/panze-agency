@@ -1,7 +1,5 @@
 ---
 import * as benefitsData from "@/content/services/website/benefits-content.md";
-import ctaIcon from "@/assets/home/heroimage/ctaActionIcon.svg";
-import ctaIcon2 from "@/assets/services/icon.png";
 import { Image } from "astro:assets";
 
 // Access frontmatter data
@@ -9,7 +7,7 @@ const { title, subTitle, description, benefitsIcon, steps } =
   benefitsData.frontmatter;
 ---
 
-<section class="border-y overflow-hidden my-20">
+<section class="border-y overflow-hidden mb-20">
   <div class="flex flex-col lg:flex-row items-center">
     <!-- Left Side - Fixed width with white background -->
     <div

@@ -1,0 +1,55 @@
+---
+import * as industryExperties from "@/content/services/website/industry-expert-content.md";
+import { Image } from "astro:assets";
+import Faqs from "./faqs.astro";
+
+const {
+  sectionIcon,
+  title,
+  subtitle,
+  description,
+
+  faqs,
+} = industryExperties.frontmatter;
+---
+
+<section class="overflow-hidden bg-[#1E1212] py-20">
+  <div class="flex flex-col lg:flex-row items-center border-y border-white/20">
+    <!-- Left Side - Fixed width with white background -->
+    <div
+      class="w-full lg:w-100 shrink-0 border-white/0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-14"
+    >
+      <div class="flex items-center gap-3 mb-6 md:mb-20">
+        <Image
+          src={sectionIcon}
+          alt="number section"
+          width={16}
+          height={14}
+          class="w-5 h-5 md:w-auto md:h-auto"
+        />
+        <h6
+          class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+        >
+          {title}
+        </h6>
+      </div>
+      <p
+        class="text-white font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase pb-6 md:pb-15 lg:pb-15"
+      >
+        {subtitle}
+      </p>
+      <p
+        class="text-white font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] xl:pb-20"
+      >
+        {description}
+      </p>
+    </div>
+
+    <!-- Right Side - Background image ONLY on right side -->
+    <div
+      class="py-5 md:py-7 lg:py-10 border-b lg:border-b-0 lg:border-l border-white/10"
+    >
+      <Faqs faqs={faqs} />
+    </div>
+  </div>
+</section>

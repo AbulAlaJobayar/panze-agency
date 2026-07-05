@@ -2,14 +2,20 @@
 import type { HTMLAttributes } from "astro/types";
 
 import { cn } from "@/lib/utils";
-import { Icon } from "@/components/ui/icon";
 import { Image } from "astro:assets";
 import chevronup from "/public/freqAskQus/chevron-up.png";
 import chevrondown from "/public/freqAskQus/chevron-down.png";
 
-type Props = HTMLAttributes<"button">;
+type Props = HTMLAttributes<"button"> & {
+  iconActive?: boolean;
+};
 
-const { class: className, type = "button", ...props } = Astro.props;
+const {
+  class: className,
+  type = "button",
+  iconActive = true,
+  ...props
+} = Astro.props;
 ---
 
 <button
@@ -22,21 +28,27 @@ const { class: className, type = "button", ...props } = Astro.props;
   {...props}
 >
   <slot />
-  <Image
-    src={chevrondown}
-    alt={"chevronup"}
-    data-slot="accordion-trigger-icon"
-    aria-hidden="true"
-    class="text-muted-foreground pointer-events-none ml-auto size-4 shrink-0 group-aria-expanded/accordion-trigger:hidden"
-  />
- 
-  <Image
-    src={chevronup}
-    alt={"chevronup"}
-    data-slot="accordion-trigger-icon"
-    aria-hidden="true"
-    class="text-muted-foreground pointer-events-none ml-auto hidden size-4 shrink-0 group-aria-expanded/accordion-trigger:inline"
-  />
+  {
+    iconActive && (
+      <Image
+        src={chevrondown}
+        alt={"chevronup"}
+        data-slot="accordion-trigger-icon"
+        aria-hidden="true"
+        class="text-muted-foreground pointer-events-none ml-auto size-4 shrink-0 group-aria-expanded/accordion-trigger:hidden"
+      />
+    )
+  }
 
- 
+  {
+    iconActive && (
+      <Image
+        src={chevronup}
+        alt={"chevronup"}
+        data-slot="accordion-trigger-icon"
+        aria-hidden="true"
+        class="text-muted-foreground pointer-events-none ml-auto hidden size-4 shrink-0 group-aria-expanded/accordion-trigger:inline"
+      />
+    )
+  }
 </button>
