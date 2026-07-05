@@ -27,16 +27,7 @@ export default function OurWebsiteProcess({ data }: OurWebsiteProcessProps) {
   return (
     <div className="w-full  mx-auto">
       <div
-        className="  flex
-    flex-col
-    lg:flex-row
-    mx-4
-    lg:mx-5
-    border
-    border-gray-200
-    lg:h-87
-    w-full
-    overflow-hidden"
+        className="flex flex-col lg:flex-row mx-4 lg:mx-5 border border-gray-200 lg:h-100 w-full overflow-hidden"
       >
         {data.map((step) => {
           const isExpanded = expandedTitle === step.title;
@@ -54,37 +45,12 @@ export default function OurWebsiteProcess({ data }: OurWebsiteProcessProps) {
                 flexGrow: isExpanded ? 2 : 1,
               }}
               onClick={() => setExpandedTitle(step.title)}
-              className="relative
-border-b
-lg:border-b-0
-lg:border-r
-last:border-r-0
-last:border-b-0
-border-gray-200
-
-p-6
-md:p-8
-
-bg-white
-
-overflow-hidden
-cursor-pointer
-
-flex
-flex-col
-
-min-h-35
-lg:h-full"
+              className="relative border-b lg:border-b-0 lg:border-r last:border-r-0
+                          last:border-b-0border-gray-200 p-6 md:p-8 bg-white overflow-hidden cursor-pointer flex flex-col min-h-35 lg:h-full"
             >
               {/* Layout manager inside the card */}
               <div
-                className={`
-flex
-flex-col
-h-full
-
-${isExpanded ? "gap-5" : "justify-between"}
-`}
+                className={`flex flex-col h-full ${isExpanded ? "gap-5" : "justify-between"}`}
               >
                 {/* Header Segment */}
                 <div
@@ -110,11 +76,11 @@ ${isExpanded ? "gap-5" : "justify-between"}
                   <AnimatePresence initial={false}>
                     {isExpanded && (
                       <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.25, delay: 0.05 }}
-                        className="space-y-3  max-w-xl mt-1  pr-1"
+                        initial={{ opacity: 0, x: -30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -30 }}
+                        transition={{ duration: 0.35, ease: "easeOut" }}
+                        className="space-y-4 mt-4 max-w-xl pr-0 lg:pr-2"
                       >
                         {step.description && (
                           <p className="font-dm-mono font-normal text-sm tracking-[-4% ] leading-[150%] text-[#5A4F4E] text-[14px]  ">
