@@ -1,0 +1,54 @@
+---
+import "../styles/global.css";
+import Layout from "@/layouts/Layout.astro";
+import * as data from "@/content/404.md";
+import NavigationMenuLink from "@/components/ui/navigation-menu/navigation-menu-link.astro";
+
+const { subTitle, description, buttonText, buttonLink, icon } =
+  data.frontmatter;
+---
+
+<Layout title="404 | PANZE">
+  <section class="border-b overflow-hidden">
+    <div class="flex flex-col lg:flex-row items-stretch">
+      <!-- Left Side - Fixed width with white background -->
+      <div
+        class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-10 py-6 md:py-8 lg:py-10 bg-white"
+      >
+        <h3
+          class="font-commissioner font-semibold text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary py-10"
+        >
+          {subTitle}
+        </h3>
+        <p
+          class="font-dm-mono mt-5 font-normal text-[14px] leading-[150%] tracking-[-4%]"
+        >
+          {description}
+        </p>
+        <!-- button -->
+        <div class="flex gap-6">
+          <NavigationMenuLink
+            href={buttonLink}
+            class="w-36.25 h-11.25 py-3 px-2.5 bg-primary my-10 mt-5 lg:mt-26 hover:bg-primary cursor-pointer flex items-center justify-center gap-2 rounded-none"
+          >
+            <span
+              class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
+            >
+              {buttonText}
+            </span>
+            <img src={icon} alt="icon"  />
+          </NavigationMenuLink>
+        </div>
+      </div>
+
+      <!-- Right Side -->
+      <div class="flex-1 bg-[#1E1212] flex items-center justify-center">
+        <h1
+          class="font-dm-mono text-[216px] leading-[150%] tracking-[-4%] font-normal uppercase text-primary"
+        >
+          404
+        </h1>
+      </div>
+    </div>
+  </section>
+</Layout>
