@@ -1,0 +1,39 @@
+---
+import icon from "@/assets/team/purphilosophy.png";
+import * as data from "@/content/team/pur-philosophy-content.md";
+import { Image } from "astro:assets";
+const { sectionIcon, title, subtitle, description } = data.frontmatter;
+---
+
+<section class=" ">
+  <div class="mx-auto grid grid-cols-1 px-6 lg:grid-cols-2 -mb-10">
+    <!-- Left Content -->
+    <div class="max-w-90 ml-2">
+      <div class="mb-14 flex items-center gap-3">
+        <!-- Icon -->
+        <img src={sectionIcon} alt={title} />
+
+        <span
+          class="font-dm-mono text-[14px] font-normal tracking-[-4%] leading-[150%] text-[#FF6B3D]"
+        >
+          {title}
+        </span>
+      </div>
+
+      <p
+        class="font-dm-mono text-[14px] font-normal tracking-[-4%] leading-[150%] text-[#5A403F]"
+      >
+        {description}
+      </p>
+    </div>
+
+    <!-- Right Heading -->
+    <div class="flex justify-start lg:justify-end">
+      <h2
+        class="font-commissioner text-[48px] font-semibold uppercase leading-[110%] tracking-[-4%] text-[#4A302F]"
+      >
+        {subtitle}
+      </h2>
+    </div>
+  </div>
+</section>
