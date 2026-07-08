@@ -1,0 +1,77 @@
+---
+import NavigationMenuLink from "@/components/ui/navigation-menu/navigation-menu-link.astro";
+// import ctaIcon from "@/assets/icons/arrow-up-right.svg";
+import ctaIcon from "@/assets/home/heroimage/ctaActionIcon.svg";
+import * as data from "@/content/career/jobs-opening-content.md";
+
+const { jobs } = data.frontmatter;
+
+
+---
+
+<section class="bg-[#301C1B] my-20 mx-10">
+  <div class="grid grid-cols-1 lg:grid-cols-2">
+
+    {
+      jobs.map((job:any, index:any) => (
+        <article
+          class:list={[
+            "border-[#F26C3A]",
+            index === 0 && "lg:border-r",
+          ]}
+        >
+          <div
+            class="flex h-full flex-col i
+                   px-6 py-10
+                   sm:px-8 sm:py-12
+                   lg:px-8 lg:py-9
+                   border-b lg:border-b-0 border-[#4B3736]"
+          >
+            <!-- Category -->
+            <span
+              class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]
+                     text-primary"
+            >
+              {job.category}
+            </span>
+
+            <!-- Title -->
+            <h3
+              class="mt-6
+                     max-w-90
+                     font-commissioner
+                     font-semibold
+                     text-[20px]
+                     leading-[150%]
+                     tracking-[-4%]
+                     uppercase text-white"
+            >
+              {job.title}
+            </h3>
+
+            <!-- Description -->
+            <p
+              class="mt-6
+                    font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]
+                     text-white"
+            >
+              {job.description}
+            </p>
+
+           <!-- button  -->
+  <div class="mt-auto pt-12">
+    <NavigationMenuLink
+      href={job.applyLink}
+      class="inline-flex h-11 border-none w-33 items-center justify-center gap-2 bg-primary text-white hover:bg-primary/90 font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] rounded-none"
+    >
+      Apply now
+      <img src={ctaIcon.src} alt="" class="size-3" />
+    </NavigationMenuLink>
+  </div>
+ </div>
+ </article>
+      ))
+    }
+
+  </div>
+</section>

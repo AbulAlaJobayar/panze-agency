@@ -1,0 +1,113 @@
+---
+import { NavigationMenuLink } from "../ui/navigation-menu";
+import ctaIcon from "@/assets/home/heroimage/ctaActionIcon.svg";
+import * as data from "@/content/career/career-hero-content.md";
+const { title, description, cta, image } = data.frontmatter;
+---
+
+<!-- hero section -->
+<div class="flex flex-col border-t border-border lg:flex-row lg:border-b">
+  <!-- Left Content -->
+  <div
+    class="w-full shrink-0 border-b border-border px-6 py-10
+           sm:px-8
+           lg:w-90 lg:border-b-0 lg:border-r lg:px-10 lg:py-14"
+  >
+    <div class="flex h-full flex-col">
+      <div>
+        <h3
+          class="font-commissioner
+                 text-2xl
+                 sm:text-[28px]
+                 font-semibold
+                 uppercase
+                 leading-[110%]
+                 tracking-[-4%]
+                 text-primary"
+        >
+          {title}
+        </h3>
+
+        <p
+          class="mt-6
+                 max-w-full
+                 lg:max-w-[320px]
+                 font-dm-mono
+                 text-sm
+                 leading-[150%]"
+        >
+          {description}
+        </p>
+      </div>
+
+      <div class="mt-8 lg:mt-auto lg:pt-24 rounded-0">
+        <NavigationMenuLink
+          href="/contact"
+          class="rounded-none
+          inline-flex
+                 h-11
+                 w-full
+                 justify-center
+                 gap-2
+                 bg-primary
+                 text-white
+                 transition-colors
+                 hover:bg-primary/90
+                 sm:w-36.25"
+        >
+          <span
+            class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%]"
+          >
+            {cta}
+          </span>
+
+          <img src={ctaIcon.src} alt="" class="h-2 w-2" />
+        </NavigationMenuLink>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Gallery -->
+  <div class="flex-1 px-6 py-10 sm:px-8 lg:px-12 lg:py-16">
+    <div class="mx-auto max-w-190">
+      <!-- Mobile -->
+      <div class="grid grid-cols-2 gap-5 lg:hidden">
+        {
+          image.map((img: string) => (
+            <div class="border border-primary bg-[#F6DDD6] p-1">
+              <img src={img} class="aspect-4/5 w-full object-cover" />
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Desktop -->
+      <div class="hidden lg:grid grid-cols-3 items-center gap-x-2">
+        <!-- Left -->
+        <div class="flex justify-end">
+          <div class="border border-primary bg-[#F6DDD6] p-1">
+            <img src={image[0]} class="h-62.5 w-52.5 object-cover" />
+          </div>
+        </div>
+
+        <!-- Center -->
+        <div class="flex flex-col items-center gap-10">
+          <div class="border border-primary bg-[#F6DDD6] p-1">
+            <img src={image[1]} class="h-42.5 w-36.25 object-cover" />
+          </div>
+
+          <div class="border border-primary bg-[#F6DDD6] p-1">
+            <img src={image[2]} class="h-47.5 w-41.25 object-cover" />
+          </div>
+        </div>
+
+        <!-- Right -->
+        <div class="flex justify-start">
+          <div class="border border-primary bg-[#F6DDD6] p-1">
+            <img src={image[3]} class="h-58.75 w-48.75 object-cover" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
