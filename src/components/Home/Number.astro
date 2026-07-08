@@ -1,14 +1,16 @@
 ---
 import { Image } from "astro:assets";
 import network from "@/assets/home/number/network.svg";
-import * as data from "@/content/home/number-content.md";
+// import * as data from "@/content/home/number-content.md";
+const { data } = Astro.props;
+const { title, description, content } = data.frontmatter;
 ---
 
 <section class="border-b overflow-hidden">
   <div class="flex flex-col lg:flex-row items-stretch lg:items-center">
     <!-- leftside - fixed width 400px -->
     <div
-      class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-10 py-10 md:py-16 lg:py-20"
+      class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 px-6 sm:px-8 md:px-10 py-10 md:py-16 lg:py-20"
     >
       <div class="flex items-center gap-3 mb-6 md:mb-8">
         <Image
@@ -19,28 +21,32 @@ import * as data from "@/content/home/number-content.md";
         <h6
           class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
         >
-          {data.frontmatter.title}
+          {title}
         </h6>
       </div>
       <p
         class="font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase pb-6 md:pb-8 lg:pb-10"
       >
-        {data.frontmatter.description}
+        {description}
       </p>
     </div>
 
     <!-- right side - fills remaining space -->
     <div class="flex-1 min-w-0">
-      <div
-        class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-      >
+      <div class="flex flex-wrap sm:flex-nowrap">
         {
-          data.frontmatter.content.map((item: any) => (
-            <div class="border-b sm:border-b-0 border-r  px-4 sm:px-5 md:px-6 py-10 md:py-16 lg:py-20">
-              <h3 class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary pb-4 md:pb-6 lg:pb-15">
+          content.map((item: any, index: number) => (
+            <div
+              class:list={[
+                "flex w-1/2 sm:flex-1 flex-col items-start justify-between border-b border-r px-4 py-10 sm:w-auto sm:border-b-0 sm:px-5 md:px-8 md:py-16 lg:py-20",
+                index === 0 && "sm:border-l",
+              ]}
+            >
+              <h3 class="pb-4 font-dm-mono text-[12px] font-normal leading-[150%] tracking-[-4%] text-primary md:pb-6 lg:pb-15">
                 {item.title}
               </h3>
-              <p class="font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase pb-4 md:pb-6 lg:pb-10">
+
+              <p class="pb-4 font-commissioner text-[20px] font-semibold leading-[110%] tracking-[-4%] uppercase sm:text-[22px] md:pb-6 md:text-[24px] lg:pb-10">
                 {item.number}
               </p>
             </div>

@@ -1,0 +1,41 @@
+---
+
+import * as data from "@/content/about/about-hero-content.md"
+const {title,subTitle ,description, logo}=data.frontmatter
+---
+
+<section class="border-b overflow-hidden">
+  <div class="flex flex-col lg:flex-row items-stretch">
+    <!-- Left Side - Fixed width with white background -->
+    <div
+      class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-10 py-6 md:py-8 lg:py-10 bg-white"
+    >
+      <h3
+        class="font-commissioner font-semibold text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary py-10"
+      >
+        {title}
+      </h3>
+      <p
+        class="font-dm-mono mt-5 font-normal text-[14px] leading-[150%] tracking-[-4%]"
+      >
+        {subTitle}
+      </p>
+      <p
+        class="font-dm-mono mt-5 font-normal text-[14px] leading-[150%] tracking-[-4%]"
+      >
+        {description}
+      </p>
+
+      
+    </div>
+
+    <!-- Right Side -->
+    <div class="flex-1 bg-[#1E1212] flex items-center justify-center">
+      <h1
+        class="font-dm-mono text-[216px] leading-[150%] tracking-[-4%] font-normal uppercase text-primary"
+      >
+        <img src={logo} alt="panze">
+      </h1>
+    </div>
+  </div>
+</section>

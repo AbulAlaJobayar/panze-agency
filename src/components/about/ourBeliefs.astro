@@ -1,0 +1,59 @@
+---
+import teamImage from "@/assets/about/strategy.png";
+import * as data from "@/content/about/our-beliefs-content.md";
+const { title, description, content } = data.frontmatter;
+---
+
+<section class="pt-10 md:pt-16 lg:pt-20 mx-10">
+  <div class="border-[#3A3A3A]">
+    <!-- Top -->
+    <div
+      class="flex flex-col justify-baseline items-start md:flex-row gap-5 md:gap-32 pb-20"
+    >
+      <div class="">
+        <span
+          class="text-[#5B2E2E] uppercase font-commissioner leading-[110%] font-semibold tracking-[-4%] text-[24px]"
+        >
+          {title}
+        </span>
+      </div>
+
+      <div class="max-w-100">
+        <p
+          class="font-dm-mono font-normal text-[#301C1B] text-[14px] sm:leading-8 leading-[150%] tracking-[-4%]"
+        >
+          {description}
+        </p>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="grid grid-cols-1 lg:grid-cols-2">
+      <!-- Image -->
+      <div class="order-2 lg:order-1">
+        <img
+          src={teamImage.src}
+          alt="Team"
+          class="w-full h-87.5 sm:h-125 lg:h-full object-cover"
+        />
+      </div>
+
+      <!-- Right Content -->
+      <div class="order-1 lg:order-2">
+        {
+          content.map((item: any) => (
+            <div class="border-b border-black/20 last:border-b-0 px-6 sm:px-8 lg:px-10 py-8 ">
+              <h3 class="text-[#301C1B] uppercase font-commissioner leading-[150%] font-semibold tracking-[-4%] text-[20px]">
+                {item.title}
+              </h3>
+
+              <p class="mt-4 font-dm-mono font-normal text-[#301C1B] text-[14px]  leading-[150%] tracking-[-4%]">
+                {item.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

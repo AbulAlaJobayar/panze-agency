@@ -1,0 +1,135 @@
+---
+import * as data from "@/content/about/clients-content.md";
+import Icon from "../ui/icon/icon.astro";
+
+const { title, description, clients, industries } = data.frontmatter;
+
+const { firstRow, secondRow } = industries;
+---
+
+<section class="bg-[#2E1C1B] py-16 lg:py-24 px-10">
+  <div class="mx-auto max-w-300">
+    <!-- Header -->
+    <div
+      class="grid gap-8 border-b border-[#4A3432] pb-12
+             lg:grid-cols-[220px_1fr]"
+    >
+      <div>
+        <h2
+          class="font-semibold uppercase
+                 text-white
+                font-commissioner leading-[110%] tracking-[-4%] text-[24px]"
+        >
+          {title}
+        </h2>
+      </div>
+
+      <div>
+        <p
+          class="max-w-160
+                font-normal uppercase
+                 text-white
+                font-dm-mono leading-[150%] tracking-[-4%] text-[14px]"
+        >
+          {description}
+        </p>
+      </div>
+    </div>
+
+    <!-- Logo Grid -->
+    <div
+      class="grid
+             grid-cols-2
+             md:grid-cols-3
+             lg:grid-cols-6
+             border-l
+             border-t
+             border-[#4A3432]"
+    >
+      {
+        clients.map((client: any) => (
+          <div
+            class="flex h-36 lg:h-48 items-center justify-center
+                   border-r border-b border-[#4A3432]
+                   px-8 transition-colors duration-300
+                   hover:bg-[#35211F]"
+          >
+            <img
+              src={client.logo}
+              alt={client.name}
+              class="max-h-12 w-auto object-contain opacity-95"
+            />
+          </div>
+        ))
+      }
+    </div>
+    <!-- Industry Tags -->
+    <div class="flex flex-col items-center">
+      <!-- First Row -->
+      <div
+        class="grid w-full
+           grid-cols-2
+           md:grid-cols-3
+           lg:grid-cols-6
+           border-l border-t border-[#4A3432]"
+      >
+        {
+          firstRow.map((industry: any) => (
+            <div
+              class="flex min-h-16 items-center justify-center gap-3
+                 border-r border-b border-[#4A3432]
+                 px-6 py-5"
+            >
+              <Icon
+                name="check"
+                class="size-4 shrink-0 border border-primary text-primary"
+              />
+
+              <span
+                class="whitespace-nowrap text-center
+                   font-dm-mono
+                   font-normal text-[14px] leading-[150%]  tracking-[-4%]
+                   text-primary"
+              >
+                {industry}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Second Row (Centered) -->
+      <div class="flex w-full justify-center">
+        <div
+          class="grid
+             w-full
+             lg:w-[66.666667%]
+             grid-cols-2
+             lg:grid-cols-4
+             border-l border-[#4A3432]"
+        >
+          {
+            secondRow.map((industry: any) => (
+              <div
+                class="flex min-h-16 items-center justify-center gap-3
+                   border-r border-b border-[#4A3432]
+                   px-6 py-5"
+              >
+                {/* <Icon name="check" class="size-4 shrink-0 text-[#F26C3A]" /> */}
+
+                <span
+                  class="whitespace-nowrap text-center
+                   font-dm-mono
+                   font-normal text-[14px] leading-[150%]  tracking-[-4%]
+                   text-primary"
+                >
+                  {industry}
+                </span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

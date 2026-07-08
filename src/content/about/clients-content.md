@@ -1,0 +1,38 @@
+---
+title: "Clients"
+description: "We collaborate with forward thinking brands, startups, and global companies across industries, helping them transform product challenges into scalable digital experiences that convert."
+
+clients:
+  - name: "Solvorry"
+    logo: "/src/assets/about/solvorry.png"
+
+  - name: "Ablaze"
+    logo: "/src/assets/about/Alpe -Logo.png"
+
+  - name: "BeHome247"
+    logo: "/src/assets/about/BEH-Logo.png"
+
+  - name: "WowDesign"
+    logo: "/src/assets/about/wowdesign.png"
+
+  - name: "ALPE"
+    logo: "/src/assets/about/ablaze.png"
+
+  - name: "Solvorry"
+    logo: "/src/assets/about/solvorry.png"
+
+industries:
+  firstRow:
+    - "Technology"
+    - "E-commerce & Retail"
+    - "Finance & Saas"
+    - "Real Estate"
+    - "Architecture"
+    - "Fashion"
+
+  secondRow:
+    - "Education"
+    - "Health & Wellness"
+    - "Automotive"
+    - "Industrial"
+---

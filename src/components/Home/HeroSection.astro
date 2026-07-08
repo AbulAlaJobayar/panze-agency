@@ -6,21 +6,13 @@ import firstimage from "@/assets/home/heroimage/herofirstimg.svg";
 import secondimage from "@/assets/home/heroimage/heroseimg.svg";
 import thirdimage from "@/assets/home/heroimage/herothirdimage.png";
 import { Image } from "astro:assets";
-import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import * as hero from "../../content/home/hero-content.md";
 
-
-const autoplayPlugin = Autoplay({
-  delay: 3000,
-  stopOnInteraction: true,
-});
 ---
 
 <!-- hero section -->
@@ -100,7 +92,7 @@ const autoplayPlugin = Autoplay({
     </div>
   </div>
   <!-- small screen -->
-  <div class="block md:hidden">
+  <div class="block md:hidden mx-auto px-4 ">
     <div class="mt-10">
       <!-- top -->
       <div class="pl-2">
