@@ -6,30 +6,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import * as data from "@/content/about/testimonial-content.md";
 
-const testimonials = [
-  {
-    description:
-      "We needed a directory listing company with a brand identity that stood out. Panze developed a visual system and logo design that made us instantly recognizable in a crowded market.",
-    name: "Rachel Kim",
-    designation: "Brand Director at Advaz",
-    image: "/images/testimonial/rachel.png",
-  },
-  {
-    description:
-      "Panze transformed our product experience with a clean design system. The team delivered quickly and exceeded expectations.",
-    name: "John Carter",
-    designation: "Founder at Solvorry",
-    image: "/images/testimonial/john.png",
-  },
-  {
-    description:
-      "Working with Panze was effortless. Their UX thinking helped us improve user engagement and conversion significantly.",
-    name: "Emma Watson",
-    designation: "CEO at WowDesign",
-    image: "/images/testimonial/emma.png",
-  },
-];
+const { title, description, testimonials } = data.frontmatter;
+import icon from "@/assets/home/number/network.svg"
+import CtaIcon from "../../../public/ourProcess/ctaActionIcon.svg"
 ---
 
 <section class="border border-black/20 my-20 mx-10">
@@ -37,15 +18,15 @@ const testimonials = [
     <!-- Left Side -->
     <div
       class="flex w-full flex-col justify-between border-b border-r border-[#D9D9D9]
-             p-8 lg:border-b-0 lg:p-10"
+             p-8 lg:border-b-0 lg:p-10 lg:w-md"
     >
       <div>
         <div class="flex items-center gap-2 text-[#F26C3A]">
-          <span>☑</span>
+          <img src={icon.src} alt={title}>
           <span
             class="font-dm-mono font-normal
                  leading-[150%] tracking-[-4%] text-[14px]"
-            >Testimonial</span
+            >{title}</span
           >
         </div>
 
@@ -54,18 +35,18 @@ const testimonials = [
                  
                 leading-[110%] tracking-[-4%] text-[24px]"
         >
-          FEEDBACK THAT DRIVES US
+          {description}
         </h2>
       </div>
 
       <a
-        href="#"
+        href="/contact"
         class="mt-10 inline-flex w-fit items-center gap-3 bg-[#F26C3A]
                px-8 py-4 text-white transition hover:bg-[#dc5f33] font-commissioner font-normal
                  leading-[150%] tracking-[-4%] text-[14px]"
       >
         Let'talk
-        <span>↗</span>
+        <img src={CtaIcon.src}/>
       </a>
     </div>
 
@@ -74,7 +55,7 @@ const testimonials = [
       <Carousel class="w-full">
         <CarouselContent>
           {
-            testimonials.map((item) => (
+            testimonials.map((item: any) => (
               <CarouselItem>
                 <div class="flex flex-col justify-between">
                   <p
@@ -88,7 +69,7 @@ const testimonials = [
                     <img
                       src={item.image}
                       alt={item.name}
-                      class="h-16 w-16 object-cover"
+                      class="h-14 w-14 object-cover"
                     />
 
                     <div>
