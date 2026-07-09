@@ -1,7 +1,7 @@
 ---
 import { cn } from "@/lib/utils";
 import { Header, HeaderContainer, HeaderGroup } from "@/components/ui/header";
-import { Logo, LogoImage} from "@/components/ui/logo";
+import { Logo, LogoImage } from "@/components/ui/logo";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -82,25 +82,24 @@ const pathname = Astro.url.pathname;
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div>
-                      {item.links.map((link) => (
-                        <NavigationMenuLink
-                          href={link.href}
-                          class="items-start gap-3 p-3"
-                        >
-                          <span class="grid gap-1">
-                            <span
-                              class={`${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%] ${
-                                pathname === item.href
-                                  ? "text-[#E8704E] "
-                                  : "text-gray-900 hover:text-[#E8704E] "
-                              }`}
-                            >
-                              {link.label}
-                            </span>
+                    {item.links.map((link) => (
+                      <NavigationMenuLink
+                        href={link.href}
+                        class="items-start gap-3 p-3"
+                      >
+                        <span class="grid gap-1">
+                          <span
+                            class={`${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%] ${
+                              pathname === item.href
+                                ? "text-[#E8704E] "
+                                : "text-gray-900 hover:text-[#E8704E] "
+                            }`}
+                          >
+                            {link.label}
                           </span>
-                        </NavigationMenuLink>
-                      ))}
-                   
+                        </span>
+                      </NavigationMenuLink>
+                    ))}
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -170,7 +169,16 @@ const pathname = Astro.url.pathname;
                           variant="ghost"
                           class="text-muted-foreground justify-start font-dm-mono"
                         >
-                          {link.label}
+                          <NavigationMenuLink
+                            href={link.href}
+                            class={`${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%]  ${
+                              pathname === item.href
+                                ? "text-[#E8704E] "
+                                : "text-gray-900 hover:text-[#E8704E]"
+                            }`}
+                          >
+                            {link.label}
+                          </NavigationMenuLink>
                         </SheetClose>
                       ))}
                     </div>

@@ -1,56 +1,8 @@
 ---
 import { Icon } from "../ui/icon";
+import * as data from "@/content/career/facilities-content.md";
 
-const benefits = [
-  {
-    icon: "gift",
-    title: "Two Festival Bonuses",
-    description:
-      "Double the joy, double the rewards. Get two festival bonuses every year, each worth 50% of your gross salary.",
-  },
-  {
-    icon: "badge-check",
-    title: "Mentorship & Personal Growth",
-    description:
-      "We're not bosses, we're mentors. Get hands-on guidance that helps you sharpen your skills and reach your full potential.",
-  },
-  {
-    icon: "wifi",
-    title: "Device & Internet Allowance",
-    description:
-      "Work without worry. We provide a monthly allowance to cover your device costs and internet connection.",
-  },
-  {
-    icon: "heart",
-    title: "Health & Wellness Allowance",
-    description:
-      "Your health comes first. Receive support for medical checkups, treatments, and wellness needs.",
-  },
-  {
-    icon: "calendar",
-    title: "Generous Leave Benefits",
-    description:
-      "Enjoy ample paid leave throughout the year so you can recharge without losing income.",
-  },
-  {
-    icon: "bank",
-    title: "Emergency Loan Facilities",
-    description:
-      "Interest-free emergency loans are available whenever you need financial support.",
-  },
-  {
-    icon: "trophy",
-    title: "Performance Bonuses",
-    description:
-      "Hit your goals and earn extra bonuses on top of your regular salary.",
-  },
-  {
-    icon: "graduation-cap",
-    title: "Learning & Development",
-    description:
-      "We sponsor certifications, courses, and learning resources to help you grow.",
-  },
-];
+const { title, subtitle, description, benefits } = data.frontmatter;
 ---
 
 <section class="">
@@ -67,7 +19,7 @@ const benefits = [
           class="flex items-center gap-2 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
         >
           <Icon name="star" class="size-4" />
-          Facilities
+          {title}
         </span>
       </div>
 
@@ -79,7 +31,7 @@ const benefits = [
                text-[24px]
                leading-[110%] tracking-[-4%] uppercase"
       >
-        A Workplace That Supports How You Live
+        {subtitle}
       </h2>
 
       <p
@@ -87,15 +39,14 @@ const benefits = [
                justify-self-end
               font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
       >
-        Panze brings together UX research, information architecture, conversion
-        strategy, and visual craft in one integrated website design process.
+        {description}
       </p>
     </div>
 
     <!-- Benefits -->
-    <div class="grid lg:grid-cols-2">
+    <div class="grid lg:grid-cols-2 px-10">
       {
-        benefits.map((item, index) => (
+        benefits.map((item:any, index:any) => (
           <div
             class:list={[
               "border-b border-black/20",
