@@ -1,20 +1,16 @@
 ---
-import * as askedQuestion from "@/content/frequentlyAsked-content.md";
+// import * as askedQuestion from "@/content/frequentlyAsked-content.md";
 
 import ctaIcon from "/public/ourProcess/ctaActionIcon.svg";
 import { Image } from "astro:assets";
 import { NavigationMenuLink } from "../ui/navigation-menu";
 import Faqs from "./faqs.astro";
 const whatsappUrl = import.meta.env.WHATSAPP_URL;
+const { askedQuestion } = Astro.props;
 
-const {
-  sectionIcon,
-  title,
-  subtitle,
-  description,
-  buttonText,
-  faqs,
-} = askedQuestion.frontmatter;
+
+const { sectionIcon, title, subtitle, description, buttonText, faqs } =
+  askedQuestion.frontmatter;
 ---
 
 <section class="overflow-hidden mt-20">

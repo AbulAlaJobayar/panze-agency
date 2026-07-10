@@ -6,7 +6,6 @@ import ctaIcon from "/public/ourProcess/ctaActionIcon.svg";
 import { Image } from "astro:assets";
 const { ourProcess } = Astro.props;
 
-
 const {
   title,
   subTitle,
@@ -74,7 +73,19 @@ const sanitizedSteps = Array.isArray(steps)
         >
           {buttonText}
         </span>
-        <img src={ctaIcon.src} alt="icon" class="h-2 w-2" />
+        <svg
+          class="text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M7 17L17 7M17 7H9M17 7V15"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
       </NavigationMenuLink>
     </div>
 

@@ -8,7 +8,6 @@ const services = Object.values(
   import.meta.glob("../../content/whatwedo/*.md", { eager: true }),
 ).sort((a: any, b: any) => a.frontmatter.order - b.frontmatter.order);
 
-// console.log(service," from service")
 const { label, description, icon } = sectiondata.frontmatter;
 
 // Helper function to clean text

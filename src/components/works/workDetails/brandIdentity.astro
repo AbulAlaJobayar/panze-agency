@@ -1,0 +1,13 @@
+---
+const { brandIdentity } = Astro.props;
+---
+
+<section class="my-20">
+  <div class="overflow-hidden px-10 max-h-181">
+    <img
+      src={brandIdentity.image}
+      alt={brandIdentity.name}
+      class="w-full h-auto object-cover"
+    />
+  </div>
+</section>

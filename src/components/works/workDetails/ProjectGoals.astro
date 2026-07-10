@@ -1,0 +1,78 @@
+---
+const { projectGoal } = Astro.props;
+---
+
+<section class="border-b border-black/20">
+  <div
+    class="grid grid-cols-1 lg:grid-cols-[380px_minmax(0,1fr)] xl:grid-cols-[420px_minmax(0,1fr)]"
+  >
+    <!-- Left -->
+    <div
+      class="border-b lg:border-b-0 lg:border-r border-black/20
+             bg-white
+             px-6 sm:px-8 md:px-10
+             py-8 sm:py-10 lg:py-12 xl:py-14
+             flex flex-col justify-center"
+    >
+      <!-- Section Header -->
+      <div class="flex items-center gap-2">
+        <img
+          src={projectGoal.sectionIcon}
+          alt={projectGoal.sectionTitle}
+          class="size-4 sm:size-5"
+        />
+
+        <span
+          class="font-dm-mono
+                 text-primary
+                 text-xs sm:text-sm
+                 leading-none"
+        >
+          {projectGoal.sectionTitle}
+        </span>
+      </div>
+
+      <!-- Title -->
+      <h2
+        class="mt-8 lg:mt-10
+               font-commissioner
+               font-semibold
+               uppercase
+               text-primary
+               text-[24px]
+               leading-[110%]
+               tracking-[-0.04em]
+               max-w-full lg:max-w-[320px]"
+      >
+        {projectGoal.title}
+      </h2>
+
+      <!-- Description -->
+      <p
+        class="mt-8 lg:mt-12
+               max-w-full lg:max-w-[320px]
+               font-dm-mono
+               font-normal
+               text-[14px]
+               sm:text-[15px]
+               leading-[150%]
+               tracking-[-0.04em]
+               text-[#301C1B]"
+      >
+        {projectGoal.description}
+      </p>
+    </div>
+
+    <!-- Right -->
+    <div class="overflow-hidden">
+      <img
+        src={projectGoal.image}
+        alt={projectGoal.title}
+        class="w-full h-full object-cover
+               aspect-4/3
+               md:aspect-16/10
+               lg:aspect-auto"
+      />
+    </div>
+  </div>
+</section>

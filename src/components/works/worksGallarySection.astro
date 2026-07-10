@@ -1,0 +1,72 @@
+---
+const works = Object.values(
+  import.meta.glob("../../content/works/work/*.md", { eager: true }),
+).sort((a: any, b: any) => a.frontmatter.order - b.frontmatter.order);
+
+const rows = [];
+
+for (let i = 0; i < works.length; i += 2) {
+  rows.push(works.slice(i, i + 2));
+}
+---
+
+<section class="container py-20 px-10">
+  <div class="space-y-16">
+    {
+      rows.map((row, rowIndex) => {
+        const reverse = rowIndex % 2 === 1;
+
+        return (
+          <div class="flex flex-col lg:flex-row ">
+            {row.map((project: any, index: number) => {
+              const width = reverse
+                ? index === 0
+                  ? "lg:w-3/5"
+                  : "lg:w-2/5"
+                : index === 0
+                  ? "lg:w-2/5"
+                  : "lg:w-3/5";
+
+              return (
+               <div class={width}>
+                <a href={`/works/${project.frontmatter.slug}`} class="block group">
+                    <article class="h-140.5 flex flex-col">
+                <!-- Image Border -->
+                <div
+                    class:list={[
+                    "border border-primary p-2",
+                    index === 0 && "lg:border-r-0",
+                    ]}
+                >
+                    <img
+                    src={project.frontmatter.thumbnail}
+                    alt={project.frontmatter.title}
+                    class="w-full h-112 object-cover transition-transform duration-500 ease-out group-hover:scale-102"
+                    />
+                </div>
+
+                <!-- Content  -->
+                <div class="flex-1 flex flex-col mt-4">
+                    <h3 class="font-commissioner font-semibold text-[16px] leading-[110%] tracking-[-0.04em] text-[#1E1212]">
+                    {project.frontmatter.title}
+                    </h3>
+
+                    <div class="mt-auto flex flex-wrap gap-2 pt-4">
+                    {project.frontmatter.tags?.map((tag: string) => (
+                        <span class="rounded-full border  px-4 py-1 font-dm-mono text-[12px] leading-[150%] tracking-[-0.04em] text-[#1E1212]">
+                        {tag}
+                        </span>
+                    ))}
+                    </div>
+                </div>
+                </article>
+                </a>
+                </div>
+              );
+            })}
+          </div>
+        );
+      })
+    }
+  </div>
+</section>

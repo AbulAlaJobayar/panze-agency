@@ -170,3 +170,32 @@
     font-family: var(--font-commissioner);
   }
 }
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotateBorder {
+  to {
+    --angle: 360deg;
+  }
+}
+
+.toggle-border {
+  position: relative;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(white, white) padding-box,
+    conic-gradient(
+      from var(--angle),
+      #F26C3A,
+      transparent,
+      #F26C3A,
+      transparent,
+      #F26C3A
+    ) border-box;
+
+  animation: rotateBorder 3s linear infinite;
+}

@@ -1,0 +1,25 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import "../styles/global.css";
+import Footer from "@/components/Footer.astro";
+import Benefits from "@/components/Services/website/Benefits.astro";
+import BrandSection from "@/components/BrandSection.astro";
+import FrequentlyAskedFAQ from "@/components/FrequentlyAsked/FrequentlyAskedFAQ.astro";
+import WhyChooseUs from "@/components/pricing/whyChooseUs.astro";
+import ContactSection from "@/components/contactSection/ContactSection.astro";
+import PricingHeroSection from "@/components/pricing/pricingHeroSection.astro";
+import PriceTabSection from "@/components/pricing/pricingTabSection.astro";
+import * as askedQuestion from "@/content/pricing/pricing-FAQ-content.md";
+import * as benefitsData from "@/content/pricing/pricing-benifit-content.md";
+---
+
+<Layout title="PRICING | PANZE">
+  <PricingHeroSection />
+  <PriceTabSection />
+  <FrequentlyAskedFAQ askedQuestion={askedQuestion} />
+  <BrandSection />
+  <WhyChooseUs />
+  <Benefits data={benefitsData} />
+  <ContactSection />
+  <Footer />
+</Layout>

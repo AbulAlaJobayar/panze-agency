@@ -19,6 +19,7 @@ import Footer from "@/components/Footer.astro";
 import Review from "@/components/Home/review/Review.astro";
 import * as ourProcess from "@/content/ourprocess-content.md";
 import * as data from "@/content/home/number-content.md";
+import * as askedQuestion from "@/content/frequentlyAsked-content.md";
 ---
 
 <Layout title="HOME | PANZE">
@@ -32,7 +33,7 @@ import * as data from "@/content/home/number-content.md";
   <WhatWeDo />
   <Industry />
   <Review />
-  <FrequentlyAskedFAQ />
+  <FrequentlyAskedFAQ askedQuestion={askedQuestion} />
   <TeamSection />
   <BlogSection />
   <ContactSection />

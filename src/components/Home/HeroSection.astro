@@ -12,7 +12,6 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import * as hero from "../../content/home/hero-content.md";
-
 ---
 
 <!-- hero section -->
@@ -42,7 +41,19 @@ import * as hero from "../../content/home/hero-content.md";
             >
               {hero.frontmatter.cta}</span
             >
-            <img src={ctaIcon.src} alt="icon" class="h-2 w-2" />
+            <svg
+              class="text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M7 17L17 7M17 7H9M17 7V15"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
           </NavigationMenuLink>
         </div>
       </div>
@@ -92,7 +103,7 @@ import * as hero from "../../content/home/hero-content.md";
     </div>
   </div>
   <!-- small screen -->
-  <div class="block md:hidden mx-auto px-4 ">
+  <div class="block md:hidden mx-auto px-4">
     <div class="mt-10">
       <!-- top -->
       <div class="pl-2">

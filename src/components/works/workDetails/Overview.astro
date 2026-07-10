@@ -1,0 +1,33 @@
+---
+const { overview } = Astro.props;
+---
+
+<section class="border-t border-primary py-12 lg:py-16 px-10">
+  <div class="flex flex-col lg:flex-row gap-10 lg:gap-14">
+    <!-- Left -->
+    <div class="w-full lg:max-w-[320px] shrink-0">
+      <h2
+        class="font-commissioner font-semibold uppercase
+               text-[24px] leading-[110%]
+               tracking-[-0.04em]
+               text-[#301C1B]"
+      >
+        {overview.title}
+      </h2>
+    </div>
+
+    <!-- Right -->
+    <div class="flex-1 max-w-190">
+      <p
+        class="font-dm-mono
+               text-[14px]
+               leading-[150%]
+               tracking-[-0.04em]
+               text-[#301C1B]
+               whitespace-pre-line"
+      >
+        {overview.content}
+      </p>
+    </div>
+  </div>
+</section>

@@ -11,18 +11,19 @@ import OurWebsiteProcess from "@/components/Services/website/ourWebsiteProcess/o
 import Benefits from "@/components/Services/website/Benefits.astro";
 import IndustryExpert from "@/components/Services/website/IndustryExpert/IndustryExpert.astro";
 import DesignExpertise from "@/components/Services/website/DesignExpertise.astro";
-
+import * as benefitsData from "@/content/services/website/benefits-content.md";
+import * as askedQuestion from "@/content/frequentlyAsked-content.md";
 ---
 
 <Layout title="WEBSITE | PANZE">
   <HeroWebsiteSection />
-  <OurWebsiteProcess/>
+  <OurWebsiteProcess />
   <WhatWeDo />
-  <FrequentlyAskedFAQ/>
+  <FrequentlyAskedFAQ askedQuestion={askedQuestion} />
   <BrandSection />
-  <Benefits/>
-  <IndustryExpert/>
-  <DesignExpertise/>
+  <Benefits data={benefitsData} />
+  <IndustryExpert />
+  <DesignExpertise />
   <ContactSection />
   <Footer />
 </Layout>

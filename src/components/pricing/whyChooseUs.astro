@@ -1,0 +1,116 @@
+---
+import { Icon } from "../ui/icon";
+import * as data from "@/content/pricing/why-choose-content.md";
+
+const { title, subtitle, description, image, leftFeatures, rightFeatures } =
+  data.frontmatter;
+---
+
+<section class="bg-[#E8704E] text-white py-20">
+  <div class="mx-auto">
+    <!-- ================= Header ================= -->
+    <div
+      class="grid border-white/20
+             px-6 pb-16
+             lg:grid-cols-[180px_1fr_420px]
+             lg:px-10"
+    >
+      <!-- Left -->
+      <div>
+        <span class="flex items-center gap-2">
+          <Icon name="sparkles" class="size-4" />
+          <h1
+            class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
+          >
+            {title}
+          </h1>
+        </span>
+      </div>
+
+      <!-- Center -->
+      <div class="mt-8 lg:mt-0">
+        <h2
+          class="max-w-120
+                 font-commissioner
+                 text-[24px]
+                 font-semibold
+                 uppercase
+                 leading-[110%] tracking-[-4%]"
+        >
+          {subtitle}
+        </h2>
+      </div>
+
+      <!-- Right -->
+      <div class="mt-8 lg:mt-0 lg:justify-self-end">
+        <p
+          class="max-w-105
+                 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
+        >
+          {description}
+        </p>
+      </div>
+    </div>
+
+    <!-- ================= Bottom ================= -->
+
+    <div
+      class="grid
+             lg:grid-cols-[1fr_380px_1fr] border-y border-white/20"
+    >
+      <!-- LEFT FEATURES -->
+
+      <div class="border-r border-white/20">
+        {
+          leftFeatures.map((item: any) => (
+            <div class="border-b border-white/20 p-8 lg:p-10 last:border-b-0">
+              <h3
+                class="mb-3 font-commissioner
+                 text-[16px]
+                 font-semibold
+                 uppercase
+                 leading-[150%] tracking-[-4%]"
+              >
+                {item.title}
+              </h3>
+
+              <p class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white">
+                {item.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- IMAGE -->
+
+      <div>
+        <img src={image} alt="Why Choose Us" class="h-151 w-95 object-cover" />
+      </div>
+
+      <!-- RIGHT FEATURES -->
+
+      <div class="border-l border-white/20">
+        {
+          rightFeatures.map((item: any) => (
+            <div class="border-b border-white/20 p-8 lg:p-10 last:border-b-0">
+              <h3
+                class="mb-3    font-commissioner
+                 text-[16px]
+                 font-semibold
+                 uppercase
+                 leading-[150%] tracking-[-4%]"
+              >
+                {item.title}
+              </h3>
+
+              <p class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white">
+                {item.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

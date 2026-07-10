@@ -1,0 +1,71 @@
+---
+import NavigationMenuLink from "../ui/navigation-menu/navigation-menu-link.astro";
+import * as worksData from "@/content/works/works-hero-content.md";
+
+const { title, description, statistics, button } = worksData.frontmatter;
+---
+
+<section class="border-b overflow-hidden">
+  <div class="flex flex-col lg:flex-row items-stretch">
+    <!-- Left Side - Fixed width with white background -->
+    <div
+      class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-10 py-6 md:py-8 lg:py-10 bg-white"
+    >
+      <h3
+        class="font-commissioner font-semibold text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary py-10"
+      >
+        {title}
+      </h3>
+      <p
+        class="font-dm-mono mt-5 font-normal text-[14px] leading-[150%] tracking-[-4%]"
+      >
+        {description}
+      </p>
+      <div class="grid grid-cols-2 mt-20 gap-8">
+        {
+          statistics.map((item: any) => (
+            <div>
+              <h2 class="font-commissioner text-[28px] font-semibold leading-[110%] tracking-[-4%] text-[#301C1B]">
+                {item.value}
+              </h2>
+
+              <p class=" whitespace-nowrap mt-3 font-dm-mono text-[14px] leading-[150%] tracking-[-4%] text-primary">
+                {item.title}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+      <!-- button -->
+      <div class="flex gap-6">
+        <NavigationMenuLink
+          href={button.link}
+          class="w-36.25 h-11.25 py-3 px-2.5 bg-primary my-10 mt-5 lg:mt-26 hover:bg-primary cursor-pointer flex items-center justify-center gap-2 rounded-none"
+        >
+          <span
+            class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
+          >
+            {button.text}
+          </span>
+          <svg class="text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M7 17L17 7M17 7H9M17 7V15"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </NavigationMenuLink>
+      </div>
+    </div>
+
+    <!-- Right Side -->
+    <div class="flex-1 bg-[#1E1212] flex items-center justify-center pt-10">
+      <div class=""></div>
+    </div>
+  </div>
+</section>

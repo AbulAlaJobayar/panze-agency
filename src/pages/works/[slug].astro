@@ -1,0 +1,50 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import "../../styles/global.css";
+import Footer from "@/components/Footer.astro";
+import ContactSection from "@/components/contactSection/ContactSection.astro";
+import WorksDetailsHero from "@/components/works/workDetails/WorksDetailsHero.astro";
+import ProjectInfo from "@/components/works/workDetails/projectInfo.astro";
+import Overview from "@/components/works/workDetails/Overview.astro";
+import ProjectGoals from "@/components/works/workDetails/ProjectGoals.astro";
+import BrandIdentity from "@/components/works/workDetails/brandIdentity.astro";
+import ProjectScope from "@/components/works/workDetails/ProjectScope.astro";
+
+const works = Object.values(
+  import.meta.glob("../../content/works/work/*.md", { eager: true }),
+).sort((a: any, b: any) => a.frontmatter.order - b.frontmatter.order);
+
+export async function getStaticPaths() {
+  return works.map(({ frontmatter }: any) => ({
+    params: {
+      slug: frontmatter.slug,
+    },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const work = works.find(({ frontmatter }: any) => frontmatter.slug === slug);
+
+if (!works) {
+  throw new Error(`Service "${slug}" not found.`);
+}
+
+const { frontmatter, Content } = work as any;
+console.log(frontmatter.cover, "😍😍😍");
+---
+
+<Layout title="WORKS | PANZE">
+  <WorksDetailsHero
+    title={frontmatter.heroTitle}
+    description={frontmatter.description}
+    image={frontmatter.cover}
+  />
+  <ProjectInfo projectInfo={frontmatter.projectInfo} />
+  <Overview overview={frontmatter.overview} />
+  <ProjectGoals projectGoal={frontmatter.projectGoal} />
+  <BrandIdentity brandIdentity={frontmatter.brandIdentity} />
+  <ProjectScope projectScope={frontmatter.projectScope} />
+  <ContactSection />
+  <Footer />
+</Layout>
