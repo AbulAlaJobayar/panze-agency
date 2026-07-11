@@ -1,100 +1,164 @@
 ---
-title: "WPStar - Is WordPress Testimonial Plugin company."
 slug: "wpstar"
-
-cover: "/src/assets/works/image 990.png"
-
-thumbnail: "/images/portfolio/wpstar/thumb.jpg"
-
+title: "WPStar - Is WordPress Testimonial Plugin company."
+thumbnail: "/src/assets/works/image 990.png"
 tags:
   - Logo
   - Branding
 
-sections:
-  - type: hero
-    title: "WPStar - WordPress Testimonial Plugin Branding"
-    subtitle: "Building a memorable brand identity for a WordPress plugin."
-    cover: "/images/portfolio/wpstar/hero.jpg"
+heroTitle: "Hanwik - On-Demand Handyman Service Mobile App Design - Panze"
+description: "Panze designed Hanwik, an on-demand handyman service mobile app connecting homeowners with trusted local professionals. Full product design from UX research and user flows through to prototype and developer handoff."
 
-    meta:
-      industry: "WordPress Plugin"
-      client: "WPStar"
-      year: "2024"
-      status: "Completed"
-      tools:
-        - Figma
-        - Adobe Illustrator
-      deliverables:
-        - Brand Strategy
-        - Logo Design
-        - Visual Identity
-        - Brand Guidelines
+cover: "/src/assets/works/image 990.png"
 
-  - type: overview
-    title: "Overview"
-    content: |
-      WPStar is a WordPress testimonial plugin created to help businesses
-      display customer reviews with a modern and trustworthy experience.
+projectInfo:
+  - label: Industry
+    value: Home Services / On-Demand
 
-      The goal of the project was to establish a memorable visual identity
-      that communicates reliability, simplicity, and professionalism while
-      remaining recognizable within the WordPress ecosystem.
+  - label: Client
+    value: Hanwik
 
-  - type: challenge
-    title: "Challenge"
+  - label: Year
+    value: 2024
 
-    items:
-      - title: "01"
-        description: "Create a unique logo that reflects trust and credibility."
+  - label: Status
+    value: Completed
 
-      - title: "02"
-        description: "Maintain consistency across plugin UI and marketing assets."
+  - label: Tools Used
+    value:
+      - Figma
+      - Illustrator
 
-      - title: "03"
-        description: "Differentiate the brand from competitors."
+  - label: Deliverables
+    value:
+      - UX Research
+      - Mobile App Design
+      - User Flow Mapping
+      - Design System
+      - Prototype
+      - Developer Handoff
+    
+overview:
+  title: "Overview"
+  content: "Hanwik is an on-demand handyman service mobile app built to connect homeowners with trusted local professionals for plumbing, electrical work, repairs, and general home maintenance. Finding reliable tradespeople has always been harder than it should be. The process is fragmented, trust is difficult to establish, and booking is rarely straightforward. Hanwik was designed to fix all of that through a mobile experience that makes searching, comparing, and hiring feel as simple as it should be. Panze handled the full product design scope: UX research, competitive analysis, user flow mapping, UI design across both customer and service provider journeys, a complete design system, an interactive prototype, and a developer handoff ready for build. "
 
-  - type: gallery
+projectGoal:
+  sectionTitle: "Project Goals"
+  sectionIcon: "/src/assets/works/projectSectionIcon.png"
 
-    images:
-      - "/images/portfolio/wpstar/gallery/1.jpg"
-      - "/images/portfolio/wpstar/gallery/2.jpg"
-      - "/images/portfolio/wpstar/gallery/3.jpg"
-      - "/images/portfolio/wpstar/gallery/4.jpg"
+  title: "A Home Services App That Builds Trust Before The First Booking Is Made."
 
-  - type: results
+  description: "The central design challenge for Hanwik was trust. Users hiring a stranger to come into their home need to feel confident in both the platform and the professional before they commit. Every design decision—from how service providers are presented to how booking confirmation is communicated—had to earn and maintain that confidence.At the same time, the app needed to serve two sides of the marketplace: homeowners looking for help and service providers managing their workload. Both experiences had to feel native to the product rather than like separate apps patched together."
 
-    items:
-      - number: "01"
-        title: "Brand Recognition"
-        description: "Created a memorable logo and visual identity."
+  image: "/src/assets/works/projectGoal.png"
 
-      - number: "02"
-        title: "Consistent Design"
-        description: "Unified branding across plugin and marketing materials."
+brandIdentity:
+  image: "/src/assets/works/han.png"
+  name: "hanwik"
 
-      - number: "03"
-        title: "Professional Look"
-        description: "Improved trust and perceived product quality."
+projectScope:
+  sectionTitle: "Project Scope"
 
-  - type: testimonial
+  items:
+    - number: "01"
+      description: "UX research and competitive analysis identifying the core friction points in existing home services platforms."
 
-    quote: >
-      Panze transformed our vision into a strong and modern brand.
-      The logo and visual identity perfectly matched our product
-      and audience.
+    - number: "02"
+      description: "User flow mapping for two distinct user types: homeowners booking services and professionals managing jobs."
 
-    author: "WPStar Team"
+    - number: "03"
+      description: "UI design covering the full service journey from discovery and booking through to job tracking and payment."
 
+    - number: "04"
+      description: "Style guide development including design principles, color system, typography, and UI component library."
+
+    - number: "05"
+      description: "Wireframes and low-fidelity concepts to validate structure before high-fidelity execution."
+
+    - number: "06"
+      description: "Fully interactive Figma prototype."
+
+    - number: "07"
+      description: "Complete developer handoff with annotated specifications."
+
+projectShocase:
+  image: "/src/assets/works/projectShocase.png"
+  name: "projectShocase"
+
+challenges:
+  items:
+    - title: "Challenge 1"
+      description: >
+        Designing for trust in an industry where trust is the core product - the interface needed to surface professional credentials, reviews, and reliability signals without cluttering the experience or slowing down the booking flow
+
+    - title: "Challenge 2"
+      description: >
+        Serving two fundamentally different user types within a single app - homeowners want speed and simplicity while service providers need detailed job management tools - without compromising either experience
+
+    - title: "Challenge 3"
+      description: >
+        Keeping the booking process short enough to convert without stripping out the information users need to make a confident hiring decision
+
+userOnboarding:
+  image: "/src/assets/works/userOnboarding.png"
+  name: "userOnboarding"
+
+results:
+  sectionTitle: "Results"
+  items:
+    - number: "01"
+      description: "Complete mobile app designed across all core screens for both homeowner and service provider journeys."
+
+    - number: "02"
+      description: "User flows mapped and validated for search, booking, job tracking, and payment."
+
+    - number: "03"
+      description: "Design system established covering principles, color, typography, and reusable UI components"
+
+    - number: "04"
+      description: "Low-fidelity wireframes developed and iterated before moving to high-fidelity design"
+
+    - number: "05"
+      description: "Fully interactive prototype delivered for stakeholder review and user testing."
+
+    - number: "06"
+      description: "Developer handoff completed with full annotations and spec documentation."
+
+
+testimonial:
+  sectionTitle: "Testimonial"
+
+  quote: >
+    Panze mapped out the full experience before a single screen was designed.
+    That structured approach meant we ended up with a product that made sense
+    end-to-end, not just screen by screen.
+
+  author: "Hanwik Team"
+
+
+identityShowcase:
+  image: "/src/assets/works/identatyshowcase.png"
+  name: "identityShowcase"
+
+taskManagement:
+  image: "/src/assets/works/taskmanagement.png"
+  name: "identityShowcase"
+
+relatedWork:
+  sectionTitle: "Related Works"
+
+  items:
+    - slug: "hanwik"
+      title: "HANWIK - On Demand Handyman Service"
+      thumbnail: "https://i.ibb.co.com/BKdwCxKZ/image-1042.png"
+      tags:
+        - Mobile App
+        - UX UI
+
+    - slug: "wpstar"
+      title: "WPStar - WordPress Testimonial Plugin"
+      thumbnail: "/src/assets/works/image 990.png"
+      tags:
+        - Logo
+        - Branding
 ---
-
-# Brand Identity
-
-WPStar required a visual identity that was simple, modern, and instantly
-recognizable.
-
-The branding process included research, concept exploration, typography,
-color selection, icon development, and the creation of a complete identity
-system for use across the plugin, website, and promotional materials.
-
-The final identity successfully communicates trust, professionalism, and
-ease of use while remaining flexible enough for future product expansion.

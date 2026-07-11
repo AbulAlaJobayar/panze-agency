@@ -1,20 +1,19 @@
 ---
-const { projectScope } = Astro.props;
+const { result } = Astro.props;
+
 ---
 
-<section>
+<section class=" my-20">
   <div class="flex flex-col lg:flex-row">
     <!-- Left -->
-    <div
-      class="w-full lg:w-105 shrink-0
+    <div class="w-full lg:w-105 shrink-0
     
-             px-8 lg:px-10 "
-    >
+             px-8 lg:px-10">
       <h2
         class="font-commissioner font-semibold uppercase text-[24px] leading-[110%]tracking-[-0.04em]
     text-[#301C1B]"
       >
-        {projectScope.sectionTitle}
+        {result.sectionTitle}
       </h2>
     </div>
 
@@ -22,13 +21,13 @@ const { projectScope } = Astro.props;
     <div class="flex-1">
       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
         {
-          projectScope.items.map((item: any) => (
+          result.items.map((item: any) => (
             <div class="border border-black/10 -mt-px -ml-px p-8 lg:p-10 ">
               <h3 class="font-commissioner font-semibold uppercase text-[24px] leading-[110%] tracking-[-0.04em] text-primary">
                 {item.number}
               </h3>
 
-              <p class="mt-6 max-w-57.5 font-dm-mono text-[14px] leading-[150%] tracking-[-0.04em] text-[#301C1B]">
+              <p class="mt-5 max-w-57.5 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-0.04em] text-[#301C1B]">
                 {item.description}
               </p>
             </div>

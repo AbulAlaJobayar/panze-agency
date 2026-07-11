@@ -9,6 +9,14 @@ import Overview from "@/components/works/workDetails/Overview.astro";
 import ProjectGoals from "@/components/works/workDetails/ProjectGoals.astro";
 import BrandIdentity from "@/components/works/workDetails/brandIdentity.astro";
 import ProjectScope from "@/components/works/workDetails/ProjectScope.astro";
+import ProjectShocase from "@/components/works/workDetails/productShowcase.astro";
+import Challenge from "@/components/works/workDetails/challenge.astro";
+import UserOnboarding from "@/components/works/workDetails/userOnboarding.astro";
+import Result from "@/components/works/workDetails/results.astro";
+import TestimonialSection from "@/components/works/workDetails/testimonialSection.astro";
+import IdentityShowcase from "@/components/works/workDetails/identityShowcase.astro";
+import TaskManagement from "@/components/works/workDetails/taskManagement.astro";
+import RelatedWorks from "@/components/works/workDetails/relatedWorks.astro";
 
 const works = Object.values(
   import.meta.glob("../../content/works/work/*.md", { eager: true }),
@@ -26,12 +34,12 @@ const { slug } = Astro.params;
 
 const work = works.find(({ frontmatter }: any) => frontmatter.slug === slug);
 
-if (!works) {
+if (!work) {
   throw new Error(`Service "${slug}" not found.`);
 }
 
 const { frontmatter, Content } = work as any;
-console.log(frontmatter.cover, "😍😍😍");
+console.log(frontmatter, "😊😊😊");
 ---
 
 <Layout title="WORKS | PANZE">
@@ -40,11 +48,60 @@ console.log(frontmatter.cover, "😍😍😍");
     description={frontmatter.description}
     image={frontmatter.cover}
   />
-  <ProjectInfo projectInfo={frontmatter.projectInfo} />
-  <Overview overview={frontmatter.overview} />
-  <ProjectGoals projectGoal={frontmatter.projectGoal} />
-  <BrandIdentity brandIdentity={frontmatter.brandIdentity} />
-  <ProjectScope projectScope={frontmatter.projectScope} />
+  {
+    frontmatter.projectInfo && (
+      <ProjectInfo projectInfo={frontmatter.projectInfo} />
+    )
+  }
+  {frontmatter.overview && <Overview overview={frontmatter.overview} />}
+  {
+    frontmatter.projectGoal && (
+      <ProjectGoals projectGoal={frontmatter.projectGoal} />
+    )
+  }
+  {
+    frontmatter.brandIdentity && (
+      <BrandIdentity brandIdentity={frontmatter.brandIdentity} />
+    )
+  }
+  {
+    frontmatter.projectScope && (
+      <ProjectScope projectScope={frontmatter.projectScope} />
+    )
+  }
+  {
+    frontmatter.projectShocase && (
+      <ProjectShocase projectShocase={frontmatter.projectShocase} />
+    )
+  }
+  {frontmatter.challenges && <Challenge challenges={frontmatter.challenges} />}
+  {
+    frontmatter.userOnboarding && (
+      <UserOnboarding userOnboarding={frontmatter.userOnboarding} />
+    )
+  }
+  {frontmatter.results && <Result result={frontmatter.results} />}
+  {
+    frontmatter.testimonial && (
+      <TestimonialSection testimonial={frontmatter.testimonial} />
+    )
+  }
+  {
+    frontmatter.identityShowcase && (
+      <IdentityShowcase identityShowcase={frontmatter.identityShowcase} />
+    )
+  }
+  {
+    frontmatter.taskManagement && (
+      <TaskManagement taskManagement={frontmatter.taskManagement} />
+    )
+  }
+  {
+    frontmatter.relatedWork && (
+      <RelatedWorks relatedWork={frontmatter.relatedWork} />
+    )
+  }
+
   <ContactSection />
   <Footer />
 </Layout>

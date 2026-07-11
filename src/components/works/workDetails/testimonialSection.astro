@@ -1,0 +1,67 @@
+---
+const { testimonial } = Astro.props;
+---
+
+<section class="border-t border-black/20">
+  <div class="flex flex-col lg:flex-row">
+    <!-- Left -->
+    <div
+      class="w-full lg:w-105 shrink-0
+             border-b lg:border-b-0  border-black/20
+             px-8 lg:px-10 py-10"
+    >
+      <h2
+        class="font-commissioner
+               font-semibold
+               uppercase
+               text-[24px]
+               leading-[110%]
+               tracking-[-0.04em]
+               text-[#301C1B]"
+      >
+        {testimonial.sectionTitle}
+      </h2>
+    </div>
+
+    <!-- Right -->
+    <div class="flex-1 px-8 lg:px-16 py-10 lg:py-18">
+      <!-- Quote -->
+      <svg
+        class="w-12 h-12 text-primary"
+        viewBox="0 0 40 40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M18 8C11 10 8 16 8 22V32H20V20H13C13.4 15.6 16.2 12.6 20 11L18 8ZM34 8C27 10 24 16 24 22V32H36V20H29C29.4 15.6 32.2 12.6 36 11L34 8Z"
+          fill="currentColor"></path>
+      </svg>
+
+      <blockquote
+        class="mt-8
+               max-w-190
+               font-dm-mono
+               font-normal
+               text-[16px]
+               leading-[150%]
+               tracking-[-0.04em]
+               text-[#301C1B]"
+      >
+        {testimonial.quote}
+      </blockquote>
+
+      <div class="mt-10 border-t border-primary pt-6">
+        <p
+          class="font-dm-mono
+                 text-[14px]
+                 font-normal
+                 leading-[150%]
+                 tracking-[-0.04em]
+                 text-[#301C1B]"
+        >
+          {testimonial.author}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
