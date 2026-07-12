@@ -1,0 +1,73 @@
+---
+const recentBlogs = Object.values(
+  import.meta.glob("@/content/blogs/blog/*.{md,mdx}", {
+    eager: true,
+  }),
+)
+  .map((blog: any) => blog.frontmatter)
+  .reverse()
+  .slice(0, 2);
+---
+
+<section class="mx-10 py-20">
+  <div
+    class="flex items-center justify-between  py-8 lg:py-12"
+  >
+    <h2
+      class="font-commissioner text-[24px] leading-[110%] font-semibold uppercase tracking-[-0.04em] text-[#301C1B]"
+    >
+      Related Blogs
+    </h2>
+
+    <a
+      href="/blog"
+      class="flex items-center gap-3 bg-[#E86F4D] px-6 py-3 text-white transition hover:bg-[#d96240]"
+    >
+      <span
+        class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-0.04em] text-[#FFFFFF]"
+        >All Works</span
+      >
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-4 w-4"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M7 17L17 7M17 7H8M17 7V16"></path>
+      </svg>
+    </a>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 border-t border-[#D9D4CF]">
+    {
+      recentBlogs.map((blog: any) => (
+        <a href={`/blog/${blog.slug}`} class="group  border last:border-l-0">
+          <div class="overflow-hidden p-5">
+            <img
+              src={blog.image}
+              alt={blog.thumbnailTitle}
+              class="aspect-4/3 w-full object-cover transition duration-500 group-hover:scale-102"
+            />
+          </div>
+
+          <div class="border-t">
+            <div class="px-5 py-10">
+              <h3 class="mt-2 font-dm-mono font-normal  text-[14px] leading-[150%] tracking-[-4%] text-primary  group-hover:text-primary transition">
+                {blog.date}
+              </h3>
+              <h3 class="mt-2 font-commissioner font-semibold  text-[20px] leading-[110%] tracking-[-4%] text-[#301C1B]  group-hover:text-primary transition">
+                {blog.thumbnailTitle}
+              </h3>
+            </div>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</section>

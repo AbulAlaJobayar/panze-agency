@@ -2,11 +2,14 @@
 import Footer from "@/components/Footer.astro";
 import "../../styles/global.css";
 import Layout from "@/layouts/Layout.astro";
-import Contact from "../contact.astro";
 import ContactSection from "@/components/contactSection/ContactSection.astro";
+import BlogHeroSection from "@/components/blog/blogHeroSection.astro";
+import LatestBlogs from "@/components/blog/latestBlogs.astro";
 ---
 
 <Layout title="BLOG | PANZE" >
+    <BlogHeroSection/>
+    <LatestBlogs/>
     <ContactSection/>
     <Footer/>
 </Layout>

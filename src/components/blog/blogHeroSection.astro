@@ -1,0 +1,122 @@
+---
+import NavigationMenuLink from "../ui/navigation-menu/navigation-menu-link.astro";
+import * as blogData from "@/content/blogs/blog-hero-content.md";
+const blogs = Object.values(
+  import.meta.glob("@/content/blogs/blog/*.{md,mdx}", {
+    eager: true,
+  }),
+);
+
+const latestBlog = blogs[0] as any;
+
+const { title, description, button } = blogData.frontmatter;
+---
+
+<section class="border-b">
+  <div class="flex flex-col lg:flex-row">
+    <!-- Left -->
+    <div class="w-full lg:w-100 shrink-0 px-8 lg:px-10 py-10 flex flex-col">
+      <h2
+        class="font-commissioner text-[28px] font-semibold uppercase leading-[110%] tracking-[-0.04em] text-primary lg:mt-10"
+      >
+        {title}
+      </h2>
+
+      <p
+        class="mt-16 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-0.04em] text-[#301C1B] max-w-72.5"
+      >
+        {description}
+      </p>
+
+      <div class="mt-auto pt-20">
+        <NavigationMenuLink
+          href={button.link}
+          class="inline-flex rounded-none items-center gap-2 bg-primary px-6 py-4 text-white"
+        >
+          <span
+            class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-0.04em] text-white"
+            >{button.text}</span
+          >
+
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M7 17L17 7M17 7H9M17 7V15"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </NavigationMenuLink>
+      </div>
+    </div>
+
+    <!-- Right -->
+    <div class="flex-1 bg-[#301C1B] px-8 lg:px-12 py-10">
+      <h3
+        class="mb-6 font-commissioner text-[24px] font-semibold leading-[110%] tracking-[-0.04em] uppercase text-white"
+      >
+        Latest Blog
+      </h3>
+
+      <a href={`/blog/${latestBlog.frontmatter.slug}`} class="group block">
+        <div class="overflow-hidden">
+          <img
+            src={latestBlog.frontmatter.image}
+            alt={latestBlog.frontmatter.thumbnailTitle}
+            class="max-h-100 w-full object-cover transition duration-500 group-hover:scale-105"
+          />
+        </div>
+
+        <div class="mt-6">
+          <p
+            class="font-dm-mono font-normal leading-[150%] tracking-[-4%] text-[14px] text-primary"
+          >
+            {latestBlog.frontmatter.date}
+          </p>
+
+          <div
+            class="mt-4
+              flex
+              items-end
+              justify-between
+              gap-6"
+          >
+            <h4
+              class="max-w-162.5
+                font-commissioner
+                text-[20px]
+                font-semibold
+                leading-[110%] tracking-[-4%]
+                text-white"
+            >
+              {latestBlog.frontmatter.thumbnailTitle}
+            </h4>
+
+            <span
+              class="flex
+                items-center
+                gap-2
+                whitespace-nowrap
+                font-commissioner
+                text-primary
+                text-[14px]
+                font-normal
+                leading-[150%] tracking-[-4%]"
+            >
+              Read the Blog
+
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M7 17L17 7M17 7H9M17 7V15"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

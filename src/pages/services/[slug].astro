@@ -1,4 +1,9 @@
 ---
+import Footer from "@/components/Footer.astro";
+import "../../styles/global.css";
+import Layout from "@/layouts/Layout.astro";
+import ContactSection from "@/components/contactSection/ContactSection.astro";
+
 const services = Object.values(
   import.meta.glob("../../content/whatwedo/*.md", { eager: true }),
 ).sort((a: any, b: any) => a.frontmatter.order - b.frontmatter.order);
@@ -24,33 +29,37 @@ if (!service) {
 const { frontmatter, Content } = service as any;
 ---
 
-<section class="mx-auto max-w-7xl py-20">
-  <img
-    src={frontmatter.image}
-    alt={frontmatter.title}
-    class="mb-12 h-125 w-full rounded-xl object-cover"
-  />
+<Layout title="SERVICE | PANZE">
+  <section class="mx-auto max-w-7xl py-20">
+    <img
+      src={frontmatter.image}
+      alt={frontmatter.title}
+      class="mb-12 h-125 w-full rounded-xl object-cover"
+    />
 
-  <h1 class="mb-6 text-5xl font-bold">
-    {frontmatter.title}
-  </h1>
+    <h1 class="mb-6 text-5xl font-bold">
+      {frontmatter.title}
+    </h1>
 
-  <p class="mb-10 text-lg text-gray-500">
-    {frontmatter.description}
-  </p>
+    <p class="mb-10 text-lg text-gray-500">
+      {frontmatter.description}
+    </p>
 
-  <div class="mb-10 grid gap-3 md:grid-cols-2">
-    {
-      frontmatter.features.map((feature: string) => (
-        <div class="flex items-center gap-2">
-          <span class="size-2 rounded-full bg-orange-500" />
-          {feature}
-        </div>
-      ))
-    }
-  </div>
+    <div class="mb-10 grid gap-3 md:grid-cols-2">
+      {
+        frontmatter.features.map((feature: string) => (
+          <div class="flex items-center gap-2">
+            <span class="size-2 rounded-full bg-orange-500" />
+            {feature}
+          </div>
+        ))
+      }
+    </div>
 
-  <article class="prose prose-invert max-w-none">
-    <Content />
-  </article>
-</section>
+    <article class="prose prose-invert max-w-none">
+      <Content />
+    </article>
+  </section>
+  <ContactSection/>
+  <Footer/>
+</Layout>

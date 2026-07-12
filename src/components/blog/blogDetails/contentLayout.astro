@@ -1,0 +1,481 @@
+---
+import Testimonial from "@/components/mdx/Testimonial.astro";
+import * as blogIcons from "@/content/blogs/blog-details-content.md";
+
+const { frontmatter, Content } = Astro.props;
+
+const mdxComponents = {
+  Testimonial,
+};
+
+const {
+  instagramIcon,
+  facebookIcon,
+  linkdinIcon,
+  dirrableIcon,
+  behanceIcon,
+  askAiText,
+  geminiIcon,
+  openaiIcon,
+  perplexityIcon,
+  cludeIcon,
+  grokIcon,
+  dirrableAW,
+  clutchAW,
+} = blogIcons.frontmatter;
+
+const currentUrl = encodeURIComponent(Astro.url.href);
+const title = encodeURIComponent(frontmatter.thumbnailTitle || "");
+
+const socialLinks = [
+  {
+    icon: facebookIcon,
+    url: `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`,
+  },
+  {
+    icon: linkdinIcon,
+    url: `https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`,
+  },
+  {
+    icon: instagramIcon,
+    url: "#", // Instagram direct web share not support
+  },
+  {
+    icon: behanceIcon,
+    url: `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`,
+  },
+  {
+    icon: dirrableIcon,
+    url: `https://twitter.com/intent/tweet?url=${currentUrl}&text=${title}`,
+  },
+];
+const blogTitle = frontmatter.thumbnailTitle;
+const blogUrl = Astro.url.href;
+
+const prompt = encodeURIComponent(`
+Summarize this blog article:
+
+Title: ${blogTitle}
+
+URL: ${blogUrl}
+
+Please provide:
+- Short summary
+- Key takeaways
+- Main insights
+`);
+
+const aiTools = [
+  {
+    icon: geminiIcon,
+    name: "Gemini",
+    url: `https://gemini.google.com/app`,
+  },
+  {
+    icon: openaiIcon,
+    name: "ChatGPT",
+    url: `https://chatgpt.com/?q=${prompt}`,
+  },
+  {
+    icon: perplexityIcon,
+    name: "Perplexity",
+    url: `https://www.perplexity.ai/search?q=${prompt}`,
+  },
+  {
+    icon: cludeIcon,
+    name: "Claude",
+    url: `https://claude.ai/new`,
+  },
+  {
+    icon: grokIcon,
+    name: "Grok",
+    url: `https://grok.com`,
+  },
+];
+---
+
+<section class="border-t border-black/10">
+  <div class="flex flex-col lg:flex-row">
+    <!-- LEFT SIDEBAR -->
+    <aside
+      class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r border-black/10"
+    >
+      <div class="">
+        <div class="p-8 lg:p-10">
+          <!-- Date & Read Time -->
+          <div
+            class="flex flex-wrap items-center gap-6 text-primary font-dm-mono text-[14px]"
+          >
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M8 2V5M16 2V5M3 9H21M5 5H19C20.1046 5 21 5.89543 21 7V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V7C3 5.89543 3.89543 5 5 5Z"
+                  stroke="currentColor"
+                  stroke-width="2"></path>
+              </svg>
+
+              <span class="font-normal leading-[150%] tracking-[-4%]"
+                >{frontmatter.date}</span
+              >
+            </div>
+
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none">
+                <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2"
+                ></path>
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9"
+                  stroke="currentColor"
+                  stroke-width="2"></circle>
+              </svg>
+
+              <span class="font-normal leading-[150%] tracking-[-4%]"
+                >{frontmatter.readTime}</span
+              >
+            </div>
+          </div>
+
+          <!-- Title -->
+          <h1
+            class="mt-12
+              font-commissioner
+              text-[28px]
+              font-semibold
+              uppercase
+              leading-[110%]
+              tracking-[-4%]
+              text-[#301C1B]"
+          >
+            {frontmatter.title}
+          </h1>
+        </div>
+
+        <!-- Summarize -->
+        <div class="border-b border-black/10 p-10 lg:px-10 lg:py-10">
+          <h3
+            class="font-dm-mono
+              text-[16px]
+              font-medium
+              leading-[150%]
+              tracking-[-4%]
+              text-[#301C1B]"
+          >
+            Summarize the Blog
+          </h3>
+
+          <div class="grid grid-cols-5 mt-5">
+            {
+              aiTools.map((tool) => (
+                <a
+                  href={tool.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex h-11 w-11 items-center justify-center transition-transform hover:scale-105"
+                  title={tool.name}
+                >
+                  <img
+                    src={tool.icon}
+                    alt={tool.name}
+                    class="h-full w-full object-contain"
+                  />
+                </a>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Share -->
+        <div class="border-b border-black/10 p-8 lg:p-10">
+          <h3
+            class="font-dm-mono
+              text-[16px]
+              font-medium
+              leading-[150%]
+              tracking-[-4%]
+              text-[#301C1B]"
+          >
+            Share
+          </h3>
+
+          <div
+            class="px-10 md:px-0 md:pr-5 py-7 flex items-center gap-6 text-2xl"
+          >
+            {
+              socialLinks.map((item) => (
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-[#301C1B] hover:text-primary transition-colors"
+                >
+                  <img src={item.icon} alt="social-icon" />
+                </a>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Summarize Button -->
+        <div class="p-8 lg:p-10 mt-10">
+          <button
+            id="summarize-btn"
+            class="w-full py-3 px-4 border border-primary bg-white text-primary font-commissioner text-sm uppercase leading-[150%] cursor-pointer tracking-[-4%] transition-colors"
+            data-title={frontmatter.title}
+          >
+            Summarize the Blog ✦
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT CONTENT -->
+    <main
+      class="flex-1 border-b
+        lg:max-w-200
+        px-8
+        lg:px-12
+        py-10"
+    >
+      <div class="max-w-none prose prose-lg prose-invert lg:prose-xl">
+        <Content components={mdxComponents} />
+      </div>
+    </main>
+  </div>
+</section>
+
+<script is:inline>
+  const button = document.getElementById("summarize-btn");
+  const container = document.getElementById("summary-container");
+  const textOutput = document.getElementById("summary-content");
+
+  button?.addEventListener("click", async () => {
+    const title = button.getAttribute("data-title") || "Blog";
+
+    const contentElement = document.querySelector(".prose");
+
+    const content =
+      contentElement?.innerText || contentElement?.textContent || "";
+
+    if (!content.trim()) {
+      alert("No content found");
+      return;
+    }
+
+    const originalHTML = button.innerHTML;
+
+    button.disabled = true;
+    button.innerHTML = "Summarizing...";
+
+    try {
+      const response = await fetch("/api/summarize", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          content: content.slice(0, 12000),
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to summarize");
+      }
+
+      container?.classList.remove("hidden");
+
+      textOutput.textContent = data.summary;
+
+      container?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    } catch (error) {
+      console.error(error);
+
+      textOutput.textContent = "Unable to generate summary.";
+
+      container?.classList.remove("hidden");
+    } finally {
+      button.disabled = false;
+      button.innerHTML = originalHTML;
+    }
+  });
+</script>
+
+<style is:global>
+  /* Global styles for prose content */
+  .prose {
+    max-width: 100%;
+    color: #301c1b;
+  }
+
+  .prose h1 {
+    font-family: "Commissioner";
+    line-height: 110%;
+    letter-spacing: -4%;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 1.25rem 0 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .prose h2 {
+    font-family: "DM Mono", monospace;
+    font-weight: 500;
+    letter-spacing: -4%;
+    line-height: 150%;
+    margin: 1rem 0;
+    font-size: 14px;
+  }
+
+  .prose h3 {
+    font-family: "Commissioner";
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.75rem;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .prose h4 {
+    font-family: "Commissioner";
+    line-height: 110%;
+    letter-spacing: -4%;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 1.25rem 0 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .prose p {
+    font-family: "DM Mono", monospace;
+    font-weight: 400;
+    letter-spacing: -4%;
+    line-height: 150%;
+    margin: 1rem 0;
+    font-size: 14px;
+    color: #301c1bb2;
+  }
+
+  .prose ul,
+  .prose ol {
+    list-style-position: outside;
+    list-style-type: disc;
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .prose li {
+    margin: 0.5rem 0;
+    line-height: 150%;
+    font-family: "DM Mono", monospace;
+  }
+
+  .prose code {
+    background: #f3f4f6;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.875em;
+    font-family: monospace;
+    color: #1f2937;
+  }
+
+  .prose pre {
+    background: #1a1a1a;
+    color: #f0f0f0;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .prose pre code {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+
+  .prose img {
+    width: 100%;
+    border-radius: 0;
+    margin: 2rem 0;
+  }
+
+  .prose blockquote {
+    border-left: 4px solid #d1d5db;
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    font-family: "DM Mono", monospace;
+  }
+
+  .prose a {
+    color: #e8704e;
+    text-decoration: underline;
+    transition: color 0.2s;
+  }
+
+  .prose a:hover {
+    color: #f36139;
+  }
+
+  .prose hr {
+    border: 0;
+    border-top: 1px solid #e5e7eb;
+    margin: 2rem 0;
+  }
+
+  .prose strong {
+    font-family: "DM Mono", monospace;
+    letter-spacing: -4%;
+    line-height: 150%;
+    margin: 1rem 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #301c1b;
+  }
+
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+
+  .prose th,
+  .prose td {
+    border: 1px solid #e5e7eb;
+    padding: 0.75rem;
+    text-align: left;
+  }
+
+  .prose th {
+    background: #f9fafb;
+    font-weight: 600;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .prose h1 {
+      font-size: 2rem;
+    }
+
+    .prose h2 {
+      font-size: 1.5rem;
+    }
+
+    .prose h3 {
+      font-size: 1.25rem;
+    }
+
+    .prose p {
+      font-size: 0.95rem;
+    }
+  }
+</style>

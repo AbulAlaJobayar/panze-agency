@@ -199,3 +199,19 @@
 
   animation: rotateBorder 3s linear infinite;
 }
+
+.title {
+font-family: var(--font-commissioner); 
+font-weight: 600;
+font-size: 16px;
+line-height: 110%;
+letter-spacing: -0.04em;
+text-transform: uppercase;
+}
+.pragraph{
+font-family: var(--font-dm-mono); 
+font-weight: 400;
+font-size: 14px;
+line-height: 110%;
+letter-spacing: -0.04em;
+}

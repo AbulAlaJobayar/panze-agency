@@ -1,0 +1,97 @@
+---
+
+const blogs = Object.values(
+  import.meta.glob("@/content/blogs/blog/*.{md,mdx}", {
+    eager: true,
+  }),
+).map((blog: any) => blog.frontmatter);
+console.log(blogs);
+---
+
+<section class="my-20">
+    <div class="grid sm:grid-cols-2">
+      {
+        blogs.slice(0, 2).map((blog: any) => (
+          <a href={`/blog/${blog.slug}`} class="group  border last:border-l-0">
+            <div class="overflow-hidden p-5">
+              <img
+                src={blog.image}
+                alt={blog.thumbnailTitle}
+                class="aspect-4/3 w-full object-cover transition duration-500 group-hover:scale-102"
+              />
+            </div>
+
+            <div class="border-t">
+              <div class="px-5 py-10">
+                <h3 class="mt-2 font-dm-mono font-normal  text-[14px] leading-[150%] tracking-[-4%] text-primary  group-hover:text-primary transition">
+                  {blog.date}
+                </h3>
+                <h3 class="mt-2 font-commissioner font-semibold  text-[20px] leading-[110%] tracking-[-4%] text-[#301C1B]  group-hover:text-primary transition">
+                  {blog.thumbnailTitle}
+                </h3>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  
+  <div class="border  my-20">
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border border-black/10">
+  {
+    blogs.slice(2).map((blog: any, index: number) => (
+      <a
+        href={`/blog/${blog.slug}`}
+        class:list={[
+          "group flex flex-col min-h-full",
+          "border-black/10",
+          index % 3 !== 2 && "lg:border-r",
+          "border-b",
+        ]}
+      >
+        <!-- Image -->
+        <div class="overflow-hidden">
+          <img
+            src={blog.image}
+            alt={blog.title}
+            class="p-5
+              w-full
+              aspect-4/3
+              object-cover
+              transition-transform
+              duration-500
+              group-hover:scale-105
+            "
+          />
+        </div>
+
+        <!-- Content -->
+        <div class="border-t border-black/10 p-2 lg:p-5 flex-1">
+          <p
+            class="
+              font-dm-mono
+              text-[14px]
+              leading-[150%]
+              tracking-[-0.04em]
+              text-primary
+            "
+          >
+            {blog.date}
+          </p>
+
+          <h3
+            class="
+              mt-4
+             font-commissioner font-semibold  text-[20px] leading-[140%] tracking-[-4%] text-[#301C1B]  group-hover:text-primary transition
+            "
+          >
+            {blog.thumbnailTitle}
+          </h3>
+        </div>
+      </a>
+    ))
+  }
+</div>
+</section>
