@@ -1,7 +1,8 @@
 ---
 title: "Number"
 description: "A Digital Product Design Agency Built for Agencies, and End Clients"
-
+# sectionIcon: "/src/assets/home/number/network.svg"
+sectionIcon: "https://i.ibb.co.com/jvw21SBz/titleicon.png"
 content:
   - title: "Verified Rating"
     number: "30+"

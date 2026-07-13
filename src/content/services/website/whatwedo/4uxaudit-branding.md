@@ -1,11 +1,11 @@
 ---
-value: "logo-branding"
-slug: "logo-branding"
+value: "uxaudit-branding"
+slug: "uxaudit-branding"
 
-tabTitle: "Logo and Branding Design"
-tabSubtitle: "Build sites that convert visitors.Ship faster with Panze."
+tabTitle: "Website UX Audit and Redesign"
 
-title: "Logo and Branding Design"
+
+title: "Website UX Audit and Redesign"
 
 description: "Panze is a SaaS product design agency that turns complex platforms into intuitive, retention-driving interfaces. We design dashboards, onboarding flows, and full SaaS UI systems that activate and keep users"
 

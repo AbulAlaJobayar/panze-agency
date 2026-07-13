@@ -1,7 +1,8 @@
 ---
 slug: "wpstar"
 title: "WPStar - Is WordPress Testimonial Plugin company."
-thumbnail: "/src/assets/works/image 990.png"
+thumbnail: "https://i.ibb.co.com/MD2Y8DQL/image-990.png"
+# thumbnail: "/src/assets/works/image 990.png"
 tags:
   - Logo
   - Branding
@@ -9,7 +10,8 @@ tags:
 heroTitle: "Hanwik - On-Demand Handyman Service Mobile App Design - Panze"
 description: "Panze designed Hanwik, an on-demand handyman service mobile app connecting homeowners with trusted local professionals. Full product design from UX research and user flows through to prototype and developer handoff."
 
-cover: "/src/assets/works/image 990.png"
+cover: "https://i.ibb.co.com/MD2Y8DQL/image-990.png"
+# cover: "/src/assets/works/image 990.png"
 
 projectInfo:
   - label: Industry
@@ -44,16 +46,19 @@ overview:
 
 projectGoal:
   sectionTitle: "Project Goals"
-  sectionIcon: "/src/assets/works/projectSectionIcon.png"
+  sectionIcon: "https://i.ibb.co.com/MLx6ZTn/project-Section-Icon.png"
+  # sectionIcon: "/src/assets/works/projectSectionIcon.png"
 
   title: "A Home Services App That Builds Trust Before The First Booking Is Made."
 
   description: "The central design challenge for Hanwik was trust. Users hiring a stranger to come into their home need to feel confident in both the platform and the professional before they commit. Every design decision—from how service providers are presented to how booking confirmation is communicated—had to earn and maintain that confidence.At the same time, the app needed to serve two sides of the marketplace: homeowners looking for help and service providers managing their workload. Both experiences had to feel native to the product rather than like separate apps patched together."
 
-  image: "/src/assets/works/projectGoal.png"
+  image: "https://i.ibb.co.com/8L2D02yy/project-Goal.png"
+  # image: "/src/assets/works/projectGoal.png"
 
 brandIdentity:
-  image: "/src/assets/works/han.png"
+  image: "https://i.ibb.co.com/VcMZGVnt/han.png"
+  # image: "/src/assets/works/han.png"
   name: "hanwik"
 
 projectScope:
@@ -82,7 +87,8 @@ projectScope:
       description: "Complete developer handoff with annotated specifications."
 
 projectShocase:
-  image: "/src/assets/works/projectShocase.png"
+  image: "https://i.ibb.co.com/LD0XWTPD/project-Shocase.png"
+  # image: "/src/assets/works/projectShocase.png"
   name: "projectShocase"
 
 challenges:
@@ -100,7 +106,8 @@ challenges:
         Keeping the booking process short enough to convert without stripping out the information users need to make a confident hiring decision
 
 userOnboarding:
-  image: "/src/assets/works/userOnboarding.png"
+  image: "https://i.ibb.co.com/GvBSWYtB/user-Onboarding.png"
+  # image: "/src/assets/works/userOnboarding.png"
   name: "userOnboarding"
 
 results:
@@ -137,11 +144,13 @@ testimonial:
 
 
 identityShowcase:
-  image: "/src/assets/works/identatyshowcase.png"
+  image: "https://i.ibb.co.com/392SkzH5/identatyshowcase.png"
+  # image: "/src/assets/works/identatyshowcase.png"
   name: "identityShowcase"
 
 taskManagement:
-  image: "/src/assets/works/taskmanagement.png"
+  image: "https://i.ibb.co.com/78jddQz/taskmanagement.png"
+  # image: "/src/assets/works/taskmanagement.png"
   name: "identityShowcase"
 
 relatedWork:
@@ -157,7 +166,8 @@ relatedWork:
 
     - slug: "wpstar"
       title: "WPStar - WordPress Testimonial Plugin"
-      thumbnail: "/src/assets/works/image 990.png"
+      thumbnail: "https://i.ibb.co.com/MD2Y8DQL/image-990.png"
+      # thumbnail: "/src/assets/works/image 990.png"
       tags:
         - Logo
         - Branding

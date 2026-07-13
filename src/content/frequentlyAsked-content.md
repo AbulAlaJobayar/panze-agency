@@ -1,5 +1,6 @@
 ---
-sectionIcon: "/public/freqAskQus/askedicon.png"
+sectionIcon: "https://i.ibb.co.com/MkLFg2rK/askedicon.png"
+# sectionIcon: "/public/freqAskQus/askedicon.png"
 title: "Frequently Asked Questions"
 subtitle: "Everything You Need to Know Before Starting Your Project"
 description: "Explore answers to the most common questions about our services, design process, project timelines, pricing, and what you can expect when partnering with Panze Studio."

@@ -7,7 +7,8 @@ buttonText: "About PANZE"
 buttonLink: "/about"
 
 # Images - Store live link
-latesticon: "/src/assets/home/latestwork/Frame.png"
+latesticon: "https://i.ibb.co.com/5grpFXLq/Frame.png"
+# latesticon: "/src/assets/home/latestwork/Frame.png"
 
 image1: "https://i.ibb.co.com/YFsX1R11/Frame-2147259544.png"
 

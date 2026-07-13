@@ -5,7 +5,8 @@ subtitle: "Delivering Strategic Design Solutions for Brands Across Industries"
 
 description: "From B2B tools and marketplaces to SaaS platforms and mobile applications, we specialize in edtech, messaging, and service-based industries. Our focus is exclusively on product design, ensuring every project is delivered under your brand, on schedule, and with a clean finish."
 
-image: "/src/assets/pricing/strategy.png"
+image: "https://i.ibb.co.com/wFzZsHC0/strategy.png"
+# image: "/src/assets/pricing/strategy.png"
 
 leftFeatures:
   - title: "SaaS Product Design"

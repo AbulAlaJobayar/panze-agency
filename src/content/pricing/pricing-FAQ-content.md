@@ -1,5 +1,6 @@
 ---
-sectionIcon: "/public/freqAskQus/askedicon.png"
+sectionIcon: "https://i.ibb.co.com/MkLFg2rK/askedicon.png"
+# sectionIcon: "/public/freqAskQus/askedicon.png"
 title: "Frequently Asked Questions"
 subtitle: "Everything You Need to Know Before Starting Your Project"
 description: "Find clean answers about our design workflows, pricing models, and delivery schedules to understand how a white label partnership with Panze benefits your business."

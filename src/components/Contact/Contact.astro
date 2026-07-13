@@ -5,7 +5,6 @@ import * as contactData from "@/content/contact-page-content.md";
 import pattern from "@/assets/contact/bg.png";
 import meet from "@/assets/contact/meet2.png";
 
-import ctaIcon from "/public/ourProcess/ctaActionIcon.svg";
 import whatappIcon from "@/assets/contact/whatsapp.png";
 import { NavigationMenuLink } from "../ui/navigation-menu";
 import ContactForm from "./ContactForm";
@@ -18,7 +17,9 @@ const { title, description, name, designation, ceoImage, meetDescription } =
 
 <section>
   <div>
-    <div class="flex flex-col lg:flex-row items-stretch px-10 border-b border-black/20 ">
+    <div
+      class="flex flex-col lg:flex-row items-stretch px-10 border-b border-black/20"
+    >
       <!-- Left Side - Fixed width with white background -->
       <div
         class="w-full lg:w-106 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-12 border-black20"
@@ -30,11 +31,11 @@ const { title, description, name, designation, ceoImage, meetDescription } =
             {title}
           </h1>
           <p
-            class=" mb-5 font-dm-mono font-normal text-[14px] leading-[110%] tracking-[-4%]"
+            class="mb-5 font-dm-mono font-normal text-[14px] leading-[110%] tracking-[-4%]"
           >
             {description}
           </p>
-          
+
           <div class="border border-primary">
             {/* Image */}
             <div
@@ -82,7 +83,19 @@ const { title, description, name, designation, ceoImage, meetDescription } =
                 >
                   Shedule call
                 </span>
-                <img src={ctaIcon.src} alt="icon" class="h-2 w-2" />
+                <svg
+                  class="text-white size-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M7 17L17 7M17 7H9M17 7V15"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
               </NavigationMenuLink>
               <NavigationMenuLink href={whatsappUrl} class="mt-14">
                 <img src={whatappIcon.src} alt="icon" width={45} height={45} />

@@ -1,11 +1,11 @@
 ---
-value: "ai-product"
-slug: "ai-product"
+value: "website-product"
+slug: "website-product"
 
-tabTitle: "AI Product Design"
-tabSubtitle: "Design intelligent products that feel simple. Ship faster with Panze."
+tabTitle: "Website Redesign"
 
-title: " AI Product Design"
+
+title: "Website Redesign"
 
 description: "Panze uses Al-assisted product design to deliver production-ready interfaces faster without sacrificing quality. Senior designers lead every decision while Al accelerates wireframing, exploration, and iteration across your entire product."
 

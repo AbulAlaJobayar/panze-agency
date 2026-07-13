@@ -13,6 +13,7 @@ buttonLink2: "/works"
 
 # Images - Store live link
 abouticon: "https://i.ibb.co.com/MDrV7Rcc/Vector-1.png"
-background: "/src/assets/services/bg.png"
+background: "https://i.ibb.co.com/GQQxtJSp/bg.png"
+# background: "/src/assets/services/bg.png"
 
 ---

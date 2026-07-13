@@ -76,10 +76,15 @@ export default function OurWebsiteProcess({ data }: OurWebsiteProcessProps) {
                   <AnimatePresence initial={false}>
                     {isExpanded && (
                       <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -30 }}
-                        transition={{ duration: 0.35, ease: "easeOut" }}
+                        initial={false}
+                          animate={{
+                            opacity: isExpanded ? 1 : 0,
+                            height: isExpanded ? "auto" : 0,
+                          }}
+                          transition={{
+                            duration: 0.3,
+                          }}
+
                         className="space-y-4 mt-4 max-w-xl pr-0 lg:pr-2"
                       >
                         {step.description && (

@@ -3,7 +3,8 @@ title: "Our Process"
 subTitle: "How Panze Designs Websites That Perform"
 description: "Our website design process connects user research to visual execution so every page we design has a reason to exist and a job to do. You get clarity on structure before we touch visual design, and you get polished, developer-ready output before we close the project."
 
-ourPocessIcon: "/public/ourProcess/titleicon.png"
+ourPocessIcon: "https://i.ibb.co.com/HLPmhT4Y/section-Icon.png"
+# ourPocessIcon: "/public/ourProcess/titleicon.png"
 
 steps:
   - title: "Step: 01"

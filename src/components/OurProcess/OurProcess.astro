@@ -1,8 +1,6 @@
 ---
 import Stepper from "./Stepper";
-
 import { NavigationMenuLink } from "../ui/navigation-menu";
-import ctaIcon from "/public/ourProcess/ctaActionIcon.svg";
 import { Image } from "astro:assets";
 const { ourProcess } = Astro.props;
 
@@ -15,7 +13,6 @@ const {
   ourPocessIcon,
   steps,
 } = ourProcess.frontmatter;
-
 // Sanitize the steps data
 const sanitizedSteps = Array.isArray(steps)
   ? steps
@@ -41,7 +38,7 @@ const sanitizedSteps = Array.isArray(steps)
       class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16 bg-white"
     >
       <div class="flex items-center gap-3 mb-6 md:mb-8">
-        <Image
+        <img
           src={ourPocessIcon}
           alt="number section"
           width={16}

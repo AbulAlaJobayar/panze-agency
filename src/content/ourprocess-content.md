@@ -5,13 +5,16 @@ description: "Panze is a white label digital product design agency. We work behi
 
 buttonText: "Let’s  talk"
 buttonLink: "/contact"
-ourPocessIcon: "/public/ourProcess/titleicon.png"
-stepperIcon: "/public/ourProcess/stepper.png"
+ourPocessIcon: "https://i.ibb.co.com/jvw21SBz/titleicon.png"
+# ourPocessIcon: "/public/ourProcess/titleicon.png"
+stepperIcon: "https://i.ibb.co.com/qFBKft1j/stepper.png"
+# stepperIcon: "/public/ourProcess/stepper.png"
 
 steps:
   - title: "Discover"
     description: "We prioritize before designing, studying goals, users, and the competitive landscape to ensure our solutions address the correct problem"
-    image: "/public/ourProcess/discover.png"
+    image: "https://i.ibb.co.com/wNQjvkmn/discover.png"
+    # image: "/public/ourProcess/discover.png"
     imageAlt: "Discover phase illustration"
     points:
       - "Stakeholder and User Research"
@@ -20,7 +23,8 @@ steps:
       - "Insights and Brief Alignment"
   - title: "Strategy"
     description: "We establish UX first, mapping all flows, and logic to ensure every decision is backed by clear rationale."
-    image: "/public/ourProcess/strategy.png"
+    image: "https://i.ibb.co.com/JWfLSQGP/strategy.png"
+    # image: "/public/ourProcess/strategy.png"
     imageAlt: "Strategy phase illustration"
     points:
       - "UX Strategy"
@@ -29,7 +33,8 @@ steps:
       - "Feature Prioritisation"
   - title: "Design & Build"
     description: "We transform wireframes into developer-ready UI, providing comprehensive design systems, Figma files, and component libraries for confident engineering handoffs."
-    image: "/public/ourProcess/Design & Build.png"
+    image: "https://i.ibb.co.com/b53nPv12/Design-Build.png"
+    # image: "/public/ourProcess/Design & Build.png"
     imageAlt: "Design and Build phase illustration"
     points:
       - "Wireframing and Prototyping"

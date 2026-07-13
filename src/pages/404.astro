@@ -4,7 +4,7 @@ import Layout from "@/layouts/Layout.astro";
 import * as data from "@/content/404.md";
 import NavigationMenuLink from "@/components/ui/navigation-menu/navigation-menu-link.astro";
 
-const { subTitle, description, buttonText, buttonLink, icon } =
+const { subTitle, description, buttonText, buttonLink} =
   data.frontmatter;
 ---
 
@@ -36,7 +36,24 @@ const { subTitle, description, buttonText, buttonLink, icon } =
             >
               {buttonText}
             </span>
-            <img src={icon} alt="icon"  />
+            <span
+              class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
+            >
+              {buttonText}
+            </span>
+            <svg
+              class="text-white size-5"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M7 17L17 7M17 7H9M17 7V15"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
           </NavigationMenuLink>
         </div>
       </div>

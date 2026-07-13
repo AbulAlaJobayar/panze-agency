@@ -13,12 +13,16 @@ import IndustryExpert from "@/components/Services/website/IndustryExpert/Industr
 import DesignExpertise from "@/components/Services/website/DesignExpertise.astro";
 import * as benefitsData from "@/content/services/website/benefits-content.md";
 import * as askedQuestion from "@/content/frequentlyAsked-content.md";
+import * as sectiondata from "@/content/services/website/whatwedo/mainContent/whatwedo-content.md";
+const services = Object.values(
+  import.meta.glob("@/content/services/website/whatwedo/*.md", { eager: true }),
+).sort((a: any, b: any) => a.frontmatter.order - b.frontmatter.order);
 ---
 
 <Layout title="WEBSITE | PANZE">
   <HeroWebsiteSection />
   <OurWebsiteProcess />
-  <WhatWeDo />
+  <WhatWeDo sectiondata={sectiondata} services={services} />
   <FrequentlyAskedFAQ askedQuestion={askedQuestion} />
   <BrandSection />
   <Benefits data={benefitsData} />

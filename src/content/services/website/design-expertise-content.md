@@ -1,5 +1,6 @@
 ---
-sectionIcon: "/src/assets/services/website/designExpertise.png"
+sectionIcon: "https://i.ibb.co.com/jkvDQbkd/design-Expertise.png"
+# sectionIcon: "/src/assets/services/website/designExpertise.png"
 title: "Design Expertise"
 subtitle: "Website UI/UX Design Capabilities at Panze"
 description: "Panze brings together UX research, information architecture, conversion strategy, and visual craft in one integrated website design process. We handle the full stack of website design from structure through to pixel-perfect output."

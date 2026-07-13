@@ -38,6 +38,48 @@ const {
   clutchAW,
 } = footerData.frontmatter;
 
+const prompt = encodeURIComponent(`
+Summarize about Panze :
+
+Title: "Panze website"
+
+description:"We are Panze. A specialist digital product design agency built around a single discipline. We design SaaS platforms, web apps, and mobile products. Nothing else, for five years running.
+
+Over the years, we've built SaaS products, platforms, brands, and websites that don't just look good, also performs. Our philosophy is simple: combine strategy, creativity, and technology to solve real business problems and create user experiences that matter." 
+
+Please provide:
+- Short summary
+- Key takeaways
+- Main insights
+`);
+
+const aiTools = [
+  {
+    icon: geminiIcon,
+    name: "Gemini",
+    url: `https://gemini.google.com/app?q=${prompt}`,
+  },
+  {
+    icon: openaiIcon,
+    name: "ChatGPT",
+    url: `https://chatgpt.com/?q=${prompt}`,
+  },
+  {
+    icon: perplexityIcon,
+    name: "Perplexity",
+    url: `https://www.perplexity.ai/search?q=${prompt}`,
+  },
+  {
+    icon: cludeIcon,
+    name: "Claude",
+    url: `https://claude.ai/new?q=${prompt}`,
+  },
+  {
+    icon: grokIcon,
+    name: "Grok",
+    url: `https://grok.com?q=${prompt}`,
+  },
+];
 const footerNavigation = [
   { title: "Home", href: "/" },
   { title: "Team", href: "/team" },
@@ -96,7 +138,7 @@ const getDateTime = () => {
 const { denverTime, bdTime } = getDateTime();
 ---
 
-<footer class="text-[#301C1B] pt-10 pb-2 lg:mt-20  ">
+<footer class="text-[#301C1B] pt-10 pb-2 lg:mt-20">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div
       class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-0 border border-black/20"
@@ -251,13 +293,15 @@ const { denverTime, bdTime } = getDateTime();
         <!-- LEFT -->
         <div class="border-r border-black/15">
           <!-- Top -->
-          <div class=" px-2 md:px-0 md:flex justify-around border-b border-/20 py-14">
+          <div
+            class="px-2 md:px-0 md:flex justify-around border-b border-/20 py-14"
+          >
             <!-- Locations -->
             <div class="space-y-6">
               <div class="flex items-center gap-3">
                 <img src={usFlag} alt="us" />
                 <p
-                  class=" text-[13px] font-dm-mono font-normal leading-[150%] tracking-[-4%] md:text[14px]"
+                  class="text-[13px] font-dm-mono font-normal leading-[150%] tracking-[-4%] md:text[14px]"
                 >
                   {usLocation}
                   <span class="mx-2 text-black/30">|</span>
@@ -271,7 +315,7 @@ const { denverTime, bdTime } = getDateTime();
               <div class="flex items-center gap-3">
                 <span><img src={bdFlag} alt="" /> </span>
                 <p
-                  class=" text-primary font-dm-mono font-normal leading-[150%] tracking-[-4%] text-[13px] md:text-[14px]"
+                  class="text-primary font-dm-mono font-normal leading-[150%] tracking-[-4%] text-[13px] md:text-[14px]"
                 >
                   {bdLocation}
                   <span class="mx-2 text-black/30">|</span>
@@ -323,7 +367,9 @@ const { denverTime, bdTime } = getDateTime();
               </p>
             </div>
 
-            <div class="px-10 md:px-0 md:pr-5 py-7 flex items-center gap-6 text-2xl">
+            <div
+              class="px-10 md:px-0 md:pr-5 py-7 flex items-center gap-6 text-2xl"
+            >
               {
                 [
                   { icon: instagramIcon, url: instagramUrl },
@@ -338,7 +384,7 @@ const { denverTime, bdTime } = getDateTime();
                     rel="noopener noreferrer"
                     class="text-[#301C1B] hover:text-primary transition-colors"
                   >
-                    <img src={item.icon} alt="social-icon"/>
+                    <img src={item.icon} alt="social-icon" />
                   </a>
                 ))
               }
@@ -352,22 +398,24 @@ const { denverTime, bdTime } = getDateTime();
           <div class="px-8 py-8">
             <h2 class="text-[20px] font-semibold mb-6">Ask AI about Panze</h2>
 
-            <div class="grid grid-cols-5 gap-2">
-              <button class="w-11 h-11">
-                <img src={geminiIcon} alt="gemini" />
-              </button>
-              <button class="w-11 h-11">
-                <img src={openaiIcon} alt="openai" />
-              </button>
-              <button class="w-11 h-11">
-                <img src={perplexityIcon} alt="perplexity" />
-              </button>
-              <button class="w-11 h-11">
-                <img src={cludeIcon} alt="clude" />
-              </button>
-              <button class="w-11 h-11">
-                <img src={grokIcon} alt="grok" />
-              </button>
+            <div class="grid grid-cols-5 mt-5">
+              {
+                aiTools.map((tool) => (
+                  <a
+                    href={tool.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex h-11 w-11 items-center justify-center transition-transform hover:scale-105"
+                    title={tool.name}
+                  >
+                    <img
+                      src={tool.icon}
+                      alt={tool.name}
+                      class="h-full w-full object-contain"
+                    />
+                  </a>
+                ))
+              }
             </div>
           </div>
 

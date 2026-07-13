@@ -1,13 +1,8 @@
 ---
-import * as sectiondata from "@/content/whatwedo/mainContent/whatwedo-content.md";
 // import { services } from "@/content/whatwedo";
 import TabSection from "./TabSection";
 import { Image } from "astro:assets";
-
-const services = Object.values(
-  import.meta.glob("../../content/whatwedo/*.md", { eager: true }),
-).sort((a: any, b: any) => a.frontmatter.order - b.frontmatter.order);
-
+const { sectiondata, services } = Astro.props;
 const { label, description, icon } = sectiondata.frontmatter;
 
 // Helper function to clean text

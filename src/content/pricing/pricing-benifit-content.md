@@ -3,7 +3,8 @@ title: "Benefits"
 subTitle: "Why Businesses Choose Panze for Digital Product Design"
 description: "Panze designs digital products that do more than look good. Every screen is structured to guide users toward action, every flow reduces friction, and every choice is made for your specific audience, not generic design trends."
 
-benefitsIcon: "/public/ourProcess/titleicon.png"
+benefitsIcon: "https://i.ibb.co.com/jvw21SBz/titleicon.png"
+# benefitsIcon: "/public/ourProcess/titleicon.png"
 
 steps:
   - title: "Conversion Focused:"

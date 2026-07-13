@@ -3,7 +3,8 @@ title: "Benefits"
 subTitle: "Why Businesses Choose Panze for Website UI/UX Design"
 description: "Panze designs websites that do more than look good. Every page is structured to guide visitors toward a decision, every interaction is designed to reduce confusion, and every visual choice is made with your specific user in mind rather than a generic sense of what a website should look like."
 
-benefitsIcon: "/public/ourProcess/titleicon.png"
+benefitsIcon: "https://i.ibb.co.com/jvw21SBz/titleicon.png"
+# benefitsIcon: "/public/ourProcess/titleicon.png"
 
 steps:
   - title: "Conversion Focused:"

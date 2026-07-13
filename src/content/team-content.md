@@ -7,42 +7,50 @@ description: "A focused group of strategists, UX designers, and UI specialists w
 categories:
   - id: "1"
     name: "Munayeem Ragib"
-    image: "/src/assets/team/munayeem.png" 
+    image: "https://i.ibb.co.com/jvPbMXVd/munayeem.png" 
+    # image: "/src/assets/team/munayeem.png" 
     designation: Marketing Manager
 
   - id: "2"
     name: "Ashfuq Hridoy"
-    image: "/src/assets/team/hridoy.png"
+    image: "https://i.ibb.co.com/0VjG5PbM/hridoy.png"
+    # image: "/src/assets/team/hridoy.png"
     designation: Brand Designer
 
   - id: "3"
     name: "Aftabul Samudro"
-    image: "/src/assets/team/samudro.png"
+    image: "https://i.ibb.co.com/RG3rnqsL/samudro.png"
+    # image: "/src/assets/team/samudro.png"
     designation: "App Designer"
 
   - id: "4"
     name: "Rakibul Islam"
-    image: "/src/assets/team/rakibul.png"
+    image: "https://i.ibb.co.com/WNsTDV6Z/rakibul.png"
+    # image: "/src/assets/team/rakibul.png"
     designation: "Dashboard Designer"
 
   - id: "5"
     name: "Ashfuq Hridoy"
-    image: "/src/assets/team/hridoy.png"
+    image: "https://i.ibb.co.com/0VjG5PbM/hridoy.png"
+    # image: "/src/assets/team/hridoy.png"
     designation: Brand Designer
 
   - id: "6"
     name: "Sayeed Rahman"
-    image: "/src/assets/team/sayeed.png"
+    image: "https://i.ibb.co.com/TMDVSrrR/sayeed.png"
+    # image: "/src/assets/team/sayeed.png"
     designation: "Website Designer"
 
   - id: "7"
     name: "Aftabul Samudro"
-    image: "/src/assets/team/samudro.png"
+    image: "https://i.ibb.co.com/RG3rnqsL/samudro.png"
+    # image: "/src/assets/team/samudro.png"
     designation: "App Designer"
 
   - id: "8"
     name: "Rakibul Islam"
-    image: "/src/assets/team/rakibul.png"
+    image: "https://i.ibb.co.com/WNsTDV6Z/rakibul.png"
+    # image: "/src/assets/team/rakibul.png"
     designation: "Dashboard Designer"
 
  

@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 import * as aboutData from "@/content/home/aboutus-content.md";
 import { NavigationMenuLink } from "../ui/navigation-menu";
-import ctaIcon from "@/assets/home/heroimage/ctaActionIcon.svg";
 
 // Access frontmatter data
 const {
@@ -13,23 +12,10 @@ const {
   buttonLink,
   abouticon,
   background,
-  image1,
-  image2,
-  image3,
-  image4,
-  imageAlt1,
-  imageAlt2,
-  imageAlt3,
-  imageAlt4,
+  images,
 } = aboutData.frontmatter;
 
 // Create images array for rendering
-const images = [
-  { path: image1, alt: imageAlt1 || "About us image 1" },
-  { path: image2, alt: imageAlt2 || "About us image 2" },
-  { path: image3, alt: imageAlt3 || "About us image 3" },
-  { path: image4, alt: imageAlt4 || "About us image 4" },
-];
 ---
 
 <section class="border-b overflow-hidden">
@@ -94,9 +80,9 @@ const images = [
     >
       <div class="grid grid-cols-2 gap-4 md:gap-6 lg:gap-8 h-full">
         {
-          images.map(({ path, alt }) => (
+          images.map((img:any) => (
             <div class="flex items-center justify-center">
-              <img src={path} alt={alt} class="w-auto h-auto max-w-full" />
+              <img src={img.src} alt={img.name} class="w-auto h-auto max-w-full" />
             </div>
           ))
         }

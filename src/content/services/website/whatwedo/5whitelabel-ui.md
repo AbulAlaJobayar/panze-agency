@@ -1,12 +1,12 @@
 ---
 order: 4
-value: "website"
-slug: "website-ui"
+value: "whitelable"
+slug: "whitelable"
 
-tabTitle: "Website UI/UX Design"
-tabSubtitle: "Build sites that convert visitors.Ship faster with Panze."
+tabTitle: "White Label Website Design"
 
-title: "Website UI/UX Design"
+
+title: "White Label Website Design"
 
 description: "Panze is a SaaS product design agency that turns complex platforms into intuitive, retention-driving interfaces. We design dashboards, onboarding flows, and full SaaS UI systems that activate and keep users"
 

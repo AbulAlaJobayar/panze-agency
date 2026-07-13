@@ -12,5 +12,6 @@ buttonLink: "/contact"
 
 # Images - Store live link
 abouticon: "https://i.ibb.co.com/MDrV7Rcc/Vector-1.png"
-image: "/src/assets/services/website/website.png"
+image: "https://i.ibb.co.com/FLCX9vzd/website.png"
+# image: "/src/assets/services/website/website.png"
 ---

@@ -6,9 +6,7 @@ import clutch from "@/assets/home/review/clutch.png";
 import Carousel from "@/components/ui/carousel/carousel.astro";
 import CarouselContent from "@/components/ui/carousel/carousel-content.astro";
 import CarouselItem from "@/components/ui/carousel/carousel-item.astro";
-import ctaIcon from "/src/assets/home/review/ctaActionIcon.svg";
 
-// import ReviewCard from "./ReviewCard";
 
 const blogs = Object.values(
   import.meta.glob("../../../content/review/*.md", { eager: true }),
@@ -40,7 +38,19 @@ const reviews = blogs.map((blog: any) => ({
             href="/review"
             class="flex gap-2 bg-[#F36B45] px-8 py-3 text-white transition hover:opacity-90"
           >
-            See Reviews <img src={ctaIcon.src} alt="review" />
+            See Reviews  <svg
+              class="text-white size-5"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M7 17L17 7M17 7H9M17 7V15"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
           </a>
         </div>
       </div>

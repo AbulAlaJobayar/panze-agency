@@ -20,6 +20,10 @@ import Review from "@/components/Home/review/Review.astro";
 import * as ourProcess from "@/content/ourprocess-content.md";
 import * as data from "@/content/home/number-content.md";
 import * as askedQuestion from "@/content/frequentlyAsked-content.md";
+import * as sectiondata from "@/content/whatwedo/mainContent/whatwedo-content.md";
+const services = Object.values(
+  import.meta.glob("@/content/whatwedo/*.md", { eager: true }),
+).sort((a: any, b: any) => a.frontmatter.order - b.frontmatter.order);
 ---
 
 <Layout title="HOME | PANZE">
@@ -30,7 +34,7 @@ import * as askedQuestion from "@/content/frequentlyAsked-content.md";
   <BrandSection />
   <LatestWork />
   <OurProcess ourProcess={ourProcess} />
-  <WhatWeDo />
+  <WhatWeDo sectiondata={sectiondata} services={services} />
   <Industry />
   <Review />
   <FrequentlyAskedFAQ askedQuestion={askedQuestion} />

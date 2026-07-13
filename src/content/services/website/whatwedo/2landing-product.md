@@ -1,9 +1,9 @@
 ---
-value: "saasProduct"
-slug: "SaaS-Product-Design"
+value: "landingProduct"
+slug: "landingDesign"
 
-tabTitle: " SaaS Product Design"
-tabSubtitle: "SaaS Product Design"
+tabTitle: "Landing Page Design"
+
 
 title: "SaaS Product Design"
 

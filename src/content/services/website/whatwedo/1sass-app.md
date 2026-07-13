@@ -1,12 +1,12 @@
 ---
 order: 1
-value: "mobile"
-slug: "mobile-ui"
+value: "sass"
+slug: "sass-ui"
 
-tabTitle: " Mobile App Design"
-tabSubtitle: "Build sites that convert visitors.Ship faster with Panze."
+tabTitle: " SaaS Website Design"
 
-title: " Mobile App Design"
+
+title: " SaaS Website Design"
 
 description: "Panze is a mobile app design agency building iOS and Android apps that users love. We deliver polished, conversion-driven mobile interfaces faster using AI speed and human strategy."
 

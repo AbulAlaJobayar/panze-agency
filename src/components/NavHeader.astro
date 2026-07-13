@@ -82,7 +82,7 @@ const pathname = Astro.url.pathname;
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div>
-                    {item.links.map((link) => (
+                    {item.links.map((link,i) => (
                       <NavigationMenuLink
                         href={link.href}
                         class="items-start gap-3 p-3"
