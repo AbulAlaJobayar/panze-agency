@@ -5,7 +5,6 @@ import navrighticon from "../../assets/navrighticon.svg";
 ---
 
 <NavHeader
-  client:visible
   logo={{
     src: panzeLogo,
     alt: "Panze",
@@ -23,17 +22,11 @@ import navrighticon from "../../assets/navrighticon.svg";
     {
       label: "SERVICES",
       href: "/services",
-      links: [
-        {
-          label: "website",
-          href: "/services/website",
-        },
-      ],
     },
     { label: "WORKS", href: "/works" },
     { label: "PRICING", href: "/pricing" },
     { label: "BLOG", href: "/blog" },
     { label: "CAREER", href: "/career" },
   ]}
-  button={{ label: "Start trial", href: "#", icon: navrighticon }}
+
 />

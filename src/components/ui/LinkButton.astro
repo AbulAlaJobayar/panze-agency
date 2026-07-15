@@ -1,0 +1,134 @@
+---
+import { NavigationMenuLink } from "@/components/ui/navigation-menu";
+
+interface Props {
+  href: string;
+  text: string;
+  class?: string;
+  id?: string
+}
+
+const { href, text, class: className = "",id="" } = Astro.props;
+---
+
+<div id={id}
+  class={`cta-button relative overflow-hidden
+  w-36.25 h-11.25 bg-primary text-white ${className}`}
+>
+  <!-- Shimmer -->
+  <div
+    class="shimmer absolute top-0 left-[-60%]
+    h-full w-[40%]
+    skew-x-[-20deg]
+    bg-linear-to-r
+    from-transparent
+    via-white/60
+    to-transparent
+    pointer-events-none"
+  >
+  </div>
+
+  <!-- Border -->
+  <div
+    class="border-sweep absolute bottom-0 left-0
+    h-0.5 w-full bg-white origin-left"
+  >
+  </div>
+
+  <NavigationMenuLink
+    href={href}
+    class="relative z-10 flex h-full items-center justify-center gap-2"
+  >
+    <span>{text}</span>
+
+    <svg
+      class="arrow w-4 h-4"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M7 17L17 7M17 7H9M17 7V15"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </NavigationMenuLink>
+</div>
+<script>
+  import gsap from "gsap";
+  document.querySelectorAll(".cta-button").forEach((button) => {
+    const shimmer = button.querySelector(".shimmer");
+    const border = button.querySelector(".border-sweep");
+    const arrow = button.querySelector(".arrow");
+
+    button.addEventListener("mouseenter", () => {
+      // Shimmer
+      gsap.fromTo(
+        shimmer,
+        {
+          xPercent: -250,
+        },
+        {
+          xPercent: 700,
+          duration: 1.5,
+          ease: "power2.inOut",
+        },
+      );
+
+      // Border sweep
+      gsap.fromTo(
+        border,
+        {
+          scaleX: 0,
+          transformOrigin: "left center",
+        },
+        {
+          scaleX: 1,
+          duration: 0.8,
+          ease: "power3.out",
+        },
+      );
+
+      // Arrow movement
+      gsap.to(arrow, {
+        x: 5,
+        y: -2,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+
+      // Slight button scale
+      gsap.to(button, {
+        scale: 1.02,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    });
+
+    button.addEventListener("mouseleave", () => {
+      gsap.set(shimmer, {
+        xPercent: -250,
+      });
+
+      gsap.to(border, {
+        scaleX: 0,
+        duration: 0.5,
+        ease: "power2.inOut",
+        transformOrigin: "right center",
+      });
+
+      gsap.to(arrow, {
+        x: 0,
+        y: 0,
+        duration: 0.3,
+      });
+
+      gsap.to(button, {
+        scale: 1,
+        duration: 0.3,
+      });
+    });
+  });
+</script>

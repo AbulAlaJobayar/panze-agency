@@ -29,16 +29,7 @@ type Props = {
   navigation: {
     label: string;
     href: string;
-    links?: {
-      label: string;
-      href: string;
-    }[];
   }[];
-  button: {
-    label: string;
-    href: string;
-    icon: any;
-  };
 };
 import navrighticon from "../assets/navrighticon.svg";
 
@@ -52,10 +43,10 @@ const pathname = Astro.url.pathname;
     style={`background-image: url(${navbgvector.src})`}
   >
     <HeaderGroup
-      class={" w-24 pr-8 xl:w-47 text-center xl:pl-8 border-r-[0.5px] bg-white"}
+      class={"  pr-12 w-47 text-center pl-8 py-3 border-r-[0.5px] bg-white"}
     >
       <!-- logo -->
-      <Logo href={logo.href}>
+      <Logo href={logo.href} id={"logo"}>
         <LogoImage src={logo.src} alt={logo.alt} />
       </Logo>
     </HeaderGroup>
@@ -65,66 +56,26 @@ const pathname = Astro.url.pathname;
     >
       <NavigationMenuList>
         {
-          navigation.map((item, index) =>
-            item.links?.length ? (
-              <NavigationMenuItem value={`nav-${index}`}>
-                <NavigationMenuTrigger>
-                  <NavigationMenuLink
-                    href={item.href}
-                    class={`${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%] ${
-                      pathname === item.href
-                        ? "text-[#E8704E] "
-                        : "text-gray-900 hover:text-[#E8704E] "
-                    }`}
-                  >
-                    {item.label}
-                  </NavigationMenuLink>
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div>
-                    {item.links.map((link,i) => (
-                      <NavigationMenuLink
-                        href={link.href}
-                        class="items-start gap-3 p-3"
-                      >
-                        <span class="grid gap-1">
-                          <span
-                            class={`${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%] ${
-                              pathname === item.href
-                                ? "text-[#E8704E] "
-                                : "text-gray-900 hover:text-[#E8704E] "
-                            }`}
-                          >
-                            {link.label}
-                          </span>
-                        </span>
-                      </NavigationMenuLink>
-                    ))}
-                  </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            ) : (
-              <NavigationMenuItem value={`nav-${index}`}>
-                <NavigationMenuLink
-                  href={item.href}
-                  class={`${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%] ${
-                    pathname === item.href
-                      ? "text-[#E8704E] "
-                      : "text-gray-900 hover:text-[#E8704E] "
-                  }`}
-                >
-                  {item.label}
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            ),
-          )
+          navigation.map((item, index) => (
+            <NavigationMenuItem value={`nav-${index}`} id={"navItem"}>
+              <NavigationMenuLink
+                href={item.href}
+                class={`${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%] ${
+                  pathname === item.href
+                    ? "text-[#E8704E] "
+                    : "text-gray-900 hover:text-[#E8704E] "
+                }`}
+              >
+                {item.label}
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          ))
         }
       </NavigationMenuList>
     </NavigationMenu>
 
     <!-- right side -->
-    <HeaderGroup class="ml-auto hidden justify-end lg:flex">
-      <slot />
+    <HeaderGroup class="ml-auto hidden justify-end lg:flex" id={"contact"}>
       <NavigationMenuLink
         href={"/contact"}
         class="bg-primary w-51.75 text-center py-3 px-5 flex justify-center items-center gap-2 cursor-pointer rounded-none hover:bg-primary"
@@ -141,7 +92,7 @@ const pathname = Astro.url.pathname;
         class="ml-auto"
         aria-label="Open menu"
       >
-        <Icon name="menu" />
+        <Icon name="menu" id={"#icon"} />
       </SheetTrigger>
 
       <SheetContent side="right" class="p-0">
@@ -162,27 +113,6 @@ const pathname = Astro.url.pathname;
                       {item.label}
                     </NavigationMenuLink>
                   </SheetClose>
-                  {item.links?.length && (
-                    <div class="border-border ml-3 grid gap-1 border-l pl-3">
-                      {item.links.map((link) => (
-                        <SheetClose
-                          variant="ghost"
-                          class="text-muted-foreground justify-start font-dm-mono"
-                        >
-                          <NavigationMenuLink
-                            href={link.href}
-                            class={`${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%]  ${
-                              pathname === item.href
-                                ? "text-[#E8704E] "
-                                : "text-gray-900 hover:text-[#E8704E]"
-                            }`}
-                          >
-                            {link.label}
-                          </NavigationMenuLink>
-                        </SheetClose>
-                      ))}
-                    </div>
-                  )}
                 </div>
               ))
             }
@@ -195,3 +125,32 @@ const pathname = Astro.url.pathname;
     </Sheet>
   </HeaderContainer>
 </Header>
+
+<script>
+  import gsap from "gsap";
+
+  gsap.from("#icon", {
+    x: 30,
+    opacity: 0,
+    duration: 0.5,
+  });
+
+  let tl = gsap.timeline();
+  tl.from("#logo", {
+    x: -30,
+    opacity: 0,
+    duration: 0.5,
+  });
+
+  tl.from("#navItem", {
+    y: -30,
+    opacity: 0,
+    duration: 0.5,
+    stagger: 0.15,
+  });
+  tl.from("#contact", {
+    x: 30,
+    opacity: 0,
+    duration: 0.5,
+  });
+</script>
