@@ -88,7 +88,7 @@ const {
     scrollTrigger: {
       trigger: "#abouthome",
       start: "top 70%",
-      toggleActions: "play reverse play reverse",
+      toggleActions: "play none none reverse",
     },
   });
 
@@ -127,19 +127,23 @@ const {
     scrollTrigger: {
       trigger: "#gallery",
       start: "top 70%",
-      toggleActions: "play reverse play reverse",
+      toggleActions: "play none none reverse",
     },
   });
 
   // Wave animation
-  gsap.utils.toArray<HTMLImageElement>(".gallery-card img").forEach((img, index) => gsap.to(img, {
-    y: gsap.utils.random(-15, -8),
-    x: gsap.utils.random(-4, 4),
-    rotation: gsap.utils.random(-3, 3),
-    duration: gsap.utils.random(2.5, 4),
-    ease: "sine.inOut",
-    repeat: -1,
-    yoyo: true,
-    delay: index * 0.2,
-  }));
+  gsap.utils
+    .toArray<HTMLImageElement>(".gallery-card img")
+    .forEach((img, index) =>
+      gsap.to(img, {
+        y: gsap.utils.random(-15, -8),
+        x: gsap.utils.random(-4, 4),
+        rotation: gsap.utils.random(-3, 3),
+        duration: gsap.utils.random(2.5, 4),
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+        delay: index * 0.2,
+      }),
+    );
 </script>

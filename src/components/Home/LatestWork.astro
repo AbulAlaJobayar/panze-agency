@@ -8,14 +8,14 @@ const { title, subTitle, description, card } = latestData.frontmatter;
 ---
 
 <section id="latest-work" class="bg-[#E8704E]">
-  <div class=" mx-auto">
+  <div class="mx-auto">
     <!-- Top Container - Header Section -->
     <div
       class="latest-header flex flex-col lg:flex-row border-b border-white/20"
     >
       <!-- Left: Icon + Title -->
       <div
-        class="latest-title w-full lg:w-[20%]  lg:border-r border-white/20 px-4 md:px-8 pt-10 lg:pt-20"
+        class="latest-title w-full lg:w-[20%] lg:border-r border-white/20 px-4 md:px-8 pt-10 lg:pt-20"
       >
         <div class="flex items-center gap-3">
           <Image
@@ -35,7 +35,7 @@ const { title, subTitle, description, card } = latestData.frontmatter;
 
       <!-- Middle: SubTitle -->
       <div
-        class="latest-subtitle  w-full lg:w-[40%]  lg:border-r border-white/20 ml-9 lg:px-9 pt-10 lg:pt-20"
+        class="latest-subtitle w-full lg:w-[40%] lg:border-r border-white/20 ml-9 lg:px-9 pt-10 lg:pt-20"
       >
         <p
           class="font-commissioner font-semibold text-[25px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-white"
@@ -125,61 +125,57 @@ const { title, subTitle, description, card } = latestData.frontmatter;
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-
   gsap.registerPlugin(ScrollTrigger);
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#latest-work",
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+    },
+  });
 
-  document.addEventListener("astro:page-load", () => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#latest-work",
-        start: "top 75%",
-        toggleActions: "play reverse play reverse",
-      },
-    });
+  // Title
+  tl.from(".latest-title", {
+    x: -120,
+    opacity: 0,
+    duration: 0.8,
+    ease: "power4.out",
+  });
 
-    // Title
-    tl.from(".latest-title", {
-      x: -120,
+  // Subtitle
+  tl.from(
+    ".latest-subtitle",
+    {
+      y: -100,
       opacity: 0,
       duration: 0.8,
       ease: "power4.out",
-    });
+    },
+    "-=0.4",
+  );
 
-    // Subtitle
-    tl.from(
-      ".latest-subtitle",
-      {
-        y: -100,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power4.out",
-      },
-      "-=0.4",
-    );
+  // Description
+  tl.from(
+    ".latest-description",
+    {
+      x: 120,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power4.out",
+    },
+    "-=0.4",
+  );
 
-    // Description
-    tl.from(
-      ".latest-description",
-      {
-        x: 120,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power4.out",
-      },
-      "-=0.4",
-    );
-
-    // All 4 boxes
-    tl.from(
-      ".side-box",
-      {
-        y: -150,
-        opacity: 0,
-        stagger: 0.15,
-        duration: 0.9,
-        ease: "expo.out",
-      },
-      "-=0.2",
-    );
-  });
+  // All 4 boxes
+  tl.from(
+    ".side-box",
+    {
+      y: -150,
+      opacity: 0,
+      stagger: 0.15,
+      duration: 0.9,
+      ease: "expo.out",
+    },
+    "-=0.2",
+  );
 </script>

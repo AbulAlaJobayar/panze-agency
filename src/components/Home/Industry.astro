@@ -7,15 +7,15 @@ const { sectionIcon, title, subtitle, description, categories } =
   IndustryData.frontmatter;
 ---
 
-<section class="py-16 px-4 md:px-8 bg-white font-sans">
-  <div class="max-w-7xl mx-auto">
+<section id="industry-section" class="my-26 px-8 bg-white">
+  <div class="mx-auto">
     <!-- Header -->
-    <div class="flex flex-col lg:flex-row border-b border-white/20">
+    <div class="lg:mb-0 flex flex-col lg:flex-row border-b border-white/20">
       <!-- Left: Icon + Title -->
       <div
-        class="w-full lg:w-[20%] border-b lg:border-b-0 lg:border-r border-white/20 px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16"
+        class="mb-6 lg:mb-0 w-full lg:w-[20%] border-b lg:border-b-0 lg:border-r border-white/20"
       >
-        <div class="flex items-center gap-3">
+        <div class="industry-badge flex items-center gap-3">
           <Image
             src={sectionIcon}
             alt="Latest icon"
@@ -33,21 +33,19 @@ const { sectionIcon, title, subtitle, description, categories } =
 
       <!-- Middle: SubTitle -->
       <div
-        class="w-full lg:w-[40%] border-b lg:border-b-0 lg:border-r border-white/20 px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16"
+        class="w-full lg:w-[40%] border-b lg:border-b-0 lg:border-r border-white/20 mb-8 lg:mb-0"
       >
         <p
-          class="font-commissioner font-semibold text-[25px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-[#301C1B]"
+          class="industry-subtitle font-commissioner font-semibold text-[25px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-[#301C1B]"
         >
           {subtitle}
         </p>
       </div>
 
       <!-- Right: Description -->
-      <div
-        class="w-full lg:w-[40%] px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16"
-      >
+      <div class="w-full lg:w-[40%] mb-10 lg:mb-0">
         <p
-          class="text-[#301C1B] font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
+          class="industry-description text-[#301C1B] font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] lg:mb-16"
         >
           {description}
         </p>
@@ -55,14 +53,17 @@ const { sectionIcon, title, subtitle, description, categories } =
     </div>
 
     <!-- Dynamic Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 border-t border-l border-primary"
+    >
       {
         categories.map((category: any) => (
-          <div class="space-y-2 border border-b-0 last:border-b md:border md:border-r-0 md:last:border-r p-10 border-primary">
-            <h3 class=" font-dm-mono text-[16px] font-medium text-[#301C1B] uppercase tracking-[-4%] leading-[150%]  pb-2">
+          <div class=" industry-card p-10 border-r border-b border-primary space-y-5">
+            <h3 class="font-dm-mono text-[16px] font-medium text-[#301C1B] uppercase tracking-[-4%] leading-[150%]">
               {category.name}
             </h3>
-            <ul class="space-y-1 text-base text-gray-800">
+
+            <ul class=" font-dm-mono text-[14px] font-normal tracking-[-4%] leading-[150%] space-y-2 text-base ">
               {category.items.map((item: any) => (
                 <li>{item}</li>
               ))}
@@ -73,3 +74,70 @@ const { sectionIcon, title, subtitle, description, categories } =
     </div>
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener("astro:page-load", () => {
+    const section = document.querySelector("#industry-section");
+
+    if (!section) return;
+
+    // Header Animation
+    const headerTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    headerTl
+      .from(".industry-badge", {
+        x: -60,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power3.out",
+      })
+      .from(
+        ".industry-subtitle",
+        {
+          y: 50,
+          opacity: 0,
+          duration: 0.9,
+          ease: "power4.out",
+        },
+        "-=0.4",
+      )
+      .from(
+        ".industry-description",
+        {
+          y: 30,
+          opacity: 0,
+          duration: 0.7,
+          ease: "power2.out",
+        },
+        "-=0.5",
+      );
+
+    // Cards Animation
+    gsap.from(".industry-card", {
+      scrollTrigger: {
+        trigger: ".industry-card",
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      },
+      opacity: 0,
+      y: 80,
+      scale: 0.95,
+      duration: 0.8,
+      ease: "power4.out",
+      stagger: {
+        each: 0.12,
+        from: "start",
+      },
+    });
+  });
+</script>

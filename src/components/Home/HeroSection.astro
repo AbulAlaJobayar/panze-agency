@@ -9,7 +9,7 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
 ---
 
 <!-- hero section -->
-<div id="hero">
+<div class="hero">
   <!-- dextop screen -->
   <div class="hidden sm:block">
     <div class="flex">
@@ -58,12 +58,12 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
   </div>
 
   <!-- small screen -->
-  <div id="hero" class="mx-auto">
+  <div class="hero mx-auto">
     <div class="block sm:hidden mx-auto mb-10">
       <div class="mt-10">
         <!-- top -->
         <div class="pl-8 pr-8.25">
-          <div id="usa" class="flex items-center gap-2 mb-3">
+          <div class="hero-location flex items-center gap-2 mb-3">
             <img src={usFlag.src} alt="icon" width={12} height={8} />
             <p
               class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
@@ -73,8 +73,7 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
           </div>
 
           <h1
-            id="hero-title"
-            class="font-commissioner font-semibold text-5xl uppercase leading-[120%] tracking-[-4%] text-[#301C1B] whitespace-nowrap"
+            class="hero-title font-commissioner font-semibold text-5xl uppercase leading-[120%] tracking-[-4%] text-[#301C1B] whitespace-nowrap"
           >
             {title}
           </h1>
@@ -82,23 +81,21 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
         <div class="pl-8 pr-8.25">
           <div class="mt-13">
             <h3
-              id="subtitle"
-              class="font-commissioner font-semibold text-[18px] uppercase leading-[110%] tracking-[-4%] text-primary py-3"
+              class="subtitle font-commissioner font-semibold text-[18px] uppercase leading-[110%] tracking-[-4%] text-primary py-3"
             >
               {subTitle}
             </h3>
             <p
-              id="description"
-              class="font-dm-mono font-normal text-[12px] leading-[140%] tracking-[-4%] mt-7"
+              class="description font-dm-mono font-normal text-[12px] leading-[140%] tracking-[-4%] mt-7"
             >
               {description}
             </p>
           </div>
         </div>
-        <div id="img" class="mt-11 mb-9">
+        <div class="hero-img mt-11 mb-9">
           <img src={bg.src} alt="bg" />
         </div>
-        <LinkButton id="button" href={"/works"} text={cta} class="w-full" />
+        <LinkButton href={"/works"} text={cta} class="hero-button w-full" />
       </div>
     </div>
   </div>
@@ -115,23 +112,63 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
     document.querySelectorAll(".hero-title").forEach((title) => {
       const text = title.textContent || "";
 
-      title.innerHTML = text
-        .split("")
+      const chars = text.split("");
+
+      const orderedChars: any = [];
+
+      let left = 0;
+      let right = chars.length - 1;
+
+      while (left <= right) {
+        if (left === right) {
+          orderedChars.push({
+            char: chars[left],
+            index: left,
+          });
+        } else {
+          orderedChars.push({
+            char: chars[left],
+            index: left,
+          });
+
+          orderedChars.push({
+            char: chars[right],
+            index: right,
+          });
+        }
+
+        left++;
+        right--;
+      }
+
+      title.innerHTML = chars
         .map(
-          (char) =>
-            `<span class="hero-char inline-block">${
-              char === " " ? "&nbsp;" : char
-            }</span>`,
+          (char, index) =>
+            `<span class="hero-char inline-block" data-order="${orderedChars.findIndex(
+              (c: any) => c.index === index,
+            )}">
+        ${char === " " ? "&nbsp;" : char}
+      </span>`,
         )
         .join("");
     });
+    const charsEls = gsap.utils.toArray(".hero-char");
 
+    gsap.from(charsEls, {
+      yPercent: 120,
+      opacity: 0,
+      duration: 1,
+      ease: "expo.out",
+      stagger: (index, target) => {
+        return Number(target.dataset.order) * 0.04;
+      },
+    });
     // Entrance timeline
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: "#hero",
+        trigger: ".hero",
         start: "top 75%",
-        toggleActions: "play reverse play reverse",
+        toggleActions: "play none none reverse",
       },
       defaults: {
         ease: "power4.out",
@@ -141,7 +178,6 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
     tl.from(".subtitle", {
       x: -80,
       opacity: 0,
-      filter: "blur(10px)",
       duration: 0.8,
     })
 
@@ -150,7 +186,6 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
         {
           x: -60,
           opacity: 0,
-          filter: "blur(8px)",
           duration: 0.8,
         },
         "-=0.5",
@@ -175,60 +210,31 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
         },
         "-=0.8",
       )
-
-      .from(
-        ".hero-char",
-        {
-          yPercent: 120,
-          opacity: 0,
-          stagger: 0.03,
-          duration: 1,
-          ease: "expo.out",
-        },
-        "-=0.5",
-      )
-
       .from(".hero-img", {
-        
-        ease: "none",
-        scrollTrigger: {
-          trigger: "#hero",
-          start: "top top",
-          end: "50% top",
-          scrub: true,
-        },
+        opacity: 0,
+        y: 80,
+        duration: 1.2,
+        ease: "expo.out",
       });
-
-    // Floating image
-    gsap.to(".hero-img img", {
-      y: -10,
-      duration: 3,
-      ease: "sine.inOut",
-      repeat: -1,
-      yoyo: true,
-    });
-
-    // Scroll parallax
     gsap.to(".hero-title", {
       y: -80,
       ease: "none",
       scrollTrigger: {
-        trigger: "#hero",
+        trigger: ".hero",
         start: "top top",
         end: "bottom top",
         scrub: true,
-        toggleActions: "play reverse play reverse",
       },
     });
 
     gsap.to(".hero-img", {
+      y: -120,
       ease: "none",
       scrollTrigger: {
-        trigger: "#hero",
+        trigger: ".hero",
         start: "top top",
         end: "bottom top",
         scrub: true,
-        toggleActions: "play reverse play reverse",
       },
     });
   });

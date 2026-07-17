@@ -101,6 +101,7 @@ export default function LinkButton({
           flex
           items-center
           justify-center
+          py-3
           gap-3
         "
       >

@@ -65,12 +65,12 @@ const sanitizedSteps = Array.isArray(steps)
           </h6>
         </div>
         <p
-          class="process-title font-commissioner font-semiboldtext-[24px] leading-[110%] tracking-[-4%] uppercase pb-8"
+          class="process-title font-commissioner font-semiboldtext-[24px] leading-[110%] tracking-[-4%] uppercase mb-8"
         >
           {data.subTitle}
         </p>
         <p
-          class="process-description font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] pb-10"
+          class="process-description font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] mb-10"
         >
           {data.description}
         </p>
@@ -127,110 +127,105 @@ const sanitizedSteps = Array.isArray(steps)
   </div>
 </section>
 
-<script>
+<!-- <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
 
-  window.addEventListener("load", () => {
-    if (window.innerWidth >= 1024) return;
-
-    // Header Animation
-    const header = document.querySelector(".process-header");
-
-    if (header) {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: header,
-          start: "top 85%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      tl.from(".process-badge", {
-        opacity: 0,
-        x: -40,
-        duration: 0.6,
-        ease: "power3.out",
-      })
-        .from(
-          ".process-title",
-          {
-            opacity: 0,
-            y: 50,
-            duration: 0.8,
-            ease: "power4.out",
-          },
-          "-=0.3",
-        )
-        .from(
-          ".process-description",
-          {
-            opacity: 0,
-            y: 30,
-            duration: 0.7,
-            ease: "power2.out",
-          },
-          "-=0.4",
-        )
-        .from(
-          ".process-button",
-          {
-            opacity: 0,
-            scale: 0.9,
-            duration: 0.5,
-            ease: "back.out(1.7)",
-          },
-          "-=0.3",
-        );
-    }
-
-    // Cards Animation
-    const cards = document.querySelectorAll(".step-card");
-
-    cards.forEach((card) => {
-      const image = card.querySelector(".step-image");
-      const content = card.querySelector(".step-content");
-
-      if (!image || !content) return;
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: card,
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      tl.from(card, {
-        opacity: 0,
-        y: 100,
-        duration: 0.8,
-        ease: "power3.out",
-      })
-        .from(
-          image,
-          {
-            scale: 0.85,
-            opacity: 0,
-            rotate: -4,
-            duration: 0.8,
-            ease: "power4.out",
-          },
-          "-=0.5",
-        )
-        .from(
-          Array.from(content.children),
-          {
-            opacity: 0,
-            y: 25,
-            stagger: 0.15,
-            duration: 0.5,
-            ease: "power2.out",
-          },
-          "-=0.4",
-        );
-    });
+  // Header Animation
+  const header = document.querySelector(".process-header");
+if (header) {
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: header,
+      start: "top 85%",
+      toggleActions: "play reverse play reverse",
+    },
   });
-</script>
+
+
+  tl.from(".process-badge", {
+    opacity: 0,
+    x: -40,
+    duration: 0.6,
+    ease: "power3.out",
+  })
+    .from(
+      ".process-title",
+      {
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        ease: "power4.out",
+      },
+      "-=0.3",
+    )
+    .from(
+      ".process-description",
+      {
+        opacity: 0,
+        y: 30,
+        duration: 0.7,
+        ease: "power2.out",
+      },
+      "-=0.4",
+    )
+    .from(
+      ".process-button",
+      {
+        opacity: 0,
+        scale: 0.9,
+        duration: 0.5,
+        ease: "back.out(1.7)",
+      },
+      "-=0.3",
+    );
+
+  // Cards Animation
+  const cards = document.querySelectorAll(".step-card");
+
+  cards.forEach((card) => {
+    const image = card.querySelector(".step-image");
+    const content = card.querySelector(".step-content");
+
+    if (!image || !content) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: card,
+        start: "top 80%",
+        toggleActions: "play reverse play reverse",
+      },
+    });
+
+    tl.from(card, {
+      opacity: 0,
+      y: 100,
+      duration: 0.8,
+      ease: "power3.out",
+    })
+      .from(
+        image,
+        {
+          scale: 0.85,
+          opacity: 0,
+          rotate: -4,
+          duration: 0.8,
+          ease: "power4.out",
+        },
+        "-=0.5",
+      )
+      .from(
+        Array.from(content.children),
+        {
+          opacity: 0,
+          y: 25,
+          stagger: 0.15,
+          duration: 0.5,
+          ease: "power2.out",
+        },
+        "-=0.4",
+      );
+  })};
+</script> -->

@@ -3,7 +3,7 @@ value: "saasProduct"
 slug: "SaaS-Product-Design"
 
 tabTitle: " SaaS Product Design"
-tabSubtitle: "SaaS Product Design"
+tabSubtitle: "Build dashboards that reduce churn. Ship faster"
 
 title: "SaaS Product Design"
 

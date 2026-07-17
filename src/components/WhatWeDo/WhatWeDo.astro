@@ -1,5 +1,6 @@
 ---
 // import { services } from "@/content/whatwedo";
+import LinkButton from "../ui/LinkButton.astro";
 import TabSection from "./TabSection";
 import { Image } from "astro:assets";
 const { sectiondata, services } = Astro.props;
@@ -63,12 +64,11 @@ const sortedServices = sanitizedServices.sort((a, b) =>
 );
 ---
 
-<section>
-  <div class="bg-[#1E1212] py-14">
-    <div
-      class="flex flex-col md:flex-row items-start gap-6 pt-4 md:pt-8 pb-2 md:pb-4 px-4 md:px-10"
-    >
-      <div class="w-66 flex items-center gap-3 mb-2 md:mb-8">
+<section class="services-section mt-25">
+  <!-- dextop -->
+  <div class="hidden lg:block bg-[#1E1212] py-26">
+    <div class=" mx-8 mb-16 grid grid-cols-12 items-start">
+      <div class=" w-66 col-span-3 flex items-center gap-2">
         <Image
           src={icon}
           alt="number section"
@@ -77,13 +77,13 @@ const sortedServices = sanitizedServices.sort((a, b) =>
           class="w-5 h-5 md:w-auto md:h-auto"
         />
         <h6
-          class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+          class=" font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
         >
           {label}
         </h6>
       </div>
       <p
-        class="max-w-130 font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase pb-6 md:pb-8 lg:pb-10 text-white"
+        class=" col-span-6 font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-white"
       >
         {description}
       </p>
@@ -96,4 +96,175 @@ const sortedServices = sanitizedServices.sort((a, b) =>
       icon={icon}
     />
   </div>
+  <!-- small screen -->
+  <div class="block lg:hidden bg-[#1E1212] py-20">
+    <!-- top side  -->
+    <div class="section-header mx-8 mb-16 flex flex-col gap-7">
+      <div class="section-badge w-66 col-span-3 flex items-center gap-2">
+        <Image
+          src={icon}
+          alt="number section"
+          width={20}
+          height={20}
+          class="w-5 h-5 md:w-auto md:h-auto"
+        />
+        <h6
+          class="section-text font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+        >
+          {label}
+        </h6>
+      </div>
+      <p
+        class="section-title col-span-6 font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-white"
+      >
+        {description}
+      </p>
+    </div>
+<!-- bottom side -->
+{
+  sortedServices.map((service: any, index: number) => (
+    <div class="mx-4 sm:mx-6 md:mx-8">
+      <div
+        class:list={[
+          "service-card border border-white/10 bg-[#1E1212] p-6 sm:p-8 md:p-10",
+          index !== 0 && "border-t-0",
+        ]}
+      >
+        <div class="grid gap-10 md:gap-10 md:grid-cols-2 items-center">
+          <!-- Image -->
+          <div class="relative overflow-hidden   h-70 sm:h-80 md:h-95 w-full mb-3">
+            <img
+              src={service.image}
+              alt={service.title}
+              class="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 hover:scale-105"
+            />
+          </div>
+
+          <!-- Content -->
+          <div>
+            <h3
+              class="font-commissioner font-semibold leading-[110%] tracking-[-4%] text-[20px] uppercase mb-4 text-white"
+            >
+              {service.title}
+            </h3>
+
+            <p
+              class="font-dm-mono font-normal text-[14px]  leading-[150%] tracking-[-4%] mb-8 text-white/80"
+            >
+              {service.description}
+            </p>
+
+            <ul class="space-y-2 mb-8">
+              {
+                service.features.map((item: string) => (
+                  <li class="flex gap-3 items-start">
+                    <span class=" shrink-0 font-dm-mono text-[14px]  font-normal tracking-[-4%] text-white leading-[150%] ">-</span>
+                    <span
+                      class="font-dm-mono text-[14px]  font-normal tracking-[-4%] text-white leading-[150%] "
+                    >
+                      {item}
+                    </span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <LinkButton
+            class="w-full"
+            href={`/services/${service.slug}`}
+            text={service.buttonText}
+
+          />
+        </div>
+      </div>
+    </div>
+  ))
+}
+  </div>
 </section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  window.addEventListener("load", () => {
+    const section = document.querySelector(".services-section");
+
+    if (!section) return;
+
+    // Header Animation
+    const headerTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    headerTl
+      .from(".section-badge", {
+        opacity: 0,
+        x: -40,
+        duration: 0.6,
+        ease: "power3.out",
+      })
+      .from(
+        ".section-title",
+        {
+          opacity: 0,
+          y: 50,
+          duration: 0.8,
+          ease: "power4.out",
+        },
+        "-=0.3",
+      );
+
+    // Cards Animation
+    const cards = document.querySelectorAll(".service-card");
+
+    cards.forEach((card) => {
+      const image = card.querySelector("img");
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      tl.from(card, {
+        opacity: 0,
+        y: 80,
+        duration: 0.8,
+        ease: "power3.out",
+      })
+        .from(
+          image,
+          {
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.8,
+            ease: "power4.out",
+          },
+          "-=0.5",
+        )
+        .from(
+          card.querySelectorAll("h3, p, li, "),
+          {
+            opacity: 0,
+            y: 20,
+            stagger: 0.08,
+            duration: 0.5,
+            ease: "power2.out",
+          },
+          "-=0.4",
+        );
+    });
+  });
+</script>
