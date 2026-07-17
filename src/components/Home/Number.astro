@@ -1,19 +1,21 @@
 ---
 const { data } = Astro.props;
-const { title, description, content, sectionIcon } = data.frontmatter;
+const { title, description, content } = data.frontmatter;
+import sectionIcon from "@/assets/sectionIcon/networkIcon.svg";
+import CountUp from "@/components/ui/CountUp.astro";
 ---
 
-<section class="border-b overflow-hidden">
+<section id="number" class="overflow-hidden mx-8">
   <div class="flex flex-col lg:flex-row items-stretch lg:items-center">
     <!-- leftside - fixed width 400px -->
     <div
-      class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 px-6 sm:px-8 md:px-10 py-10 md:py-16 lg:py-20"
+      class="w-full lg:w-91.75 shrink-0 border-b lg:border-b-0 py-10 md:py-16 lg:py-28.25"
     >
-      <div class="flex items-center gap-3 mb-6 md:mb-8">
+      <div class="number-left flex items-center gap-2 mb-6 md:mb-9">
         <img
-          src={sectionIcon}
+          src={sectionIcon.src}
           alt="number section"
-          class="w-5 h-5 md:w-auto md:h-auto"
+          class="w-3 h-3 md:w-auto md:h-auto"
         />
         <h6
           class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
@@ -22,7 +24,7 @@ const { title, description, content, sectionIcon } = data.frontmatter;
         </h6>
       </div>
       <p
-        class="font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase pb-6 md:pb-8 lg:pb-10"
+        class="number-left font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-[#301C1B]"
       >
         {description}
       </p>
@@ -30,21 +32,35 @@ const { title, description, content, sectionIcon } = data.frontmatter;
 
     <!-- right side - fills remaining space -->
     <div class="flex-1 min-w-0">
-      <div class="flex flex-wrap sm:flex-nowrap">
+      <div class="flex flex-wrap sm:flex-nowrap border-l">
         {
           content.map((item: any, index: number) => (
             <div
+              class=""
               class:list={[
-                "flex w-1/2 sm:flex-1 flex-col items-start justify-between border-b border-r px-4 py-10 sm:w-auto sm:border-b-0 sm:px-5 md:px-8 md:py-16 lg:py-20",
+                "flex w-1/2 sm:flex-1 flex-col items-start justify-between border-b border-r border-l-0 pl-6 py-27 fast:border",
+                // Mobile
+                "border-b",
+                index % 2 === 0 && "border-l",
+                "border-r",
+                "last:border-b-0",
+
+                // Desktop
+                "sm:border-b-0",
+                "sm:border-l-0",
                 index === 0 && "sm:border-l",
+                "sm:border-r",
               ]}
             >
-              <h3 class="pb-4 font-dm-mono text-[12px] font-normal leading-[150%] tracking-[-4%] text-primary md:pb-6 lg:pb-15">
+              <h3
+                id="number-right"
+                class="font-dm-mono text-[14px] font-normal leading-[150%] tracking-[-4%] text-primary pr-[10.6px] pb-20"
+              >
                 {item.title}
               </h3>
 
-              <p class="pb-4 font-commissioner text-[20px] font-semibold leading-[110%] tracking-[-4%] uppercase sm:text-[22px] md:pb-6 md:text-[24px] lg:pb-10">
-                {item.number}
+              <p class="number-card font-commissioner text-[20px] font-semibold leading-[110%] tracking-[-4%] uppercase sm:text-[22px]  md:text-[24px]  pr-6">
+                <CountUp value={item.number} suffix="K" duration={2500} />
               </p>
             </div>
           ))
@@ -53,3 +69,43 @@ const { title, description, content, sectionIcon } = data.frontmatter;
     </div>
   </div>
 </section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener("astro:page-load", () => {
+    gsap.set(".number-left, .number-right", {
+      clearProps: "all",
+    });
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#number",
+          start: "top 75%",
+          toggleActions: "play reverse play reverse",
+        },
+      })
+      .from(".number-left", {
+        x: -100,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.8,
+        ease: "power3.out",
+      })
+      .from(
+        ".number-right",
+        {
+          y: -80,
+          opacity: 0,
+          stagger: 0.08,
+          duration: 0.5,
+          ease: "power3.out",
+        },
+        "-=0.4",
+      );
+  });
+</script>

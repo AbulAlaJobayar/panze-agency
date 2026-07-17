@@ -1,0 +1,183 @@
+---
+interface Props {
+  heroImage: string;
+  title: string;
+  description: string;
+  industry: string;
+  tags: string[];
+}
+
+const { heroImage, title, description, industry, tags } = Astro.props;
+---
+
+<div class="portfolio-card overflow-hidden border border-white/20 shadow-2xl">
+  <!-- Hero -->
+  <div class="relative h-62.5 sm:h-87.5 lg:h-125">
+    <img
+      src={heroImage}
+      alt={title}
+      class="card-image absolute inset-0 w-full h-full object-cover"
+    />
+  </div>
+
+  <!-- Content -->
+  <div class="relative bg-[#221617]">
+    <!-- Dot Pattern -->
+    <div
+      class="absolute inset-0 opacity-20"
+      style="
+        background-image: radial-gradient(#ED7743 1px, transparent 1px);
+        background-size: 10px 10px;
+      "
+    >
+    </div>
+
+    <div class="relative z-10 grid lg:grid-cols-2 gap-2 lg:gap-27">
+      <!-- Left -->
+      <div class="card-title pt-8 pr-8 md:pr-0 pl-8">
+        <h3
+          class="font-commissioner font-semibold
+          text-xl leading-[110%] tracking-[-4%]
+          text-white"
+        >
+          {title}
+        </h3>
+
+        <div class="flex flex-wrap gap-3 mt-5">
+          {
+            tags.map((tag) => (
+              <span
+                class="card-tag font-dm-mono font-normal text-[12px] leading-[150%] tracking-[-4%]  px-4 py-1 border border-[#4A3737]
+                rounded-full text-sm text-white/70"
+              >
+                {tag}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Right -->
+      <div class="my-8 ml-8 md:ml-0 mr-8 md:mr-1">
+        <p
+          class="card-description font-dm-mono text-white font-normal
+          text-sm leading-[150%] tracking-[-4%] mb-8"
+        >
+          {description}
+        </p>
+
+        <p
+          class="card-industry mt-8 font-dm-mono font-normal
+          text-sm leading-[150%] tracking-[-4%] text-white"
+        >
+          Industry:
+          <span
+            class="text-[#ED7743] font-dm-mono font-medium
+          text-sm leading-[150%] tracking-[-4%]"
+          >
+            {industry}
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll(".portfolio-card").forEach((card) => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: card,
+          start: "top 80%",
+          once: true,
+        },
+      });
+
+      tl.from(card, {
+        opacity: 0,
+        y: 80,
+        scale: 0.96,
+        duration: 0.8,
+        ease: "power3.out",
+      });
+
+      tl.from(
+        card.querySelector(".card-image"),
+        {
+          scale: 1.15,
+          duration: 1.2,
+          ease: "power3.out",
+        },
+        "<",
+      );
+
+      tl.from(
+        card.querySelector(".card-title"),
+        {
+          y: 40,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power3.out",
+        },
+        "-=0.8",
+      );
+
+      tl.from(
+        card.querySelectorAll(".card-tag"),
+        {
+          y: 20,
+          opacity: 0,
+          stagger: 0.1,
+          duration: 0.4,
+          ease: "power2.out",
+        },
+        "-=0.4",
+      );
+
+      tl.from(
+        card.querySelector(".card-description"),
+        {
+          x: 50,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power3.out",
+        },
+        "-=0.3",
+      );
+
+      tl.from(
+        card.querySelector(".card-industry"),
+        {
+          opacity: 0,
+          y: 20,
+          duration: 0.5,
+        },
+        "-=0.2",
+      );
+    });
+  });
+  document.querySelectorAll(".portfolio-card").forEach((card) => {
+    const image = card.querySelector(".card-image");
+
+    card.addEventListener("mouseenter", () => {
+      gsap.to(image, {
+        scale: 1.08,
+        duration: 0.6,
+        ease: "power2.out",
+      });
+    });
+
+    card.addEventListener("mouseleave", () => {
+      gsap.to(image, {
+        scale: 1,
+        duration: 0.6,
+        ease: "power2.out",
+      });
+    });
+  });
+</script>

@@ -17,25 +17,23 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
       <div class="sm:w-1/2 md:w-100 border-r pl-8 pr-8.25 pt-20 pb-12.75 z-10">
         <div class="sm:w-50 md:w-83.75">
           <h3
-            id="subtitle"
-            class="font-commissioner font-semibold sm:text-[18px] md:text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary sm:mb-6 md:mb-14"
+            class="subtitle font-commissioner font-semibold sm:text-[18px] md:text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary sm:mb-6 md:mb-14"
           >
             {subTitle}
           </h3>
           <p
-            id="description"
-            class="sm:mb-4 md:mb-31.25 font-dm-mono font-normal sm:text-[13px] md:text-[14px] leading-[150%] tracking-[-4%]"
+            class="description sm:mb-4 md:mb-31.25 font-dm-mono font-normal sm:text-[13px] md:text-[14px] leading-[150%] tracking-[-4%]"
           >
             {description}
           </p>
-          <LinkButton id="button" href={"/works"} text={cta} />
+          <LinkButton href={"/works"} text={cta} class={"hero-button"} />
         </div>
       </div>
       <!-- right container -->
       <div class="mt-15.75">
         <!-- top -->
         <div class="ml-4.25 mr-6.50">
-          <div id="usa" class="flex items-center gap-2">
+          <div class="hero-location flex items-center gap-2">
             <img src={usFlag.src} alt="icon" width={24} height={16} />
             <p
               class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
@@ -45,15 +43,14 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
           </div>
 
           <h1
-            id="hero-title"
-            class="font-commissioner font-semibold text-[50px] md:text-[56px] lg:text-[90px] xl:text-[108px]
+            class="hero-title font-commissioner font-semibold text-[50px] md:text-[56px] lg:text-[90px] xl:text-[108px]
             uppercase leading-[110%] tracking-[-4%] text-[#301C1B] whitespace-nowrap"
           >
             {title}
           </h1>
         </div>
         <!-- img -->
-        <div id="img" class="mt-22 mb-18.75">
+        <div id="img" class="hero-img mt-22 mb-18.75">
           <img src={bg.src} alt="bg" />
         </div>
       </div>
@@ -101,7 +98,7 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
         <div id="img" class="mt-11 mb-9">
           <img src={bg.src} alt="bg" />
         </div>
-        <LinkButton id="button" href={"/works"} text={cta}  class="w-full"/>
+        <LinkButton id="button" href={"/works"} text={cta} class="w-full" />
       </div>
     </div>
   </div>
@@ -109,35 +106,130 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
 
 <script>
   import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-  const tl = gsap.timeline({
-    opacity: 0,
-    duration: 0.5,
-    ease: "power4.out",
-  });
+  gsap.registerPlugin(ScrollTrigger);
 
-  tl.from("#subtitle", {
-    opacity: 0,
-    x: -100,
-  });
-  tl.from("#description", {
-    opacity: 0,
-    x: -100,
-  });
-  tl.from("#button", {
-    opacity: 0,
-    x: -100,
-  });
-  tl.from("#usa", {
-    opacity: 0,
-    x: 100,
-  });
-  tl.from("#hero-title", {
-    opacity: 0,
-    x: 100,
-  });
-  tl.from("#img", {
-    opacity: 0,
-    y: 100,
+  document.addEventListener("astro:page-load", () => {
+    // Split title into chars
+    document.querySelectorAll(".hero-title").forEach((title) => {
+      const text = title.textContent || "";
+
+      title.innerHTML = text
+        .split("")
+        .map(
+          (char) =>
+            `<span class="hero-char inline-block">${
+              char === " " ? "&nbsp;" : char
+            }</span>`,
+        )
+        .join("");
+    });
+
+    // Entrance timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "top 75%",
+        toggleActions: "play reverse play reverse",
+      },
+      defaults: {
+        ease: "power4.out",
+      },
+    });
+
+    tl.from(".subtitle", {
+      x: -80,
+      opacity: 0,
+      filter: "blur(10px)",
+      duration: 0.8,
+    })
+
+      .from(
+        ".description",
+        {
+          x: -60,
+          opacity: 0,
+          filter: "blur(8px)",
+          duration: 0.8,
+        },
+        "-=0.5",
+      )
+
+      .from(
+        ".hero-button",
+        {
+          scale: 0.85,
+          opacity: 0,
+          duration: 0.7,
+        },
+        "-=0.5",
+      )
+
+      .from(
+        ".hero-location",
+        {
+          x: 60,
+          opacity: 0,
+          duration: 0.8,
+        },
+        "-=0.8",
+      )
+
+      .from(
+        ".hero-char",
+        {
+          yPercent: 120,
+          opacity: 0,
+          stagger: 0.03,
+          duration: 1,
+          ease: "expo.out",
+        },
+        "-=0.5",
+      )
+
+      .from(".hero-img", {
+        
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#hero",
+          start: "top top",
+          end: "50% top",
+          scrub: true,
+        },
+      });
+
+    // Floating image
+    gsap.to(".hero-img img", {
+      y: -10,
+      duration: 3,
+      ease: "sine.inOut",
+      repeat: -1,
+      yoyo: true,
+    });
+
+    // Scroll parallax
+    gsap.to(".hero-title", {
+      y: -80,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+        toggleActions: "play reverse play reverse",
+      },
+    });
+
+    gsap.to(".hero-img", {
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+        toggleActions: "play reverse play reverse",
+      },
+    });
   });
 </script>

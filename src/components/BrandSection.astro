@@ -1,11 +1,10 @@
 ---
 import * as brandsData from "@/content/brand-content.md";
 
-
 const { brands } = brandsData.frontmatter;
 
 // Dynamic function to split brands into rows
-function splitIntoRows(brandsArray:any, rowSizes = [6, 5, 6]) {
+function splitIntoRows(brandsArray: any, rowSizes = [6, 5, 6]) {
   const rows = [];
   let startIndex = 0;
 
@@ -23,32 +22,55 @@ const brandRows = splitIntoRows(brands);
 ---
 
 <!-- Brands Section - Dynamic Rows -->
-<section class="py-12 md:py-16 lg:py-20 ">
-  <div class="container mx-auto px-4 md:px-6">
-    <!-- Dynamic Rows -->
-    {
-      brandRows.map((row, rowIndex) => (
+<section
+  id="brands-section"
+  class="overflow-hidden my-9 sm:my-18 md:my-36 mx-6 sm:mx-12 md:mx-22.25"
+>
+  {
+    brandRows.map((row, rowIndex) => (
+      <div
+        class:list={[
+          "overflow-hidden",
+          rowIndex !== brandRows.length - 1 && " mb-4 md:mb-8",
+        ]}
+      >
         <div
-          class={`
-          grid gap-6 md:gap-8 
-          ${row.length === 5 ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-5 max-w-4xl mx-auto" : "grid-cols-2 sm:grid-cols-3 md:grid-cols-6"}
-          ${rowIndex < brandRows.length - 1 ? "mb-0 " : ""}
-        `}
+          class={`brand-track flex items-center gap-4 md:gap-8  ${
+            rowIndex % 2 === 0 ? "left" : "right"
+          }`}
         >
-          {row.map((brand:any, index:any) => (
-            <div
-           
-              class="flex items-center justify-center py-4"
-            >
-              <img
-                src={brand.image}
-                alt={`Brand ${rowIndex * 6 + index + 1}`}
-                loading="lazy"
-              />
+          {[...row, ...row, ...row].map((brand) => (
+            <div class="shrink-0 w-1/6 flex justify-center">
+              <img src={brand.image} alt={brand.name} />
             </div>
           ))}
         </div>
-      ))
-    }
-  </div>
+      </div>
+    ))
+  }
 </section>
+<script>
+  import gsap from "gsap";
+
+  document.querySelectorAll(".left").forEach((row) => {
+    gsap.to(row, {
+      xPercent: -33.333,
+      duration: 20,
+      ease: "none",
+      repeat: -1,
+    });
+  });
+
+  document.querySelectorAll(".right").forEach((row) => {
+    gsap.fromTo(
+      row,
+      { xPercent: -33.333 },
+      {
+        xPercent: 0,
+        duration: 20,
+        ease: "none",
+        repeat: -1,
+      },
+    );
+  });
+</script>

@@ -1,27 +1,25 @@
 ---
-import * as aboutData from "@/content/home/latestwork-content.md";
+import * as latestData from "@/content/home/latestwork-content.md";
+import latestWorkIcon from "@/assets/sectionIcon/latestwork.svg";
 import { Image } from "astro:assets";
+import LatestWorkCard from "../ui/home/LatestWorkCard.astro";
 
-const {
-  title,
-  subTitle,
-  description,
-  latesticon,
-  image1,
-} = aboutData.frontmatter;
+const { title, subTitle, description, card } = latestData.frontmatter;
 ---
 
-<section class="bg-primary">
-  <div class="container mx-auto ">
+<section id="latest-work" class="bg-[#E8704E]">
+  <div class=" mx-auto">
     <!-- Top Container - Header Section -->
-    <div class="flex flex-col lg:flex-row border-b border-white/20">
+    <div
+      class="latest-header flex flex-col lg:flex-row border-b border-white/20"
+    >
       <!-- Left: Icon + Title -->
       <div
-        class="w-full lg:w-[20%] border-b lg:border-b-0 lg:border-r border-white/20 px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16"
+        class="latest-title w-full lg:w-[20%]  lg:border-r border-white/20 px-4 md:px-8 pt-10 lg:pt-20"
       >
         <div class="flex items-center gap-3">
           <Image
-            src={latesticon}
+            src={latestWorkIcon}
             alt="Latest icon"
             width={16}
             height={14}
@@ -37,7 +35,7 @@ const {
 
       <!-- Middle: SubTitle -->
       <div
-        class="w-full lg:w-[40%] border-b lg:border-b-0 lg:border-r border-white/20 px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16"
+        class="latest-subtitle  w-full lg:w-[40%]  lg:border-r border-white/20 ml-9 lg:px-9 pt-10 lg:pt-20"
       >
         <p
           class="font-commissioner font-semibold text-[25px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-white"
@@ -48,7 +46,7 @@ const {
 
       <!-- Right: Description -->
       <div
-        class="w-full lg:w-[40%] px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16"
+        class="latest-description w-full lg:w-[40%] pl-9 pr-8 md:px-8 pt-10 lg:pt-20 mb-16"
       >
         <p
           class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white/80"
@@ -59,16 +57,16 @@ const {
     </div>
 
     <!-- Bottom Container - Images Grid with Full Height Image -->
-    <div class="w-full bg-primary">
+    <div class="w-full bg-[#E8704E]">
       <div
-        class="flex flex-col md:flex-row items-stretch min-h-75 md:min-h-125 lg:min-h-162.5 px-6"
+        class="flex flex-col md:flex-row items-stretch min-h-75 md:min-h-125 lg:min-h-162.5 px-8"
       >
         <!-- Left Box 1 -->
         <div
-          class="w-full md:w-20 lg:w-24 h-20 md:h-auto border-b md:border-b-0 md:border-l border-white/20 flex items-center justify-center bg-primary/50 hover:bg-primary/70 transition-colors duration-300 shrink-0"
+          class="side-box w-full md:w-20 lg:w-24 h-20 md:h-auto border-b md:border-b-0 md:border-l border-white/20 flex items-center justify-center bg-[#E8704E] transition-colors duration-300 shrink-0"
         >
           <h1
-            class="-rotate-90 whitespace-nowrap text-white text-xs sm:text-sm md:text-base lg:text-lg font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] uppercase"
+            class="-rotate-90 whitespace-nowrap text-white font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] uppercase"
           >
             EDCA
           </h1>
@@ -76,10 +74,10 @@ const {
 
         <!-- Left Box 2 -->
         <div
-          class="w-full md:w-20 lg:w-24 h-20 md:h-auto border-b md:border-b-0 md:border-l border-white/20 flex items-center justify-center bg-primary/50 hover:bg-primary/70 transition-colors duration-300 shrink-0"
+          class="side-box w-full md:w-20 lg:w-24 h-20 md:h-auto border-b md:border-b-0 md:border-l border-white/20 flex items-center justify-center bg-[#E8704E] transition-colors duration-300 shrink-0"
         >
           <h1
-            class="-rotate-90 whitespace-nowrap text-white text-xs sm:text-sm md:text-base lg:text-lg font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] uppercase"
+            class="-rotate-90 whitespace-nowrap text-white font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] uppercase"
           >
             ZALON
           </h1>
@@ -89,20 +87,21 @@ const {
         <div
           class="flex-1 h-64 md:h-auto flex items-center justify-center overflow-hidden"
         >
-          <img
-            src={image1}
-            alt="Center Image"
-            class="w-full h-full object-cover"
-            loading="lazy"
+          <LatestWorkCard
+            heroImage={card.image}
+            title={card.title}
+            tags={card.tags}
+            description={card.description}
+            industry={card.industry}
           />
         </div>
 
         <!-- Right Box 1 -->
         <div
-          class="w-full md:w-20 lg:w-24 h-20 md:h-auto border-t md:border-t-0 md:border-r border-white/20 flex items-center justify-center bg-primary/50 hover:bg-primary/70 transition-colors duration-300 shrink-0"
+          class="side-box w-full md:w-20 lg:w-24 h-20 md:h-auto border-t md:border-t-0 md:border-r border-white/20 flex items-center justify-center bg-[#E8704E] transition-colors duration-300 shrink-0"
         >
           <h1
-            class="-rotate-90 whitespace-nowrap text-white text-xs sm:text-sm md:text-base lg:text-lg font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] uppercase"
+            class="-rotate-90 whitespace-nowrap text-white font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] uppercase"
           >
             HANWAKI
           </h1>
@@ -110,10 +109,10 @@ const {
 
         <!-- Right Box 2 -->
         <div
-          class="w-full md:w-20 lg:w-24 h-20 md:h-auto border-t md:border-t-0 md:border-r border-white/20 flex items-center justify-center bg-primary/50 hover:bg-primary/70 transition-colors duration-300 shrink-0"
+          class="w-full md:w-20 lg:w-24 h-20 md:h-auto border-t md:border-t-0 md:border-r border-white/20 flex items-center justify-center bg-[#E8704E] hover:bg-primary/70 transition-colors duration-300 shrink-0"
         >
           <h1
-            class="-rotate-90 whitespace-nowrap text-white text-xs sm:text-sm md:text-base lg:text-lg  font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] uppercase"
+            class="-rotate-90 whitespace-nowrap text-white font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] uppercase"
           >
             ADVAZ
           </h1>
@@ -122,3 +121,65 @@ const {
     </div>
   </div>
 </section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener("astro:page-load", () => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#latest-work",
+        start: "top 75%",
+        toggleActions: "play reverse play reverse",
+      },
+    });
+
+    // Title
+    tl.from(".latest-title", {
+      x: -120,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power4.out",
+    });
+
+    // Subtitle
+    tl.from(
+      ".latest-subtitle",
+      {
+        y: -100,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power4.out",
+      },
+      "-=0.4",
+    );
+
+    // Description
+    tl.from(
+      ".latest-description",
+      {
+        x: 120,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power4.out",
+      },
+      "-=0.4",
+    );
+
+    // All 4 boxes
+    tl.from(
+      ".side-box",
+      {
+        y: -150,
+        opacity: 0,
+        stagger: 0.15,
+        duration: 0.9,
+        ease: "expo.out",
+      },
+      "-=0.2",
+    );
+  });
+</script>

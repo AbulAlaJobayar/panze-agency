@@ -2,6 +2,8 @@
 import { Image } from "astro:assets";
 import * as aboutData from "@/content/home/aboutus-content.md";
 import { NavigationMenuLink } from "../ui/navigation-menu";
+import aboutUs from "@/assets/sectionIcon/aboutus.svg";
+import LinkButton from "../ui/LinkButton.astro";
 
 // Access frontmatter data
 const {
@@ -18,19 +20,19 @@ const {
 // Create images array for rendering
 ---
 
-<section class="border-b overflow-hidden">
+<section id="abouthome" class="border-b border-t overflow-hidden">
   <div class="flex flex-col lg:flex-row items-stretch">
     <!-- Left Side - Fixed width with white background -->
     <div
-      class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16 bg-white"
+      class="aboutHome-left w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r py-26 pl-8 pr-8.25"
     >
-      <div class="flex items-center gap-3 mb-6 md:mb-8">
+      <div class="flex items-center gap-2 mb-9.5">
         <Image
-          src={abouticon}
+          src={aboutUs}
           alt="number section"
           width={16}
           height={14}
-          class="w-5 h-5 md:w-auto md:h-auto"
+          class="w-4 h-3.5 md:w-auto md:h-auto"
         />
         <h6
           class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
@@ -39,50 +41,36 @@ const {
         </h6>
       </div>
       <p
-        class="font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase pb-6 md:pb-8 lg:pb-10"
+        class="font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase pb-6 md:pb-8 lg:pb-14"
       >
         {subTitle}
       </p>
       <p
-        class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
+        class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] mb-20"
       >
         {description}
       </p>
-      <NavigationMenuLink
-        href={buttonLink}
-        class="w-36.25 h-11.25 py-3 px-2.5 bg-primary mt-10 hover:bg-primary cursor-pointer flex items-center justify-center gap-2 rounded-none"
-      >
-        <span
-          class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
-        >
-          {buttonText}
-        </span>
-        <svg
-          class="text-white"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-        >
-          <path
-            d="M7 17L17 7M17 7H9M17 7V15"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"></path>
-        </svg>
-      </NavigationMenuLink>
+      <LinkButton href={buttonLink} text={buttonText} />
     </div>
 
     <!-- Right Side - Background image ONLY on right side -->
+
     <div
       style={{ backgroundImage: `url(${background})` }}
-      class="flex-1 bg-cover bg-center bg-no-repeat p-4 md:p-6 lg:p-8 min-h-100 lg:min-h-[unset]"
+      class="flex-1 bg-cover bg-center bg-no-repeat mt-3 ml-3 mb-2 pt-21.5"
     >
-      <div class="grid grid-cols-2 gap-4 md:gap-6 lg:gap-8 h-full">
+      <div id="gallery" class="grid grid-cols-2">
         {
-          images.map((img:any) => (
-            <div class="flex items-center justify-center">
-              <img src={img.src} alt={img.name} class="w-auto h-auto max-w-full" />
+          images.map((img: any, index: number) => (
+            <div
+              class="gallery-card flex items-center justify-center pb-10"
+              data-index={index}
+            >
+              <img
+                src={img.src}
+                alt={img.name}
+                class="w-auto h-auto max-w-full"
+              />
             </div>
           ))
         }
@@ -90,3 +78,68 @@ const {
     </div>
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#abouthome",
+      start: "top 70%",
+      toggleActions: "play reverse play reverse",
+    },
+  });
+
+  tl.from(".aboutHome-left", {
+    x: -100,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.4,
+    ease: "power3.out",
+  });
+  tl.from("#right", {
+    y: -100,
+    opacity: 0,
+    duration: 0.5,
+    stagger: 0.08,
+    ease: "power3.out",
+  });
+
+  const cards = document.querySelectorAll(".gallery-card");
+
+  cards.forEach((card, index) => {
+    gsap.set(card, {
+      rotation: index % 2 === 0 ? -10 : 10,
+      y: 100,
+      opacity: 0,
+    });
+  });
+
+  gsap.to(cards, {
+    rotation: 0,
+    y: 0,
+    opacity: 1,
+    duration: 1.2,
+    stagger: 0.15,
+    ease: "expo.out",
+    scrollTrigger: {
+      trigger: "#gallery",
+      start: "top 70%",
+      toggleActions: "play reverse play reverse",
+    },
+  });
+
+  // Wave animation
+  gsap.utils.toArray<HTMLImageElement>(".gallery-card img").forEach((img, index) => gsap.to(img, {
+    y: gsap.utils.random(-15, -8),
+    x: gsap.utils.random(-4, 4),
+    rotation: gsap.utils.random(-3, 3),
+    duration: gsap.utils.random(2.5, 4),
+    ease: "sine.inOut",
+    repeat: -1,
+    yoyo: true,
+    delay: index * 0.2,
+  }));
+</script>

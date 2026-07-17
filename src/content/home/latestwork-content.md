@@ -6,24 +6,12 @@ description: "SaaS platforms, mobile apps, marketplaces, and B2B tools. Across e
 buttonText: "About PANZE"
 buttonLink: "/about"
 
-# Images - Store live link
-latesticon: "https://i.ibb.co.com/5grpFXLq/Frame.png"
-# latesticon: "/src/assets/home/latestwork/Frame.png"
-
-image1: "https://i.ibb.co.com/YFsX1R11/Frame-2147259544.png"
-
-
-# Images - Store as folder
-# abouticon: "/src/assets/home/aboutus/aboutus.svg"
-# background: "/src/assets/home/aboutus/dottedbg.svg"
-# image1: "/src/assets/home/aboutus/first.svg"
-# image2: "/src/assets/home/aboutus/second.svg"
-# image3: "/src/assets/home/aboutus/third.svg"
-# image4: "/src/assets/home/aboutus/forth.svg"
-
-# Image Alt Texts
-imageAlt1: "Team "
-imageAlt2: "Team"
-imageAlt3: "Team"
-imageAlt4: "Team"
+card:
+  image: "https://i.ibb.co.com/pv5NWJnm/latestworkcardimage.jpg"
+  title: "WPStar - Is WordPress Testimonial Plugin company."
+  tags:
+    - "Logo"
+    - "Branding"
+  description: "This project showcases WPStar's brand identity, including logo design, color palette, typography, and visual assets."
+  industry: "WP Plugin"
 ---

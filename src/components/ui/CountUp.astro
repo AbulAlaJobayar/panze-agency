@@ -1,0 +1,60 @@
+---
+interface Props {
+  value: number;
+  prefix?: string;
+  suffix?: string;
+  duration?: number;
+}
+
+const { value, prefix = "", suffix = "", duration = 2500 } = Astro.props;
+---
+
+<span
+  class="count-up"
+  data-value={value}
+  data-prefix={prefix}
+  data-suffix={suffix}
+  data-duration={duration}
+>
+  {prefix}0{suffix}
+</span>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll(".count-up").forEach((element) => {
+    const el = element;
+
+    const target = Number(el.getAttribute("data-value") || 0);
+    const prefix = el.getAttribute("data-prefix") || "";
+    const suffix = el.getAttribute("data-suffix") || "";
+    const duration = Number(el.getAttribute("data-duration") || 2500) / 1000;
+
+    const counter = { value: 0 };
+
+    gsap.to(counter, {
+      value: target,
+      duration,
+      ease: "power2.out",
+
+      scrollTrigger: {
+        trigger: el,
+        start: "top 80%",
+        toggleActions: "play reverse play reverse",
+      },
+
+      onUpdate() {
+        const current = Math.round(counter.value);
+
+        if (target >= 1000 && suffix === "K") {
+          el.textContent = `${prefix}${(current / 1000).toFixed(1)}K`;
+        } else {
+          el.textContent = `${prefix}${current.toLocaleString()}${suffix}`;
+        }
+      },
+    });
+  });
+</script>
