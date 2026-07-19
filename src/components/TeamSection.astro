@@ -2,26 +2,27 @@
 import * as IndustryData from "@/content/team-content.md";
 import { Image } from "astro:assets";
 import sectionIcon from "@/assets/team/teamicon.png";
+import bg from "@/assets/team/bg.png";
 
 // Access the frontmatter data
 const { title, subtitle, description, categories } = IndustryData.frontmatter;
 ---
 
-<section class="py-16 px-4 md:px-8  font-sans">
+<section id="team-section" class="mt-10 md:mt-20 lg:mt-26 px-8 font-sans">
   <div class="max-w-7xl mx-auto">
     <!-- Header -->
-    <div class="flex flex-col lg:flex-row border-b border-white/20 my-5">
+    <div class="flex flex-col lg:flex-row border-b border-white/20">
       <!-- Left: Icon + Title -->
       <div
-        class="w-full lg:w-[15%] border-b lg:border-b-0 lg:border-r border-white/20  py-5 md:py-8 lg:py-10"
+        class="team-badge mb-6 lg:mb-0 w-full lg:w-[20%] border-b lg:border-b-0 lg:border-r border-white/20"
       >
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2">
           <Image
             src={sectionIcon}
             alt="Latest icon"
             width={16}
             height={14}
-            class="w-5 h-5 md:w-auto md:h-auto"
+            class="w-4 h-4 md:w-auto md:h-auto"
           />
           <h6
             class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
@@ -33,7 +34,7 @@ const { title, subtitle, description, categories } = IndustryData.frontmatter;
 
       <!-- Middle: SubTitle -->
       <div
-        class="w-full lg:w-[40%] border-b lg:border-b-0 lg:border-r border-white/20 px-6 sm:px-8 py-5 md:py-8 lg:py-10"
+        class="team-subtitle mb-8 lg:mb-0 w-full lg:w-[32%] border-b lg:border-b-0 lg:border-r border-white/20"
       >
         <p
           class="font-commissioner font-semibold text-[25px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-[#301C1B]"
@@ -43,7 +44,7 @@ const { title, subtitle, description, categories } = IndustryData.frontmatter;
       </div>
 
       <!-- Right: Description -->
-      <div class="w-full lg:w-[46%] px-2 py-5 md:py-8 lg:py-10">
+      <div class="team-description mb-10 w-full lg:w-[48%] lg:pl-[7%] lg:mb-16">
         <p
           class="text-[#301C1B] font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
         >
@@ -58,19 +59,16 @@ const { title, subtitle, description, categories } = IndustryData.frontmatter;
     >
       {
         categories?.map((member: any) => (
-          <div class="group border-r border-b border-primary bg-[#FFFDFC]">
+          <div class="team-section-card group border-r border-b border-primary bg-[#FFFDFC]">
             {/* Image */}
+
             <div
-              class="relative overflow-hidden  bg-[radial-gradient(circle,rgba(249,115,22,0.15)_1px,transparent_1px)]
-         bg-size-[12px_12px]
-         sm:bg-size-[14px_14px]
-         lg:bg-size-[16px_16px]"
+              style={`background-image: url(${bg.src})`}
+              class="relative overflow-hidden "
             >
-              <Image
+              <img
                 src={member.image}
                 alt={member.name}
-                width={400}
-                height={500}
                 class="w-full h-55 object-cover object-top px-4 pt-2 transition-transform duration-500 group-hover:scale-105"
               />
             </div>
@@ -91,3 +89,70 @@ const { title, subtitle, description, categories } = IndustryData.frontmatter;
     </div>
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener("astro:page-load", () => {
+    const section = document.querySelector("#team-section");
+
+    if (!section) return;
+
+    // Header Animation
+    const headerTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    headerTl
+      .from(".team-badge", {
+        x: -60,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power3.out",
+      })
+      .from(
+        ".team-subtitle",
+        {
+          y: 50,
+          opacity: 0,
+          duration: 0.9,
+          ease: "power4.out",
+        },
+        "-=0.4",
+      )
+      .from(
+        ".team-description",
+        {
+          y: 30,
+          opacity: 0,
+          duration: 0.7,
+          ease: "power2.out",
+        },
+        "-=0.5",
+      );
+
+    // Cards Animation
+    gsap.from(".team-section-card", {
+      scrollTrigger: {
+        trigger: ".team-section-card",
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      },
+      opacity: 0,
+      y: 80,
+      scale: 0.95,
+      duration: 0.8,
+      ease: "power4.out",
+      stagger: {
+        each: 0.12,
+        from: "start",
+      },
+    });
+  });
+</script>

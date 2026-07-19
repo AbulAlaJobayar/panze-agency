@@ -74,7 +74,7 @@ const sortedServices = sanitizedServices.sort((a, b) =>
           alt="number section"
           width={20}
           height={20}
-          class="w-5 h-5 md:w-auto md:h-auto"
+          class="w-4 h-4 md:w-auto md:h-auto"
         />
         <h6
           class=" font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
@@ -106,7 +106,7 @@ const sortedServices = sanitizedServices.sort((a, b) =>
           alt="number section"
           width={20}
           height={20}
-          class="w-5 h-5 md:w-auto md:h-auto"
+          class="w-4 h-4 md:w-auto md:h-auto"
         />
         <h6
           class="section-text font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
@@ -187,21 +187,19 @@ const sortedServices = sanitizedServices.sort((a, b) =>
 </section>
 
 <script>
-  import gsap from "gsap";
+    import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
 
-  window.addEventListener("load", () => {
-    const section = document.querySelector(".services-section");
+  document.addEventListener("astro:page-load", () => {
+    ScrollTrigger.refresh();
+    // ================= Header =================
 
-    if (!section) return;
-
-    // Header Animation
     const headerTl = gsap.timeline({
       scrollTrigger: {
-        trigger: section,
-        start: "top 85%",
+        trigger: ".services-section",
+        start: "top 80%",
         toggleActions: "play none none reverse",
       },
     });
@@ -209,62 +207,64 @@ const sortedServices = sanitizedServices.sort((a, b) =>
     headerTl
       .from(".section-badge", {
         opacity: 0,
-        x: -40,
-        duration: 0.6,
+        x: -60,
+        duration: 0.8,
         ease: "power3.out",
       })
       .from(
         ".section-title",
         {
           opacity: 0,
-          y: 50,
-          duration: 0.8,
+          y: 40,
+          duration: 1,
           ease: "power4.out",
         },
-        "-=0.3",
+        "-=0.4",
       );
 
-    // Cards Animation
-    const cards = document.querySelectorAll(".service-card");
+    // ================= Cards =================
 
-    cards.forEach((card) => {
+    gsap.utils.toArray(".service-card").forEach((card:any) => {
       const image = card.querySelector("img");
 
-      const tl = gsap.timeline({
+      const content = card.querySelectorAll(
+        "h3, p, li"
+      );
+
+      gsap.timeline({
         scrollTrigger: {
           trigger: card,
           start: "top 85%",
           toggleActions: "play none none reverse",
         },
-      });
-
-      tl.from(card, {
-        opacity: 0,
-        y: 80,
-        duration: 0.8,
-        ease: "power3.out",
       })
-        .from(
-          image,
-          {
-            opacity: 0,
-            scale: 0.9,
-            duration: 0.8,
-            ease: "power4.out",
-          },
-          "-=0.5",
-        )
-        .from(
-          card.querySelectorAll("h3, p, li, "),
-          {
-            opacity: 0,
-            y: 20,
-            stagger: 0.08,
-            duration: 0.5,
-            ease: "power2.out",
-          },
-          "-=0.4",
-        );
+      .from(card, {
+        opacity: 0,
+        y: 100,
+        duration: 0.8,
+        ease: "power4.out",
+      })
+      .from(
+        image,
+        {
+          scale: 1.15,
+          opacity: 0,
+          duration: 1,
+          ease: "power4.out",
+        },
+        "-=0.5",
+      )
+      .from(
+        content,
+        {
+          opacity: 0,
+          y: 25,
+          stagger: 0.08,
+          duration: 0.5,
+          ease: "power2.out",
+        },
+        "-=0.6",
+      );
     });
   });
 </script>

@@ -267,7 +267,7 @@ export default function PanzeContactForm() {
         >
           {status.type === "loading" ? (
             <>
-              <span className="animate-spin inline-block w-5 h-5 border-2 border-black/20 border-t-transparent rounded-full" />
+              <span className="animate-spin inline-block w-4 h-4 border-2 border-black/20 border-t-transparent rounded-full" />
               Sending...
             </>
           ) : (

@@ -4,6 +4,7 @@ import { NavigationMenuLink } from "../ui/navigation-menu";
 import ctaIcon from "/public/ourProcess/ctaActionIcon.svg";
 import { Image } from "astro:assets";
 import sectionIcon from "@/assets/home/blog/blogSectionIcon.png";
+import LinkButton from "../ui/LinkButton.astro";
 const { title, subtitle, description, buttonText, buttonLink } =
   blogContent.frontmatter;
 
@@ -12,63 +13,53 @@ const blogs = Object.values(
 );
 ---
 
-<div class="flex flex-col lg:flex-row items-stretch border-y">
+<div
+  id="blog-section"
+  class="mt-22.75 flex flex-col lg:flex-row items-stretch border-y"
+>
   <!-- Left Side - Fixed width with white background -->
   <div
-    class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-8 py-10 md:py-12 lg:py-14 bg-white"
+    class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r bg-white"
   >
-    <div class="flex items-center gap-3 mb-6 md:mb-8">
-      <Image
-        src={sectionIcon}
-        alt="number section"
-        width={16}
-        height={14}
-        class="w-5 h-5 md:w-auto md:h-auto"
+    <div class="mx-8 mt-13 lg:mt-26">
+      <div class="home-blog-section-badge flex items-center gap-2 mb-6 lg:mb-9">
+        <Image
+          src={sectionIcon}
+          alt="number section"
+          width={16}
+          height={14}
+          class="w-4 h-4 md:w-auto md:h-auto"
+        />
+        <h6
+          class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
+        >
+          {title}
+        </h6>
+      </div>
+      <p
+        class="home-blog-section-subtitle font-commissioner font-semibold text-[24px] leading-[110%] tracking-[-4%] uppercase mb-8 lg:mb-49"
+      >
+        {subtitle}
+      </p>
+      <p
+        class="home-blog-section-description mb-10 lg:mb-16 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
+      >
+        {description}
+      </p>
+      <LinkButton
+        href={buttonLink}
+        text={buttonText}
+        class="home-blog-section-button mb-10"
       />
-      <h6
-        class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
-      >
-        {title}
-      </h6>
     </div>
-    <p
-      class="font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase pb-6 md:pb-15 lg:pb-20"
-    >
-      {subtitle}
-    </p>
-    <p
-      class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] xl:pb-20"
-    >
-      {description}
-    </p>
-    <NavigationMenuLink
-      href={buttonLink}
-      class="w-36.25 h-11.25 py-3 px-2.5 bg-primary mt-14 hover:bg-primary cursor-pointer flex items-center justify-center gap-2 rounded-none"
-    >
-      <span
-        class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
-      >
-        {buttonText}
-      </span>
-      <svg
-        class="text-white size-4"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-      >
-        <path
-          d="M7 17L17 7M17 7H9M17 7V15"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"></path>
-      </svg>
-    </NavigationMenuLink>
   </div>
-  <div class="grid sm:grid-cols-2">
+  <div class="grid sm:grid-cols-2 my-10 lg:my-20 gap-4 ml-8 lg:ml-4.25 mr-8">
     {
       blogs.slice(0, 4).map((blog: any) => (
-        <a href={`/blog/${blog.frontmatter.slug}`} class="group p-3">
+        <a
+          href={`/blog/${blog.frontmatter.slug}`}
+          class="group mb-6 home-blog-section-card"
+        >
           <div class="overflow-hidden">
             <img
               src={blog.frontmatter.image}
@@ -85,3 +76,80 @@ const blogs = Object.values(
     }
   </div>
 </div>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener("astro:page-load", () => {
+    const section = document.querySelector("#blog-section");
+
+    if (!section) return;
+
+    // Header Animation
+    const headerTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    headerTl
+      .from(".home-blog-section-badge", {
+        x: -60,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power3.out",
+      })
+      .from(
+        ".home-blog-section-subtitle",
+        {
+          x: -50,
+          opacity: 0,
+          duration: 0.9,
+          ease: "power4.out",
+        },
+        "-=0.4",
+      )
+      .from(
+        ".home-blog-section-description",
+        {
+          x: -30,
+          opacity: 0,
+          duration: 0.7,
+          ease: "power2.out",
+        },
+        "-=0.5",
+      )
+      .from(
+        ".home-blog-section-button",
+        {
+          x: -20,
+          opacity: 0,
+          duration: 0.9,
+          ease: "power2.out",
+        },
+        "-=0.6",
+      );
+
+    // Cards Animation
+    gsap.from(".home-blog-section-card", {
+      scrollTrigger: {
+        trigger: ".home-blog-section-card",
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      },
+      opacity: 0,
+      y: 80,
+      scale: 0.95,
+      duration: 0.8,
+      ease: "power4.out",
+      stagger: {
+        each: 0.12,
+        from: "start",
+      },
+    });
+  });
+</script>

@@ -22,9 +22,7 @@ const { slug } = Astro.params;
 
 const blog = blogs.find(({ frontmatter }: any) => frontmatter.slug === slug);
 
-if (!blog) {
-  throw new Error(`Service "${slug}" not found.`);
-}
+
 
 const { frontmatter, Content } = blog as any;
 

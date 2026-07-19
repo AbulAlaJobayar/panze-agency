@@ -160,7 +160,7 @@ export default function Stepper({ steps, data }: StepperProps) {
                 alt="icon"
                 width={16}
                 height={14}
-                className="w-5 h-5 md:w-auto md:h-auto"
+                className="w-4 h-4 md:w-auto md:h-auto"
               />
               <h6 className="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary">
                 {data.title}

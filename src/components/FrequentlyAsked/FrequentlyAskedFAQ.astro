@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { NavigationMenuLink } from "../ui/navigation-menu";
 import Faqs from "./faqs.astro";
+import LinkButton from "../ui/LinkButton.astro";
 const whatsappUrl = import.meta.env.WHATSAPP_URL;
 const { askedQuestion } = Astro.props;
 
@@ -9,19 +10,19 @@ const { sectionIcon, title, subtitle, description, buttonText, faqs } =
   askedQuestion.frontmatter;
 ---
 
-<section class="overflow-hidden mt-20">
+<section id="faq" class="overflow-hidden mt-10 lg:mt-26">
   <div class="flex flex-col lg:flex-row items-stretch border-y">
     <!-- Left Side - Fixed width with white background -->
     <div
-      class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-14 bg-white"
+      class="faq-left w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 md:px-8 py-10 bg-white"
     >
-      <div class="flex items-center gap-3 mb-6 md:mb-8">
+      <div class="flex items-center gap-2 mb-6 lg:mb-9.5">
         <Image
           src={sectionIcon}
           alt="number section"
           width={16}
           height={14}
-          class="w-5 h-5 md:w-auto md:h-auto"
+          class="w-4 h-4 md:w-auto md:h-auto"
         />
         <h6
           class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
@@ -30,43 +31,50 @@ const { sectionIcon, title, subtitle, description, buttonText, faqs } =
         </h6>
       </div>
       <p
-        class="font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase pb-6 md:pb-15 lg:pb-20"
+        class="font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase mb-8 lg:mb-14"
       >
         {subtitle}
       </p>
       <p
-        class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] xl:pb-20"
+        class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] mb-10 lg:mb-42.5"
       >
         {description}
       </p>
-      <NavigationMenuLink
-        href={whatsappUrl}
-        class="w-36.25 h-11.25 py-3 px-2.5 bg-primary mt-10 hover:bg-primary cursor-pointer flex items-center justify-center gap-2 rounded-none"
-      >
-        <span
-          class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
-        >
-          {buttonText}
-        </span>
-        <svg
-          class="text-white size-4"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-        >
-          <path
-            d="M7 17L17 7M17 7H9M17 7V15"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"></path>
-        </svg>
-      </NavigationMenuLink>
+      <LinkButton href={whatsappUrl} text={buttonText} class="mb-12"/>
     </div>
 
     <!-- Right Side - Background image ONLY on right side -->
-    <div class="py-5 md:py-7 lg:py-10p bg-white">
+    <div class="faq-right  py-5 md:py-7 lg:py-10px bg-white">
       <Faqs faqs={faqs} />
     </div>
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#faq",
+      start: "top 70%",
+      toggleActions: "play none none reverse",
+    },
+  });
+
+  tl.from(".faq-left", {
+    x: -100,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.4,
+    ease: "power3.out",
+  });
+  tl.from(".faq-right", {
+    y:110,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.08,
+    ease: "power3.out",
+  });
+</script>

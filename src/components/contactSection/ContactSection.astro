@@ -3,84 +3,89 @@ import { Image } from "astro:assets";
 
 import * as contactData from "@/content/contact-content.md";
 import pattern from "@/assets/contact/bg.png";
-import meet from "@/assets/contact/googlemeet.png";
-
-import ctaIcon from "/public/ourProcess/ctaActionIcon.svg";
-import whatappIcon from "@/assets/contact/whatsapp.png";
+import meet from "@/assets/linkicon/meet.svg";
+import contactIcon from "@/assets/sectionIcon/contact-section.svg";
+import whatappIcon from "@/assets/linkicon/whatsapp.svg";
 import { NavigationMenuLink } from "../ui/navigation-menu";
 import PanzeContactForm from "./PanzeContactForm";
+import LinkButton from "../ui/LinkButton.astro";
+
 const contactUrl = import.meta.env.CONTACT_URL;
 const whatsappUrl = import.meta.env.WHATSAPP_URL;
-const {
-  name,
-  designation,
-  ceoImage,
-  sectionIcon,
-  title,
-  subtitle,
-  description,
-  meetDescription,
-} = contactData.frontmatter;
+const { name, designation, ceoImage, title, meetDescription } =
+  contactData.frontmatter;
 ---
 
-<section class="bg-[#1E1212]">
+<section id="contact-section" class="bg-[#1E1212]">
   <div>
     <!-- top side -->
-    <div class="flex flex-col lg:flex-row border-b border-white/20">
-      <!-- Left: Icon + Title -->
+    <div class="border-b border-white/20">
       <div
-        class="w-full lg:w-[20%] px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16"
+        class="contact-badge px-8 pt-10 lg:pt-26 lg:pb-16.75 flex flex-col lg:flex-row items-center"
       >
-        <div class="flex items-center gap-3">
-          <Image
-            src={sectionIcon}
-            alt="Latest icon"
-            width={16}
-            height={14}
-            class="w-5 h-5 md:w-auto md:h-auto"
-          />
-          <h6
-            class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
-          >
-            {title}
-          </h6>
+        <!-- Left: Icon + Title -->
+        <div class="contact-title mb-6 lg:mb-0 w-full lg:w-[15%]">
+          <div class="flex items-center gap-2">
+            <img
+              src={contactIcon.src}
+              alt="Latest icon"
+              class="w-4 h-5 md:w-auto md:h-auto"
+            />
+            <h6
+              class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
+            >
+              {title}
+            </h6>
+          </div>
         </div>
-      </div>
 
-      <!-- Middle: SubTitle -->
-      <div
-        class="w-full lg:w-[30%] px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-16"
-      >
-        <p
-          class="text-white font-commissioner font-semibold px-1 text-[25px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase"
-        >
-          {subtitle}
-        </p>
-      </div>
+        <!-- Middle: SubTitle -->
+        <div class="contact-description mb-8 lg:mb-0 w-full lg:w-[24%]">
+          <p
+            class="text-white font-commissioner font-semibold px-1 text-[25px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase"
+          >
+            <span class="hidden lg:block"
+              >Got an idea?<br /> Let's make it real.</span
+            >
+            <span class="block lg:hidden">Got an idea? Let's make it real.</span
+            >
+          </p>
+        </div>
 
-      <!-- Right: Description -->
-      <div
-        class="w-full lg:w-[50%] px-6 sm:px-8 md:px-14 py-10 md:py-12 lg:py-16"
-      >
-        <p
-          class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
+        <!-- Right: Description -->
+        <div
+          class="contact-description mb-10 lg:mb-0 w-full lg:w-[50%] ml-auto"
         >
-          {description}
-        </p>
+          <p
+            class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
+          >
+            <span class="hidden lg:block">
+              No pitch decks. No jargon. Just a conversation about what <br /> you're
+              building, and how we can help.</span
+            >
+            <span class="block lg:hidden">
+              No pitch decks. No jargon. Just a conversation about what you're
+              building, and how we can help.</span
+            >
+          </p>
+        </div>
       </div>
     </div>
 
     <!-- bottom side -->
-    <div class="flex flex-col lg:flex-row items-stretch border-white/20 px-10">
+    <div
+      class=".contact-profile flex flex-col lg:flex-row items-stretch border-white/20"
+    >
       <!-- Left Side - Fixed width with white background -->
-      <div>
-        <div
-          class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-14 border-white/20"
-        >
-          <div class="border border-white/20">
+
+      <div
+        class="w-full lg:w-116 shrink-0 border-b lg:border-b-0 lg:border-r p border-white/20 pb-26"
+      >
+        <div class="mx-auto w-fit">
+          <div class="w-[288px] mt-16 border border-white/20">
             {/* Image */}
             <div
-              class="relative overflow-hidden bg-[radial-gradient(circle,rgba(249,115,22,0.15)_1px,transparent_1px)]
+              class="contact-profile relative overflow-hidden bg-[radial-gradient(circle,rgba(249,115,22,0.15)_1px,transparent_1px)]
          bg-size-[12px_12px]
          sm:bg-size-[14px_14px]
          lg:bg-size-[16px_16px]"
@@ -91,64 +96,129 @@ const {
                 alt={name}
                 width={400}
                 height={500}
-                class="w-full max-h-80 object-cover object-top px-2 pt-2 transition-transform duration-500 hover:scale-105"
+                class="w-full max-h-80 object-cover object-top transition-transform duration-500 hover:scale-105"
               />
             </div>
 
             {/* Content */}
-            <div class="text-center px-6 py-5 border-t border-white/20">
+            <div
+              class="contact-badge
+            pl-8 py-5 border-t border-white/20"
+            >
               <h3
-                class="text-white font-dm-mono text-[18px] leading-[150%] font-medium tracking-[-4%] text-center"
+                class="contact-title text-white font-dm-mono text-[18px] leading-[150%] font-medium tracking-[-4%]"
               >
                 {name}
               </h3>
 
               <p
-                class="text-white mt-2 font-dm-mono text-[14px] leading-[150%] font-normal tracking-[-4%] text-center"
+                class="contact-description text-white font-dm-mono text-[14px] leading-[150%] font-normal tracking-[-4%]"
               >
                 {designation}
               </p>
             </div>
           </div>
           <!-- left bottom side -->
-          <div class="bg-white mt-10">
-            <img src={meet.src} alt="Google Meet" class="px-5 py-5" />
-            <h1 class="text-primary w-70 px-5">{meetDescription}</h1>
-            <div class="px-5 flex items-center gap-2">
-              <NavigationMenuLink
-                href={contactUrl}
-                class="w-36.25 h-11.25 py-3 px-2.5 bg-primary mt-14 hover:bg-primary cursor-pointer flex items-center justify-center gap-2 rounded-none"
-              >
-                <span
-                  class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
-                >
-                  Shedule call
-                </span>
-                <svg
-                  class="text-white size-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M7 17L17 7M17 7H9M17 7V15"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                </svg>
-              </NavigationMenuLink>
-              <NavigationMenuLink href={whatsappUrl} class="mt-14">
-                <img src={whatappIcon.src} alt="icon" width={45} height={45} />
-              </NavigationMenuLink>
+          <div class="bg-white w-[288px]">
+            <div class="contact-badge ml-8 py-8">
+              <img
+                src={meet.src}
+                alt="Google Meet"
+                class="contact-title mb-7"
+              />
+              <h1 class="text-primary contact-description">
+                {meetDescription}
+              </h1>
+              <div class="contact-description flex items-center gap-3 mt-24.25">
+                <LinkButton href={contactUrl} text="Shedule call" />
+                <NavigationMenuLink href={whatsappUrl} class="hover:scale-3d">
+                  <img src={whatappIcon.src} alt="icon" />
+                </NavigationMenuLink>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
       <!-- Right Side - Background image ONLY on right side -->
-      <div class="py-5 md:py-7 lg:py-10p">
+      <div class="contact-form-wrapper mt-16 lg:ml-16 pb:10 lg:pb-0">
         <PanzeContactForm client:load />
       </div>
     </div>
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener("astro:page-load", () => {
+    const section = document.querySelector("#contact-section");
+
+    if (!section) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    tl.from(".contact-badge", {
+      x: -60,
+      opacity: 0,
+      duration: 0.7,
+      ease: "power3.out",
+    })
+      .from(
+        ".contact-title",
+        {
+          y: 50,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power4.out",
+        },
+        "-=0.4",
+      )
+      .from(
+        ".contact-description",
+        {
+          y: 30,
+          opacity: 0,
+          duration: 0.7,
+          ease: "power2.out",
+        },
+        "-=0.4",
+      )
+      .from(
+        ".contact-profile",
+        {
+          x: -80,
+          opacity: 0,
+          scale: 0.95,
+          duration: 1,
+          ease: "power4.out",
+        },
+        "-=0.2",
+      )
+      .from(
+        ".contact-form-wrapper",
+        {
+          x: 80,
+          opacity: 0,
+          duration: 1,
+          ease: "power4.out",
+        },
+        "-=0.8",
+      );
+    gsap.to(".contact-profile img", {
+      y: -10,
+      duration: 2.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
+  });
+</script>

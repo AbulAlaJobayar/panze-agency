@@ -22,9 +22,6 @@ const service = services.find(
   ({ frontmatter }: any) => frontmatter.slug === slug,
 );
 
-if (!service) {
-  throw new Error(`Service "${slug}" not found.`);
-}
 
 const { frontmatter, Content } = service as any;
 ---

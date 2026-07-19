@@ -34,9 +34,6 @@ const { slug } = Astro.params;
 
 const work = works.find(({ frontmatter }: any) => frontmatter.slug === slug);
 
-if (!work) {
-  throw new Error(`Service "${slug}" not found.`);
-}
 
 const { frontmatter, Content } = work as any;
 
