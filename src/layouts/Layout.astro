@@ -5,7 +5,6 @@ interface Props {
   title: string;
 }
 const { title } = Astro.props;
-import { ClientRouter } from "astro:transitions";
 ---
 
 <!doctype html>
@@ -13,9 +12,7 @@ import { ClientRouter } from "astro:transitions";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-
     <link rel="icon" sizes="20x16" href="/panzelogo.png" />
-    <ClientRouter />
   </head>
   <meta name="generator" content={Astro.generator} />
   <title>{title}</title>

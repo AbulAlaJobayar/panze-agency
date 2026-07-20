@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import stepeerIcon from "/public/ourProcess/stepper.png";
+import stepeerIcon from "@/assets/icons/ourProcessStepper.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";

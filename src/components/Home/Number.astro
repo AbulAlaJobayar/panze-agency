@@ -60,7 +60,7 @@ import CountUp from "@/components/ui/CountUp.astro";
               </h3>
 
               <p class="number-card font-commissioner text-[20px] font-semibold leading-[110%] tracking-[-4%] uppercase sm:text-[22px]  md:text-[24px]  pr-6">
-                <CountUp value={item.number} suffix="K" duration={2500} />
+                <CountUp value={item.number} suffix={item?.sufix} prefix={item?.prefix} duration={2500} />
               </p>
             </div>
           ))
@@ -76,7 +76,7 @@ import CountUp from "@/components/ui/CountUp.astro";
 
   gsap.registerPlugin(ScrollTrigger);
 
-  document.addEventListener("astro:page-load", () => {
+
     gsap.set(".number-left, .number-right", {
       clearProps: "all",
     });
@@ -107,5 +107,4 @@ import CountUp from "@/components/ui/CountUp.astro";
         },
         "-=0.4",
       );
-  });
 </script>

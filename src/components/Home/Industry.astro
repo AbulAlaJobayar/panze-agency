@@ -1,9 +1,9 @@
 ---
 import * as IndustryData from "@/content/home/IndustryServices.md";
 import { Image } from "astro:assets";
-
+import sectionIcon from "@/assets/sectionIcon/industry.svg"
 // Access the frontmatter data
-const { sectionIcon, title, subtitle, description, categories } =
+const { title, subtitle, description, categories } =
   IndustryData.frontmatter;
 ---
 
@@ -16,11 +16,9 @@ const { sectionIcon, title, subtitle, description, categories } =
         class="mb-6 lg:mb-0 w-full lg:w-[20%] border-b lg:border-b-0 lg:border-r border-white/20"
       >
         <div class="industry-badge flex items-center gap-3">
-          <Image
-            src={sectionIcon}
-            alt="Latest icon"
-            width={16}
-            height={14}
+          <img
+            src={sectionIcon.src}
+            alt="industry"
             class="w-4 h-4 md:w-auto md:h-auto"
           />
           <h6
@@ -80,10 +78,9 @@ const { sectionIcon, title, subtitle, description, categories } =
 
   gsap.registerPlugin(ScrollTrigger);
 
-  document.addEventListener("astro:page-load", () => {
+
     const section = document.querySelector("#industry-section");
 
-    if (!section) return;
 
     // Header Animation
     const headerTl = gsap.timeline({
@@ -139,5 +136,4 @@ const { sectionIcon, title, subtitle, description, categories } =
         from: "start",
       },
     });
-  });
 </script>

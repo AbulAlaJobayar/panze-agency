@@ -1,8 +1,9 @@
 ---
 import * as herodata from "@/content/services/website/website-hero-content.md";
 
-import ctaIcon from "@/assets/home/heroimage/ctaActionIcon.svg";
+// import ctaIcon from "@/assets/home/heroimage/ctaActionIcon.svg";
 import NavigationMenuLink from "@/components/ui/navigation-menu/navigation-menu-link.astro";
+import LinkButton from "@/components/ui/LinkButton.astro";
 
 // Access frontmatter data
 const { subTitle, description, buttonText, buttonLink, image } =
@@ -27,24 +28,21 @@ const { subTitle, description, buttonText, buttonLink, image } =
       </p>
       <!-- button -->
       <div class="flex gap-8 items-center">
-        <NavigationMenuLink
-          href={buttonLink}
-          class=" h-11.25 py-3 px-2.5 bg-primary my-10 mt-5 lg:mt-26 hover:bg-primary cursor-pointer flex items-center justify-center gap-2 rounded-none"
+        <LinkButton href={buttonLink} text={buttonText} />
+        <!-- <NavigationMenuLink
+          class="h-11.25 py-3 px-2.5 bg-primary my-10 mt-5 lg:mt-26 hover:bg-primary cursor-pointer flex items-center justify-center gap-2 rounded-none"
         >
           <span
             class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
           >
-            {buttonText}
           </span>
           <img src={ctaIcon.src} alt="icon" class="h-2 w-2" />
-        </NavigationMenuLink>
+        </NavigationMenuLink> -->
       </div>
     </div>
 
     <!-- Right Side - Background image ONLY on right side -->
-    <div
-      class="  p-4  "
-    >
+    <div class="p-4">
       <img src={image} alt="website" />
     </div>
   </div>

@@ -1,10 +1,11 @@
 ---
 // import { services } from "@/content/whatwedo";
 import LinkButton from "../ui/LinkButton.astro";
+import secIcon from "@/assets/sectionIcon/whatWeDo.svg"
 import TabSection from "./TabSection";
 import { Image } from "astro:assets";
 const { sectiondata, services } = Astro.props;
-const { label, description, icon } = sectiondata.frontmatter;
+const { label, description,icon } = sectiondata.frontmatter;
 
 // Helper function to clean text
 const cleanText = (text: string) => {
@@ -69,11 +70,9 @@ const sortedServices = sanitizedServices.sort((a, b) =>
   <div class="hidden lg:block bg-[#1E1212] py-26">
     <div class=" mx-8 mb-16 grid grid-cols-12 items-start">
       <div class=" w-66 col-span-3 flex items-center gap-2">
-        <Image
-          src={icon}
+        <img
+          src={secIcon.src}
           alt="number section"
-          width={20}
-          height={20}
           class="w-4 h-4 md:w-auto md:h-auto"
         />
         <h6

@@ -4,15 +4,15 @@ import * as data from "@/content/about/our-beliefs-content.md";
 const { title, description, content } = data.frontmatter;
 ---
 
-<section class="pt-10 md:pt-16 lg:pt-20 mx-10">
-  <div class="border-[#3A3A3A]">
+<section id="beliefs-section" class="border-t border-black/20 pt-26">
+  <div class="border-[#3A3A3A] px-8">
     <!-- Top -->
     <div
-      class="flex flex-col justify-baseline items-start md:flex-row gap-5 md:gap-32 pb-20"
+      class="beliefs-header flex flex-col justify-baseline items-start md:flex-row gap-5 md:gap-36.25 mb-16"
     >
       <div class="">
         <span
-          class=" uppercase font-commissioner leading-[110%] font-semibold tracking-[-4%] text-[24px]"
+          class="uppercase font-commissioner leading-[110%] font-semibold tracking-[-4%] text-[24px]"
         >
           {title}
         </span>
@@ -30,11 +30,11 @@ const { title, description, content } = data.frontmatter;
     <!-- Bottom -->
     <div class="grid grid-cols-1 lg:grid-cols-2">
       <!-- Image -->
-      <div class="order-2 lg:order-1">
+      <div class="beliefs-image order-2 lg:order-1">
         <img
           src={teamImage.src}
           alt="Team"
-          class="w-full h-87.5 sm:h-125 lg:h-full object-cover"
+          class="beliefs-photo w-full h-87.5 sm:h-125 lg:h-full object-cover"
         />
       </div>
 
@@ -42,12 +42,12 @@ const { title, description, content } = data.frontmatter;
       <div class="order-1 lg:order-2">
         {
           content.map((item: any) => (
-            <div class="border-b border-black/20 last:border-b-0 px-6 sm:px-8 lg:px-10 py-8 ">
-              <h3 class="text-[#301C1B] uppercase font-commissioner leading-[150%] font-semibold tracking-[-4%] text-[20px]">
+            <div class="border-b border-black/20 last:border-b-0 px-8 lg:px-8  py-8 ">
+              <h3 class="beliefs-title text-[#301C1B] uppercase font-commissioner leading-[150%] font-semibold tracking-[-4%] text-[20px]">
                 {item.title}
               </h3>
 
-              <p class="mt-4 font-dm-mono font-normal text-[#301C1B] text-[14px]  leading-[150%] tracking-[-4%]">
+              <p class="beliefs-description mt-4 font-dm-mono font-normal text-[#301C1B] text-[14px]  leading-[150%] tracking-[-4%]">
                 {item.description}
               </p>
             </div>
@@ -57,3 +57,86 @@ const { title, description, content } = data.frontmatter;
     </div>
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#beliefs-section",
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+    },
+  });
+
+  // Header Reveal
+  tl.from(".beliefs-header", {
+    y: 80,
+    opacity: 0,
+    filter: "blur(15px)",
+    duration: 1.2,
+    ease: "expo.out",
+  });
+  tl.from(".beliefs-title", {
+    y: 80,
+    opacity: 0,
+    filter: "blur(15px)",
+    duration: 1.2,
+    ease: "expo.out",
+  }).from(
+    ".beliefs-description",
+    {
+      y: 40,
+      opacity: 0,
+      filter: "blur(10px)",
+      duration: 1,
+      ease: "power4.out",
+    },
+    "-=0.7",
+  );
+
+  // Image Reveal
+  tl.from(
+    ".beliefs-image",
+    {
+      clipPath: "inset(100% 0% 0% 0%)",
+      duration: 1.6,
+      ease: "power4.out",
+    },
+    "-=0.6",
+  );
+
+  // Cards Reveal
+  tl.from(
+    ".belief-card",
+    {
+      y: 60,
+      opacity: 0,
+      stagger: 0.15,
+      duration: 1,
+      ease: "power4.out",
+    },
+    "-=1",
+  );
+
+  // Hover Lift Cards
+  gsap.utils.toArray(".belief-card").forEach((card: any) => {
+    card.addEventListener("mouseenter", () => {
+      gsap.to(card, {
+        x: 10,
+        duration: 0.4,
+        ease: "power3.out",
+      });
+    });
+
+    card.addEventListener("mouseleave", () => {
+      gsap.to(card, {
+        x: 0,
+        duration: 0.4,
+        ease: "power3.out",
+      });
+    });
+  });
+</script>

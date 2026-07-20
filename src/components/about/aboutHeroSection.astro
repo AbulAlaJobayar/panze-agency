@@ -1,41 +1,130 @@
 ---
-
-import * as data from "@/content/about/about-hero-content.md"
-const {title,subTitle ,description, logo}=data.frontmatter
+import * as data from "@/content/about/about-hero-content.md";
+const { subTitle, description, logo } = data.frontmatter;
 ---
 
-<section class="border-b overflow-hidden">
+<section id="about-hero" class="border-b overflow-hidden">
   <div class="flex flex-col lg:flex-row items-stretch">
     <!-- Left Side - Fixed width with white background -->
     <div
-      class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-10 py-6 md:py-8 lg:py-10 bg-white"
+      class="hero-content w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r pt-20 mb-13.5 px-8"
     >
       <h3
-        class="font-commissioner font-semibold text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary py-10"
+        class="hero-title font-commissioner font-semibold text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary"
       >
-        {title}
+        The White Label <br /> Digital Product <br /> Design Agency That <br /> Does
+        One Thing Well
       </h3>
       <p
-        class="font-dm-mono mt-5 font-normal text-[14px] leading-[150%] tracking-[-4%]"
+        class="hero-subtitle mt-20.75 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
       >
         {subTitle}
       </p>
       <p
-        class="font-dm-mono mt-5 font-normal text-[14px] leading-[150%] tracking-[-4%]"
+        class="hero-description font-dm-mono mt-10 font-normal text-[14px] leading-[150%] tracking-[-4%]"
       >
         {description}
       </p>
-
-      
     </div>
 
     <!-- Right Side -->
-    <div class="flex-1 bg-[#1E1212] flex items-center justify-center">
+    <div
+      class=" min-h-159.75 hero-logo-wrapper flex-1 bg-[#1E1212] flex items-center justify-center"
+    >
       <h1
         class="font-dm-mono text-[216px] leading-[150%] tracking-[-4%] font-normal uppercase text-primary"
       >
-        <img src={logo} alt="panze">
+        <img src={logo} alt="panze" class="hero-logo" />
       </h1>
     </div>
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+
+
+    // Prevent duplicate animations
+    ScrollTrigger.getAll().forEach((st) => st.kill());
+
+    const tl = gsap.timeline({
+      defaults: {
+        ease: "expo.out",
+      },
+    });
+
+    // Initial states
+    gsap.set(".hero-logo", {
+      scale: 1.25,
+      opacity: 0,
+      rotate: -3,
+    });
+
+    tl.from(".hero-title", {
+      y: 120,
+      opacity: 0,
+      duration: 1.2,
+    })
+      .from(
+        ".hero-subtitle",
+        {
+          y: 40,
+          opacity: 0,
+          duration: 0.8,
+        },
+        "-=0.7",
+      )
+      .from(
+        ".hero-description",
+        {
+          y: 40,
+          opacity: 0,
+          duration: 0.8,
+        },
+        "-=0.6",
+      )
+      .to(
+        ".hero-logo",
+        {
+          scale: 1,
+          opacity: 1,
+          rotate: 0,
+          duration: 1.8,
+        },
+        "-=1",
+      );
+
+    // Floating animation
+    gsap.to(".hero-logo", {
+      y: -15,
+      duration: 3,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
+
+    // Scroll parallax
+    gsap.to(".hero-logo", {
+      yPercent: -10,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#about-hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: 1,
+      },
+    });
+
+    // Glow breathing effect
+    gsap.to(".hero-logo-wrapper > div", {
+      scale: 1.15,
+      opacity: 0.8,
+      repeat: -1,
+      yoyo: true,
+      duration: 4,
+      ease: "sine.inOut",
+    });
+</script>

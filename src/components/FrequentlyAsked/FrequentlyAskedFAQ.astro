@@ -1,12 +1,11 @@
 ---
-import { Image } from "astro:assets";
-import { NavigationMenuLink } from "../ui/navigation-menu";
 import Faqs from "./faqs.astro";
 import LinkButton from "../ui/LinkButton.astro";
+import faqicon from "@/assets/sectionIcon/faq.svg";
 const whatsappUrl = import.meta.env.WHATSAPP_URL;
 const { askedQuestion } = Astro.props;
 
-const { sectionIcon, title, subtitle, description, buttonText, faqs } =
+const { title, subtitle, description, buttonText, faqs } =
   askedQuestion.frontmatter;
 ---
 
@@ -17,11 +16,9 @@ const { sectionIcon, title, subtitle, description, buttonText, faqs } =
       class="faq-left w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 md:px-8 py-10 bg-white"
     >
       <div class="flex items-center gap-2 mb-6 lg:mb-9.5">
-        <Image
-          src={sectionIcon}
+        <img
+          src={faqicon.src}
           alt="number section"
-          width={16}
-          height={14}
           class="w-4 h-4 md:w-auto md:h-auto"
         />
         <h6
@@ -40,11 +37,11 @@ const { sectionIcon, title, subtitle, description, buttonText, faqs } =
       >
         {description}
       </p>
-      <LinkButton href={whatsappUrl} text={buttonText} class="mb-12"/>
+      <LinkButton href={whatsappUrl} text={buttonText} class="mb-12" />
     </div>
 
     <!-- Right Side - Background image ONLY on right side -->
-    <div class="faq-right  py-5 md:py-7 lg:py-10px bg-white">
+    <div class="faq-right py-5 md:py-7 lg:py-10px bg-white">
       <Faqs faqs={faqs} />
     </div>
   </div>
@@ -71,7 +68,7 @@ const { sectionIcon, title, subtitle, description, buttonText, faqs } =
     ease: "power3.out",
   });
   tl.from(".faq-right", {
-    y:110,
+    y: 110,
     opacity: 0,
     duration: 0.8,
     stagger: 0.08,

@@ -49,10 +49,12 @@ const { value, prefix = "", suffix = "", duration = 2500 } = Astro.props;
       onUpdate() {
         const current = Math.round(counter.value);
 
-        if (target >= 1000 && suffix === "K") {
+        if (suffix === "K" && target >= 1000) {
           el.textContent = `${prefix}${(current / 1000).toFixed(1)}K`;
+        } else if (target < 10) {
+          el.textContent = `${prefix}${current.toFixed(1)}${suffix}`;
         } else {
-          el.textContent = `${prefix}${current.toLocaleString()}${suffix}`;
+          el.textContent = `${prefix}${Math.round(current).toLocaleString()}${suffix}`;
         }
       },
     });

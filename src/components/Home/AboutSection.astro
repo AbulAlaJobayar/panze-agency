@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import * as aboutData from "@/content/home/aboutus-content.md";
-import { NavigationMenuLink } from "../ui/navigation-menu";
+import bg from "@/assets/background/aboutSDottedbg.svg";
 import aboutUs from "@/assets/sectionIcon/aboutus.svg";
 import LinkButton from "../ui/LinkButton.astro";
 
@@ -12,8 +12,6 @@ const {
   description,
   buttonText,
   buttonLink,
-  abouticon,
-  background,
   images,
 } = aboutData.frontmatter;
 
@@ -56,7 +54,7 @@ const {
     <!-- Right Side - Background image ONLY on right side -->
 
     <div
-      style={{ backgroundImage: `url(${background})` }}
+      style={{ backgroundImage: `url(${bg.src})` }}
       class="flex-1 bg-cover bg-center bg-no-repeat mt-3 ml-3 mb-2 pt-21.5"
     >
       <div id="gallery" class="grid grid-cols-2">

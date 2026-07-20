@@ -9,8 +9,9 @@ import {
 import * as data from "@/content/about/testimonial-content.md";
 
 const { title, description, testimonials } = data.frontmatter;
-import icon from "@/assets/home/number/network.svg"
-import CtaIcon from "../../../public/ourProcess/ctaActionIcon.svg"
+import icon from "@/assets/sectionIcon/networkIcon.svg";
+// import CtaIcon from "../../../public/ourProcess/ctaActionIcon.svg";
+import LinkButton from "../ui/LinkButton.astro";
 ---
 
 <section class="border border-black/20 my-20 mx-10">
@@ -22,7 +23,7 @@ import CtaIcon from "../../../public/ourProcess/ctaActionIcon.svg"
     >
       <div>
         <div class="flex items-center gap-2 text-[#F26C3A]">
-          <img src={icon.src} alt={title}>
+          <img src={icon.src} alt={title} />
           <span
             class="font-dm-mono font-normal
                  leading-[150%] tracking-[-4%] text-[14px]"
@@ -38,16 +39,16 @@ import CtaIcon from "../../../public/ourProcess/ctaActionIcon.svg"
           {description}
         </h2>
       </div>
-
-      <a
+      <LinkButton href="/contact" text="Let'talk" />
+      <!-- <a
         href="/contact"
         class="mt-10 inline-flex w-fit items-center gap-3 bg-[#F26C3A]
                px-8 py-4 text-white transition hover:bg-[#dc5f33] font-commissioner font-normal
                  leading-[150%] tracking-[-4%] text-[14px]"
       >
         Let'talk
-        <img src={CtaIcon.src}/>
-      </a>
+        <img src={CtaIcon.src} />
+      </a> -->
     </div>
 
     <!-- Right Side -->

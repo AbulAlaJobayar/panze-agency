@@ -1,8 +1,9 @@
 ---
 import NavigationMenuLink from "@/components/ui/navigation-menu/navigation-menu-link.astro";
 // import ctaIcon from "@/assets/icons/arrow-up-right.svg";
-import ctaIcon from "@/assets/home/heroimage/ctaActionIcon.svg";
+// import ctaIcon from "@/assets/home/heroimage/ctaActionIcon.svg";
 import * as data from "@/content/career/jobs-opening-content.md";
+import LinkButton from "../ui/LinkButton.astro";
 
 const { jobs } = data.frontmatter;
 
@@ -60,13 +61,14 @@ const { jobs } = data.frontmatter;
 
            <!-- button  -->
   <div class="mt-auto pt-12">
-    <NavigationMenuLink
-      href={job.applyLink}
+    <LinkButton  href={job.applyLink}  text="Apply now"/>
+    {/* <NavigationMenuLink
+     
       class="inline-flex h-11 border-none w-33 items-center justify-center gap-2 bg-primary text-white hover:bg-primary/90 font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] rounded-none"
     >
-      Apply now
+      
       <img src={ctaIcon.src} alt="" class="size-3" />
-    </NavigationMenuLink>
+    </NavigationMenuLink> */}
   </div>
  </div>
  </article>

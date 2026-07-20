@@ -1,6 +1,7 @@
 ---
+import LinkButton from "../ui/LinkButton.astro";
 import { NavigationMenuLink } from "../ui/navigation-menu";
-import ctaIcon from "@/assets/home/heroimage/ctaActionIcon.svg";
+// import ctaIcon from "@/assets/home/heroimage/ctaActionIcon.svg";
 import * as data from "@/content/career/career-hero-content.md";
 const { title, description, cta, image } = data.frontmatter;
 ---
@@ -41,7 +42,8 @@ const { title, description, cta, image } = data.frontmatter;
       </div>
 
       <div class="mt-8 lg:mt-auto lg:pt-24 rounded-0">
-        <NavigationMenuLink
+        <LinkButton href="/contact" text={cta} />
+        <!-- <NavigationMenuLink
           href="/contact"
           class="rounded-none
           inline-flex
@@ -62,7 +64,7 @@ const { title, description, cta, image } = data.frontmatter;
           </span>
 
           <img src={ctaIcon.src} alt="" class="h-2 w-2" />
-        </NavigationMenuLink>
+        </NavigationMenuLink> -->
       </div>
     </div>
   </div>

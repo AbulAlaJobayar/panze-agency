@@ -1,5 +1,4 @@
 ---
-import { NavigationMenuLink } from "../ui/navigation-menu";
 import usFlag from "@/assets/home/heroimage/usflag.svg";
 import bg from "@/assets/home/heroimage/bg.svg";
 import LinkButton from "../ui/LinkButton.astro";
@@ -11,7 +10,7 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
 <!-- hero section -->
 <div class="hero">
   <!-- dextop screen -->
-  <div class="hidden sm:block">
+  <div class="hidden md:block">
     <div class="flex">
       <!-- left container -->
       <div class="sm:w-1/2 md:w-100 border-r pl-8 pr-8.25 pt-20 pb-12.75 z-10">
@@ -59,11 +58,11 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
 
   <!-- small screen -->
   <div class="hero mx-auto">
-    <div class="block sm:hidden mx-auto mb-10">
+    <div class="block md:hidden mx-auto mb-10">
       <div class="mt-10">
         <!-- top -->
         <div class="pl-8 pr-8.25">
-          <div class="hero-location flex items-center gap-2 mb-2">
+          <div class="hero-location flex items-center gap-2 mb-10">
             <img src={usFlag.src} alt="icon" width={12} height={8} />
             <p
               class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
@@ -81,7 +80,7 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
         <div class="pl-8 pr-8.25">
           <div>
             <h3
-              class="subtitle font-commissioner font-semibold text-[18px] uppercase leading-[110%] tracking-[-4%] text-primary py-3"
+              class="subtitle font-commissioner font-semibold text-[18px] uppercase leading-[110%] tracking-[-4%] text-primary pt-10 pb-5"
             >
               {subTitle}
             </h3>
@@ -90,10 +89,10 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
             >
               {description}
             </p>
-            <LinkButton href={"/works"} text={cta} class="hero-button mt-3" />
+            <LinkButton href={"/works"} text={cta} class="hero-button mt-5" />
           </div>
         </div>
-        <div class="hero-img mt-11 mb-9">
+        <div class="hero-img mt-10 mb-9">
           <img src={bg.src} alt="bg" />
         </div>
       </div>
@@ -106,8 +105,6 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
-
-  document.addEventListener("astro:page-load", () => {
     // Split title into chars
     document.querySelectorAll(".hero-title").forEach((title) => {
       const text = title.textContent || "";
@@ -226,16 +223,14 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
         scrub: true,
       },
     });
-
-    gsap.to(".hero-img", {
-      y: -120,
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".hero",
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
-  });
+    //   y: -120,
+    //   ease: "none",
+    //   scrollTrigger: {
+    //     trigger: ".hero",
+    //     start: "top top",
+    //     end: "bottom top",
+    //     scrub: true,
+    //   },
+    // });
+ 
 </script>

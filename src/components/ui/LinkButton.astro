@@ -2,7 +2,7 @@
 import { NavigationMenuLink } from "@/components/ui/navigation-menu";
 
 interface Props {
-  href: string;
+  href?: string;
   text: string;
   class?: string;
   id?: string;
@@ -35,27 +35,50 @@ const { href, text, class: className = "", id = "" } = Astro.props;
     h-0.5 w-full bg-white origin-left"
   >
   </div>
+  {
+    href ? (
+      <NavigationMenuLink
+        href={href}
+        class="relative z-10 flex h-full items-center justify-center gap-3 py-3"
+      >
+        <span>{text}</span>
 
-  <NavigationMenuLink
-    href={href}
-    class="relative z-10 flex h-full items-center justify-center gap-3 py-3"
-  >
-    <span>{text}</span>
+        <svg
+          class="arrow w-4 h-4"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M7 17L17 7M17 7H9M17 7V15"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </NavigationMenuLink>
+    ) : (
+      <div class="relative z-10 flex h-full items-center justify-center gap-3 py-3">
+        <span>{text}</span>
 
-    <svg
-      class="arrow w-4 h-4"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-    >
-      <path
-        d="M7 17L17 7M17 7H9M17 7V15"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"></path>
-    </svg>
-  </NavigationMenuLink>
+        <svg
+          class="arrow w-4 h-4"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M7 17L17 7M17 7H9M17 7V15"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+    )
+  }
 </div>
 <script>
   import gsap from "gsap";

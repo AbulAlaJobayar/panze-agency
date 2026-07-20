@@ -1,8 +1,9 @@
 ---
 import * as herodata from "@/content/services/hero-content.md";
 import { NavigationMenuLink } from "../ui/navigation-menu";
-import ctaIcon from "@/assets/home/heroimage/ctaActionIcon.svg";
+// import ctaIcon from "@/assets/home/heroimage/ctaActionIcon.svg";
 import ctaIcon2 from "@/assets/services/icon.png";
+import LinkButton from "../ui/LinkButton.astro";
 
 // Access frontmatter data
 const {
@@ -34,17 +35,16 @@ const {
       </p>
       <!-- button -->
       <div class="flex gap-6">
-        <NavigationMenuLink
-          href={buttonLink}
+        <LinkButton href={buttonLink} text={buttonText} />
+        <!-- <NavigationMenuLink
           class="w-36.25 h-11.25 py-3 px-2.5 bg-primary my-10 mt-5 lg:mt-26 hover:bg-primary cursor-pointer flex items-center justify-center gap-2 rounded-none"
         >
           <span
             class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
           >
-            {buttonText}
           </span>
           <img src={ctaIcon.src} alt="icon" class="h-2 w-2" />
-        </NavigationMenuLink>
+        </NavigationMenuLink> -->
         <NavigationMenuLink
           href={buttonLink2}
           class="w-36.25 border h-11.25 py-3 px-2.5 my-10 mt-5 lg:mt-26 cursor-pointer flex items-center justify-center gap-2 rounded-none"
