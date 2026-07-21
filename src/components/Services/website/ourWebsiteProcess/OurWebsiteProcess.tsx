@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 interface StepItem {
   title: string;
-  subtitle: string;
+  subTitle: string;
   description: string;
-  points: string[];
+  items: string[];
 }
 
 interface OurWebsiteProcessProps {
@@ -42,11 +42,11 @@ export default function OurWebsiteProcess({ data }: OurWebsiteProcessProps) {
               }}
               // Keeps the 40% and 20% width calculations completely fluid
               animate={{
-                flexGrow: isExpanded ? 2 : 1,
+                flexGrow: isExpanded ? 3 : 1,
               }}
               onClick={() => setExpandedTitle(step.title)}
-              className="relative border-b lg:border-b-0 lg:border-r last:border-r-0
-                          last:border-b-0border-gray-200 p-6 md:p-8 bg-white overflow-hidden cursor-pointer flex flex-col min-h-35 lg:h-full"
+              className=" relative border-b lg:border-b-0 lg:border-r last:border-r-0
+                          last:border-b-0 border-gray-200  pt-7 pb-7 pl-7 bg-white overflow-hidden cursor-pointer flex flex-col min-h-35 lg:h-full"
             >
               {/* Layout manager inside the card */}
               <div
@@ -56,18 +56,18 @@ export default function OurWebsiteProcess({ data }: OurWebsiteProcessProps) {
                 <div
                   className={`flex flex-col ${isExpanded ? "mb-0" : "h-full justify-between"}`}
                 >
-                  <div className="text-[#FF6A4A] font-dm-mono font-normal text-sm tracking-[-4% ] leading-[150%] pt-2">
+                  <div className="text-[#FF6A4A] font-dm-mono font-normal text-sm tracking-[-4% ] leading-[150%] pb-5">
                     {step.title}
                   </div>
 
                   <h3
                     className={` font-commissioner font-semibold text-[16px] text-[#1F1615] tracking-[-4% ] leading-[130%] transition-all duration-500 ${
                       isExpanded
-                        ? "text-xl mt-2 max-w-md"
+                        ? "text-xl  max-w-116"
                         : "text-base pb-2 max-w-40"
                     }`}
                   >
-                    {step.subtitle}
+                    {step.subTitle}
                   </h3>
                 </div>
 
@@ -77,29 +77,41 @@ export default function OurWebsiteProcess({ data }: OurWebsiteProcessProps) {
                     {isExpanded && (
                       <motion.div
                         initial={false}
-                          animate={{
-                            opacity: isExpanded ? 1 : 0,
-                            height: isExpanded ? "auto" : 0,
-                          }}
-                          transition={{
-                            duration: 0.3,
-                          }}
-
-                        className="space-y-4 mt-4 max-w-xl pr-0 lg:pr-2"
+                        animate={{
+                          opacity: isExpanded ? 1 : 0,
+                          height: isExpanded ? "auto" : 0,
+                        }}
+                        transition={{
+                          duration: 0.3,
+                        }}
+                        className="space-y-4 mt-4 max-w-116 pr-0 lg:pr-2"
                       >
                         {step.description && (
-                          <p className="font-dm-mono font-normal text-sm tracking-[-4% ] leading-[150%] text-[#5A4F4E] text-[14px]  ">
+                          <motion.p
+                            initial={{ opacity: 0, y: 12 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.15 }}
+                            className="font-dm-mono font-normal text-sm tracking-[-4% ] leading-[150%] text-[#5A4F4E] text-[14px]  "
+                          >
                             {step.description}
-                          </p>
+                          </motion.p>
                         )}
 
-                        {step.points && (
+                        {step.items && (
                           <ul className="space-y-2 font-dm-mono font-normal text-sm tracking-[-4% ] leading-[150%]  text-[#5A4F4E] font-normal">
-                            {step.points.map((bullet: string, idx: number) => (
-                              <li key={idx} className="flex items-start">
+                            {step.items.map((bullet: string, idx: number) => (
+                              <motion.li
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{
+                                  delay: 0.4 + idx * 0.06,
+                                }}
+                                key={idx}
+                                className="flex items-start"
+                              >
                                 <span className="mr-2 text-gray-400">•</span>
                                 <span>{bullet}</span>
-                              </li>
+                              </motion.li>
                             ))}
                           </ul>
                         )}

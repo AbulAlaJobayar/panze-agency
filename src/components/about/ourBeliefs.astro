@@ -1,7 +1,6 @@
 ---
-import teamImage from "@/assets/about/strategy.png";
 import * as data from "@/content/about/our-beliefs-content.md";
-const { title, description, content } = data.frontmatter;
+const { title, description, image, content } = data.frontmatter;
 ---
 
 <section id="beliefs-section" class="border-t border-black/20 pt-26">
@@ -32,7 +31,7 @@ const { title, description, content } = data.frontmatter;
       <!-- Image -->
       <div class="beliefs-image order-2 lg:order-1">
         <img
-          src={teamImage.src}
+          src={image}
           alt="Team"
           class="beliefs-photo w-full h-87.5 sm:h-125 lg:h-full object-cover"
         />
@@ -79,25 +78,6 @@ const { title, description, content } = data.frontmatter;
     duration: 1.2,
     ease: "expo.out",
   });
-  tl.from(".beliefs-title", {
-    y: 80,
-    opacity: 0,
-    filter: "blur(15px)",
-    duration: 1.2,
-    ease: "expo.out",
-  }).from(
-    ".beliefs-description",
-    {
-      y: 40,
-      opacity: 0,
-      filter: "blur(10px)",
-      duration: 1,
-      ease: "power4.out",
-    },
-    "-=0.7",
-  );
-
-  // Image Reveal
   tl.from(
     ".beliefs-image",
     {
@@ -120,6 +100,26 @@ const { title, description, content } = data.frontmatter;
     },
     "-=1",
   );
+
+  tl.from(".beliefs-title", {
+    y: 80,
+    opacity: 0,
+    filter: "blur(15px)",
+    duration: 1.2,
+    ease: "expo.out",
+  }).from(
+    ".beliefs-description",
+    {
+      y: 40,
+      opacity: 0,
+      filter: "blur(10px)",
+      duration: 1,
+      ease: "power4.out",
+    },
+    "-=0.7",
+  );
+
+  // Image Reveal
 
   // Hover Lift Cards
   gsap.utils.toArray(".belief-card").forEach((card: any) => {

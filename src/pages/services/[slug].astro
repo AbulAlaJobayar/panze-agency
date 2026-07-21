@@ -1,8 +1,9 @@
-<!-- ---
+---
 import Footer from "@/components/Footer.astro";
-import "../../styles/global.css";
 import Layout from "@/layouts/Layout.astro";
 import ContactSection from "@/components/contactSection/ContactSection.astro";
+import HeroServicesSection from "@/components/Services/website/HeroServicesSection.astro";
+import OurWebsiteProcess from "@/components/Services/website/ourWebsiteProcess/ourWebsiteProcess.astro";
 
 const services = Object.values(
   import.meta.glob("../../content/whatwedo/*.md", { eager: true }),
@@ -17,46 +18,16 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-
 const service = services.find(
   ({ frontmatter }: any) => frontmatter.slug === slug,
 );
-
-
-const { frontmatter, Content } = service as any;
+const { frontmatter } = service as any;
+console.log(frontmatter, "👍👍👍");
 ---
 
-<Layout title="SERVICE | PANZE">
-  <section class="mx-auto max-w-7xl py-20">
-    <img
-      src={frontmatter.image}
-      alt={frontmatter.title}
-      class="mb-12 h-125 w-full rounded-xl object-cover"
-    />
-
-    <h1 class="mb-6 text-5xl font-bold">
-      {frontmatter.title}
-    </h1>
-
-    <p class="mb-10 text-lg text-gray-500">
-      {frontmatter.description}
-    </p>
-
-    <div class="mb-10 grid gap-3 md:grid-cols-2">
-      {
-        frontmatter.features.map((feature: string) => (
-          <div class="flex items-center gap-2">
-            <span class="size-2 rounded-full bg-orange-500" />
-            {feature}
-          </div>
-        ))
-      }
-    </div>
-
-    <article class="prose prose-invert max-w-none">
-      <Content />
-    </article>
-  </section>
-  <ContactSection/>
-  <Footer/>
-</Layout> -->
+<Layout title={frontmatter.siteTitle}>
+  <HeroServicesSection hero={frontmatter.hero} />
+  <OurWebsiteProcess ourProcess={frontmatter.ourProcess} />
+  <ContactSection />
+  <Footer />
+</Layout>

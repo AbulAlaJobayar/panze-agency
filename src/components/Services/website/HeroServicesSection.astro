@@ -1,0 +1,107 @@
+---
+import LinkButton from "@/components/ui/LinkButton.astro";
+const { hero } = Astro.props;
+const { title, subTitle, buttonText, buttonLink, image } = hero;
+---
+
+<section id="services-section-hero" class="overflow-hidden border-b">
+  <div class="flex flex-col lg:flex-row items-stretch">
+    <!-- Left Side - Fixed width with white background -->
+    <div class="hero-content w-full lg:w-100 shrink-0 lg:border-r pt-22.5 px-8">
+      <h3
+        class="hero-services-title font-commissioner font-semibold text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary"
+      >
+        {title}
+      </h3>
+      <p
+        class="mt-14 hero-services-subtitle font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
+      >
+        {subTitle}
+      </p>
+      <div class="hero-services-button mt-33.5">
+        <LinkButton href={buttonLink} text={buttonText} class="w-full" />
+      </div>
+    </div>
+
+    <!-- Right Side -->
+    <div
+      class="max-h-159.75 services-hero-images-wrapper mx-8 mt-8.75 mb-12.75"
+    >
+      <img src={image} alt={title} class="services-hero-images" />
+    </div>
+  </div>
+</section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Prevent duplicate animations
+  ScrollTrigger.getAll().forEach((st) => st.kill());
+
+  const tl = gsap.timeline({
+    defaults: {
+      ease: "expo.out",
+    },
+  });
+
+  // Initial states
+  gsap.set(".services-hero-images", {
+    scale: 1.25,
+    opacity: 0,
+    rotate: -3,
+  });
+
+  tl.from(".hero-services-title", {
+    y: 120,
+    opacity: 0,
+    duration: 1.2,
+  })
+    .from(
+      ".hero-services-subtitle",
+      {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+      },
+      "-=0.7",
+    )
+    .from(
+      ".hero-services-button",
+      {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+      },
+      "-=0.6",
+    )
+    .to(
+      ".services-hero-images",
+      {
+        scale: 1,
+        opacity: 1,
+        rotate: 0,
+        duration: 1.8,
+      },
+      "-=1",
+    );
+
+  // Floating animation
+  gsap.to(".services-hero-images", {
+    x: -8,
+    duration: 3,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
+  });
+
+  gsap.to(".services-hero-images-wrapper > div", {
+    scale: 1.15,
+    opacity: 0.8,
+    repeat: -1,
+    yoyo: true,
+    duration: 4,
+    ease: "sine.inOut",
+  });
+</script>

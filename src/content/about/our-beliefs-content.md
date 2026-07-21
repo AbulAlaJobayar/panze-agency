@@ -1,7 +1,7 @@
 ---
 title: "Our Beliefs"
 description: "We don't chase trends. We build Digital products that last. Every interface, every UX decision, every design system serves a clear business goal."
-
+image: "https://i.ibb.co.com/nNwwy0FJ/strategy.png"
 content:
   - title: "What services does Panze Studio offer?"
     description: "As a white label design agency, we architect SaaS platforms that scale. Every design system we build prioritizes user adoption and long term growth."

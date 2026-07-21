@@ -7,11 +7,11 @@ const { title, description, clients, industries } = data.frontmatter;
 const { firstRow, secondRow } = industries;
 ---
 
-<section class="bg-[#2E1C1B] mt-28 px-8">
+<section id="clients-abuot-section" class="bg-[#2E1C1B]  px-8">
   <div class="mx-auto max-w-300 py-26">
     <!-- Header -->
     <div
-      class="grid gap-8  border-[#4A3432] pb-16 lg:grid-cols-[220px_1fr]"
+      class="clients-about-header grid gap-8 border-[#4A3432] pb-16 lg:grid-cols-[220px_1fr]"
     >
       <div>
         <h2
@@ -32,13 +32,13 @@ const { firstRow, secondRow } = industries;
 
     <!-- Logo Grid -->
     <div
-      class=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 border-l border-t
+      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 border-l border-t
   border-[#4A3432]"
     >
       {
         clients.map((client: any) => (
           <div
-            class="flex py-19.25 items-center justify-center
+            class="client-anout-card flex py-19.25 items-center justify-center
                    border-r border-b border-[#4A3432]
                    px-9.25 transition-colors duration-300
                    hover:bg-[#35211F]"
@@ -56,13 +56,15 @@ const { firstRow, secondRow } = industries;
     <div class="flex flex-col items-center">
       <!-- First Row -->
 
-      <div class="flex flex-wrap border-l border-t border-[#4A3432]">
+      <div
+        class="about-industry-tag grid grid-cols-2 md:grid-cols-3 lg:flex lg:flex-wrap border-l border-t border-[#4A3432]"
+      >
         {
           firstRow.map((industry: any) => (
             <div
-              class="flex items-center gap-3
+              class=" flex items-center gap-3
                border-r border-b border-[#4A3432]
-               px-5.5 py-6"
+               px-5.5 py-6 "
             >
               <Icon
                 name="check"
@@ -77,11 +79,13 @@ const { firstRow, secondRow } = industries;
         }
       </div>
       <!-- Second Row (Centered) -->
-      <div class="flex flex-wrap border-l border-t border-[#4A3432]">
+      <div
+        class="about-industry-tag grid grid-cols-2 lg:flex lg:flex-wrap border-l lg:border-t border-[#4A3432]"
+      >
         {
           secondRow.map((industry: any) => (
             <div
-              class="flex items-center gap-3
+              class=" flex items-center gap-3
                border-r border-b border-[#4A3432]
                px-5.5 py-6"
             >
@@ -97,7 +101,100 @@ const { firstRow, secondRow } = industries;
           ))
         }
       </div>
-    
     </div>
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#clients-abuot-section",
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+    },
+  });
+
+  // Header Blur Reveal
+  tl.from(".clients-about-header", {
+    y: 80,
+    opacity: 0,
+    filter: "blur(20px)",
+    duration: 1.2,
+    ease: "expo.out",
+  });
+
+  // Logo Cards Cascade
+  tl.from(
+    ".client-anout-card",
+    {
+      y: 60,
+      opacity: 0,
+      scale: 0.9,
+      stagger: {
+        each: 0.05,
+        from: "start",
+      },
+      duration: 0.8,
+      ease: "power4.out",
+    },
+    "-=0.6",
+  );
+
+  // Industry Tags Wave
+  tl.from(
+    ".about-industry-tag",
+    {
+      y: 30,
+      opacity: 0,
+      stagger: 0.03,
+      duration: 0.6,
+      ease: "power3.out",
+    },
+    "-=0.5",
+  );
+
+  // Logo Hover
+  gsap.utils.toArray(".client-card").forEach((card: any) => {
+    const logo = card.querySelector("img");
+
+    card.addEventListener("mouseenter", () => {
+      gsap.to(card, {
+        backgroundColor: "#35211F",
+        duration: 0.3,
+      });
+
+      gsap.to(logo, {
+        scale: 1.08,
+        duration: 0.4,
+        ease: "power3.out",
+      });
+    });
+
+    card.addEventListener("mouseleave", () => {
+      gsap.to(card, {
+        backgroundColor: "transparent",
+        duration: 0.3,
+      });
+
+      gsap.to(logo, {
+        scale: 1,
+        duration: 0.4,
+      });
+    });
+  });
+
+  // Floating Industry Tags
+  gsap.utils.toArray(".industry-tag").forEach((tag: any, i) => {
+    gsap.to(tag, {
+      y: i % 2 === 0 ? -3 : 3,
+      duration: 2 + Math.random(),
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
+  });
+</script>

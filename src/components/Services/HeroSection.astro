@@ -1,9 +1,9 @@
 ---
 import * as herodata from "@/content/services/hero-content.md";
 import { NavigationMenuLink } from "../ui/navigation-menu";
-// import ctaIcon from "@/assets/home/heroimage/ctaActionIcon.svg";
-import ctaIcon2 from "@/assets/services/icon.png";
 import LinkButton from "../ui/LinkButton.astro";
+import background from "@/assets/background/services-hero-bg.svg";
+import chevronDown from "@/assets/icons/chevron-down.svg";
 
 // Access frontmatter data
 const {
@@ -13,28 +13,27 @@ const {
   buttonLink,
   buttonText2,
   buttonLink2,
-  background,
 } = herodata.frontmatter;
 ---
 
-<section class="border-b overflow-hidden">
+<section id="services-hero-section" class="overflow-hidden">
   <div class="flex flex-col lg:flex-row items-stretch">
     <!-- Left Side - Fixed width with white background -->
     <div
-      class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-10 py-6 md:py-8 lg:py-10 bg-white"
+      class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-8"
     >
       <h3
-        class="font-commissioner font-semibold text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary py-10"
+        class="services-hero-title mt-20 font-commissioner font-semibold text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary"
       >
         {subTitle}
       </h3>
       <p
-        class="font-dm-mono mt-5 font-normal text-[14px] leading-[150%] tracking-[-4%]"
+        class="services-hero-description mt-14 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
       >
         {description}
       </p>
       <!-- button -->
-      <div class="flex gap-6">
+      <div class="mb-13 mt-49.25 flex gap-2">
         <LinkButton href={buttonLink} text={buttonText} />
         <!-- <NavigationMenuLink
           class="w-36.25 h-11.25 py-3 px-2.5 bg-primary my-10 mt-5 lg:mt-26 hover:bg-primary cursor-pointer flex items-center justify-center gap-2 rounded-none"
@@ -47,23 +46,69 @@ const {
         </NavigationMenuLink> -->
         <NavigationMenuLink
           href={buttonLink2}
-          class="w-36.25 border h-11.25 py-3 px-2.5 my-10 mt-5 lg:mt-26 cursor-pointer flex items-center justify-center gap-2 rounded-none"
+          class="services-hero-buttons w-36.25 border h-11.25 px-2.5 cursor-pointer flex items-center justify-center gap-2 rounded-none"
         >
           <span
             class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-[#301C1B]"
           >
             {buttonText2}
           </span>
-          <img src={ctaIcon2.src} alt="icon" class="animate-bounce" />
+          <img src={chevronDown.src} alt="icon" class="animate-bounce" />
         </NavigationMenuLink>
       </div>
     </div>
 
     <!-- Right Side - Background image ONLY on right side -->
     <div
-      style={{ backgroundImage: `url(${background})` }}
-      class="flex-1 bg-cover bg-center bg-no-repeat p-4 md:p-6 lg:p-8 min-h-100 lg:min-h-[unset]"
+      style={{ backgroundImage: `url(${background.src})` }}
+      class="services-hero-bg flex-1 bg-cover bg-center bg-no-repeat p-4 md:p-6 lg:p-8 min-h-100 lg:min-h-[unset]"
     >
     </div>
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#services-hero-section",
+      start: "top 80%",
+      toggleActions: "play none none reverse",
+    },
+  });
+
+  tl.from(".services-hero-title", {
+    y: 80,
+    opacity: 0,
+    duration: 1,
+  })
+    .from(
+      ".services-hero-description",
+      {
+        y: 30,
+        opacity: 0,
+      },
+      "-=0.5",
+    )
+    .from(
+      ".services-hero-buttons > *",
+      {
+        y: 20,
+        opacity: 0,
+        stagger: 0.15,
+      },
+      "-=0.4",
+    )
+    .from(
+      "services-hero-bg",
+      {
+        scale: 1.1,
+        opacity: 0,
+        duration: 1.2,
+      },
+      "-=1",
+    );
+</script>

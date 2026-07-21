@@ -135,11 +135,11 @@ export default function Stepper({ steps, data }: StepperProps) {
     <section
       ref={sectionRef}
       style={{
-        height: `${stepperSteps.length * 100}vh`,
+        minHeight: `${stepperSteps.length * 100}vh`,
       }}
     >
-      <div className="sticky top-0 h-screen">
-        <div className=" flex flex-col md:flex-row items-stretch">
+      <div className="sticky top-0 min-h-screen">
+        <div className=" flex flex-col md:flex-row items-stretch border-y border-black/20">
           {/*  Left Side - Fixed width with white background  */}
           <motion.div
             variants={containerVariants}
@@ -149,7 +149,7 @@ export default function Stepper({ steps, data }: StepperProps) {
               once: false,
               amount: 0.3,
             }}
-            className="w-full py-20 px-8 lg:w-100 shrink-0 border-b sm:border-b-0 sm:border-r    bg-white"
+            className="w-full py-20 px-8 lg:w-100 shrink-0 border-b sm:border-b-0 sm:border-r bg-white"
           >
             <motion.div
               variants={itemVariants}

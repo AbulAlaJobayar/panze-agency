@@ -6,7 +6,6 @@ import ContactSection from "@/components/contactSection/ContactSection.astro";
 import BrandSection from "@/components/BrandSection.astro";
 import FrequentlyAskedFAQ from "@/components/FrequentlyAsked/FrequentlyAskedFAQ.astro";
 import WhatWeDo from "@/components/WhatWeDo/WhatWeDo.astro";
-import HeroWebsiteSection from "@/components/Services/website/HeroWebsiteSection.astro";
 import OurWebsiteProcess from "@/components/Services/website/ourWebsiteProcess/ourWebsiteProcess.astro";
 import Benefits from "@/components/Services/website/Benefits.astro";
 import IndustryExpert from "@/components/Services/website/IndustryExpert/IndustryExpert.astro";
@@ -20,7 +19,7 @@ const services = Object.values(
 ---
 
 <Layout title="WEBSITE | PANZE">
-  <HeroWebsiteSection />
+  <!-- <HeroWebsiteSection /> -->
   <OurWebsiteProcess />
   <WhatWeDo sectiondata={sectiondata} services={services} />
   <FrequentlyAskedFAQ askedQuestion={askedQuestion} />

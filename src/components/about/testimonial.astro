@@ -7,19 +7,20 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import * as data from "@/content/about/testimonial-content.md";
+import icon from "@/assets/sectionIcon/networkIcon.svg";
+import LinkButton from "../ui/LinkButton.astro";
 
 const { title, description, testimonials } = data.frontmatter;
-import icon from "@/assets/sectionIcon/networkIcon.svg";
-// import CtaIcon from "../../../public/ourProcess/ctaActionIcon.svg";
-import LinkButton from "../ui/LinkButton.astro";
 ---
 
-<section class="border border-black/20 my-20 mx-10">
+<section
+  id="about-testimonial-section"
+  class="border border-black/20 my-26 mx-8"
+>
   <div class="flex flex-col lg:flex-row">
     <!-- Left Side -->
     <div
-      class="flex w-full flex-col justify-between border-b border-r border-[#D9D9D9]
-             p-8 lg:border-b-0 lg:p-10 lg:w-md"
+      class="testimonial-left flex w-full flex-col justify-between border-b border-r border-[#D9D9D9] p-8 lg:border-b-0 lg:w-md"
     >
       <div>
         <div class="flex items-center gap-2 text-[#F26C3A]">
@@ -39,34 +40,25 @@ import LinkButton from "../ui/LinkButton.astro";
           {description}
         </h2>
       </div>
-      <LinkButton href="/contact" text="Let'talk" />
-      <!-- <a
-        href="/contact"
-        class="mt-10 inline-flex w-fit items-center gap-3 bg-[#F26C3A]
-               px-8 py-4 text-white transition hover:bg-[#dc5f33] font-commissioner font-normal
-                 leading-[150%] tracking-[-4%] text-[14px]"
-      >
-        Let'talk
-        <img src={CtaIcon.src} />
-      </a> -->
+      <LinkButton href="/contact" text="Let'talk" class="mt-10 lg:mt-0" />
     </div>
 
     <!-- Right Side -->
-    <div class="relative flex-1 p-8 lg:p-10">
+    <div class="relative flex-1 p-8">
       <Carousel class="w-full">
         <CarouselContent>
           {
             testimonials.map((item: any) => (
-              <CarouselItem>
+              <CarouselItem class="testimonial-item">
                 <div class="flex flex-col justify-between">
                   <p
-                    class="font-dm-mono font-normal 
+                    class="testimonial-text font-dm-mono font-normal 
                  leading-[150%] tracking-[-4%] text-[16px]"
                   >
                     {item.description}
                   </p>
 
-                  <div class="mt-12 flex items-center gap-5">
+                  <div class="testimonial-author mt-12 flex items-center gap-5">
                     <img
                       src={item.image}
                       alt={item.name}
@@ -74,17 +66,12 @@ import LinkButton from "../ui/LinkButton.astro";
                     />
 
                     <div>
-                      <h4
-                        class="font-dm-mono font-medium 
-                 leading-[150%] tracking-[-4%] text-[14px] "
-                      >
+                      <h4 class="font-dm-mono font-medium  leading-[150%] tracking-[-4%] text-[14px]">
+                        {" "}
                         {item.name}
                       </h4>
-
-                      <p
-                        class="mt-1 font-dm-mono font-normal 
-                 leading-[150%] tracking-[-4%] text-[14px]  "
-                      >
+                      <p class="mt-1 font-dm-mono font-normal  leading-[150%] tracking-[-4%] text-[14px]">
+                        {" "}
                         {item.designation}
                       </p>
                     </div>
@@ -107,3 +94,69 @@ import LinkButton from "../ui/LinkButton.astro";
     </div>
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#about-testimonial-section",
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+    },
+  });
+
+  // Left Panel
+  tl.from(".testimonial-left", {
+    x: -80,
+    opacity: 0,
+    duration: 1.2,
+    ease: "expo.out",
+  });
+
+  // Quote
+  tl.from(
+    ".testimonial-text",
+    {
+      y: 50,
+      opacity: 0,
+      filter: "blur(12px)",
+      duration: 1,
+      ease: "power4.out",
+    },
+    "-=0.8",
+  );
+
+  // Author
+  tl.from(
+    ".testimonial-author",
+    {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+    },
+    "-=0.6",
+  );
+
+  // Avatar Hover
+  gsap.utils.toArray(".testimonial-author img").forEach((img: any) => {
+    img.addEventListener("mouseenter", () => {
+      gsap.to(img, {
+        scale: 1.08,
+        duration: 0.3,
+        ease: "back.out(2)",
+      });
+    });
+
+    img.addEventListener("mouseleave", () => {
+      gsap.to(img, {
+        scale: 1,
+        duration: 0.3,
+      });
+    });
+  });
+
+</script>
