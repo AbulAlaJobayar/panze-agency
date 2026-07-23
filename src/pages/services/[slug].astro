@@ -4,6 +4,11 @@ import Layout from "@/layouts/Layout.astro";
 import ContactSection from "@/components/contactSection/ContactSection.astro";
 import HeroServicesSection from "@/components/Services/website/HeroServicesSection.astro";
 import OurWebsiteProcess from "@/components/Services/website/ourWebsiteProcess/ourWebsiteProcess.astro";
+import ServicesSection from "@/components/Services/serviceSection/servicesSection.astro";
+import FrequentlyAskedFAQ from "@/components/FrequentlyAsked/FrequentlyAskedFAQ.astro";
+import BrandSection from "@/components/BrandSection.astro";
+import Benefits from "@/components/Services/website/Benefits.astro";
+import IndustryExpert from "@/components/Services/website/IndustryExpert/IndustryExpert.astro";
 
 const services = Object.values(
   import.meta.glob("../../content/whatwedo/*.md", { eager: true }),
@@ -28,6 +33,11 @@ console.log(frontmatter, "👍👍👍");
 <Layout title={frontmatter.siteTitle}>
   <HeroServicesSection hero={frontmatter.hero} />
   <OurWebsiteProcess ourProcess={frontmatter.ourProcess} />
+  <ServicesSection services={frontmatter.services} />
+  <FrequentlyAskedFAQ askedQuestion={frontmatter.faq} />
+  <BrandSection />
+  <Benefits benifits={frontmatter.Benefits} />
+  <IndustryExpert industryExpert={frontmatter.industryExpertise} />
   <ContactSection />
   <Footer />
 </Layout>

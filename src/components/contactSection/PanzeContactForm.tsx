@@ -78,10 +78,10 @@ export default function PanzeContactForm() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto text-white">
+    <div className="w-full max-w-2xl min-w-0 mx-auto text-white overflow-hidden">
       <motion.form
         onSubmit={handleSubmit}
-        className="space-y-8"
+        className="space-y-8 mx-8 lg:mx-0"
         initial="hidden"
         animate="visible"
         variants={{
@@ -99,7 +99,7 @@ export default function PanzeContactForm() {
               Full Name
             </label>
             <motion.input
-              whileFocus={{ scale: 1.02 }}
+              whileFocus={{ borderColor: "#E8704E" }}
               name="fullName"
               type="text"
               placeholder="John Doe"
@@ -131,7 +131,7 @@ export default function PanzeContactForm() {
             <motion.button
               type="button"
               onClick={() => setIsServiceOpen(!isServiceOpen)}
-              whileHover={{ scale: 1.01 }}
+              whileHover={{ borderColor: "#E8704E" }}
               className={`w-full text-left flex justify-between items-center focus:outline-none border-white/20 border px-5 py-3 capitalize font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal focus:border-primary ${selectedService ? "text-primary" : "text-white/40 font-normal "}`}
             >
               {selectedService || "Select a Service"}
@@ -182,7 +182,6 @@ export default function PanzeContactForm() {
                 key={b.value}
                 type="button"
                 whileHover={{
-                  scale: 1.02,
                   y: -3,
                 }}
                 whileTap={{
@@ -194,7 +193,7 @@ export default function PanzeContactForm() {
                   damping: 20,
                 }}
                 onClick={() => setSelectedBudget(b.value)}
-                className={` cursor-pointer font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal px-4 py-3  text-sm transition-all border duration-200 ${
+                className={` overflow-hidden cursor-pointer font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal px-4 py-3  text-sm transition-all border duration-200 ${
                   selectedBudget === b.value
                     ? "border-primary  text-primary shadow-lg shadow-orange-500/30"
                     : " text-white/40 hover:border-zinc-500 border-white/20 "
@@ -215,7 +214,7 @@ export default function PanzeContactForm() {
             <motion.button
               type="button"
               onClick={() => setIsSourceOpen(!isSourceOpen)}
-              whileHover={{ scale: 1.01 }}
+              whileHover={{ borderColor: "#E8704E" }}
               className={`w-full border border-white/20 px-5 py-3 text-left
     flex justify-between items-center focus:outline-none
     focus:border-primary font-dm-mono text-[14px]
@@ -265,7 +264,7 @@ export default function PanzeContactForm() {
             Project Details
           </label>
           <motion.textarea
-            whileFocus={{ scale: 1.01 }}
+            whileFocus={{ borderColor: "#E8704E" }}
             name="details"
             rows={5}
             placeholder="We’re looking for a modern and strategic SaaS website design that clearly communicates our product value, improves user engagement, and increases conversions."

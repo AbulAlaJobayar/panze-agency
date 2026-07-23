@@ -48,7 +48,8 @@ ourProcess:
   description: "Our website design process connects user research to visual execution so every page we design has a reason to exist and a job to do. You get clarity on structure before we touch visual design, and you get polished, developer-ready output before we close the project."
   steps:
   - step: "01"
-    title: "Goals, Users, and Information Architecture"
+    title: "step: 01"
+    subTitle: "Goals, Users, and Information Architecture"
     description: >
       We wireframe every key page so you see how content, navigation, and calls to action flow together before visual design adds complexity. Changes are faster and cheaper at this stage
     items:
@@ -59,7 +60,8 @@ ourProcess:
       - "Mobile and desktop frame review"
 
   - step: "02"
-    title: "Wireframing & UX Planning"
+    title: "step: 02"
+    subTitle: "Wireframing & UX Planning"
     description: >
       We create wireframes that define page structure,
       content hierarchy, and user journeys before moving
@@ -72,7 +74,8 @@ ourProcess:
       - "Responsive planning"
 
   - step: "03"
-    title: " Visual Design and Brand Application"
+    title: "step: 03"
+    subTitle: " Visual Design and Brand Application"
     description: >
       We transform wireframes into polished visual designs
       that reflect your brand and improve usability.
@@ -84,7 +87,8 @@ ourProcess:
       - "Design review"
 
   - step: "04"
-    title: "Prototype, Review, and Deliver"
+    title: "step: 04"
+    subTitle: "Prototype, Review, and Deliver"
     description: >
       We prepare developer-ready assets, test key flows,
       and ensure the website launches smoothly.
@@ -171,35 +175,36 @@ faq:
   title: "Frequently Asked Questions"
   subtitle: "Everything You Need to Know Before Starting Your Project"
   description: "Explore answers to the most common questions about our services, design process, project timelines, pricing, and what you can expect when partnering with Panze Studio."
-  steps:
-  - step: "01"
-    title: "What services does Panze Studio offer?"
-    description: "We specialize in UI/UX design, website design, SaaS product design, Framer development, landing pages, design systems, and custom digital experiences tailored to your business goals."
+  buttonText: "Schedule a call"
+  faqs:
+  - id: 1
+    question: "What services does Panze Studio offer?"
+    answer: "We specialize in UI/UX design, website design, SaaS product design, Framer development, landing pages, design systems, and custom digital experiences tailored to your business goals."
 
-  - step: "02"
-    title: "What types of businesses do you work with?"
-    description: "We specialize in UI/UX design, website design, SaaS product design, Framer development, landing pages, design systems, and custom digital experiences tailored to your business goals."
+  - id: 2
+    question: "What types of businesses do you work with?"
+    answer: "We specialize in UI/UX design, website design, SaaS product design, Framer development, landing pages, design systems, and custom digital experiences tailored to your business goals."
 
-  - step: "03"
-    title: " How long does a typical project take?"
-    description: "We specialize in UI/UX design, website design, SaaS product design, Framer development, landing pages, design systems, and custom digital experiences tailored to your business goals."
+  - id: 3
+    question: " How long does a typical project take?"
+    answer: "We specialize in UI/UX design, website design, SaaS product design, Framer development, landing pages, design systems, and custom digital experiences tailored to your business goals."
 
-  - step: "04"
-    title: "Do you provide development services as well?"
-    description: "We specialize in UI/UX design, website design, SaaS product design, Framer development, landing pages, design systems, and custom digital experiences tailored to your business goals."
+  - id: 4
+    question: "Do you provide development services as well?"
+    answer: "We specialize in UI/UX design, website design, SaaS product design, Framer development, landing pages, design systems, and custom digital experiences tailored to your business goals."
   
-  - step: "05"
-    title: "How much does a project cost?"
-    description: "We specialize in UI/UX design, website design, SaaS product design, Framer development, landing pages, design systems, and custom digital experiences tailored to your business goals. "
-  - step: "06"
-    title: "What is your design process?"
-    description: "We specialize in UI/UX design, website design, SaaS product design, Framer development, landing pages, design systems, and custom digital experiences tailored to your business goals. "
+  - id: 5
+    question: "How much does a project cost?"
+    answer: "We specialize in UI/UX design, website design, SaaS product design, Framer development, landing pages, design systems, and custom digital experiences tailored to your business goals. "
+  - id: 6
+    question: "What is your design process?"
+    answer: "We specialize in UI/UX design, website design, SaaS product design, Framer development, landing pages, design systems, and custom digital experiences tailored to your business goals. "
 
 
 # Benefits section
 Benefits:
   title: "Benefits"
-  subtitle: "Why Businesses Choose Panze for Website UI/UX Design"
+  subTitle: "Why Businesses Choose Panze for Website UI/UX Design"
   description: "Panze designs websites that do more than look good. Every page is structured to guide visitors toward a decision, every interaction is designed to reduce confusion, and every visual choice is made with your specific user in mind rather than a generic sense of what a website should look like."
   steps:
   - step: "01"
@@ -232,36 +237,42 @@ industryExpertise:
   title: "Industry Expertise"
   subtitle: "Industries Panze Designs Websites For"
   description: "Panze designs websites for businesses in industries where the website is a primary sales and trust-building asset. We understand the content structures, conversion patterns, and credibility signals each market requires from a website that is actually doing its job."
-  steps:
+  faqs:
   - step: "01"
-    title: "SaaS Website Design"
+    id: 1 
+    question: "SaaS Website Design"
     image: ""
-    description: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
 
   - step: "02"
-    title: "Fintech Website Design"
+    id: 2
+    question: "Fintech Website Design"
     image: ""
-    description: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
 
   - step: "03"
-    title: "Startup Website Design"
+    id: 3
+    question: "Startup Website Design"
     image: ""
-    description: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
 
   - step: "04"
-    title: "Agency Website Design"
+    id: 4
+    question: "Agency Website Design"
     image: ""
-    description: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
   
   - step: "05"
-    title: "Healthtech Website Design"
+    id: 5
+    question: "Healthtech Website Design"
     image: ""
-    description: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
 
   - step: "06"
-    title: "Enterprise Services Website Design"
+    id: 6
+    question: "Enterprise Services Website Design"
     image: ""
-    description: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
 
 
 # Design Expertise

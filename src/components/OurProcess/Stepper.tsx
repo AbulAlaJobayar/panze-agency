@@ -2,8 +2,8 @@ import { Check } from "lucide-react";
 import stepeerIcon from "@/assets/icons/ourProcessStepper.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import gsap from "gsap";
+// import ScrollTrigger from "gsap/ScrollTrigger";
 import sectionIcon from "@/assets/sectionIcon/networkIcon.svg";
 import LinkButton from "../ui/LinkButton2";
 import type { Variants } from "framer-motion";
@@ -30,7 +30,7 @@ interface StepperProps {
 
 // Fallback data if steps is undefined
 const defaultSteps: Step[] = [];
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
 export default function Stepper({ steps, data }: StepperProps) {
   // Use provided steps or fallback to default
@@ -45,62 +45,120 @@ export default function Stepper({ steps, data }: StepperProps) {
   const [direction, setDirection] = useState(1);
   const timelineRef = useRef<HTMLDivElement>(null);
   
+  // useEffect(() => {
+  //   if (!sectionRef.current || stepperSteps.length <= 1) return;
+
+  //   const mm = gsap.matchMedia();
+
+  //   const createStepperTrigger = (pin: boolean) => {
+  //     const totalSteps = stepperSteps.length;
+  //     let currentIndex = 0;
+
+  //     return ScrollTrigger.create({
+  //       trigger: sectionRef.current,
+  //       start: "top top",
+  //       end: "bottom bottom",
+  //       // pin,
+  //       scrub: true,
+  //       invalidateOnRefresh: true,
+
+  //       onUpdate: (self) => {
+  //         const progress = self.progress;
+
+  //         const timelineWidth = timelineRef.current?.offsetWidth || 0;
+
+  //         gsap.set(progressRef.current, {
+  //           width: `${progress * 100}%`,
+  //         });
+
+  //         gsap.set(arrowRef.current, {
+  //           x: progress * (timelineWidth - 40),
+  //         });
+
+  //         const index = Math.min(
+  //           stepperSteps.length - 1,
+  //           Math.floor(progress * stepperSteps.length),
+  //         );
+
+  //         setActive(index);
+  //       },
+  //     });
+  //   };
+
+  //   // Mobile
+  //   mm.add("(max-width: 767px)", () => {
+  //     const trigger = createStepperTrigger(false);
+
+  //     return () => trigger.kill();
+  //   });
+
+  //   // Tablet + Desktop
+  //   mm.add("(min-width: 768px)", () => {
+  //     const trigger = createStepperTrigger(true);
+
+  //     return () => trigger.kill();
+  //   });
+
+  //   return () => {
+  //     mm.revert();
+  //   };
+  // }, [stepperSteps.length]);
   useEffect(() => {
     if (!sectionRef.current || stepperSteps.length <= 1) return;
 
-    const mm = gsap.matchMedia();
+    let mm: any;
 
-    const createStepperTrigger = (pin: boolean) => {
-      const totalSteps = stepperSteps.length;
-      let currentIndex = 0;
+    (async () => {
+      const gsap = (await import("gsap")).default;
+      const ScrollTrigger = (await import("gsap/ScrollTrigger")).default;
 
-      return ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "bottom bottom",
-        // pin,
-        scrub: true,
-        invalidateOnRefresh: true,
+      gsap.registerPlugin(ScrollTrigger);
 
-        onUpdate: (self) => {
-          const progress = self.progress;
+      mm = gsap.matchMedia();
 
-          const timelineWidth = timelineRef.current?.offsetWidth || 0;
+      const createStepperTrigger = (pin: boolean) => {
+        return ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: true,
+          invalidateOnRefresh: true,
 
-          gsap.set(progressRef.current, {
-            width: `${progress * 100}%`,
-          });
+          onUpdate: (self) => {
+            const progress = self.progress;
+            const timelineWidth = timelineRef.current?.offsetWidth || 0;
 
-          gsap.set(arrowRef.current, {
-            x: progress * (timelineWidth - 40),
-          });
+            gsap.set(progressRef.current, {
+              width: `${progress * 100}%`,
+            });
 
-          const index = Math.min(
-            stepperSteps.length - 1,
-            Math.floor(progress * stepperSteps.length),
-          );
+            gsap.set(arrowRef.current, {
+              x: progress * (timelineWidth - 40),
+            });
 
-          setActive(index);
-        },
+            const index = Math.min(
+              stepperSteps.length - 1,
+              Math.floor(progress * stepperSteps.length),
+            );
+
+            setActive(index);
+          },
+        });
+      };
+
+      mm.add("(max-width: 767px)", () => {
+        const trigger = createStepperTrigger(false);
+        return () => trigger.kill();
       });
-    };
 
-    // Mobile
-    mm.add("(max-width: 767px)", () => {
-      const trigger = createStepperTrigger(false);
-
-      return () => trigger.kill();
-    });
-
-    // Tablet + Desktop
-    mm.add("(min-width: 768px)", () => {
-      const trigger = createStepperTrigger(true);
-
-      return () => trigger.kill();
-    });
+      mm.add("(min-width: 768px)", () => {
+        const trigger = createStepperTrigger(true);
+        return () => trigger.kill();
+      });
+    })();
 
     return () => {
-      mm.revert();
+      mm?.revert();
     };
   }, [stepperSteps.length]);
   // Safety check: if no steps, show a message

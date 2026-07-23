@@ -10,15 +10,17 @@ import PricingHeroSection from "@/components/pricing/pricingHeroSection.astro";
 import PriceTabSection from "@/components/pricing/pricingTabSection.astro";
 import * as askedQuestion from "@/content/pricing/pricing-FAQ-content.md";
 import * as benefitsData from "@/content/pricing/pricing-benifit-content.md";
+const { frontmatter: faq } = askedQuestion;
+const { frontmatter: benefits } = benefitsData;
 ---
 
 <Layout title="PRICING | PANZE">
   <PricingHeroSection />
   <PriceTabSection />
-  <FrequentlyAskedFAQ askedQuestion={askedQuestion} />
+  <FrequentlyAskedFAQ askedQuestion={faq} />
   <BrandSection />
   <WhyChooseUs />
-  <Benefits data={benefitsData} />
-  <ContactSection />
-  <Footer />
+  <Benefits benifits={benefits} />
+  <!-- <ContactSection />
+  <Footer /> -->
 </Layout>

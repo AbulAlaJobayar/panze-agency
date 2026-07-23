@@ -20,13 +20,14 @@ import * as ourProcess from "@/content/ourprocess-content.md";
 import * as data from "@/content/home/number-content.md";
 import * as askedQuestion from "@/content/frequentlyAsked-content.md";
 import * as sectiondata from "@/content/whatwedo/mainContent/whatwedo-content.md";
+const { frontmatter: faq } = askedQuestion;
 const services = Object.values(
   import.meta.glob("@/content/whatwedo/*.md", { eager: true }),
 ).sort((a: any, b: any) => a.frontmatter.order - b.frontmatter.order);
 ---
 
 <Layout title="HOME | PANZE">
-  <HeroSection hero={hero} />
+  <!-- <HeroSection hero={hero} /> -->
   <Blackbox />
   <Number data={data} />
   <AboutSection />
@@ -36,7 +37,7 @@ const services = Object.values(
   <WhatWeDo sectiondata={sectiondata} services={services} />
   <Industry />
   <Review />
-  <FrequentlyAskedFAQ askedQuestion={askedQuestion} />
+  <FrequentlyAskedFAQ askedQuestion={faq} />
   <TeamSection />
   <BlogSection />
   <ContactSection />

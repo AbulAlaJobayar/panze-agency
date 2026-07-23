@@ -1,0 +1,192 @@
+---
+import secIcon from "@/assets/sectionIcon/whatWeDo.svg"
+import TabSection from "./ServiceTabSection";
+import LinkButton from "@/components/ui/LinkButton.astro";
+const { services } = Astro.props;
+const { title,subtitle,steps } = services
+console.log(services,"🤦‍♀️🤦‍♀️🤦‍♀️")
+---
+
+<section class="services-section ">
+  <!-- dextop -->
+  <div class="hidden lg:block bg-[#1E1212] py-26">
+    <div class=" mx-8 mb-16 grid grid-cols-12 items-start">
+      <div class=" w-66 col-span-3 flex items-center gap-2">
+        <img
+          src={secIcon.src}
+          alt="number section"
+          class="w-4 h-4 md:w-auto md:h-auto"
+        />
+        <h6
+          class=" font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+        >
+          {title}
+        </h6>
+      </div>
+      <p
+        class=" px-4 col-span-6 font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-white"
+      >
+        {subtitle}
+      </p>
+    </div>
+    <TabSection
+      client:load
+      services={steps}  
+    />
+  </div>
+  <!-- small screen -->
+  <div class="block lg:hidden bg-[#1E1212] py-20">
+    <!-- top side  -->
+    <div class="section-header mx-8 mb-16 flex flex-col gap-7">
+      <div class="section-badge w-66 col-span-3 flex items-center gap-2">
+        <img          
+        src={secIcon.src}
+          alt={title}
+  
+          class="w-3 h-3 md:w-auto md:h-auto"
+        />
+        <h6
+          class="section-text font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+        >
+          {title}
+        </h6>
+      </div>
+      <p
+        class="section-title col-span-6 font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-white"
+      >
+        {subtitle}
+      </p>
+    </div>
+<!-- bottom side -->
+{
+  steps.map((service: any, index: number) => (
+    <div class="mx-4 sm:mx-6 md:mx-8">
+      <div
+        class:list={[
+          "service-card border border-white/10 bg-[#1E1212] p-6 sm:p-8 md:p-10",
+          index !== 0 && "border-t-0",
+        ]}
+      >
+        <div class="grid gap-10 md:gap-10 md:grid-cols-2 items-center">
+          <!-- Image -->
+          <div class="relative overflow-hidden   h-70 sm:h-80 md:h-95 w-full mb-3">
+            <img
+              src={service.image}
+              alt={service.title}
+              class="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 hover:scale-105"
+            />
+          </div>
+
+          <!-- Content -->
+          <div>
+            <h3
+              class="font-commissioner font-semibold leading-[110%] tracking-[-4%] text-[20px] uppercase mb-4 text-white"
+            >
+              {service.title}
+            </h3>
+
+            <p
+              class="font-dm-mono font-normal text-[14px]  leading-[150%] tracking-[-4%] mb-8 text-white/80"
+            >
+              {service.description}
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <LinkButton
+            class="w-full"
+            href={"/contact"}
+            text={"Schedule a call"}
+
+          />
+        </div>
+      </div>
+    </div>
+  ))
+}
+  </div>
+</section>
+
+<script>
+    import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener("astro:page-load", () => {
+    ScrollTrigger.refresh();
+    // ================= Header =================
+
+    const headerTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".services-section",
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    headerTl
+      .from(".section-badge", {
+        opacity: 0,
+        x: -60,
+        duration: 0.8,
+        ease: "power3.out",
+      })
+      .from(
+        ".section-title",
+        {
+          opacity: 0,
+          y: 40,
+          duration: 1,
+          ease: "power4.out",
+        },
+        "-=0.4",
+      );
+
+    // ================= Cards =================
+
+    gsap.utils.toArray(".service-card").forEach((card:any) => {
+      const image = card.querySelector("img");
+
+      const content = card.querySelectorAll(
+        "h3, p, li"
+      );
+
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      })
+      .from(card, {
+        opacity: 0,
+        y: 100,
+        duration: 0.8,
+        ease: "power4.out",
+      })
+      .from(
+        image,
+        {
+          scale: 1.15,
+          opacity: 0,
+          duration: 1,
+          ease: "power4.out",
+        },
+        "-=0.5",
+      )
+      .from(
+        content,
+        {
+          opacity: 0,
+          y: 25,
+          stagger: 0.08,
+          duration: 0.5,
+          ease: "power2.out",
+        },
+        "-=0.6",
+      );
+    });
+  });
+</script>

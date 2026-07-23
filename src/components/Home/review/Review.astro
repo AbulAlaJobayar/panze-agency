@@ -23,12 +23,12 @@ const reviews = blogs.map((blog: any) => ({
 }));
 ---
 
-<section id="review" class="bg-[#1E1212]">
+<section id="review" class="bg-[#1E1212] w-full overflow-hidden">
   <div
-    class="relative bg-cover bg-center bg-no-repeat"
+    class="bg-cover bg-center bg-no-repeat"
     style={`background-image:url(${background.src})`}
   >
-    <div class="mx-auto px-8">
+    <div class="mx-auto max-w-300 px-8">
       <!-- Top Right -->
       <div class="animate-button flex justify-end pt-8">
         <div class="flex items-center gap-8 bg-white p-5">
@@ -37,10 +37,10 @@ const reviews = blogs.map((blog: any) => ({
         </div>
       </div>
 
-      <div class="pb-40 lg:pb-50 grid grid-cols-1 lg:grid-cols-12 items-center">
+      <div class="pb-40 lg:pb-50 flex flex-row items-center">
         <!-- Left -->
         <div
-          class="hidden col-span-3 lg:flex h-full flex-col justify-evenly gap-73 text-white"
+          class="hidden lg:w-[25%] lg:flex h-full flex-col justify-evenly gap-73 text-white"
         >
           <h2
             class="left-card text-center font-commissioner font-normal text-[24px] leading-[110%] tracking-[-4%]"
@@ -56,8 +56,8 @@ const reviews = blogs.map((blog: any) => ({
 
         <!-- Carousel -->
 
-        <div class="card col-span-6 pt-4.5">
-          <Carousel class="w-full">
+        <div class="card w-full max-w-150 pt-4.5">
+          <Carousel class="w-full overflow-hidden">
             <CarouselContent>
               {
                 reviews.map((review: any) => (
@@ -100,10 +100,10 @@ const reviews = blogs.map((blog: any) => ({
 
         <!-- Right -->
         <div
-          class="hidden col-span-3 w-[25%] lg:flex h-full flex-col justify-evenly gap-54.25 text-right text-white pl-19.25"
+          class="hidden lg:w-[25%] lg:flex h-full flex-col justify-evenly gap-54.25 text-right text-white "
         >
           <h2
-            class="left-card -ml-14 text-center font-commissioner font-normal text-[32px] leading-[110%] tracking-[-4%]"
+            class="left-card -ml-34 text-center font-commissioner font-normal text-[32px] leading-[110%] tracking-[-4%]"
           >
             #zalon
           </h2>
@@ -130,7 +130,7 @@ const reviews = blogs.map((blog: any) => ({
     },
   });
   tl.from(".animate-button", {
-    x: 200,
+    x: 120,
     opacity: 0,
     duration: 1,
     ease: "power4.out",

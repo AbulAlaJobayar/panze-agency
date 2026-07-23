@@ -42,3 +42,58 @@ const { class: className, faqs } = Astro.props;
     </Accordion>
   </div>
 </div>
+<script>
+  import gsap from "gsap";
+
+    const accordionItems = document.querySelectorAll(".faq-item");
+
+    accordionItems.forEach((item) => {
+      const trigger = item.querySelector("[data-state]");
+      const image = item.querySelector(".faq-image");
+      const details = item.querySelector(".faq-details");
+
+      const animateOpen = () => {
+        gsap.fromTo(
+          image,
+          {
+            scale: 1.1,
+            opacity: 0,
+            filter: "blur(12px)",
+          },
+          {
+            scale: 1,
+            opacity: 1,
+            filter: "blur(0px)",
+            duration: 0.8,
+            ease: "power4.out",
+          },
+        );
+
+        gsap.fromTo(
+          details,
+          {
+            y: 30,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            delay: 0.1,
+            ease: "power3.out",
+          },
+        );
+      };
+
+      const observer = new MutationObserver(() => {
+        if (item.getAttribute("data-state") === "open") {
+          animateOpen();
+        }
+      });
+
+      observer.observe(item, {
+        attributes: true,
+        attributeFilter: ["data-state"],
+      });
+    });
+</script>

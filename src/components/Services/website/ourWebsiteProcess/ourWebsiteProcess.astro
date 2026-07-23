@@ -5,8 +5,8 @@ const { ourProcess } = Astro.props;
 const { title, subtitle, description, steps } = ourProcess;
 ---
 
-<div id="ourWebsiteProcessServices" class="my-26">
-  <div class="flex flex-col lg:flex-row border-b border-white/20 px-8 pt-26">
+<div id="ourWebsiteProcessServices" class="my-26 px-8">
+  <div class="flex flex-col lg:flex-row border-b border-white/20 pt-26">
     <!-- Left: Icon + Title -->
     <div
       class="w-full lg:w-[20%] border-b lg:border-b-0 lg:border-r border-white/20"
@@ -62,12 +62,12 @@ const { title, subtitle, description, steps } = ourProcess;
       scrollTrigger: {
         trigger: "#ourWebsiteProcessServices",
         start: "top 75%",
-        once: true,
+        toggleActions: "play none none reverse",
       },
     });
 
     tl.from(".ourWebsiteProcessServicesTitle", {
-      x: -40,
+      x: -80,
       opacity: 0,
       duration: 0.8,
       ease: "power3.out",
@@ -75,7 +75,7 @@ const { title, subtitle, description, steps } = ourProcess;
       .from(
         ".ourWebsiteProcessServicesSubtitle",
         {
-          y: 40,
+          y: 80,
           opacity: 0,
           duration: 0.9,
           ease: "power3.out",
@@ -85,7 +85,7 @@ const { title, subtitle, description, steps } = ourProcess;
       .from(
         ".ourWebsiteProcessServicesDescription",
         {
-          x: 40,
+          x: 80,
           opacity: 0,
           duration: 0.8,
           ease: "power3.out",

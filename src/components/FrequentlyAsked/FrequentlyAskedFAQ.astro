@@ -5,8 +5,7 @@ import faqicon from "@/assets/sectionIcon/faq.svg";
 const whatsappUrl = import.meta.env.WHATSAPP_URL;
 const { askedQuestion } = Astro.props;
 
-const { title, subtitle, description, buttonText, faqs } =
-  askedQuestion.frontmatter;
+const { title, subtitle, description, buttonText, faqs } =askedQuestion;
 ---
 
 <section id="faq" class="overflow-hidden mt-10 lg:mt-26">
