@@ -6,7 +6,8 @@ plans:
         badge: "1 Seat open this month"
         price: "$500"
         popular: false
-        description: "Best for: Solo founders, early-stage startups, and small local businesses."
+        description: "Solo founders, early-stage startups, and small local businesses."
+        link: "/"
         features:
           - "2 weeks turnaround"
           - "Up to 5 Pages"
@@ -24,7 +25,8 @@ plans:
         badge: "2 Seats open this month"
         price: "$2,500"
         popular: true
-        description: "Best for: Funded startups and growing SBs who need brand-aligned marketing site."
+        description: "Funded startups and growing SBs who need brand-aligned marketing site."
+        link: "/"
         features:
           - "4-5 weeks turnaround"
           - "Up to 15 Pages"
@@ -44,7 +46,8 @@ plans:
         badge: "4 Seats open this month"
         price: "$8,000"
         popular: false
-        description: "Best for: Established businesses with high-traffic websites."
+        description: "Established businesses with high-traffic websites."
+        link: "/"
         features:
           - "8+ weeks turnaround"
           - "Unlimited pages (scoped together)"
@@ -65,7 +68,8 @@ plans:
         badge: "1 Seat open this month"
         price: "$1,500"
         popular: false
-        description: "Best for: Solo founders, early-stage startups, and small local businesses."
+        description: "Solo founders, early-stage startups, and small local businesses."
+        link: "/"
         features:
           - "2 weeks turnaround"
           - "Up to 5 Pages"
@@ -83,7 +87,8 @@ plans:
         badge: "2 Seats open this month"
         price: "$8,500"
         popular: true
-        description: "Best for: Funded startups and growing SBs who need brand-aligned marketing site."
+        description: "Funded startups and growing SBs who need brand-aligned marketing site."
+        link: "/"
         features:
           - "4-5 weeks turnaround"
           - "Up to 15 Pages"
@@ -103,7 +108,8 @@ plans:
         badge: "4 Seats open this month"
         price: "$38,000"
         popular: false
-        description: "Best for: Established businesses with high-traffic websites."
+        description: "Established businesses with high-traffic websites."
+        link: "/"
         features:
           - "8+ weeks turnaround"
           - "Unlimited pages (scoped together)"
@@ -124,7 +130,8 @@ plans:
         badge: "1 Seat open this month"
         price: "$3,054"
         popular: false
-        description: "Best for: Solo founders, early-stage startups, and small local businesses."
+        description: "Solo founders, early-stage startups, and small local businesses."
+        link: "/"
         features:
           - "2 weeks turnaround"
           - "Up to 5 Pages"
@@ -142,7 +149,8 @@ plans:
         badge: "2 Seats open this month"
         price: "$4,506"
         popular: true
-        description: "Best for: Funded startups and growing SBs who need brand-aligned marketing site."
+        description: "Funded startups and growing SBs who need brand-aligned marketing site."
+        link: "/"
         features:
           - "4-5 weeks turnaround"
           - "Up to 15 Pages"
@@ -162,7 +170,8 @@ plans:
         badge: "4 Seats open this month"
         price: "$9,000"
         popular: false
-        description: "Best for: Established businesses with high-traffic websites."
+        description: "Established businesses with high-traffic websites."
+        link: "/"
         features:
           - "8+ weeks turnaround"
           - "Unlimited pages (scoped together)"
@@ -183,7 +192,8 @@ plans:
         badge: "1 Seat open this month"
         price: "$3,406"
         popular: false
-        description: "Best for: Solo founders, early-stage startups, and small local businesses."
+        description: "Solo founders, early-stage startups, and small local businesses."
+        link: "/"
         features:
           - "2 weeks turnaround"
           - "Logo Design"
@@ -201,7 +211,8 @@ plans:
         badge: "2 Seats open this month"
         price: "$7,500"
         popular: true
-        description: "Best for: Funded startups and growing SBs who need brand-aligned marketing site."
+        description: "Funded startups and growing SBs who need brand-aligned marketing site."
+        link: "/"
         features:
           - "4-5 weeks turnaround"
           - "Full Brand Identity"
@@ -221,7 +232,8 @@ plans:
         badge: "4 Seats open this month"
         price: "$18,000"
         popular: false
-        description: "Best for: Established businesses with high-traffic websites."
+        description: "Established businesses with high-traffic websites."
+        link: "/"
         features:
           - "8+ weeks turnaround"
           - "Unlimited Revisions"
@@ -243,7 +255,8 @@ plans:
         badge: "1 Seat open this month"
         price: "$2,500"
         popular: false
-        description: "Best for: Solo founders, early-stage startups, and small local businesses."
+        description: "Solo founders, early-stage startups, and small local businesses."
+        link: "/"
         features:
           - "2 weeks turnaround"
           - "Up to 5 Pages"
@@ -262,7 +275,8 @@ plans:
         badge: "2 Seats open this month"
         price: "$6,500"
         popular: true
-        description: "Best for: Funded startups and growing SBs who need brand-aligned marketing site."
+        description: "Funded startups and growing SBs who need brand-aligned marketing site."
+        link: "/"
         features:
           - "4-5 weeks turnaround"
           - "Up to 15 Pages"
@@ -283,7 +297,8 @@ plans:
         badge: "4 Seats open this month"
         price: "$19,045"
         popular: false
-        description: "Best for: Established businesses with high-traffic websites."
+        description: "Established businesses with high-traffic websites."
+        link: "/"
         features:
           - "8+ weeks turnaround"
           - "Unlimited pages (scoped together)"
@@ -305,7 +320,8 @@ plans:
         badge: "1 Seat open this month"
         price: "$2,349"
         popular: false
-        description: "Best for: Solo founders, early-stage startups, and small local businesses."
+        description: "Solo founders, early-stage startups, and small local businesses."
+        link: "/"
         features:
           - "2 weeks turnaround"
           - "Up to 5 Pages"
@@ -324,7 +340,8 @@ plans:
         badge: "2 Seats open this month"
         price: "$7,500"
         popular: true
-        description: "Best for: Funded startups and growing SBs who need brand-aligned marketing site."
+        description: "Funded startups and growing SBs who need brand-aligned marketing site."
+        link: "/"
         features:
           - "4-5 weeks turnaround"
           - "Up to 15 Pages"
@@ -345,7 +362,8 @@ plans:
         badge: "4 Seats open this month"
         price: "$18,000"
         popular: false
-        description: "Best for: Established businesses with high-traffic websites."
+        description: "Established businesses with high-traffic websites."
+        link: "/"
         features:
           - "8+ weeks turnaround"
           - "Unlimited pages (scoped together)"
@@ -367,7 +385,8 @@ plans:
         badge: "1 Seat open this month"
         price: "$2,500"
         popular: false
-        description: "Best for: Solo founders, early-stage startups, and small local businesses."
+        description: "Solo founders, early-stage startups, and small local businesses."
+        link: "/"
         features:
           - "2 weeks turnaround"
           - "Up to 5 Pages"
@@ -386,7 +405,8 @@ plans:
         badge: "2 Seats open this month"
         price: "$7,500"
         popular: true
-        description: "Best for: Funded startups and growing SBs who need brand-aligned marketing site."
+        description: "Funded startups and growing SBs who need brand-aligned marketing site."
+        link: "/"
         features:
           - "4-5 weeks turnaround"
           - "Up to 15 Pages"
@@ -407,7 +427,8 @@ plans:
         badge: "4 Seats open this month"
         price: "$18,000"
         popular: false
-        description: "Best for: Established businesses with high-traffic websites."
+        description: "Established businesses with high-traffic websites."
+        link: "/"
         features:
           - "8+ weeks turnaround"
           - "Unlimited pages (scoped together)"
@@ -429,7 +450,8 @@ plans:
         badge: "1 Seat open this month"
         price: "$2,500"
         popular: false
-        description: "Best for: Solo founders, early-stage startups, and small local businesses."
+        description: "Solo founders, early-stage startups, and small local businesses."
+        link: "/"
         features:
           - "2 weeks turnaround"
           - "Logo Design"
@@ -448,7 +470,8 @@ plans:
         badge: "2 Seats open this month"
         price: "$7,500"
         popular: true
-        description: "Best for: Funded startups and growing SBs who need brand-aligned marketing site."
+        description: "Funded startups and growing SBs who need brand-aligned marketing site."
+        link: "/"
         features:
           - "4-5 weeks turnaround"
           - "Full Brand Identity"
@@ -469,7 +492,8 @@ plans:
         badge: "4 Seats open this month"
         price: "$18,000"
         popular: false
-        description: "Best for: Established businesses with high-traffic websites."
+        description: "Established businesses with high-traffic websites."
+        link: "/"
         features:
           - "8+ weeks turnaround"
           - "Unlimited Revisions"

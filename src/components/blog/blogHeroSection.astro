@@ -1,5 +1,5 @@
 ---
-import NavigationMenuLink from "../ui/navigation-menu/navigation-menu-link.astro";
+import LinkButton from "../ui/LinkButton.astro";
 import * as blogData from "@/content/blogs/blog-hero-content.md";
 const blogs = Object.values(
   import.meta.glob("@/content/blogs/blog/*.{md,mdx}", {
@@ -12,54 +12,37 @@ const latestBlog = blogs[0] as any;
 const { title, description, button } = blogData.frontmatter;
 ---
 
-<section class="border-b">
+<section id="blog-hero-section" class="border-b">
   <div class="flex flex-col lg:flex-row">
     <!-- Left -->
-    <div class="w-full lg:w-100 shrink-0 px-8 lg:px-10 py-10 flex flex-col">
+    <div class="w-full lg:w-100 shrink-0 px-8 py-13 flex flex-col">
       <h2
-        class="font-commissioner text-[28px] font-semibold uppercase leading-[110%] tracking-[-0.04em] text-primary lg:mt-10"
+        class="blog-hero-title pt-12.25 font-commissioner text-[28px] font-semibold uppercase leading-[110%] tracking-[-0.04em] text-primary"
       >
         {title}
       </h2>
 
       <p
-        class="mt-16 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-0.04em] text-[#301C1B] max-w-72.5"
+        class="blog-hero-description pt-14 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-0.04em] text-[#301C1B] max-w-72.5"
       >
         {description}
       </p>
 
-      <div class="mt-auto pt-20">
-        <NavigationMenuLink
-          href={button.link}
-          class="inline-flex rounded-none items-center gap-2 bg-primary px-6 py-4 text-white"
-        >
-          <span
-            class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-0.04em] text-white"
-            >{button.text}</span
-          >
-
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M7 17L17 7M17 7H9M17 7V15"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
-        </NavigationMenuLink>
+      <div class="mt-auto blog-hero-cta">
+        <LinkButton href={button.link} text={button.text} class="mt-67.25" />
       </div>
     </div>
 
     <!-- Right -->
-    <div class="flex-1 bg-[#301C1B] px-8 lg:px-12 py-10">
+    <div class="blog-right flex-1 bg-[#301C1B] p-13">
       <h3
-        class="mb-6 font-commissioner text-[24px] font-semibold leading-[110%] tracking-[-0.04em] uppercase text-white"
+        class="blog-hero-label mb-6 font-commissioner text-[24px] font-semibold leading-[110%] tracking-[-0.04em] uppercase text-white"
       >
         Latest Blog
       </h3>
 
       <a href={`/blog/${latestBlog.frontmatter.slug}`} class="group block">
-        <div class="overflow-hidden">
+        <div class="blog-hero-image overflow-hidden">
           <img
             src={latestBlog.frontmatter.image}
             alt={latestBlog.frontmatter.thumbnailTitle}
@@ -67,9 +50,9 @@ const { title, description, button } = blogData.frontmatter;
           />
         </div>
 
-        <div class="mt-6">
+        <div class="mt-5">
           <p
-            class="font-dm-mono font-normal leading-[150%] tracking-[-4%] text-[14px] text-primary"
+            class="blog-hero-date font-dm-mono font-normal leading-[150%] tracking-[-4%] text-[14px] text-primary"
           >
             {latestBlog.frontmatter.date}
           </p>
@@ -82,26 +65,13 @@ const { title, description, button } = blogData.frontmatter;
               gap-6"
           >
             <h4
-              class="max-w-162.5
-                font-commissioner
-                text-[20px]
-                font-semibold
-                leading-[110%] tracking-[-4%]
-                text-white"
+              class="blog-hero-post-title max-w-162.5 font-commissioner text-[20px] font-semibold leading-[110%] tracking-[-4%] text-white"
             >
               {latestBlog.frontmatter.thumbnailTitle}
             </h4>
 
             <span
-              class="flex
-                items-center
-                gap-2
-                whitespace-nowrap
-                font-commissioner
-                text-primary
-                text-[14px]
-                font-normal
-                leading-[150%] tracking-[-4%]"
+              class="blog-hero-read-more flex items-center gap-2 whitespace-nowrap font-commissioner text-primary text-[14px] font-normal leading-[150%] tracking-[-4%] hover:text-white"
             >
               Read the Blog
 
@@ -120,3 +90,133 @@ const { title, description, button } = blogData.frontmatter;
     </div>
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#blog-hero-section",
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+    },
+  });
+
+  tl.from(".blog-hero-title", {
+    y: 100,
+    opacity: 0,
+    duration: 1.2,
+    ease: "expo.out",
+  })
+
+    .from(
+      ".blog-hero-description",
+      {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      },
+      "-=0.8",
+    )
+
+    .from(
+      ".blog-hero-cta",
+      {
+        y: 30,
+        opacity: 0,
+        scale: 0.9,
+        duration: 0.8,
+        ease: "back.out(1.7)",
+      },
+      "-=0.4",
+    )
+
+    .from(
+      ".blog-hero",
+      {
+        x: 100,
+        opacity: 0,
+        duration: 1,
+        ease: "expo.out",
+      },
+      "-=1",
+    )
+
+    .from(
+      ".blog-hero-label",
+      {
+        y: 25,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power3.out",
+      },
+      "-=0.7",
+    )
+
+    .from(
+      ".blog-hero-image",
+      {
+        scale: 0.9,
+        opacity: 0,
+        duration: 1,
+        ease: "expo.out",
+      },
+      "-=0.6",
+    )
+
+    .from(
+      ".blog-hero-date",
+      {
+        y: 15,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+      },
+      "-=0.5",
+    )
+
+    .from(
+      ".blog-hero-post-title",
+      {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      },
+      "-=0.4",
+    )
+
+    .from(
+      ".blog-hero-read-more",
+      {
+        x: 20,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power3.out",
+      },
+      "-=0.5",
+    );
+
+
+  // Read more hover
+  document.querySelectorAll(".blog-read-more").forEach((item) => {
+    item.addEventListener("mouseenter", () => {
+      gsap.to(item.querySelector("svg"), {
+        x: 5,
+        y: -2,
+        duration: 0.3,
+      });
+    });
+
+    item.addEventListener("mouseleave", () => {
+      gsap.to(item.querySelector("svg"), {
+        x: 0,
+        y: 0,
+        duration: 0.3,
+      });
+    });
+  });
+</script>

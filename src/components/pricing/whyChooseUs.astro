@@ -6,21 +6,18 @@ const { title, subtitle, description, image, leftFeatures, rightFeatures } =
   data.frontmatter;
 ---
 
-<section class="bg-[#E8704E] text-white py-20">
+<section id="why-choose-section" class="bg-[#E8704E] text-white py-26 mb-26">
   <div class="mx-auto">
     <!-- ================= Header ================= -->
     <div
-      class="grid border-white/20
-             px-6 pb-16
-             lg:grid-cols-[180px_1fr_420px]
-             lg:px-10"
+      class="grid border-white/20px-6 pb-16 lg:grid-cols-[180px_480px_1fr] px-8"
     >
       <!-- Left -->
       <div>
-        <span class="flex items-center gap-2">
-          <Icon name="sparkles" class="size-4" />
+        <span class="why-badge flex items-center gap-2">
+          <Icon name="sparkles" class="icon size-4" />
           <h1
-            class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
+            class="why-title font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
           >
             {title}
           </h1>
@@ -30,22 +27,16 @@ const { title, subtitle, description, image, leftFeatures, rightFeatures } =
       <!-- Center -->
       <div class="mt-8 lg:mt-0">
         <h2
-          class="max-w-120
-                 font-commissioner
-                 text-[24px]
-                 font-semibold
-                 uppercase
-                 leading-[110%] tracking-[-4%]"
+          class="why-subtitle font-commissioner text-[24px] font-semibold uppercase leading-[110%] tracking-[-4%]"
         >
           {subtitle}
         </h2>
       </div>
 
       <!-- Right -->
-      <div class="mt-8 lg:mt-0 lg:justify-self-end">
+      <div class="mt-10 lg:mt-0 lg:justify-self-end lg:ml-4">
         <p
-          class="max-w-105
-                 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
+          class="why-description font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
         >
           {description}
         </p>
@@ -54,18 +45,15 @@ const { title, subtitle, description, image, leftFeatures, rightFeatures } =
 
     <!-- ================= Bottom ================= -->
 
-    <div
-      class="grid
-             lg:grid-cols-[1fr_380px_1fr] border-y border-white/20"
-    >
+    <div class="grid lg:grid-cols-[1fr_380px_1fr] border-white/20 px-8">
       <!-- LEFT FEATURES -->
 
-      <div class="border-r border-white/20">
+      <div class="why-left-item border border-white/20">
         {
           leftFeatures.map((item: any) => (
-            <div class="border-b border-white/20 p-8 lg:p-10 last:border-b-0">
+            <div class="border-b border-white/20 p-8  last:border-b-0">
               <h3
-                class="mb-3 font-commissioner
+                class="mb-4 font-commissioner
                  text-[16px]
                  font-semibold
                  uppercase
@@ -74,7 +62,7 @@ const { title, subtitle, description, image, leftFeatures, rightFeatures } =
                 {item.title}
               </h3>
 
-              <p class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white">
+              <p class=" font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white">
                 {item.description}
               </p>
             </div>
@@ -84,18 +72,22 @@ const { title, subtitle, description, image, leftFeatures, rightFeatures } =
 
       <!-- IMAGE -->
 
-      <div>
-        <img src={image} alt="Why Choose Us" class="h-151 w-95 object-cover" />
+      <div class="mx-auto">
+        <img
+          src={image}
+          alt="Why Choose Us"
+          class="why-image h-151 w-95 object-cover"
+        />
       </div>
 
       <!-- RIGHT FEATURES -->
 
-      <div class="border-l border-white/20">
+      <div class="why-right-item border border-white/20">
         {
           rightFeatures.map((item: any) => (
-            <div class="border-b border-white/20 p-8 lg:p-10 last:border-b-0">
+            <div class="border-b border-white/20 p-8  last:border-b-0">
               <h3
-                class="mb-3    font-commissioner
+                class="mb-4 font-commissioner
                  text-[16px]
                  font-semibold
                  uppercase
@@ -114,3 +106,98 @@ const { title, subtitle, description, image, leftFeatures, rightFeatures } =
     </div>
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#why-choose-section",
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+    },
+  });
+  tl.from(".icon", {
+    y: 30,
+    opacity: 0,
+    rotate: 180,
+    scale: 0,
+    duration: 0.8,
+    ease: "back.out(2)",
+  });
+  tl.from(".why-title", {
+    y: 40,
+    opacity: 0,
+    duration: 0.8,
+    ease: "power3.out",
+  })
+    .from(
+      ".why-subtitle",
+      {
+        y: 100,
+        opacity: 0,
+        duration: 1.2,
+        ease: "expo.out",
+      },
+      "-=0.4",
+    )
+
+    .from(
+      ".why-description",
+      {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      },
+      "-=0.8",
+    )
+
+    .from(
+      ".why-image",
+      {
+        scale: 0.8,
+        opacity: 0,
+        rotate: 3,
+        duration: 1.1,
+        ease: "expo.out",
+      },
+      "-=0.8",
+    )
+
+    .from(
+      ".why-left-item",
+      {
+        x: -80,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.8,
+        ease: "power3.out",
+      },
+      "-=0.8",
+    )
+
+    .from(
+      ".why-right-item",
+      {
+        x: 80,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.8,
+        ease: "power3.out",
+      },
+      "-=1",
+    );
+
+  // Floating image
+  gsap.to(".why-image img", {
+    y: -10,
+    duration: 3,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
+  });
+
+</script>

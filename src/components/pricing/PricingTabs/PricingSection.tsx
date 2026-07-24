@@ -20,9 +20,9 @@ export default function PricingSection({ data }: any) {
     { key: "branding", label: "Branding" },
   ];
   return (
-    <section className="pt-20">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="mb-10">
+    <section className="pt-26">
+      <div className="mx-auto  px-8">
+        <div className="mb-16">
           <PricingToggle
             value={mode}
             onChange={(value) => {
@@ -48,10 +48,15 @@ export default function PricingSection({ data }: any) {
               duration: 0.45,
               ease: "easeOut",
             }}
-            className="grid grid-cols-1 lg:grid-cols-3  items-stretch"
+            className="mt-12 grid grid-cols-1 lg:grid-cols-3 items-stretch"
           >
             {plans.map((plan: any, index: number) => (
-              <PricingCard key={index} plan={plan} />
+              <PricingCard
+                key={index}
+                plan={plan}
+                index={index}
+                total={plans.length}
+              />
             ))}
           </motion.div>
         </AnimatePresence>

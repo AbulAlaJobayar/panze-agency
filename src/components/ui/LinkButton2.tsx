@@ -18,7 +18,7 @@ export default function LinkButton({
       id={id}
       href={href}
       className={`
-        relative overflow-hidden
+        relative overflow-hidden cursor-pointer
         w-36.25 h-11.25
         bg-primary text-white
         flex items-center justify-center

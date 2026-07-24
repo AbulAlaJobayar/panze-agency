@@ -1,26 +1,29 @@
 "use client";
 
-export default function PricingCard({ plan }: any) {
+import LinkButton from "@/components/ui/LinkButton2";
+
+export default function PricingCard({ plan, index, total }: any) {
   return (
     <>
-      <div className="mt-5">
+      <div className="mt-10 lg:mt-5 ">
         {plan.popular && (
-          <div className="-mt-9.25 w-34 py-2 bg-primary mx-auto text-white text-center px-4 ">
+          <div className="lg:-mt-9.25 w-34 py-2 bg-primary mx-auto text-white text-center px-4 ">
             <p className="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%]">
-              {" "}
               Most Popular
             </p>
           </div>
         )}
         <div
-          className={`border p-4 h-full flex flex-col ${
-            plan.popular ? "border-primary " : "border-black/20"
-          }`}
+          className={`p-4 h-full flex flex-col   
+             ${index === 0 ? "lg:border-y lg:border-l border lg:border-0 " : ""}
+             ${index > 0 ? "lg:border-t lg:border-b lg:border-r lg:border-l border " : ""}
+             ${index !== total - 1 ? "" : "lg:border-l-0"}
+            ${plan.popular ? "border-primary " : "border-black/20"}`}
         >
           <div className="flex flex-col flex-1">
             {/* badge */}
             <div className=" flex gap-2 items-center   bg-[#301C1B] py-1 px-3  mt-5 w-10/12">
-              <div className="border-3 w-4 h-1 bg-white border-primary"></div>
+              <div className="border-3 w-4 h-2 bg-white border-primary"></div>
               <h1 className=" font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary">
                 {plan.badge}
               </h1>
@@ -35,12 +38,7 @@ export default function PricingCard({ plan }: any) {
             </p>
             {/* price */}
 
-            <div
-              className="flex justify-between border border-x-0 py-5 mt-5 px-2 border-primary bg-[radial-gradient(circle,rgba(249,115,22,0.15)_1px,transparent_1px)]
-         bg-size-[6px_6px]
-         sm:bg-size-[8px_8px]
-         lg:bg-size-[10px_10px]"
-            >
+            <div className="flex justify-between border border-x-0 py-5 mt-5 px-2 border-primary bg-[radial-gradient(circle,rgba(249,115,22,0.15)_1px,transparent_1px)] bg-size-[6px_6px] sm:bg-size-[8px_8px]  lg:bg-size-[10px_10px]">
               <h5 className="font-dm-mono font-medium text-[14px] leading-[150%] tracking-[-4%]">
                 Starting From:
               </h5>
@@ -50,8 +48,8 @@ export default function PricingCard({ plan }: any) {
             </div>
             {/* Featcher */}
             <div className="mt-5 space-y-3">
-              {plan.features.map((item: any) => (
-                <div className="flex gap-2 items-center my-3">
+              {plan.features.map((item: any,i:any) => (
+                <div className="flex gap-2 items-center my-3" key={i}>
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +83,7 @@ export default function PricingCard({ plan }: any) {
               ))}
             </div>
             {/* Border */}
-            <div className="border my-10 border-black/20"></div>
+            <div className="border-b my-10 border-black/20"></div>
 
             {/* testimonial */}
             <div>
@@ -105,15 +103,7 @@ export default function PricingCard({ plan }: any) {
                 </div>
 
                 {/* description  */}
-                <p
-                  className="max-w-190
-                       font-dm-mono
-                       font-normal
-                       text-[14px]
-                       leading-[150%]
-                       tracking-[-4%]
-                       "
-                >
+                <p className="max-w-190 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] ">
                   {plan.testimonial.quote}
                 </p>
 
@@ -126,56 +116,22 @@ export default function PricingCard({ plan }: any) {
                         alt={plan.testimonial.author}
                         className="h-8 w-8 object-cover"
                       />
-                      <h4
-                        className="font-dm-mono
-                               text-[14px]
-                               leading-[150%]
-                               tracking-[-4%]
-                               font-medium
-                               "
-                      >
+                      <h4 className="font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-medium ">
                         {plan.testimonial.author}
                       </h4>
                     </div>
-                    <p
-                      className="mt-1
-                               font-dm-mono
-                               text-[14px]
-                               leading-[150%]
-                               tracking-[-4%]
-                               font-normal
-                               "
-                    >
+                    <p className="mt-1 font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal ">
                       {plan.testimonial.designation}
                     </p>
                   </div>
                 </div>
-                <div className="border my-5 border-black/20"></div>
+                <div className="border-b my-5 border-black/20"></div>
               </div>
             </div>
           </div>
           {/* button */}
           <div className=" mt-auto pt-8">
-            <button className=" bg-primary py-3 px-2 w-full flex  justify-center items-center gap-2">
-              <h1 className="text-white font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] ">
-                Choose plan
-              </h1>
-              <div className="size-6 text-white">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M7 17L17 7M17 7H9M17 7V15"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-            </button>
+            <LinkButton href={plan.link} text=" Choose plan" className="w-full "/>
           </div>
         </div>
       </div>

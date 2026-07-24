@@ -5,15 +5,14 @@ const blogs = Object.values(
     eager: true,
   }),
 ).map((blog: any) => blog.frontmatter);
-console.log(blogs);
 ---
 
-<section class="my-20">
+<section id="blog-list-section" class="mt-28.75 mb-26">
     <div class="grid sm:grid-cols-2">
       {
         blogs.slice(0, 2).map((blog: any) => (
-          <a href={`/blog/${blog.slug}`} class="group  border last:border-l-0">
-            <div class="overflow-hidden p-5">
+          <a href={`/blog/${blog.slug}`} class="group border last:border-l-0">
+            <div class="featured-blog overflow-hidden p-5">
               <img
                 src={blog.image}
                 alt={blog.thumbnailTitle}
@@ -22,11 +21,11 @@ console.log(blogs);
             </div>
 
             <div class="border-t">
-              <div class="px-5 py-10">
-                <h3 class="mt-2 font-dm-mono font-normal  text-[14px] leading-[150%] tracking-[-4%] text-primary  group-hover:text-primary transition">
+              <div class="px-5 pt-5 pb-7">
+                <h3 class=" mt-2 font-dm-mono font-normal  text-[14px] leading-[150%] tracking-[-4%] text-primary  group-hover:text-primary transition">
                   {blog.date}
                 </h3>
-                <h3 class="mt-2 font-commissioner font-semibold  text-[20px] leading-[110%] tracking-[-4%] text-[#301C1B]  group-hover:text-primary transition">
+                <h3 class=" mt-2 font-commissioner font-semibold  text-[20px] leading-[110%] tracking-[-4%] text-[#301C1B]  group-hover:text-primary transition">
                   {blog.thumbnailTitle}
                 </h3>
               </div>
@@ -36,16 +35,16 @@ console.log(blogs);
       }
     </div>
   
-  <div class="border  my-20">
+  <div class=" border-t  my-10">
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border border-black/10">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-x border-t border-black/10">
   {
     blogs.slice(2).map((blog: any, index: number) => (
       <a
         href={`/blog/${blog.slug}`}
         class:list={[
-          "group flex flex-col min-h-full",
+          "blog-card group flex flex-col min-h-full",
           "border-black/10",
           index % 3 !== 2 && "lg:border-r",
           "border-b",
@@ -56,7 +55,7 @@ console.log(blogs);
           <img
             src={blog.image}
             alt={blog.title}
-            class="p-5
+            class="blog-image p-3
               w-full
               aspect-4/3
               object-cover
@@ -68,7 +67,7 @@ console.log(blogs);
         </div>
 
         <!-- Content -->
-        <div class="border-t border-black/10 p-2 lg:p-5 flex-1">
+        <div class="border-t border-black/10 p-5 pb-4 flex-1">
           <p
             class="
               font-dm-mono
@@ -82,8 +81,7 @@ console.log(blogs);
           </p>
 
           <h3
-            class="
-              mt-4
+            class=" mt-2
              font-commissioner font-semibold  text-[20px] leading-[140%] tracking-[-4%] text-[#301C1B]  group-hover:text-primary transition
             "
           >
@@ -95,3 +93,53 @@ console.log(blogs);
   }
 </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#blog-list-section",
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+    },
+  });
+
+  // Featured blogs
+  tl.from(".featured-blog", {
+    y: 80,
+    opacity: 0,
+    duration: 1,
+    stagger: 0.2,
+    ease: "expo.out",
+  })
+  .from(
+      "#blog-list-section",
+      {
+        y: 120,
+        opacity:0,
+        duration: 0.8,
+        ease: "power3.out",
+      },
+      "-=0.5",
+    )
+
+    // Grid cards
+    .from(
+      ".blog-card",
+      {
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        stagger: {
+          amount: 0.6,
+          
+        },
+        ease: "power3.out",
+      },
+      "-=0.3",
+    );
+
+</script>
