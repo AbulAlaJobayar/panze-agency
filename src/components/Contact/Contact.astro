@@ -1,48 +1,47 @@
 ---
 import { Image } from "astro:assets";
 
-import * as contactData from "@/content/contact-page-content.md";
-import pattern from "@/assets/contact/bg.png";
-import meet from "@/assets/contact/meet2.png";
-
-import whatappIcon from "@/assets/contact/whatsapp.png";
+import pattern from "@/assets/background/ceobg.png";
+import meet from "@/assets/linkicon/googlemeet-white.svg";
+import whatappIcon from "@/assets/linkicon/whatsapp.svg";
 import { NavigationMenuLink } from "../ui/navigation-menu";
-import ContactForm from "./ContactForm";
-
+import PanzeContactForm from "./ContactForm";
+import LinkButton from "../ui/LinkButton.astro";
+import * as contactData from "@/content/contact-page-content.md";
 const contactUrl = import.meta.env.CONTACT_URL;
 const whatsappUrl = import.meta.env.WHATSAPP_URL;
 const { title, description, name, designation, ceoImage, meetDescription } =
   contactData.frontmatter;
 ---
 
-<section>
+<section id="contact-page-section" class="overflow-x-hidden">
   <div>
     <div
-      class="flex flex-col lg:flex-row items-stretch px-10 border-b border-black/20"
+      class=".contact-page-profile flex flex-col lg:flex-row items-stretch border-b border-black/20"
     >
       <!-- Left Side - Fixed width with white background -->
+
       <div
-        class="w-full lg:w-106 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-10 py-10 md:py-12 lg:py-12 border-black20"
+        class="w-full lg:w-116 shrink-0 border-b lg:border-b-0 lg:border-r border-black/20 pb-26"
       >
-        <div class="">
+        <div class="pl-8 pt-18 pr-20">
           <h1
-            class="font-commissioner font-semibold leading-[110%] tracking-[-4%] uppercase text-[28px] text-primary pb-10"
+            class="contact-page-title font-commissioner font-semibold leading-[110%] tracking-[-4%] uppercase text-[28px] text-primary pb-7"
           >
             {title}
           </h1>
           <p
-            class="mb-5 font-dm-mono font-normal text-[14px] leading-[110%] tracking-[-4%]"
+            class="contact-page-description mb-21.25 font-dm-mono font-normal text-[14px] leading-[110%] tracking-[-4%]"
           >
             {description}
           </p>
+        </div>
 
-          <div class="border border-primary">
+        <div class="mx-auto w-fit">
+          <div class="w-[288px] mt-16 border border-primary">
             {/* Image */}
             <div
-              class="relative overflow-hidden bg-[radial-gradient(circle,rgba(249,115,22,0.15)_1px,transparent_1px)]
-         bg-size-[12px_12px]
-         sm:bg-size-[14px_14px]
-         lg:bg-size-[16px_16px]"
+              class="contact-page-profile relative overflow-hidden"
               style={`background-image: url(${pattern.src}); background-size: cover;`}
             >
               <Image
@@ -50,64 +49,215 @@ const { title, description, name, designation, ceoImage, meetDescription } =
                 alt={name}
                 width={400}
                 height={500}
-                class="w-full max-h-80 object-cover object-top px-2 pt-2 transition-transform duration-500 hover:scale-105"
+                class="w-full max-h-80 object-cover object-top transition-transform duration-500 hover:scale-105"
               />
             </div>
 
             {/* Content */}
-            <div class="text-center px-6 py-5 border-t border-primary">
+            <div
+              class="contact-page-badge
+            pl-8 py-5 border-t border-primary"
+            >
               <h3
-                class="text-[#301C1B] font-dm-mono text-[18px] leading-[150%] font-medium tracking-[-4%] text-center"
+                class="contact-page-title text-[#301C1B] font-dm-mono text-[18px] leading-[150%] font-medium tracking-[-4%]"
               >
                 {name}
               </h3>
 
               <p
-                class="text-[#301C1B] mt-2 font-dm-mono text-[14px] leading-[150%] font-normal tracking-[-4%] text-center"
+                class="contact-page-description text-[#301C1B] font-dm-mono text-[14px] leading-[150%] font-normal tracking-[-4%]"
               >
                 {designation}
               </p>
             </div>
           </div>
           <!-- left bottom side -->
-          <div class="bg-[#301C1B] mt-10">
-            <img src={meet.src} alt="Google Meet" class="px-5 py-5" />
-            <h1 class="text-white w-70 px-5">{meetDescription}</h1>
-            <div class="px-5 flex items-center gap-2">
-              <NavigationMenuLink
-                href={contactUrl}
-                class="w-36.25 h-11.25 py-3 px-2.5 bg-primary mt-14 hover:bg-primary cursor-pointer flex items-center justify-center gap-2 rounded-none"
+          <div class="bg-[#301C1B] w-[288px]">
+            <div class="contact-page-badge px-8 pt-8 pb-3.75">
+              <img
+                src={meet.src}
+                alt="Google Meet"
+                class="contact-page-title mb-7"
+              />
+              <h1 class="text-primary contact-page-description">
+                {meetDescription}
+              </h1>
+              <div
+                class="flex items-center gap-3 mt-14"
               >
-                <span
-                  class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
-                >
-                  Shedule call
-                </span>
-                <svg
-                  class="text-white size-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M7 17L17 7M17 7H9M17 7V15"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                </svg>
-              </NavigationMenuLink>
-              <NavigationMenuLink href={whatsappUrl} class="mt-14">
-                <img src={whatappIcon.src} alt="icon" width={45} height={45} />
-              </NavigationMenuLink>
+                <LinkButton href={contactUrl} text="Shedule call" />
+                <NavigationMenuLink href={whatsappUrl} class="hover:scale-3d">
+                  <img src={whatappIcon.src} alt="icon" />
+                </NavigationMenuLink>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
       <!-- Right Side - Background image ONLY on right side -->
-      <div class="py-5 md:py-7 lg:py-10p">
-        <ContactForm client:load />
+      <div class="contact-page-form-wrapper pt-16 mt-17 lg:ml-16 pb:10 lg:pb-0">
+        <PanzeContactForm client:load />
       </div>
     </div>
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#contact-page-section",
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+    },
+  });
+
+  // Initial states
+  gsap.set(".contact-page-profile img", {
+    scale: 1.3,
+    rotate: -4,
+    filter: "blur(20px)",
+    opacity: 0,
+  });
+
+  gsap.set(".contact-page-form-wrapper", {
+    x: 120,
+    rotateY: -12,
+    opacity: 0,
+    transformPerspective: 1200,
+  });
+
+  // Cinematic sequence
+  tl.from(".contact-page-title", {
+    y: 120,
+    opacity: 0,
+    skewY: 8,
+    duration: 1.2,
+    ease: "expo.out",
+    stagger: 0.08,
+  })
+    .from(
+      ".contact-page-description",
+      {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      },
+      "-=0.8",
+    )
+    .from(
+      ".contact-page-badge",
+      {
+        x: -80,
+        opacity: 0,
+        duration: 1,
+        ease: "expo.out",
+      },
+      "-=0.6",
+    )
+    .to(
+      ".contact-page-profile img",
+      {
+        scale: 1,
+        rotate: 0,
+        filter: "blur(0px)",
+        opacity: 1,
+        duration: 2,
+        ease: "expo.out",
+      },
+      "-=1.2",
+    )
+    .to(
+      ".contact-page-form-wrapper",
+      {
+        x: 0,
+        rotateY: 0,
+        opacity: 1,
+        duration: 1.4,
+        ease: "expo.out",
+      },
+      "-=1.4",
+    );
+
+  // Luxury floating image
+  gsap.to(".contact-page-profile img", {
+    y:0,
+    duration: 4,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
+  });
+
+  // Scroll parallax
+  gsap.to(".contact-page-profile img", {
+    yPercent:0,
+    ease: "none",
+    scrollTrigger: {
+      trigger: "#contact-page-section",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: 1,
+    },
+  });
+
+  // CEO Card Hover 3D
+  const cards = document.querySelectorAll(".contact-page-profile");
+
+  cards.forEach((card) => {
+    card.addEventListener("mousemove", (e: any) => {
+      const rect = card.getBoundingClientRect();
+
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const rotateY = (x / rect.width - 0.5) * 12;
+      const rotateX = (y / rect.height - 0.5) * -12;
+
+      gsap.to(card, {
+        rotateX,
+        rotateY,
+        transformPerspective: 1200,
+        duration: 0.5,
+        ease: "power3.out",
+      });
+    });
+
+    card.addEventListener("mouseleave", () => {
+      gsap.to(card, {
+        rotateX: 0,
+        rotateY: 0,
+        duration: 0.6,
+        ease: "power3.out",
+      });
+    });
+  });
+
+
+</script>
+<style>
+  #contact-page-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-page-profile {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  .contact-page-profile img {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  .contact-page-title,
+  .contact-page-description,
+  .contact-page-badge {
+    position: relative;
+    z-index: 2;
+  }
+</style>

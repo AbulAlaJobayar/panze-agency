@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import dropdown from "@/assets/contact/dropdown.png";
-import LinkButton from "../ui/LinkButton2";
+import dropdown from "@/assets/icons/contactDownIcon.png";
+
 
 
 export default function PanzeContactForm() {

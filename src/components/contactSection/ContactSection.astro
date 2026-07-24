@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 
 import * as contactData from "@/content/contact-content.md";
-import pattern from "@/assets/contact/bg.png";
+import pattern from "@/assets/background/ceobg.png";
 import meet from "@/assets/linkicon/meet.svg";
 import contactIcon from "@/assets/sectionIcon/contact-section.svg";
 import whatappIcon from "@/assets/linkicon/whatsapp.svg";
@@ -85,10 +85,7 @@ const { name, designation, ceoImage, title, meetDescription } =
           <div class="w-[288px] mt-16 border border-white/20">
             {/* Image */}
             <div
-              class="contact-profile relative overflow-hidden bg-[radial-gradient(circle,rgba(249,115,22,0.15)_1px,transparent_1px)]
-         bg-size-[12px_12px]
-         sm:bg-size-[14px_14px]
-         lg:bg-size-[16px_16px]"
+              class="contact-profile relative overflow-hidden bg-[radial-gradient(circle,rgba(249,115,22,0.15)_1px,transparent_1px)] bg-size-[12px_12px] sm:bg-size-[14px_14px] lg:bg-size-[16px_16px]"
               style={`background-image: url(${pattern.src}); background-size: cover;`}
             >
               <Image
@@ -153,68 +150,66 @@ const { name, designation, ceoImage, title, meetDescription } =
 
   gsap.registerPlugin(ScrollTrigger);
 
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#contact-section",
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+    },
+  });
 
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#contact-section",
-        start: "top 75%",
-        toggleActions: "play none none reverse",
+  tl.from(".contact-badge", {
+    x: -60,
+    opacity: 0,
+    duration: 0.7,
+    ease: "power3.out",
+  })
+    .from(
+      ".contact-title",
+      {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power4.out",
       },
-    });
-
-    tl.from(".contact-badge", {
-      x: -60,
-      opacity: 0,
-      duration: 0.7,
-      ease: "power3.out",
-    })
-      .from(
-        ".contact-title",
-        {
-          y: 50,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power4.out",
-        },
-        "-=0.4",
-      )
-      .from(
-        ".contact-description",
-        {
-          y: 30,
-          opacity: 0,
-          duration: 0.7,
-          ease: "power2.out",
-        },
-        "-=0.4",
-      )
-      .from(
-        ".contact-profile",
-        {
-          x: -80,
-          opacity: 0,
-          scale: 0.95,
-          duration: 1,
-          ease: "power4.out",
-        },
-        "-=0.2",
-      )
-      .from(
-        ".contact-form-wrapper",
-        {
-          x: 80,
-          opacity: 0,
-          duration: 1,
-          ease: "power4.out",
-        },
-        "-=0.8",
-      );
-    gsap.to(".contact-profile img", {
-      y: -10,
-      duration: 2.5,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-    });
+      "-=0.4",
+    )
+    .from(
+      ".contact-description",
+      {
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power2.out",
+      },
+      "-=0.4",
+    )
+    .from(
+      ".contact-profile",
+      {
+        x: -80,
+        opacity: 0,
+        scale: 0.95,
+        duration: 1,
+        ease: "power4.out",
+      },
+      "-=0.2",
+    )
+    .from(
+      ".contact-form-wrapper",
+      {
+        x: 80,
+        opacity: 0,
+        duration: 1,
+        ease: "power4.out",
+      },
+      "-=0.8",
+    );
+  gsap.to(".contact-profile img", {
+    y: -10,
+    duration: 2.5,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
+  });
 </script>

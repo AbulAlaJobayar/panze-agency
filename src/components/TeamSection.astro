@@ -1,7 +1,7 @@
 ---
 import * as IndustryData from "@/content/team-content.md";
 import sectionIcon from "@/assets/sectionIcon/team.svg";
-import bg from "@/assets/team/bg.png";
+import bg from "@/assets/background/teambg.png";
 
 // Access the frontmatter data
 const { title, subtitle, description, categories } = IndustryData.frontmatter;
@@ -66,7 +66,7 @@ const { title, subtitle, description, categories } = IndustryData.frontmatter;
               <img
                 src={member.image}
                 alt={member.name}
-                class="w-full h-55 object-cover object-top px-4 pt-2 transition-transform duration-500 group-hover:scale-105"
+                class="w-full min-h-55 object-cover object-top px-4 pt-2 transition-transform duration-500 group-hover:scale-105"
               />
             </div>
 

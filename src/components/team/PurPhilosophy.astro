@@ -1,38 +1,134 @@
 ---
-import icon from "@/assets/team/purphilosophy.png";
+import icon from "@/assets/sectionIcon/purphelosofyIcon.svg";
 import * as data from "@/content/team/pur-philosophy-content.md";
-const { sectionIcon, title, subtitle, description } = data.frontmatter;
+const { title, subtitle, description } = data.frontmatter;
 ---
 
-<section class=" ">
-  <div class="mx-auto grid grid-cols-1 px-6 lg:grid-cols-2 -mb-10">
+<section id="philosophy-section">
+  <div class="mx-8 flex flex-col lg:flex-row mt-26 border-b pb-16 space-x-10">
     <!-- Left Content -->
-    <div class="max-w-90 ml-2">
-      <div class="mb-14 flex items-center gap-3">
+    <div class="max-w-100 pr-8">
+      <div class="flex items-center gap-2">
         <!-- Icon -->
-        <img src={sectionIcon} alt={title} />
+        <img src={icon.src} alt={title} class="philosophy-icon size-4" />
 
         <span
-          class="font-dm-mono text-[14px] font-normal tracking-[-4%] leading-[150%] text-[#FF6B3D]"
+          class="philosophy-label font-dm-mono text-[14px] font-normal tracking-[-4%] leading-[150%] text-[#FF6B3D]"
         >
           {title}
         </span>
       </div>
 
       <p
-        class="font-dm-mono text-[14px] font-normal tracking-[-4%] leading-[150%] text-[#5A403F]"
+        class="philosophy-description mt-13 font-dm-mono text-[14px] font-normal tracking-[-4%] leading-[150%] text-[#5A403F]"
       >
         {description}
       </p>
     </div>
 
     <!-- Right Heading -->
-    <div class="flex justify-start lg:justify-end">
+    <div class="flex justify-start lg:justify-end mt-13 lg:mt-0">
       <h2
-        class="font-commissioner text-[48px] font-semibold uppercase leading-[110%] tracking-[-4%] text-[#4A302F]"
+        class="philosophy-title font-commissioner text-[48px] font-semibold uppercase leading-[110%] tracking-[-4%] text-[#4A302F]"
       >
         {subtitle}
       </h2>
     </div>
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#philosophy-section",
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+    },
+    defaults: {
+      ease: "expo.out",
+    },
+  });
+
+  // Initial states
+  gsap.set(".philosophy-icon", {
+    scale: 0,
+    rotate: -180,
+    opacity: 0,
+  });
+
+  gsap.set(".philosophy-title", {
+    y: 120,
+    opacity: 0,
+    skewY: 8,
+  });
+
+  gsap.set(".philosophy-description", {
+    y: 40,
+    opacity: 0,
+  });
+
+  tl.to(".philosophy-icon", {
+    scale: 1,
+    rotate: 0,
+    opacity: 1,
+    duration: 0.8,
+  })
+
+    .from(
+      ".philosophy-label",
+      {
+        x: -30,
+        opacity: 0,
+        duration: 0.7,
+      },
+      "-=0.5",
+    )
+
+    .to(
+      ".philosophy-description",
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+      },
+      "-=0.3",
+    )
+
+    .to(
+      ".philosophy-title",
+      {
+        y: 0,
+        opacity: 1,
+        skewY: 0,
+        duration: 1.4,
+      },
+      "-=0.8",
+    );
+
+  // Premium parallax
+  gsap.to(".philosophy-title", {
+    yPercent: -20,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".philosophy-section",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: 1,
+    },
+  });
+
+  gsap.to(".philosophy-description", {
+    yPercent: -10,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".philosophy-section",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: 1,
+    },
+  });
+</script>

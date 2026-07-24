@@ -1,69 +1,42 @@
 ---
 import * as data from "@/content/team/team-hero-content.md";
-import NavigationMenuLink from "../ui/navigation-menu/navigation-menu-link.astro";
 import { Image } from "astro:assets";
-import pattern from "@/assets/contact/bg.png";
-const {
-  title,
-  description,
-  name,
-  designation,
-  ceoImage,
-  cta,
-  ctaLink,
-} = data.frontmatter;
+import pattern from "@/assets/background/ceobg.png";
+import LinkButton from "../ui/LinkButton.astro";
+const { title, description, name, designation, ceoImage, cta, ctaLink } =
+  data.frontmatter;
 ---
 
-<section class="border-b overflow-hidden mb-5 lg:mb-20">
+<section id="team-hero-section" class="border-b overflow-hidden">
   <div class="flex flex-col lg:flex-row items-stretch">
     <!-- Left Side - Fixed width with white background -->
     <div
-      class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-8 py-6 md:py-8 lg:py-10 bg-white"
+      class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-8 pb-13 bg-white"
     >
       <h3
-        class="font-commissioner font-semibold text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary py-10"
+        class="team-hero-main-title mt-20 font-commissioner font-semibold text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary"
       >
         {title}
       </h3>
       <p
-        class="font-dm-mono mt-5 font-normal text-[14px] leading-[150%] tracking-[-4%]"
+        class="team-hero-main-description mt-14 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
       >
         {description}
       </p>
       <!-- button -->
-      <div class="flex gap-6">
-        <NavigationMenuLink
-          href={ctaLink}
-          class="w-36.25 h-11.25 py-3 px-2.5 bg-primary my-10 mt-5 lg:mt-26 hover:bg-primary cursor-pointer flex items-center justify-center gap-2 rounded-none"
-        >
-          <span
-            class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
-          >
-            {cta}
-          </span>
-          <svg
-            class="text-white size-5"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              d="M7 17L17 7M17 7H9M17 7V15"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
-        </NavigationMenuLink>
-      </div>
+      <LinkButton href={ctaLink} text={cta} class="team-hero-cta mt-59.5" />
     </div>
 
     <!-- Right Side -->
-    <div class="flex-1 bg-[#1E1212] flex items-center justify-center">
-      <div class="border border-white/20">
-        <!-- Image -->
+    <div
+      class="py-10 lg:py-0 min-h-159.75 flex-1 bg-[#1E1212] flex items-center justify-center"
+    >
+      <!-- Image -->
+
+      <div class="w-[288px]  border border-white/20">
+        {/* Image */}
         <div
-          class="relative overflow-hidden"
+          class="team-hero-profile relative overflow-hidden"
           style={`background-image: url(${pattern.src}); background-size: cover;`}
         >
           <Image
@@ -71,19 +44,23 @@ const {
             alt={name}
             width={400}
             height={500}
-            class="w-full max-h-68 object-cover object-top transition-transform duration-500 hover:scale-105"
+            class="w-full max-h-80 object-cover object-top transition-transform duration-500 hover:scale-105"
           />
         </div>
 
         {/* Content */}
-        <div class="px-6 py-5 border-t border-white/20">
+        <div
+          class="team-hero-badge
+            pl-8 py-5 border-t border-white/20"
+        >
           <h3
-            class="text-white font-dm-mono text-[18px] leading-[150%] font-medium tracking-[-4%]"
+            class="team-hero-ceo-name text-white font-dm-mono text-[18px] leading-[150%] font-medium tracking-[-4%]"
           >
             {name}
           </h3>
+
           <p
-            class="text-white mt-2 font-dm-mono text-[14px] leading-[150%] font-normal tracking-[-4%]"
+            class="team-hero-ceo-role text-white font-dm-mono text-[14px] leading-[150%] font-normal tracking-[-4%]"
           >
             {designation}
           </p>
@@ -92,3 +69,124 @@ const {
     </div>
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+  const tl = gsap.timeline({
+    defaults: {
+      ease: "expo.out",
+    },
+  });
+
+  // Initial states
+  gsap.set(".team-hero-profile img", {
+    scale: 1.3,
+    rotate: -4,
+    filter: "blur(20px)",
+    opacity: 0,
+  });
+
+  // Cinematic sequence
+  tl.from(".team-hero-main-title", {
+    y: 120,
+    opacity: 0,
+    skewY: 6,
+    duration: 1.2,
+  })
+
+    .from(
+      ".team-hero-main-description",
+      {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+      },
+      "-=0.8",
+    )
+
+    .from(
+      ".team-hero-cta",
+      {
+        y: 25,
+        opacity: 0,
+        scale: 0.9,
+        duration: 0.8,
+      },
+      "-=0.5",
+    )
+    .from(
+      ".team-hero-badge",
+      {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+      },
+      "-=1",
+    )
+
+    .from(
+      ".team-hero-ceo-name",
+      {
+        y: 25,
+        opacity: 0,
+        duration: 0.8,
+      },
+      "-=0.5",
+    )
+
+    .from(
+      ".team-hero-ceo-role",
+      {
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+      },
+      "-=0.4",
+    )
+    .to(
+      ".team-hero-profile img",
+      {
+        scale: 1,
+        rotate: 0,
+        filter: "blur(0px)",
+        opacity: 1,
+        duration: 1,
+        ease: "expo.out",
+      },
+      "-=1.2",
+    );
+
+  // CEO Card Hover 3D
+  const cards = document.querySelectorAll(".team-hero-profile");
+
+  cards.forEach((card) => {
+    card.addEventListener("mousemove", (e: any) => {
+      const rect = card.getBoundingClientRect();
+
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const rotateY = (x / rect.width - 0.5) * 12;
+      const rotateX = (y / rect.height - 0.5) * -12;
+
+      gsap.to(card, {
+        rotateX,
+        rotateY,
+        transformPerspective: 1200,
+        duration: 0.5,
+        ease: "power3.out",
+      });
+    });
+
+    card.addEventListener("mouseleave", () => {
+      gsap.to(card, {
+        rotateX: 0,
+        rotateY: 0,
+        duration: 0.6,
+        ease: "power3.out",
+      });
+    });
+  });
+</script>

@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import dropdown from "@/assets/contact/dropdown.png"
+import dropdown from "@/assets/icons/contactDownIcon.png";
 
 export default function PanzeContactForm() {
   const [status, setStatus] = useState({ type: "", message: "" });
-  const [selectedBudget, setSelectedBudget] = useState("$5K - $10K");
+  const [selectedBudget, setSelectedBudget] = useState<string | undefined>(
+    undefined,
+  );
   const [isServiceOpen, setIsServiceOpen] = useState(false);
   const [isSourceOpen, setIsSourceOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState<string | undefined>(
+    undefined,
+  );
+  const [selectedSource, setSelectedSource] = useState<string | undefined>(
+    undefined,
+  );
 
   const budgets = [
     { label: "$500 - $1K", value: "$500 - $1K" },
@@ -29,9 +37,6 @@ export default function PanzeContactForm() {
     "Friend",
     "Other",
   ];
-
-  const [selectedService, setSelectedService] = useState("MVP Development");
-  const [selectedSource, setSelectedSource] = useState("From Google");
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -61,7 +66,6 @@ export default function PanzeContactForm() {
           message: "Inquiry sent successfully!",
         });
         e.target.reset();
-        setSelectedBudget("$5K - $10K");
       } else {
         setStatus({ type: "error", message: " Failed to send message." });
       }
@@ -76,10 +80,10 @@ export default function PanzeContactForm() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-8  text-white">
+    <div className="w-full max-w-2xl min-w-0 mx-auto text-[#301C1B] overflow-hidden">
       <motion.form
         onSubmit={handleSubmit}
-        className="space-y-8"
+        className="space-y-8 mx-8 lg:mx-0"
         initial="hidden"
         animate="visible"
         variants={{
@@ -93,46 +97,46 @@ export default function PanzeContactForm() {
           variants={selectVariant}
         >
           <div>
-            <label className="block text-white font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal mb-2  ">
+            <label className="block text-[#301C1B] font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal mb-3 ">
               Full Name
             </label>
             <motion.input
-              whileFocus={{ scale: 1.02 }}
+              whileFocus={{ borderColor: "#E8704E" }}
               name="fullName"
               type="text"
-              defaultValue="John Doe"
+              placeholder="John Doe"
               required
-              className=" w-full border-black/20 border px-5 py-3 capitalize focus:outline-none  font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal focus:border-primary text-primary"
+              className="w-full font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal border border-black/20 px-5 py-3 text-primary placeholder:text-[#301C1B]/70 focus:outline-none focus:border-primary "
             />
           </div>
           <div>
-            <label className="text-white font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal block  mb-2">
+            <label className="text-[#301C1B] font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal block  mb-3">
               Email
             </label>
             <motion.input
-              whileFocus={{ scale: 1.02 }}
+              whileFocus={{ borderColor: "#E8704E" }}
               name="email"
               type="email"
-              defaultValue="john@gmail.com"
+              placeholder="john@gmail.com"
               required
-              className="w-full border-black/20 border px-5 py-3 capitalize focus:outline-none  font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal focus:border-orange-500 text-primary"
+              className="w-full font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal border border-black/20 px-5 py-3 text-primary placeholder:text-[#301C1B]/70 focus:outline-none focus:border-primary"
             />
           </div>
         </motion.div>
 
         {/* Animated Service Select */}
         <motion.div variants={selectVariant} className="relative">
-          <label className="block text-white font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal mb-2 ">
+          <label className="block text-[#301C1B] font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal mb-3 ">
             Service Required
           </label>
           <div className="relative">
             <motion.button
               type="button"
               onClick={() => setIsServiceOpen(!isServiceOpen)}
-              whileHover={{ scale: 1.01 }}
-              className="w-full  text-left flex justify-between items-center focus:outline-none   border-black/20 border px-5 py-3 capitalize  font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal focus:border-orange-500 text-primary"
+              whileHover={{ borderColor: "#E8704E" }}
+              className={`w-full text-left flex justify-between items-center focus:outline-none   px-5 py-3 capitalize font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal  focus:border-primary ${selectedService ? "text-primary border border-[#E8704E] " : "text-[#301C1B]/40 font-normal border border-black/20"}`}
             >
-              {selectedService}
+              {selectedService || "Select a Service"}
               <motion.span
                 animate={{ rotate: isServiceOpen ? 180 : 0 }}
                 transition={{ duration: 0.3 }}
@@ -148,17 +152,17 @@ export default function PanzeContactForm() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -10, scale: 0.95 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute z-50 w-full mt-2 bg-zinc-900 border border-black/20 rounded-2xl overflow-hidden shadow-2xl"
+                  className="absolute z-50 w-full mt-2 bg-white border border-black/20 rounded-2xl overflow-hidden shadow-2xl"
                 >
                   {services.map((service, i) => (
                     <motion.div
                       key={i}
-                      whileHover={{ backgroundColor: "#27272a" }}
+                      whileHover={{ backgroundColor: "#d4d4d4" }}
                       onClick={() => {
                         setSelectedService(service);
                         setIsServiceOpen(false);
                       }}
-                      className={`px-5 py-3 cursor-pointer ${selectedService === service ? "text-orange-400 bg-zinc-800" : ""}`}
+                      className={`px-5 py-3 cursor-pointer ${selectedService === service ? "text-primary  bg-[#d4d4d4]" : ""}`}
                     >
                       {service}
                     </motion.div>
@@ -171,7 +175,7 @@ export default function PanzeContactForm() {
 
         {/* Budget */}
         <motion.div variants={selectVariant}>
-          <label className="block text-white font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal mb-3">
+          <label className="block text-[#301C1B] font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal mb-3">
             Budget
           </label>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -179,13 +183,22 @@ export default function PanzeContactForm() {
               <motion.button
                 key={b.value}
                 type="button"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{
+                  y: -3,
+                }}
+                whileTap={{
+                  scale: 0.97,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 20,
+                }}
                 onClick={() => setSelectedBudget(b.value)}
-                className={` font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal px-4 py-3  text-sm transition-all border duration-200 ${
+                className={` overflow-hidden cursor-pointer font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal px-4 py-3  text-sm transition-all border duration-200 ${
                   selectedBudget === b.value
                     ? "border-primary  text-primary shadow-lg shadow-orange-500/30"
-                    : " text-primary hover:border-zinc-500 border-black/20 "
+                    : " text-[#301C1B]/40 hover:border-zinc-500 border-black/20 "
                 }`}
               >
                 {b.label}
@@ -196,17 +209,21 @@ export default function PanzeContactForm() {
 
         {/* Animated Source Select */}
         <motion.div variants={selectVariant} className="relative">
-          <label className="block text-white font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal mb-2 ">
+          <label className="block text-[#301C1B] font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal mb-3 ">
             Where do you know about Panze?
           </label>
           <div className="relative">
             <motion.button
               type="button"
               onClick={() => setIsSourceOpen(!isSourceOpen)}
-              whileHover={{ scale: 1.01 }}
-              className="w-full  border border-black/20  px-5 py-3 text-left flex justify-between items-center focus:outline-none focus:border-primary text-primary font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal"
+              whileHover={{ borderColor: "#E8704E" }}
+              className={`w-full border px-5 py-3 text-left
+    flex justify-between items-center focus:outline-none
+    focus:border-primary font-dm-mono text-[14px]
+    leading-[150%] tracking-[-4%] font-normal
+    ${selectedSource ? "text-primary border-primary" : "text-[#301C1B]/40 border-black/20"}`}
             >
-              {selectedSource}
+              {selectedSource || "Select a Source"}
               <motion.span
                 animate={{ rotate: isSourceOpen ? 180 : 0 }}
                 transition={{ duration: 0.3 }}
@@ -222,17 +239,17 @@ export default function PanzeContactForm() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -10, scale: 0.95 }}
                   transition={{ duration: 0.2 }}
-                  className="text-primary absolute z-50 w-full mt-2  border border-black/20 rounded-2xl overflow-hidden shadow-2xl bg-[#1E1212]"
+                  className="text-primary absolute z-50 w-full mt-2  border border-black/20 rounded-2xl overflow-hidden shadow-2xl bg-white"
                 >
                   {sources.map((source, i) => (
                     <motion.div
                       key={i}
-                      whileHover={{ backgroundColor: "#27272a" }}
+                      whileHover={{ backgroundColor: "#d4d4d4" }}
                       onClick={() => {
                         setSelectedSource(source);
                         setIsSourceOpen(false);
                       }}
-                      className={` font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal px-5 py-3 cursor-pointer ${selectedSource === source ? "text-primary bg-white/20" : "text-white border-black/20"}`}
+                      className={` font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal px-5 py-3 cursor-pointer ${selectedSource === source ? "text-primary bg-white/20" : "text-[#301C1B] border-black/20"}`}
                     >
                       {source}
                     </motion.div>
@@ -245,34 +262,110 @@ export default function PanzeContactForm() {
 
         {/* Project Details */}
         <motion.div variants={selectVariant}>
-          <label className="block text-white font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal mb-2">
+          <label className="block text-[#301C1B] font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal mb-3">
             Project Details
           </label>
           <motion.textarea
-            whileFocus={{ scale: 1.01 }}
+            whileFocus={{ borderColor: "#E8704E" }}
             name="details"
             rows={5}
-            defaultValue="We’re looking for a modern and strategic SaaS website design that clearly communicates our product value, improves user engagement, and increases conversions."
+            placeholder="We’re looking for a modern and strategic SaaS website design that clearly communicates our product value, improves user engagement, and increases conversions."
             required
-            className="w-full  border border-black/20  px-5 py-4 focus:outline-none focus:border-orange-500 resize-y text-primary font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal"
+            className="w-full text-primary placeholder:text-[#301C1B]/70 border border-black/20  px-5 py-4 focus:outline-none focus:border-primary resize-y font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal  mb-4 "
           />
         </motion.div>
 
         <motion.button
           type="submit"
           disabled={status.type === "loading"}
-          whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className=" bg-primary  disabled:opacity-70 transition-all text-white  py-4  px-10  flex items-center justify-center gap-2 font-commissioner text-[14px] leading-[150%] tracking-[-4%] font-normal"
+          className="relative overflow-hidden w-36.25 h-11.25 bg-primary text-[#301C1B] flex items-center justify-center mb-12 lg:mb-0"
+          initial="rest"
+          whileHover="hover"
+          animate="rest"
         >
-          {status.type === "loading" ? (
-            <>
-              <span className="animate-spin inline-block w-4 h-4 border-2 border-black/20 border-t-transparent rounded-full" />
-              Sending...
-            </>
-          ) : (
-            "Get a quote"
-          )}
+          {/* Shimmer */}
+          <motion.div
+            variants={{
+              rest: {
+                x: "-250%",
+              },
+              hover: {
+                x: "700%",
+                transition: {
+                  duration: 1.5,
+                  ease: "easeInOut",
+                },
+              },
+            }}
+            className="absolute top-0 left-0 h-full w-[40%] skew-x-[-20deg]  bg-linear-to-r from-transparentvia-white/60 to-transparent pointer-events-none"
+          />
+          {/* Border Sweep */}
+          <motion.div
+            variants={{
+              rest: {
+                scaleX: 0,
+                originX: 1,
+              },
+              hover: {
+                scaleX: 1,
+                originX: 0,
+                transition: {
+                  duration: 0.8,
+                },
+              },
+            }}
+            className=" absolute bottom-0 left-0 h-0.5 w-full bg-white
+        "
+          />
+          {/* content */}
+          <motion.div
+            variants={{
+              rest: {
+                scale: 1,
+              },
+              hover: {
+                scale: 1.02,
+                transition: {
+                  duration: 0.3,
+                },
+              },
+            }}
+            className="relative z-10 flex items-center justify-center py-3 gap-3
+        "
+          >
+            <span className="text-white font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%]">
+              {status.type === "loading" ? "Loading..." : "Get a quote"}
+            </span>
+
+            <motion.svg
+              variants={{
+                rest: {
+                  x: 0,
+                  y: 0,
+                },
+                hover: {
+                  x: 5,
+                  y: -2,
+                  transition: {
+                    duration: 0.3,
+                  },
+                },
+              }}
+              className="w-4 h-4 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M7 17L17 7M17 7H9M17 7V15"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </motion.svg>
+          </motion.div>
         </motion.button>
       </motion.form>
     </div>

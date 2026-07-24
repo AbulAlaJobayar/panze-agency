@@ -5,69 +5,54 @@ import * as data from "@/content/career/facilities-content.md";
 const { title, subtitle, description, benefits } = data.frontmatter;
 ---
 
-<section class="">
+<section id="career-facility-section">
   <div class="mx-auto">
     <!-- Header -->
-    <div
-      class="grid
-             px-8 py-12
-             lg:grid-cols-[180px_1fr_420px]
-             lg:px-10"
-    >
+    <div class="grid lg:grid-cols-[180px_490px_1fr] px-8 pt-26">
       <div>
         <span
-          class="flex items-center gap-2 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
+          class="career-facility-label mt-8 lg:mt-0 flex items-center gap-2 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
         >
           <Icon name="star" class="size-4" />
           {title}
         </span>
       </div>
-
       <h2
-        class="mt-6 lg:mt-0
-               max-w-100
-               font-commissioner
-               font-semibold
-               text-[24px]
-               leading-[110%] tracking-[-4%] uppercase"
+        class="career-facility-title mt-8 lg:mt-0 max-w-100 font-commissioner font-semibold text-[24px] leading-[110%] tracking-[-4%] uppercase"
       >
         {subtitle}
       </h2>
 
       <p
-        class="mt-6 lg:mt-0
-               justify-self-end
-              font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
+        class="carrer-facility-description mt-10 lg:mt-0 mb-16 justify-self-end font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
       >
         {description}
       </p>
     </div>
 
     <!-- Benefits -->
-    <div class="grid lg:grid-cols-2 px-10">
+    <div class="grid lg:grid-cols-2 px-8">
       {
-        benefits.map((item:any, index:any) => (
+        benefits.map((item: any, index: any) => (
           <div
             class:list={[
-              "border-b border-black/20",
+              "career-facility-card border-b border-black/20",
               index % 2 === 0 && "lg:border-r border-black/20",
             ]}
           >
-            <div
-              class="grid gap-2
-                     px-8 py-10
-                     lg:grid-cols-[170px_1fr]
-                    "
-            >
+            <div class="grid  lg:grid-cols-[180px_1fr] p-8 gap-8">
               <div>
-                <Icon name={item.icon} class="mb-2 size-5 text-primary" />
+                <Icon
+                  name={item.icon}
+                  class="career-facility-icon mb-2 size-5 text-primary"
+                />
 
-                <h3 class="font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-primary">
+                <h3 class="career-facility-card-title font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-primary">
                   {item.title}
                 </h3>
               </div>
 
-              <p class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]">
+              <p class="career-facility-card-description font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]">
                 {item.description}
               </p>
             </div>
@@ -77,3 +62,161 @@ const { title, subtitle, description, benefits } = data.frontmatter;
     </div>
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#career-facility-section",
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+    },
+    defaults: {
+      ease: "expo.out",
+    },
+  });
+
+  tl
+    // Label
+    .from(".career-facility-label", {
+      y: 100,
+      opacity: 0,
+      duration: 0.5,
+    })
+
+    // Title
+    .from(
+      ".career-facility-title",
+      {
+        y: 100,
+        opacity: 0,
+        duration: 1,
+      },
+      "-=0.2",
+    )
+
+    // Description
+    .from(
+      ".carrer-facility-description",
+      {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+      },
+      "-=0.7",
+    )
+
+    // Cards
+    .from(
+      ".career-facility-card",
+      {
+        y: 70,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.9,
+      },
+      "-=0.4",
+    )
+
+    // Icons
+    .from(
+      ".career-facility-icon",
+      {
+        scale: 0,
+        rotate: -180,
+        opacity: 0,
+        stagger: 0.08,
+        duration: 0.8,
+        ease: "back.out(2)",
+      },
+      "-=0.8",
+    )
+
+    // Card titles
+    .from(
+      ".career-facility-card-title",
+      {
+        y: 20,
+        opacity: 0,
+        stagger: 0.08,
+        duration: 0.6,
+      },
+      "-=0.7",
+    )
+
+    // Card descriptions
+    .from(
+      ".career-facility-card-description",
+      {
+        y: 20,
+        opacity: 0,
+        stagger: 0.08,
+        duration: 0.6,
+      },
+      "-=0.5",
+    );
+
+  // ==========================
+  // Hover Lift Effect
+  // ==========================
+
+  document.querySelectorAll(".facility-card").forEach((card) => {
+    card.addEventListener("mouseenter", () => {
+      gsap.to(card, {
+        y: -8,
+        duration: 0.35,
+        ease: "power3.out",
+      });
+    });
+
+    card.addEventListener("mouseleave", () => {
+      gsap.to(card, {
+        y: 0,
+        duration: 0.35,
+        ease: "power3.out",
+      });
+    });
+  });
+
+  // ==========================
+  // Floating Icons
+  // ==========================
+
+  gsap.to(".facility-icon", {
+    y: -4,
+    duration: 2,
+    repeat: -1,
+    yoyo: true,
+    stagger: 0.1,
+    ease: "sine.inOut",
+  });
+
+  // ==========================
+  // Scroll Depth Effect
+  // ==========================
+
+  gsap.to(".facility-card:nth-child(odd)", {
+    yPercent: -6,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".facility-section",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: 1,
+    },
+  });
+
+  gsap.to(".facility-card:nth-child(even)", {
+    yPercent: 6,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".facility-section",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: 1,
+    },
+  });
+</script>

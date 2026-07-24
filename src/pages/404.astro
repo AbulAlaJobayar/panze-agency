@@ -1,10 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import * as data from "@/content/404.md";
-import NavigationMenuLink from "@/components/ui/navigation-menu/navigation-menu-link.astro";
-
-const { subTitle, description, buttonText, buttonLink} =
-  data.frontmatter;
+import LinkButton from "@/components/ui/LinkButton.astro";
 ---
 
 <Layout title="404 | PANZE">
@@ -12,59 +8,217 @@ const { subTitle, description, buttonText, buttonLink} =
     <div class="flex flex-col lg:flex-row items-stretch">
       <!-- Left Side - Fixed width with white background -->
       <div
-        class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-6 sm:px-8 md:px-10 py-6 md:py-8 lg:py-10 bg-white"
+        class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r bg-white px-8 mb-13"
       >
         <h3
-          class="font-commissioner font-semibold text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary py-10"
+          class="font-commissioner font-semibold text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary pt-10 lg:pt-21.25"
         >
-          {subTitle}
+          Uh-oh! <br />Something went <br /> wrong
         </h3>
         <p
-          class="font-dm-mono mt-5 font-normal text-[14px] leading-[150%] tracking-[-4%]"
+          class="font-dm-mono mt-14 font-normal text-[14px] leading-[150%] tracking-[-4%]"
         >
-          {description}
+          The page you're looking for doesn't exist, may have been moved, or the
+          URL might be incorrect.
         </p>
         <!-- button -->
-        <div class="flex gap-6">
-          <NavigationMenuLink
-            href={buttonLink}
-            class="w-36.25 h-11.25 py-3 px-2.5 bg-primary my-10 mt-5 lg:mt-26 hover:bg-primary cursor-pointer flex items-center justify-center gap-2 rounded-none"
-          >
-            <span
-              class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
-            >
-              {buttonText}
-            </span>
-            <span
-              class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
-            >
-              {buttonText}
-            </span>
-            <svg
-              class="text-white size-5"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                d="M7 17L17 7M17 7H9M17 7V15"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-            </svg>
-          </NavigationMenuLink>
-        </div>
+        <LinkButton href="/" text="Go to home" class="mt-10 lg:mt-60.75" />
       </div>
 
       <!-- Right Side -->
-      <div class="flex-1 bg-[#1E1212] flex items-center justify-center">
+      <div
+        class="relative overflow-hidden min-h-70 sm:min-h-105 lg:min-h-159.75 flex-1 bg-[#1E1212] flex items-center justify-center"
+      >
         <h1
-          class="font-dm-mono text-[216px] leading-[150%] tracking-[-4%] font-normal uppercase text-primary"
+          class="error-404 font-dm-mono text-[110px] sm:text-[160px] md:text-[200px]
+          lg:text-[216px] leading-[150%] tracking-[-4%] font-normal uppercase text-primary"
         >
-          404
+          <span class="digit-left inline-block">4</span>
+          <span class="digit-center inline-block">0</span>
+          <span class="digit-right inline-block">4</span>
         </h1>
       </div>
     </div>
   </section>
 </Layout>
+<script>
+  import gsap from "gsap";
+
+    const tl = gsap.timeline({
+      defaults: {
+        ease: "expo.out",
+      },
+    });
+
+    // Initial positions
+    gsap.set(".digit-left", {
+      x: -1200,
+      scale: 3,
+      rotate: -45,
+      opacity: 0,
+    });
+
+    gsap.set(".digit-right", {
+      x: 1200,
+      scale: 3,
+      rotate: 45,
+      opacity: 0,
+    });
+
+    gsap.set(".digit-center", {
+      y: -1000,
+      scale: 4,
+      rotate: 180,
+      opacity: 0,
+    });
+
+    // Text content animation
+    tl.from("h3", {
+      y: 80,
+      opacity: 0,
+      duration: 1,
+      ease: "power4.out",
+    })
+      .from(
+        "p",
+        {
+          y: 30,
+          opacity: 0,
+          duration: 0.8,
+        },
+        "-=0.6",
+      )
+
+      // Left 4
+      .to(
+        ".digit-left",
+        {
+          x: 0,
+          scale: 1,
+          rotate: 0,
+          opacity: 1,
+          duration: 1.4,
+        },
+        "-=0.3",
+      )
+
+      // Right 4
+      .to(
+        ".digit-right",
+        {
+          x: 0,
+          scale: 1,
+          rotate: 0,
+          opacity: 1,
+          duration: 1.4,
+        },
+        "<",
+      )
+
+      // 0 drops from sky
+      .to(
+        ".digit-center",
+        {
+          y: 0,
+          scale: 1,
+          rotate: 0,
+          opacity: 1,
+          duration: 1.8,
+          ease: "bounce.out",
+        },
+        "-=0.8",
+      )
+
+      // Impact shake
+      .to(".error-404", {
+        x: 12,
+        duration: 0.05,
+        repeat: 8,
+        yoyo: true,
+      })
+
+      // 4s move away slightly
+      .to(
+        ".digit-left",
+        {
+          x: -20,
+          duration: 0.6,
+          ease: "power3.out",
+        },
+        "-=0.1",
+      )
+      .to(
+        ".digit-right",
+        {
+          x: 20,
+          duration: 0.6,
+          ease: "power3.out",
+        },
+        "<",
+      )
+
+      // Focus on 0
+      .to(
+        ".digit-center",
+        {
+          scale: 1.18,
+          duration: 0.8,
+          ease: "power2.out",
+        },
+        "<",
+      )
+      .to(".digit-center", {
+        scale: 1,
+        duration: 0.5,
+      });
+
+    // Floating effect
+    gsap.to(".error-404", {
+      y: -15,
+      duration: 4,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
+
+    // Mouse Parallax
+    window.addEventListener("mousemove", (e) => {
+      const x = (e.clientX - window.innerWidth / 2) * 0.02;
+      const y = (e.clientY - window.innerHeight / 2) * 0.02;
+
+      gsap.to(".error-404", {
+        x,
+        y,
+        duration: 1.2,
+        ease: "power3.out",
+      });
+    });
+</script>
+
+<style>
+  .error-404 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    will-change: transform;
+
+    text-shadow:
+      0 0 20px rgba(193, 86, 62, 0.5),
+      0 0 50px rgba(193, 86, 62, 0.35),
+      0 0 100px rgba(193, 86, 62, 0.2),
+      0 0 180px rgba(193, 86, 62, 0.1);
+  }
+
+  .digit-left,
+  .digit-center,
+  .digit-right {
+    display: inline-block;
+    will-change: transform;
+  }
+
+  @media (max-width: 639px) {
+    .error-404 {
+      font-size: 110px;
+    }
+  }
+</style>

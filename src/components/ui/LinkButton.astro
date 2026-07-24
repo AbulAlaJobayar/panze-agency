@@ -31,8 +31,8 @@ const { href, text, class: className = "", id = "" } = Astro.props;
 
   <!-- Border -->
   <div
-    class="border-sweep absolute bottom-0 left-0
-    h-0.5 w-full bg-white origin-left"
+    class="border-sweep absolute bottom-0 left-[-20%]
+  h-0.5 w-[40%] bg-white pointer-events-none"
   >
   </div>
   {
@@ -82,67 +82,76 @@ const { href, text, class: className = "", id = "" } = Astro.props;
 </div>
 <script>
   import gsap from "gsap";
+
   document.querySelectorAll(".cta-button").forEach((button) => {
     const shimmer = button.querySelector(".shimmer");
     const border = button.querySelector(".border-sweep");
     const arrow = button.querySelector(".arrow");
 
+    gsap.set(shimmer, {
+      xPercent: -250,
+    });
+
+    gsap.set(border, {
+      xPercent: -120,
+    });
+
     button.addEventListener("mouseenter", () => {
+      const tl = gsap.timeline();
+
       // Shimmer
-      gsap.fromTo(
+      tl.fromTo(
         shimmer,
         {
           xPercent: -250,
         },
         {
           xPercent: 700,
-          duration: 1.5,
+          duration: 2,
           ease: "power2.inOut",
         },
+        0,
       );
 
-      // Border sweep
-      gsap.fromTo(
+      // Bottom white runner
+      tl.fromTo(
         border,
         {
-          scaleX: 0,
-          transformOrigin: "left center",
+          xPercent: -120,
         },
         {
-          scaleX: 1,
-          duration: 0.8,
-          ease: "power3.out",
+          xPercent: 700,
+          duration: 5,
+          ease: "expo.out",
         },
+        0,
       );
 
-      // Arrow movement
-      gsap.to(arrow, {
-        x: 5,
-        y: -2,
-        duration: 0.3,
-        ease: "power2.out",
-      });
+      // Arrow
+      tl.to(
+        arrow,
+        {
+          x: 5,
+          y: -2,
+          duration: 0.3,
+          ease: "power2.out",
+        },
+        0.1,
+      );
 
-      // Slight button scale
-      gsap.to(button, {
-        scale: 1.02,
-        duration: 0.3,
-        ease: "power2.out",
-      });
+      // Button scale
+      tl.to(
+        button,
+        {
+          scale: 1.02,
+          duration: 0.3,
+          ease: "power2.out",
+        },
+        0,
+      );
     });
 
     button.addEventListener("mouseleave", () => {
-      gsap.set(shimmer, {
-        xPercent: -250,
-      });
-
-      gsap.to(border, {
-        scaleX: 0,
-        duration: 0.5,
-        ease: "power2.inOut",
-        transformOrigin: "right center",
-      });
-
       gsap.to(arrow, {
         x: 0,
         y: 0,
@@ -152,6 +161,14 @@ const { href, text, class: className = "", id = "" } = Astro.props;
       gsap.to(button, {
         scale: 1,
         duration: 0.3,
+      });
+
+      gsap.set(shimmer, {
+        xPercent: -250,
+      });
+
+      gsap.set(border, {
+        xPercent: -120,
       });
     });
   });
