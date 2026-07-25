@@ -4,11 +4,11 @@ description: "Every product in this portfolio was designed to solve a real probl
 
 statistics:
   - id: 1
-    value: "52+"
+    value: "52"
     title: "Projects Completed"
 
   - id: 2
-    value: "30+"
+    value: "30"
     title: "Awards Won"
 
 button:
