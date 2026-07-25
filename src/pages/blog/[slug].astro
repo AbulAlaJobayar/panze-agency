@@ -22,15 +22,16 @@ const { slug } = Astro.params;
 
 const blog = blogs.find(({ frontmatter }: any) => frontmatter.slug === slug);
 
-
+if (!blog) {
+  return Astro.redirect("/blog");
+}
 
 const { frontmatter, Content } = blog as any;
-
 ---
 
 <Layout title="BLOG | PANZE">
   <ContentLayout frontmatter={frontmatter} Content={Content} />
-  <RecentBlog/>
+  <RecentBlog />
   <ContactSection />
   <Footer />
 </Layout>
