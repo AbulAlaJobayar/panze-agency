@@ -1,13 +1,36 @@
-<!-- ---
+---
 const { brandIdentity } = Astro.props;
 ---
 
-<section class="my-20">
-  <div class="overflow-hidden px-10 max-h-181">
+<section id="brand-identity-section" class="mt-15.5">
+  <div class="overflow-hidden px-8">
     <img
       src={brandIdentity.image}
       alt={brandIdentity.name}
-      class="w-full h-auto object-cover"
+      class="brand-identity-image w-full h-full object-cover"
     />
   </div>
-</section> -->
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#brand-identity-section",
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+    },
+  });
+
+  tl.from(".brand-identity-image", {
+    clipPath: "inset(0 0 100% 0)",
+    scale: 1.2,
+    filter: "blur(12px)",
+    duration: 2,
+    ease: "expo.out",
+  });
+</script>

@@ -2,12 +2,33 @@
 const { projectShocase } = Astro.props;
 ---
 
-<section class="my-20">
-  <div class="overflow-hidden px-10 ">
+<section id="product-showcase-section" class="py-26">
+  <div class="overflow-hidden px-8">
     <img
       src={projectShocase.image}
       alt={projectShocase.name}
-      class="w-full h-auto object-cover"
+      class="product-showcase-image w-full h-auto object-cover"
     />
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#product-showcase-section",
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+    },
+  });
+
+  tl.from(".product-showcase-image", {
+    clipPath: "inset(0 0 100% 0)",
+    scale: 1,
+    duration: 5,
+    ease: "expo.out",
+  });
+</script>

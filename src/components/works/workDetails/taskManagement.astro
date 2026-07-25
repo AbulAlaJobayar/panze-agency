@@ -1,13 +1,35 @@
 ---
 const { taskManagement } = Astro.props;
 ---
-
-<section class="my-20">
-  <div class="overflow-hidden px-10">
+<section id="task-management-section" class="mt-15.5">
+  <div class="overflow-hidden px-8">
     <img
       src={taskManagement.image}
       alt={taskManagement.name}
-      class="w-full h-auto object-cover"
+      class="task-management-image w-full h-full object-cover"
     />
   </div>
 </section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#task-management-section",
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+    },
+  });
+
+  tl.from(".task-management-image", {
+    clipPath: "inset(0 0 100% 0)",
+    scale: 1.2,
+    filter: "blur(12px)",
+    duration: 2,
+    ease: "expo.out",
+  });
+</script>

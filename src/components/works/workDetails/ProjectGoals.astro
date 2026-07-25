@@ -2,31 +2,22 @@
 const { projectGoal } = Astro.props;
 ---
 
-<section class="border-b border-black/20">
-  <div
-    class="grid grid-cols-1 lg:grid-cols-[380px_minmax(0,1fr)]"
-  >
+<section id="project-goal-section" class="border-y border-black/20 mt-26">
+  <div class="grid grid-cols-1 lg:grid-cols-[400px_1fr]">
     <!-- Left -->
     <div
-      class="border-b lg:border-b-0 lg:border-r border-black/20
-             bg-white
-             px-6 sm:px-8 md:px-10
-             py-8 sm:py-10 lg:py-12 
-             flex flex-col justify-center"
+      class="px-8 py-9 border-b lg:border-b-0 lg:border-r border-black/20 bg-white flex flex-col justify-center"
     >
       <!-- Section Header -->
       <div class="flex items-center gap-2">
         <img
           src={projectGoal.sectionIcon}
           alt={projectGoal.sectionTitle}
-          class="size-4 sm:size-5"
+          class="size-4 goal-icon"
         />
 
         <span
-          class="font-dm-mono
-                 text-primary
-                 text-xs sm:text-sm
-                 leading-none"
+          class="goal-section-title font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
         >
           {projectGoal.sectionTitle}
         </span>
@@ -34,29 +25,24 @@ const { projectGoal } = Astro.props;
 
       <!-- Title -->
       <h2
-        class="mt-8 lg:mt-10
+        class="goal-title mt-9.5
                font-commissioner
                font-semibold
                uppercase
-               text-primary
                text-[24px]
                leading-[110%]
-               tracking-[-0.04em]
-               max-w-full lg:max-w-[320px]"
+               tracking-[-4%]"
       >
         {projectGoal.title}
       </h2>
 
       <!-- Description -->
       <p
-        class="mt-8 lg:mt-12
-               max-w-full lg:max-w-[320px]
+        class="goal-description mt-14
+               max-w-full
                font-dm-mono
                font-normal
-               text-[14px]
-               sm:text-[15px]
-               leading-[150%]
-               tracking-[-0.04em]
+               
                text-[#301C1B]"
       >
         {projectGoal.description}
@@ -68,8 +54,74 @@ const { projectGoal } = Astro.props;
       <img
         src={projectGoal.image}
         alt={projectGoal.title}
-        class="w-full h-full object-cover aspect-4/3 md:aspect-16/10 lg:aspect-auto"
+        class="goal-image w-full h-full object-cover aspect-4/3 md:aspect-16/10 lg:aspect-auto"
       />
     </div>
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#project-goal-section",
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+    },
+  });
+
+  tl.from(".goal-icon", {
+    x: 0,
+    rotate: 180,
+    opacity: 0,
+    duration: 0.8,
+    ease: "back.out(2)",
+  })
+
+    .from(
+      ".goal-section-title",
+      {
+        x: -20,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power3.out",
+      },
+      "-=0.5",
+    )
+
+    .from(
+      ".goal-title",
+      {
+        y: 80,
+        opacity: 0,
+        skewY: 5,
+        duration: 1.2,
+        ease: "expo.out",
+      },
+      "-=0.3",
+    )
+
+    .from(
+      ".goal-description",
+      {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      },
+      "-=0.8",
+    )
+    .from(
+      ".goal-image",
+      {
+        clipPath: "inset(0 0 100% 0)",
+        scale: 1.15,
+        duration: 1.5,
+        ease: "expo.out",
+      },
+      "-=1",
+    );
+</script>

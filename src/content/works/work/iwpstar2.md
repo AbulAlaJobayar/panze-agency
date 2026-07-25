@@ -57,8 +57,7 @@ projectGoal:
   # image: "/src/assets/works/projectGoal.png"
 
 brandIdentity:
-  image: "https://i.ibb.co.com/VcMZGVnt/han.png"
-  # image: "/src/assets/works/han.png"
+  image: "https://i.ibb.co.com/wN2dXZzL/image-1045-3.png"
   name: "hanwik"
 
 projectScope:

@@ -12,7 +12,6 @@ import ProjectScope from "@/components/works/workDetails/ProjectScope.astro";
 import ProjectShocase from "@/components/works/workDetails/productShowcase.astro";
 import Challenge from "@/components/works/workDetails/challenge.astro";
 import UserOnboarding from "@/components/works/workDetails/userOnboarding.astro";
-import Result from "@/components/works/workDetails/results.astro";
 import TestimonialSection from "@/components/works/workDetails/testimonialSection.astro";
 import IdentityShowcase from "@/components/works/workDetails/identityShowcase.astro";
 import TaskManagement from "@/components/works/workDetails/taskManagement.astro";
@@ -34,9 +33,7 @@ const { slug } = Astro.params;
 
 const work = works.find(({ frontmatter }: any) => frontmatter.slug === slug);
 
-
 const { frontmatter, Content } = work as any;
-
 ---
 
 <Layout title="WORKS | PANZE">
@@ -77,7 +74,11 @@ const { frontmatter, Content } = work as any;
       <UserOnboarding userOnboarding={frontmatter.userOnboarding} />
     )
   }
-  {frontmatter.results && <Result result={frontmatter.results} />}
+  {
+    frontmatter.results && (
+        <ProjectScope projectScope={frontmatter.results} />
+    )
+  }
   {
     frontmatter.testimonial && (
       <TestimonialSection testimonial={frontmatter.testimonial} />
