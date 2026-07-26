@@ -29,7 +29,7 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
   }, []);
 
   return (
-    <div className="container mx-auto border-t border-white/10 md:border-t-0  ">
+    <div className="max-h-144.25 overflow-hidden mx-auto border-t border-white/10 md:border-t-0   border-b">
       {/* Tabs Container */}
       <div className="bg-[#1E1212] overflow-hidden">
         <div className="flex flex-col lg:grid lg:grid-cols-12 min-h-125">
@@ -50,7 +50,7 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
                     id={`tab-${service.title}`}
                     onClick={() => handleTabClick(service.title)}
                     className={` 
-                      relative flex flex-col justify-center shrink-0 lg:shrink-0 w-full py-[45.5px] pl-8 text-left transition-all duration-300 cursor-pointer
+                      relative flex flex-col justify-center shrink-0 lg:shrink-0 w-full py-10 px-8 text-left transition-all duration-300 cursor-pointer
                       border-b border-white/5  last:border-b  lg:border-white/5
                       ${
                         isActive
@@ -87,7 +87,7 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
                     <div className="relative z-10 w-full ">
                       <motion.h3
                         layout
-                        className={`font-commissioner font-normal  text-[16px] leading-[130%] tracking-[-4%] ${
+                        className={`font-commissioner font-normal text-[16px] leading-[130%] tracking-[-4%] ${
                           isActive
                             ? "font-semibold text-white text-[20px]"
                             : "font-normal text-white/60"
@@ -128,7 +128,7 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
             </div>
           </LayoutGroup>
           {/* MIDDLE: Image */}
-          <div className=" hidden lg:block lg:col-span-6 relative overflow-hidden border-r border-white/10 ">
+          <div className="lg:col-span-6 relative overflow-hidden border-r border-white/10 ">
             <AnimatePresence mode="wait">
               {services
                 .filter((service) => activeTab === service.title)
@@ -160,7 +160,7 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
           </div>
 
           {/* RIGHT: Tab Content */}
-          <div className="w-full lg:col-span-3 bg-[#1E1212] min-h-137.5 border-y border-white/10">
+          <div className="w-full lg:col-span-3 bg-[#1E1212]  border-t border-white/10">
             <AnimatePresence mode="wait">
               {services
                 .filter((service) => service.title === activeTab)
@@ -185,9 +185,9 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
                       duration: 0.45,
                     }}
                   >
-                    <div className="h-full px-6 lg:px-10 py-8 bg-[#1E1212] flex flex-col justify-between">
+                    <div className="h-full  px-7.25 pt-7 bg-[#1E1212] flex flex-col justify-between">
                       <div>
-                        <p className="font-dm-mono text-[12px] md:text-[14px] leading-[150%] font-normal tracking-[-4%] text-white mb-15.75">
+                        <p className="font-dm-mono text-[12px] md:text-[14px] leading-[150%] font-normal tracking-[-4%] text-white mb-10">
                           {service.description}
                         </p>
 
@@ -227,7 +227,7 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
                       </div>
 
                       <LinkButton
-                        className="mt-24.5"
+                        className="mt-12 "
                         href={`/services/${service.slug}`}
                         text={service.buttonText}
                       />

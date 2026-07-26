@@ -55,15 +55,15 @@ const blogs = Object.values(
           href={`/blog/${blog.frontmatter.slug}`}
           class="group mb-6 home-blog-section-card"
         >
-          <div class="overflow-hidden">
+          <div class="blog-image-wrapper overflow-hidden">
             <img
               src={blog.frontmatter.image}
               alt={blog.frontmatter.thumbnailTitle}
-              class="aspect-4/3 w-full object-cover transition duration-500 group-hover:scale-105"
+              class="blog-image aspect-4/3 w-full object-cover"
             />
           </div>
 
-          <h3 class="mt-2 font-dm-mono font-medium  text-[16px] leading-[150%] tracking-[-4%] text-[#301C1B]  group-hover:text-primary transition">
+          <h3 class="blog-title mt-2 font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-[#301C1B]">
             {blog.frontmatter.title}
           </h3>
         </a>
@@ -77,72 +77,138 @@ const blogs = Object.values(
 
   gsap.registerPlugin(ScrollTrigger);
 
+  const initBlogSection = () => {
+    // Kill old triggers
+    ScrollTrigger.getAll().forEach((st) => {
+      if (st.trigger?.closest?.("#blog-section")) {
+        st.kill();
+      }
+    });
 
+    // =====================
+    // HEADER TIMELINE
+    // =====================
 
-  
-
-    // Header Animation
-    const headerTl = gsap.timeline({
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#blog-section",
         start: "top 75%",
-        toggleActions: "play none none reverse",
       },
     });
 
-    headerTl
-      .from(".home-blog-section-badge", {
-        x: -60,
-        opacity: 0,
-        duration: 0.7,
-        ease: "power3.out",
-      })
+    tl.from(".home-blog-section-badge", {
+      opacity: 0,
+      x: -80,
+      duration: 0.8,
+      ease: "power4.out",
+    })
       .from(
         ".home-blog-section-subtitle",
         {
-          x: -50,
           opacity: 0,
-          duration: 0.9,
-          ease: "power4.out",
+          y: 60,
+          duration: 1,
+          ease: "expo.out",
         },
         "-=0.4",
       )
       .from(
         ".home-blog-section-description",
         {
-          x: -30,
           opacity: 0,
-          duration: 0.7,
-          ease: "power2.out",
+          y: 30,
+          duration: 0.8,
+          ease: "power3.out",
         },
-        "-=0.5",
+        "-=0.7",
       )
       .from(
         ".home-blog-section-button",
         {
-          x: -20,
           opacity: 0,
-          duration: 0.9,
+          y: 20,
+          duration: 0.8,
           ease: "power2.out",
         },
         "-=0.6",
       );
 
-    // Cards Animation
+    // =====================
+    // BLOG CARDS
+    // =====================
+
     gsap.from(".home-blog-section-card", {
       scrollTrigger: {
-        trigger: ".home-blog-section-card",
-        start: "top 85%",
-        toggleActions: "play none none reverse",
+        trigger: "#blog-section",
+        start: "top 65%",
       },
       opacity: 0,
-      y: 80,
-      scale: 0.95,
-      duration: 0.8,
-      ease: "power4.out",
-      stagger: {
-        each: 0.12,
-        from: "start",
-      },
+      y: 100,
+      duration: 1.2,
+      stagger: 0.15,
+      ease: "expo.out",
     });
+
+    // =====================
+    // IMAGE REVEAL
+    // =====================
+
+    gsap.utils.toArray(".home-blog-section-card img").forEach((img: any) => {
+      gsap.from(img, {
+        scrollTrigger: {
+          trigger: img,
+          start: "top 85%",
+        },
+        scale: 1.2,
+        clipPath: "inset(100% 0 0 0)",
+        duration: 1.4,
+        ease: "expo.out",
+      });
+    });
+
+    // =====================
+    // HOVER IMAGE PARALLAX
+    // =====================
+
+    document.querySelectorAll(".home-blog-section-card").forEach((card) => {
+      const image = card.querySelector("img");
+
+      if (!image) return;
+
+      card.addEventListener("mouseenter", () => {
+        gsap.to(image, {
+          scale: 1.08,
+          duration: 0.6,
+          ease: "power3.out",
+        });
+      });
+
+      card.addEventListener("mouseleave", () => {
+        gsap.to(image, {
+          scale: 1,
+          duration: 0.8,
+          ease: "expo.out",
+        });
+      });
+
+      card.addEventListener("mousemove", (e: any) => {
+        const rect = card.getBoundingClientRect();
+
+        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
+
+        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
+
+        gsap.to(image, {
+          x,
+          y,
+          duration: 0.8,
+          ease: "power3.out",
+        });
+      });
+    });
+
+    ScrollTrigger.refresh();
+  };
+
+  initBlogSection();
 </script>

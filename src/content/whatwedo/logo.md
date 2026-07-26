@@ -20,7 +20,7 @@ features:
 
 
 # sevices section
-servicesImage: ""
+servicesImage: "https://i.ibb.co.com/zhdzW2Yr/logo-3.png"
 servicesSubTitle: "Logo and branding design that creates strong identities Panze is a branding design agency that creates logos, visual identity systems, and brand guidelines for startups and SaaS companies."
 
 servicesDescription: "Our logo and branding design process delivers cohesive visual identities that help SaaS startups stand out in crowded markets.
@@ -106,7 +106,7 @@ services:
   steps:
   - step: "01"
     title: "SaaS Website Design"
-    image: ""
+    image: "https://i.ibb.co.com/cX2vCZqw/sass.png"
     description: >
       Panze designs conversion-focused landing pages for campaigns, product launches, and lead generation that turn paid and organic traffic into measurable business results from the moment they go live.
     items:
@@ -118,7 +118,7 @@ services:
 
   - step: "02"
     title: "Landing Page Design"
-    image: ""
+    image: "https://i.ibb.co.com/zWK29Z7v/landingpagedesign.png"
     description: >
       We create wireframes that define page structure,
       content hierarchy, and user journeys before moving
@@ -132,7 +132,7 @@ services:
 
   - step: "03"
     title: " Website Redesign"
-    image: ""
+    image: "https://i.ibb.co.com/cX2vCZqw/sass.png"
     description: >
       We transform wireframes into polished visual designs
       that reflect your brand and improve usability.
@@ -145,7 +145,7 @@ services:
 
   - step: "04"
     title: "Website UX Audit and Redesign"
-    image: ""
+    image: "https://i.ibb.co.com/XZMVNYPf/websiteuiux.png"
     description: >
       We prepare developer-ready assets, test key flows,
       and ensure the website launches smoothly.
@@ -157,7 +157,7 @@ services:
       - "Launch support"
   - step: "05"
     title: "White Label Website Design"
-    image: ""
+    image: "https://i.ibb.co.com/zWK29Z7v/landingpagedesign.png"
     description: >
       We prepare developer-ready assets, test key flows,
       and ensure the website launches smoothly.
@@ -230,48 +230,57 @@ Benefits:
     description: "Panze works as your invisible extension. Your clients see your brand on every deliverable while we stay completely behind the scenes."
    
 
-
 # Industry Expertise
 industryExpertise:
   title: "Industry Expertise"
-  subtitle: "Industries Panze Designs Websites For"
-  description: "Panze designs websites for businesses in industries where the website is a primary sales and trust-building asset. We understand the content structures, conversion patterns, and credibility signals each market requires from a website that is actually doing its job."
+  subtitle: "Industries Panze Designs Brands For"
+  description: "Panze has designed brand identities for businesses across sectors where the visual identity must do serious work, building trust, communicating positioning, and standing out in crowded markets where first impressions are everything."
   faqs:
   - step: "01"
     id: 1
-    question: "SaaS Website Design"
-    image: ""
+    question: "Startup Brand Design"
+    image: "https://i.ibb.co.com/WpNxj4qC/startupbranddesign.png"
     answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
 
   - step: "02"
     id: 2
-    question: "Fintech Website Design"
-    image: ""
-    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+    question: "SaaS Brand Design"
+    image: "https://i.ibb.co.com/TDHQhbtz/sassbranddesign.png"
+    answer: "We design SaaS brand identities that feel modern, trustworthy, and distinctive in a market where many products look and sound almost identical from the outside."
 
   - step: "03"
     id: 3
-    question: "Startup Website Design"
-    image: ""
-    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+    question: "Fintech Brand Design"
+    image: "https://i.ibb.co.com/p60vx0XD/fintechbranddesign.png"
+    answer: "We design SaaS brand identities that feel modern, trustworthy, and distinctive in a market where many products look and sound almost identical from the outside."
 
   - step: "04"
     id: 4
-    question: "Agency Website Design"
-    image: ""
-    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+    question: "Healthcare Brand Design"
+    image: "https://i.ibb.co.com/1t3wsxyj/healthcarebranddesign.png"
+    answer: "We design SaaS brand identities that feel modern, trustworthy, and distinctive in a market where many products look and sound almost identical from the outside."
   
   - step: "05"
     id: 5
-    question: "Healthtech Website Design"
-    image: ""
-    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+    question: "Agency Brand Design"
+    image: "https://i.ibb.co.com/fdhXLmHf/agencybranddesign.png"
+    answer: "We design startup brand identities that communicate ambition and credibility from day one so investors, early customers, and potential hires immediately understand what you are building and why it matters."
 
   - step: "06"
     id: 6
-    question: "Enterprise Services Website Design"
-    image: ""
-    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+    question: "E-Commerce Brand Design"
+    image: "https://i.ibb.co.com/F4f5nRC6/ecommercebranddesign.png"
+    answer: "We design SaaS brand identities that feel modern, trustworthy, and distinctive in a market where many products look and sound almost identical from the outside."
+  - step: "07"
+    id: 7
+    question: "Personal and Founder Brand Design"
+    image: "https://i.ibb.co.com/RT92W5qH/personalbranddesign.png"
+    answer: "We design SaaS brand identities that feel modern, trustworthy, and distinctive in a market where many products look and sound almost identical from the outside."
+  - step: "08"
+    id: 8
+    question: "Enterprise and B2B"
+    image: "https://i.ibb.co.com/WvCtWQHC/Frame-2147259423.png"
+    answer: "We design SaaS brand identities that feel modern, trustworthy, and distinctive in a market where many products look and sound almost identical from the outside."
 
 
 # Design Expertise

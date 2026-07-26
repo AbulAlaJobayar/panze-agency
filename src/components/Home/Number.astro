@@ -32,7 +32,7 @@ import CountUp from "@/components/ui/CountUp.astro";
 
     <!-- right side - fills remaining space -->
     <div class="flex-1 min-w-0">
-      <div class="flex flex-wrap sm:flex-nowrap border-l">
+      <div class="flex flex-wrap sm:flex-nowrap border-l md:border-l-0 lg:border-l">
         {
           content.map((item: any, index: number) => (
             <div
@@ -43,13 +43,14 @@ import CountUp from "@/components/ui/CountUp.astro";
                 "border-b",
                 index % 2 === 0 && "border-l",
                 "border-r",
-                "last:border-b",
+                "last:border-b  last:border-r",
 
                 // Desktop
-                "sm:border-b-0",
-                "sm:border-l-0",
+                "lg:border-b-0",
+                "lg:border-l-0",
+                "last:border-0",
                 index === 0 && "sm:border-l",
-                "sm:border-r",
+                "lg:border-r",
               ]}
             >
               <h3
@@ -60,7 +61,12 @@ import CountUp from "@/components/ui/CountUp.astro";
               </h3>
 
               <p class="number-card font-commissioner text-[20px] font-semibold leading-[110%] tracking-[-4%] uppercase sm:text-[22px]  md:text-[24px]  pr-6">
-                <CountUp value={item.number} suffix={item?.sufix} prefix={item?.prefix} duration={2500} />
+                <CountUp
+                  value={item.number}
+                  suffix={item?.sufix}
+                  prefix={item?.prefix}
+                  duration={2500}
+                />
               </p>
             </div>
           ))
@@ -76,35 +82,34 @@ import CountUp from "@/components/ui/CountUp.astro";
 
   gsap.registerPlugin(ScrollTrigger);
 
+  gsap.set(".number-left, .number-right", {
+    clearProps: "all",
+  });
 
-    gsap.set(".number-left, .number-right", {
-      clearProps: "all",
-    });
-
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: "#number",
-          start: "top 75%",
-          toggleActions: "play none none reverse",
-        },
-      })
-      .from(".number-left", {
-        x: -100,
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: "#number",
+        start: "top 75%",
+        toggleActions: "play none none reverse",
+      },
+    })
+    .from(".number-left", {
+      x: -100,
+      opacity: 0,
+      stagger: 0.1,
+      duration: 0.8,
+      ease: "power3.out",
+    })
+    .from(
+      ".number-right",
+      {
+        y: -80,
         opacity: 0,
-        stagger: 0.1,
-        duration: 0.8,
+        stagger: 0.08,
+        duration: 0.5,
         ease: "power3.out",
-      })
-      .from(
-        ".number-right",
-        {
-          y: -80,
-          opacity: 0,
-          stagger: 0.08,
-          duration: 0.5,
-          ease: "power3.out",
-        },
-        "-=0.4",
-      );
+      },
+      "-=0.4",
+    );
 </script>

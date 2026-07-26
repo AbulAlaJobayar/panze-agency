@@ -1,10 +1,8 @@
 ---
 import * as IndustryData from "@/content/home/IndustryServices.md";
-import { Image } from "astro:assets";
-import sectionIcon from "@/assets/sectionIcon/industry.svg"
+import sectionIcon from "@/assets/sectionIcon/industry.svg";
 // Access the frontmatter data
-const { title, subtitle, description, categories } =
-  IndustryData.frontmatter;
+const { title, subtitle, description, categories } = IndustryData.frontmatter;
 ---
 
 <section id="industry-section" class="my-26 px-8 bg-white">
@@ -77,12 +75,12 @@ const { title, subtitle, description, categories } =
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
-
-
     const section = document.querySelector("#industry-section");
 
-
+    // =========================
     // Header Animation
+    // =========================
+
     const headerTl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
@@ -95,16 +93,16 @@ const { title, subtitle, description, categories } =
       .from(".industry-badge", {
         x: -60,
         opacity: 0,
-        duration: 0.7,
+        duration: 0.8,
         ease: "power3.out",
       })
       .from(
         ".industry-subtitle",
         {
-          y: 50,
+          y: 60,
           opacity: 0,
-          duration: 0.9,
-          ease: "power4.out",
+          duration: 1,
+          ease: "expo.out",
         },
         "-=0.4",
       )
@@ -113,27 +111,47 @@ const { title, subtitle, description, categories } =
         {
           y: 30,
           opacity: 0,
-          duration: 0.7,
+          duration: 0.8,
           ease: "power2.out",
         },
-        "-=0.5",
+        "-=0.6",
       );
 
+    // =========================
     // Cards Animation
-    gsap.from(".industry-card", {
-      scrollTrigger: {
-        trigger: ".industry-card",
-        start: "top 85%",
-        toggleActions: "play none none reverse",
-      },
-      opacity: 0,
-      y: 80,
-      scale: 0.95,
-      duration: 0.8,
-      ease: "power4.out",
-      stagger: {
-        each: 0.12,
-        from: "start",
-      },
+    // Border Static
+    // Content Only Animate
+    // =========================
+
+    gsap.utils.toArray(".industry-card").forEach((card: any, index) => {
+      const title = card.querySelector("h3");
+      const items = card.querySelectorAll("li");
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      tl.from(title, {
+        opacity: 0,
+        y: 30,
+        duration: 0.7,
+        ease: "power4.out",
+      }).from(
+        items,
+        {
+          opacity: 0,
+          x: 20,
+          stagger: 0.05,
+          duration: 0.4,
+          ease: "power2.out",
+        },
+        "-=0.3",
+      );
     });
+
+    ScrollTrigger.refresh();
 </script>

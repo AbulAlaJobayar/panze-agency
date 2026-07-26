@@ -24,7 +24,7 @@ features:
 
   
 # sevices section
-servicesImage: ""
+servicesImage: "https://i.ibb.co.com/gkz7c1X/website-2.png"
 servicesSubTitle: "Panze is a website UI/UX design agency that creates landing pages, marketing sites, and conversion-focused web design for startups"
 
 servicesDescription: "Our website UI/UX design team builds high- converting landing pages that turn visitors into leads for SaaS and B2B companies. We partner with agencies as a white label web design team to deliver polished websites their clients never know we built."
@@ -108,7 +108,7 @@ services:
   steps:
   - step: "01"
     title: "SaaS Website Design"
-    image: ""
+    image: "https://i.ibb.co.com/cX2vCZqw/sass.png"
     description: >
       Panze designs conversion-focused landing pages for campaigns, product launches, and lead generation that turn paid and organic traffic into measurable business results from the moment they go live.
     items:
@@ -120,7 +120,7 @@ services:
 
   - step: "02"
     title: "Landing Page Design"
-    image: ""
+    image: "https://i.ibb.co.com/zWK29Z7v/landingpagedesign.png"
     description: >
       We create wireframes that define page structure,
       content hierarchy, and user journeys before moving
@@ -134,7 +134,7 @@ services:
 
   - step: "03"
     title: " Website Redesign"
-    image: ""
+    image: "https://i.ibb.co.com/cX2vCZqw/sass.png"
     description: >
       We transform wireframes into polished visual designs
       that reflect your brand and improve usability.
@@ -147,7 +147,7 @@ services:
 
   - step: "04"
     title: "Website UX Audit and Redesign"
-    image: ""
+    image: "https://i.ibb.co.com/XZMVNYPf/websiteuiux.png"
     description: >
       We prepare developer-ready assets, test key flows,
       and ensure the website launches smoothly.
@@ -159,7 +159,7 @@ services:
       - "Launch support"
   - step: "05"
     title: "White Label Website Design"
-    image: ""
+    image: "https://i.ibb.co.com/zWK29Z7v/landingpagedesign.png"
     description: >
       We prepare developer-ready assets, test key flows,
       and ensure the website launches smoothly.
@@ -242,37 +242,37 @@ industryExpertise:
   - step: "01"
     id: 1
     question: "SaaS Website Design"
-    image: ""
+    image: "https://i.ibb.co.com/5xMs3x4k/sasswebsite.png"
     answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
 
   - step: "02"
     id: 2
     question: "Fintech Website Design"
-    image: ""
+    image: "https://i.ibb.co.com/KpR3HJV5/fintech.png"
     answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
 
   - step: "03"
     id: 3
     question: "Startup Website Design"
-    image: ""
+    image: "https://i.ibb.co.com/PZvt6JRf/startup.png"
     answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
 
   - step: "04"
     id: 4
     question: "Agency Website Design"
-    image: ""
+    image: "https://i.ibb.co.com/SXVBq68Y/agency-2.png"
     answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
   
   - step: "05"
     id: 5
     question: "Healthtech Website Design"
-    image: ""
+    image: "https://i.ibb.co.com/x8MDRWSm/helth.png"
     answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
 
   - step: "06"
     id: 6
     question: "Enterprise Services Website Design"
-    image: ""
+    image: "https://i.ibb.co.com/b5FGNL66/enterpreceservices.png"
     answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
 
 

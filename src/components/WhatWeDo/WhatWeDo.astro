@@ -67,26 +67,27 @@ const sortedServices = sanitizedServices.sort((a, b) =>
 
 <section class="services-section ">
   <!-- dextop -->
-  <div class="hidden lg:block bg-[#1E1212] py-26">
-    <div class=" mx-8 mb-16 grid grid-cols-12 items-start">
-      <div class=" w-66 col-span-3 flex items-center gap-2">
+  <div class="desktop-services hidden lg:block bg-[#1E1212] py-26">
+    <div class="desktop-header mx-8 mb-16 grid grid-cols-12 items-start">
+      <div class="desktop-badge w-66 col-span-3 flex items-center gap-2">
         <img
           src={secIcon.src}
           alt="number section"
-          class="w-4 h-4 md:w-auto md:h-auto"
+          class="desktop-icon w-4 h-4 md:w-auto md:h-auto"
         />
         <h6
-          class=" font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+          class="desktop-label font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
         >
           {label}
         </h6>
       </div>
       <p
-        class=" col-span-6 font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-white"
+        class="desktop-description col-span-6 font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-white"
       >
         {description}
       </p>
     </div>
+    <div class="desktop-tabs">
     <TabSection
       client:load
       services={sortedServices}
@@ -94,6 +95,7 @@ const sortedServices = sanitizedServices.sort((a, b) =>
       description={description}
       icon={icon}
     />
+    </div>
   </div>
   <!-- small screen -->
   <div class="block lg:hidden bg-[#1E1212] py-20">
@@ -131,29 +133,29 @@ const sortedServices = sanitizedServices.sort((a, b) =>
       >
         <div class="grid gap-10 md:gap-10 md:grid-cols-2 items-center">
           <!-- Image -->
-          <div class="relative overflow-hidden   h-70 sm:h-80 md:h-95 w-full mb-3">
+          <div class="service-image relative overflow-hidden   h-70 sm:h-80 md:h-95 w-full mb-3">
             <img
               src={service.image}
               alt={service.title}
-              class="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 hover:scale-105"
+              class="service-image-inner absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 hover:scale-105"
             />
           </div>
 
           <!-- Content -->
           <div>
             <h3
-              class="font-commissioner font-semibold leading-[110%] tracking-[-4%] text-[20px] uppercase mb-4 text-white"
+              class="service-title font-commissioner font-semibold leading-[110%] tracking-[-4%] text-[20px] uppercase mb-4 text-white"
             >
               {service.title}
             </h3>
 
             <p
-              class="font-dm-mono font-normal text-[14px]  leading-[150%] tracking-[-4%] mb-8 text-white/80"
+              class="service-description font-dm-mono font-normal text-[14px]  leading-[150%] tracking-[-4%] mb-8 text-white/80"
             >
               {service.description}
             </p>
 
-            <ul class="space-y-2 mb-8">
+            <ul class="service-features space-y-2 mb-8">
               {
                 service.features.map((item: string) => (
                   <li class="flex gap-3 items-start">
@@ -172,7 +174,7 @@ const sortedServices = sanitizedServices.sort((a, b) =>
 
         <div class="mt-8">
           <LinkButton
-            class="w-full"
+            class="service-button w-full"
             href={`/services/${service.slug}`}
             text={service.buttonText}
 
@@ -190,8 +192,6 @@ const sortedServices = sanitizedServices.sort((a, b) =>
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
-
-  document.addEventListener("astro:page-load", () => {
     ScrollTrigger.refresh();
     // ================= Header =================
 
@@ -265,5 +265,60 @@ const sortedServices = sanitizedServices.sort((a, b) =>
         "-=0.6",
       );
     });
-  });
+
+    
+    // ================= dextop =================
+       const desktopTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".desktop-services",
+        start: "top 70%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    // Icon
+    desktopTl.from(".desktop-icon", {
+      scale: 0.2,
+      rotate: -180,
+      opacity: 0,
+      duration: 0.9,
+      ease: "back.out(2)",
+    });
+
+    // Label
+    desktopTl.from(
+      ".desktop-label",
+      {
+        x: -30,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power3.out",
+      },
+      "-=0.5",
+    );
+
+    // Description
+    desktopTl.from(
+      ".desktop-description",
+      {
+        y: 80,
+        opacity: 0,
+        duration: 1,
+        ease: "expo.out",
+      },
+      "-=0.4",
+    );
+
+    // Tab Section Reveal
+    desktopTl.from(
+      ".desktop-tabs",
+      {
+        clipPath: "inset(0 0 100% 0)",
+        opacity: 0,
+        duration: 1.2,
+        ease: "expo.out",
+      },
+      "-=0.3",
+    );
+
 </script>

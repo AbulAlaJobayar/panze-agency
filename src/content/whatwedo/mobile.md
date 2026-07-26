@@ -19,8 +19,9 @@ features:
   - "Cross-Platform Design"
   - "App Redesign"
 
+
 # sevices section
-servicesImage: ""
+servicesImage: "https://i.ibb.co.com/chSS7PbB/mobile-3.png"
 servicesSubTitle: " Panze is a mobile app design agency that creates iOS and Android app designs for startups and SaaS companies worldwide."
 servicesDescription: "Our mobile app design process starts with user research and ends with a polished interface your users love from the first tap. We design mobile apps for fintech, healthtech, and SaaS startups that need expert UI/UX designers without hiring a full-time team."
 whatWeDeliver: "What we deliver"
@@ -104,7 +105,7 @@ services:
   steps:
   - step: "01"
     title: "SaaS Website Design"
-    image: ""
+    image: "https://i.ibb.co.com/cX2vCZqw/sass.png"
     description: >
       Panze designs conversion-focused landing pages for campaigns, product launches, and lead generation that turn paid and organic traffic into measurable business results from the moment they go live.
     items:
@@ -116,7 +117,7 @@ services:
 
   - step: "02"
     title: "Landing Page Design"
-    image: ""
+    image: "https://i.ibb.co.com/zWK29Z7v/landingpagedesign.png"
     description: >
       We create wireframes that define page structure,
       content hierarchy, and user journeys before moving
@@ -130,7 +131,7 @@ services:
 
   - step: "03"
     title: " Website Redesign"
-    image: ""
+    image: "https://i.ibb.co.com/cX2vCZqw/sass.png"
     description: >
       We transform wireframes into polished visual designs
       that reflect your brand and improve usability.
@@ -143,7 +144,7 @@ services:
 
   - step: "04"
     title: "Website UX Audit and Redesign"
-    image: ""
+    image: "https://i.ibb.co.com/XZMVNYPf/websiteuiux.png"
     description: >
       We prepare developer-ready assets, test key flows,
       and ensure the website launches smoothly.
@@ -155,7 +156,7 @@ services:
       - "Launch support"
   - step: "05"
     title: "White Label Website Design"
-    image: ""
+    image: "https://i.ibb.co.com/zWK29Z7v/landingpagedesign.png"
     description: >
       We prepare developer-ready assets, test key flows,
       and ensure the website launches smoothly.
@@ -232,44 +233,54 @@ Benefits:
 # Industry Expertise
 industryExpertise:
   title: "Industry Expertise"
-  subtitle: "Industries Panze Designs Websites For"
-  description: "Panze designs websites for businesses in industries where the website is a primary sales and trust-building asset. We understand the content structures, conversion patterns, and credibility signals each market requires from a website that is actually doing its job."
+  subtitle: "Industries We Serve with Mobile App Design"
+  description: "Panze designs mobile apps for startups and agencies across high-growth industries. We understand the unique user expectations, compliance needs, and design patterns that make fintech, healthtech, and SaaS mobile products succeed."
   faqs:
   - step: "01"
     id: 1
-    question: "SaaS Website Design"
-    image: ""
-    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+    question: "Fintech SaaS Product Design"
+    image: "https://i.ibb.co.com/wNnqxgRN/fintechsassproductdesign.png"
+    answer: "We design secure, intuitive fintech apps that build trust and simplify complex financial transactions for mobile users."
 
   - step: "02"
     id: 2
-    question: "Fintech Website Design"
-    image: ""
-    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+    question: "Healthcare Mobile App Design"
+    image: "https://i.ibb.co.com/LDK2BZTD/healthcaremobileappdesign.png"
+    answer: "We design compliant healthtech apps that patients and providers actually want to use every single day."
 
   - step: "03"
     id: 3
-    question: "Startup Website Design"
-    image: ""
-    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+    question: "SaaS Mobile App Design"
+    image: "https://i.ibb.co.com/sG0nfrz/saasmobileappdesign.png"
+    answer: "We design SaaS mobile apps that extend your platform beyond the desktop and keep users engaged on the go."
 
   - step: "04"
     id: 4
-    question: "Agency Website Design"
-    image: ""
-    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+    question: "E-Commerce Mobile App Design"
+    image: "https://i.ibb.co.com/hJNVwD19/ecommercemobileappdesign.png"
+    answer: "We design e-commerce apps that reduce cart abandonment and turn mobile browsers into repeat buyers."
   
   - step: "05"
     id: 5
-    question: "Healthtech Website Design"
-    image: ""
-    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+    question: "EdTech Mobile App Design"
+    image: "https://i.ibb.co.com/PvchZ9Yx/edtechmobileappdesign.png"
+    answer: "We design EdTech apps that make learning feel effortless and keep students coming back for more."
 
   - step: "06"
     id: 6
-    question: "Enterprise Services Website Design"
-    image: ""
-    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+    question: "Social Mobile App Design"
+    image: "https://i.ibb.co.com/C3wmhsRc/soscialmobileappdesign.png"
+    answer: "We design social apps that drive engagement, sharing, and retention through intuitive interaction patterns."
+  - step: "07"
+    id: 7
+    question: "Enterprise Mobile App Design"
+    image: "https://i.ibb.co.com/TDq3GNs4/enterprisemobileappdesign.png"
+    answer: "We design enterprise mobile apps that employees actually adopt and that streamline complex workflows on any device."
+  - step: "08"
+    id: 8
+    question: "Startup Mobile App Design"
+    image: "https://i.ibb.co.com/RTYhYPJV/startupmobileappdesign.png"
+    answer: "We design startup mobile apps that validate your idea fast and scale with you as you grow."
 
 
 # Design Expertise

@@ -1,7 +1,6 @@
 ---
 import * as latestData from "@/content/home/latestwork-content.md";
 import latestWorkIcon from "@/assets/sectionIcon/latestwork.svg";
-import { Image } from "astro:assets";
 import LatestWorkCard from "../ui/home/LatestWorkCard.astro";
 
 const { title, subTitle, description, card } = latestData.frontmatter;
@@ -21,10 +20,10 @@ const { title, subTitle, description, card } = latestData.frontmatter;
           <img
             src={latestWorkIcon.src}
             alt="Latest icon"
-            class="w-4 h-4 md:w-auto md:h-auto"
+            class="latest-icon w-4 h-4 md:w-auto md:h-auto"
           />
           <h6
-            class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-white"
+            class="latest-heading font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-white"
           >
             {title}
           </h6>
@@ -33,21 +32,19 @@ const { title, subTitle, description, card } = latestData.frontmatter;
 
       <!-- Middle: SubTitle -->
       <div
-        class="latest-subtitle w-full lg:w-[40%] lg:border-r border-white/20 ml-0 lg:ml-9 px-4 lg:px-9 pt-10 lg:pt-20"
+        class="w-full lg:w-[40%] lg:border-r border-white/20 ml-0 lg:ml-9 px-4 lg:px-9 pt-10 lg:pt-20"
       >
         <p
-          class="font-commissioner font-semibold text-[25px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-white"
+          class="latest-subtitle-text font-commissioner font-semibold text-[25px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-white"
         >
           {subTitle}
         </p>
       </div>
 
       <!-- Right: Description -->
-      <div
-        class="latest-description w-full lg:w-[40%] pl-9 pr-8 md:px-8 pt-10 lg:pt-20 mb-16"
-      >
+      <div class="w-full lg:w-[40%] pl-9 pr-8 md:px-8 pt-10 lg:pt-20 mb-16">
         <p
-          class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white/80"
+          class="latest-description-text font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white/80"
         >
           {description}
         </p>
@@ -83,7 +80,7 @@ const { title, subTitle, description, card } = latestData.frontmatter;
 
         <!-- Middle Image - Full Container Height -->
         <div
-          class="flex-1 h-64 md:h-auto flex items-center justify-center overflow-hidden"
+          class=" flex-1 h-64 md:h-auto flex items-center justify-center overflow-hidden"
         >
           <LatestWorkCard
             heroImage={card.image}
@@ -119,61 +116,75 @@ const { title, subTitle, description, card } = latestData.frontmatter;
     </div>
   </div>
 </section>
-
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
+
   gsap.registerPlugin(ScrollTrigger);
+
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#latest-work",
-      start: "top 75%",
+      start: "top 70%",
       toggleActions: "play none none reverse",
     },
   });
 
-  // Title
-  tl.from(".latest-title", {
-    x: -120,
+  // Icon
+  tl.from(".latest-icon", {
+    scale: 0.3,
+    rotate: -180,
     opacity: 0,
     duration: 0.8,
-    ease: "power4.out",
+    ease: "back.out(2)",
   });
+
+  // Small title
+  tl.from(
+    ".latest-heading",
+    {
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      ease: "power3.out",
+    },
+    "-=0.4",
+  );
 
   // Subtitle
   tl.from(
-    ".latest-subtitle",
+    ".latest-subtitle-text",
     {
-      y: -100,
+      y: 80,
       opacity: 0,
-      duration: 0.8,
-      ease: "power4.out",
+      duration: 1,
+      ease: "expo.out",
     },
     "-=0.4",
   );
 
   // Description
   tl.from(
-    ".latest-description",
+    ".latest-description-text",
     {
-      x: 120,
+      y: 30,
       opacity: 0,
-      duration: 0.8,
-      ease: "power4.out",
+      duration: 0.7,
+      ease: "power2.out",
     },
-    "-=0.4",
+    "-=0.7",
   );
 
-  // All 4 boxes
+  // Side Labels
   tl.from(
     ".side-box",
     {
-      y: -150,
+      clipPath: "inset(100% 0 0 0)",
       opacity: 0,
-      stagger: 0.15,
-      duration: 0.9,
-      ease: "expo.out",
+      stagger: 0.12,
+      duration: 0.8,
+      ease: "power4.out",
     },
-    "-=0.2",
+    "-=0.3",
   );
 </script>

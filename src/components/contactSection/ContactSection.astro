@@ -93,7 +93,7 @@ const { name, designation, ceoImage, title, meetDescription } =
                 alt={name}
                 width={400}
                 height={500}
-                class="w-full max-h-80 object-cover object-top transition-transform duration-500 hover:scale-105"
+                class="contact-image w-full max-h-80 object-cover object-top transition-transform duration-500 hover:scale-105"
               />
             </div>
 
@@ -149,67 +149,158 @@ const { name, designation, ceoImage, title, meetDescription } =
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
-
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#contact-section",
-      start: "top 75%",
+      start: "top 70%",
       toggleActions: "play none none reverse",
     },
   });
 
-  tl.from(".contact-badge", {
-    x: -60,
+  // ======================
+  // HEADER
+  // ======================
+
+  tl.from(".contact-title", {
     opacity: 0,
-    duration: 0.7,
-    ease: "power3.out",
+    y: 80,
+    duration: 1,
+    stagger: 0.08,
+    ease: "expo.out",
   })
-    .from(
-      ".contact-title",
-      {
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power4.out",
-      },
-      "-=0.4",
-    )
+
     .from(
       ".contact-description",
       {
-        y: 30,
         opacity: 0,
-        duration: 0.7,
-        ease: "power2.out",
+        y: 40,
+        duration: 0.8,
+        stagger: 0.05,
+        ease: "power3.out",
       },
-      "-=0.4",
-    )
-    .from(
-      ".contact-profile",
-      {
-        x: -80,
-        opacity: 0,
-        scale: 0.95,
-        duration: 1,
-        ease: "power4.out",
-      },
-      "-=0.2",
-    )
-    .from(
-      ".contact-form-wrapper",
-      {
-        x: 80,
-        opacity: 0,
-        duration: 1,
-        ease: "power4.out",
-      },
-      "-=0.8",
+      "-=0.6",
     );
+
+  // ======================
+  // CEO IMAGE REVEAL
+  // ======================
+
+  tl.from(
+    ".contact-profile img",
+    {
+      scale: 1.25,
+      opacity: 0,
+      filter: "blur(15px)",
+      clipPath: "inset(100% 0 0 0)",
+      duration: 1.6,
+      ease: "expo.out",
+    },
+    "-=0.7",
+  );
+
+  // ======================
+  // CEO INFO
+  // ======================
+
+  tl.from(
+    ".contact-profile + div .contact-badge",
+    {
+      opacity: 0,
+      x: -40,
+      duration: 0.8,
+      ease: "power3.out",
+    },
+    "-=1",
+  );
+
+  // ======================
+  // FORM
+  // ======================
+
+  tl.from(
+    ".contact-form-wrapper",
+    {
+      opacity: 0,
+      x: 120,
+      rotateY: -10,
+      transformPerspective: 1200,
+      duration: 1.4,
+      ease: "expo.out",
+    },
+    "-=1.2",
+  );
+
+  // ======================
+  // FLOATING IMAGE
+  // ======================
+
   gsap.to(".contact-profile img", {
-    y: -10,
-    duration: 2.5,
+    y: -12,
+    duration: 4,
     repeat: -1,
     yoyo: true,
     ease: "sine.inOut",
   });
+
+  // CEO Card Hover 3D
+  document.querySelectorAll(".contact-profile").forEach((card) => {
+    const image = card.querySelector("img");
+
+    card.addEventListener("mousemove", (e:any) => {
+      const rect = card.getBoundingClientRect();
+
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const rotateY = (x / rect.width - 0.5) * 12;
+      const rotateX = (y / rect.height - 0.5) * -12;
+
+      // Card Tilt
+      gsap.to(card, {
+        rotateX,
+        rotateY,
+        transformPerspective: 1200,
+        duration: 0.5,
+        ease: "power3.out",
+      });
+
+      // Image Depth
+      gsap.to(image, {
+        x: rotateY * 3,
+        y: rotateX * -3,
+        scale: 1,
+        duration: 0.5,
+        ease: "power3.out",
+      });
+    });
+
+    card.addEventListener("mouseleave", () => {
+      gsap.to(card, {
+        rotateX: 0,
+        rotateY: 0,
+        duration: 0.8,
+        ease: "expo.out",
+      });
+
+      gsap.to(image, {
+        x: 0,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        ease: "expo.out",
+      });
+    });
+  });
 </script>
+<style>
+  .contact-profile {
+    transform-style: preserve-3d;
+    transform-origin: center center;
+    will-change: transform;
+  }
+
+  .contact-profile img {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+</style>

@@ -1,4 +1,6 @@
 ---
+import LinkButton from "@/components/ui/LinkButton.astro";
+
 const { relatedWork } = Astro.props;
 const rows = [];
 
@@ -7,49 +9,21 @@ for (let i = 0; i < relatedWork.items.length; i += 2) {
 }
 ---
 
-<section class="py-20">
-  <div class="px-8 lg:px-10">
+<section id="related-work-section" class="py-26">
+  <div class="px-8 ">
     <div class="mb-16 flex items-center justify-between">
       <h2
-        class="font-commissioner
+        class="related-work-title font-commissioner
           text-[24px]
           font-semibold
           leading-[110%]
           uppercase
-          tracking-[-0.04em]
+          tracking-[-4%]
           text-primary"
       >
         {relatedWork.sectionTitle}
       </h2>
-      <a
-        href="/works"
-        class="inline-flex items-center gap-2 whitespace-nowrap bg-primary px-6 py-4
-    text-white"
-      >
-        <span
-          class="font-commissioner
-          text-[14px]
-          font-normal
-          leading-[150%]
-          uppercase
-          tracking-[-0.04em]"
-          >All Works</span
-        >
-
-        <svg
-          class="h-5 w-5"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-        >
-          <path
-            d="M7 17L17 7M17 7H9M17 7V15"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"></path>
-        </svg>
-      </a>
+      <LinkButton href="/works"  text="All Works" class="related-work-button"/>
     </div>
      <div class="space-y-16">
     {
@@ -70,30 +44,30 @@ for (let i = 0; i < relatedWork.items.length; i += 2) {
               return (
                <div class={width}>
                 <a href={`/works/${project.slug}`} class="block group">
-                    <article class="h-140.5 flex flex-col">
+                    <article class="related-work-card h-140.5 flex flex-col">
                 <!-- Image Border -->
                 <div
                     class:list={[
-                    "border border-primary p-2",
+                    "border border-primary p-4",
                     index === 0 && "lg:border-r-0",
                     ]}
                 >
                     <img
                     src={project.thumbnail}
                     alt={project.title}
-                    class="w-full h-112 object-cover transition-transform duration-500 ease-out group-hover:scale-102"
+                    class="related-work-image w-full h-112 object-cover transition-transform duration-500 ease-out group-hover:scale-102"
                     />
                 </div>
 
                 <!-- Content  -->
-                <div class="flex-1 flex flex-col mt-4">
-                    <h3 class="font-commissioner font-semibold text-[16px] leading-[110%] tracking-[-0.04em] text-[#1E1212]">
+                <div class="flex-1 flex flex-col mt-5">
+                    <h3 class="related-work-name font-commissioner font-semibold text-[16px] leading-[110%] tracking-[-0.04em] text-[#1E1212]">
                     {project.title}
                     </h3>
 
-                    <div class="mt-auto flex flex-wrap gap-2 pt-4">
+                    <div class="mt-auto flex flex-wrap gap-2 pt-5">
                     {project.tags?.map((tag: string) => (
-                        <span class="rounded-full border  px-4 py-1 font-dm-mono text-[12px] leading-[150%] tracking-[-0.04em] text-[#1E1212]">
+                        <span class="related-work-tag rounded-full border  px-4 py-1 font-dm-mono text-[12px] leading-[150%] tracking-[-0.04em] text-[#1E1212]">
                         {tag}
                         </span>
                     ))}
@@ -109,63 +83,62 @@ for (let i = 0; i < relatedWork.items.length; i += 2) {
       })
     }
   </div>
-
-    <!-- <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
-      {
-        relatedWork.items.map((work: any) => (
-          <a href={`/works/${work.slug}`} class="group block">
-            <article>
-              <div class="overflow-hidden border border-primary">
-                <img
-                  src={work.thumbnail}
-                  alt={work.title}
-                  class="
-                    h-115
-                    w-full
-                    object-cover
-                    transition-transform
-                    duration-500
-                    group-hover:scale-105
-                  "
-                />
-              </div>
-
-              <div class="mt-6">
-                <h3
-                  class="
-                    font-commissioner
-                    text-[24px]
-                    font-semibold
-                    leading-[110%]
-                    tracking-[-0.04em]
-                    text-[#301C1B]
-                  "
-                >
-                  {work.title}
-                </h3>
-
-                <div class="mt-4 flex flex-wrap gap-2">
-                  {work.tags?.map((tag: string) => (
-                    <span
-                      class="
-                        rounded-full
-                        border
-                        border-black/10
-                        px-4
-                        py-1
-                        font-dm-mono
-                        text-xs
-                      "
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </article>
-          </a>
-        ))
-      }
-    </div> -->
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#related-work-section",
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+    },
+  });
+
+  // Header
+  tl.from(".related-work-title", {
+    y: 60,
+    opacity: 0,
+    duration: 1,
+    ease: "expo.out",
+  })
+
+    .from(
+      ".related-work-button",
+      {
+        x: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      },
+      "-=0.7",
+    ).from(
+      ".related-work-name",
+      {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: "power3.out",
+      },
+      "-=0.8",
+    )
+
+    // Tags
+    .from(
+      ".related-work-tag",
+      {
+        y: 15,
+        opacity: 0,
+        scale: 0.8,
+        duration: 0.5,
+        stagger: 0.03,
+        ease: "back.out(1.7)",
+      },
+      "-=0.5",
+    );
+</script>

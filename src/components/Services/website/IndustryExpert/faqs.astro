@@ -13,24 +13,24 @@ const { class: className, faqs } = Astro.props;
     <Accordion collapsible defaultValue={faqs[0].id}>
       {
         faqs.map((item: any, index: number) => (
-          <AccordionItem value={item.id} class={"px-5 border-white/20"}>
+          <AccordionItem value={item.id} class={"faq-item border-white/20 px-8 lg:px-4"}>
             <AccordionTrigger
               iconActive={false}
               class={
-                "font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] text-white data-[state=open]:hidden"
+                "py-4 font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] text-white data-[state=open]:hidden"
               }
             >
               {item.question}
             </AccordionTrigger>
             <AccordionContent>
-              <div class="grid lg:grid-cols-2 pt-2 items-center">
-                <img src={item.image} alt={item.question} />
+              <div class="flex flex-col lg:flex-row  pt-4 items-center gap-6">
+                <img src={item.image} alt={item.question} class="faq-image" />
 
-                <div class="lg:-ml-20">
-                  <h3 class="font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-white mb-5">
+                <div class="mr-6 faq-details">
+                  <h3 class=" font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-white mb-3">
                     {item.question}
                   </h3>
-                  <p class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white">
+                  <p class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white/30">
                     {item.answer}
                   </p>
                 </div>
@@ -44,56 +44,75 @@ const { class: className, faqs } = Astro.props;
 </div>
 <script>
   import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-    const accordionItems = document.querySelectorAll(".faq-item");
+  gsap.registerPlugin(ScrollTrigger);
 
-    accordionItems.forEach((item) => {
-      const trigger = item.querySelector("[data-state]");
-      const image = item.querySelector(".faq-image");
-      const details = item.querySelector(".faq-details");
+  // Initial reveal
+  gsap.from(".faq-item", {
+    scrollTrigger: {
+      trigger: ".faq-item",
+      start: "top 85%",
+    },
+    y: 40,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.08,
+    ease: "power3.out",
+  });
 
-      const animateOpen = () => {
-        gsap.fromTo(
-          image,
-          {
-            scale: 1.1,
-            opacity: 0,
-            filter: "blur(12px)",
-          },
-          {
-            scale: 1,
-            opacity: 1,
-            filter: "blur(0px)",
-            duration: 0.8,
-            ease: "power4.out",
-          },
-        );
+  // Accordion open animation
+  document.querySelectorAll(".faq-item").forEach((item) => {
+    const image = item.querySelector(".faq-image");
+    const details = item.querySelector(".faq-details");
 
-        gsap.fromTo(
-          details,
-          {
-            y: 30,
-            opacity: 0,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            delay: 0.1,
-            ease: "power3.out",
-          },
-        );
-      };
+    const animateOpen = () => {
+      if (!image || !details) return;
 
-      const observer = new MutationObserver(() => {
-        if (item.getAttribute("data-state") === "open") {
-          animateOpen();
-        }
-      });
+      const tl = gsap.timeline();
 
-      observer.observe(item, {
-        attributes: true,
-        attributeFilter: ["data-state"],
-      });
+      tl.fromTo(
+        image,
+        {
+          scale: 1.15,
+          opacity: 0,
+          filter: "blur(12px)",
+        },
+        {
+          scale: 1,
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 0.9,
+          ease: "expo.out",
+        },
+      ).fromTo(
+        details,
+        {
+          y: 25,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: "power3.out",
+        },
+        "-=0.5",
+      );
+    };
+
+    const observer = new MutationObserver(() => {
+      const content = item.querySelector("[data-state='open']");
+
+      if (content) {
+        animateOpen();
+      }
     });
+
+    observer.observe(item, {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["data-state"],
+    });
+  });
 </script>

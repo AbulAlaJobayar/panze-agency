@@ -88,95 +88,89 @@ const { heroImage, title, description, industry, tags } = Astro.props;
 
   gsap.registerPlugin(ScrollTrigger);
 
-  document.addEventListener("astro:page-load", () => {
-    document.querySelectorAll(".portfolio-card").forEach((card) => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: card,
-          start: "top 80%",
-          once: true,
-        },
-      });
+  document.querySelectorAll(".portfolio-card").forEach((card) => {
+    const image = card.querySelector(".card-image");
 
-      tl.from(card, {
-        opacity: 0,
-        y: 80,
-        scale: 0.96,
-        duration: 0.8,
-        ease: "power3.out",
-      });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: card,
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+    });
 
-      tl.from(
-        card.querySelector(".card-image"),
+    tl.from(card, {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      ease: "expo.out",
+    })
+
+      .from(
+        image,
         {
+          clipPath: "inset(0 0 100% 0)",
           scale: 1.15,
-          duration: 1.2,
-          ease: "power3.out",
+          filter: "blur(12px)",
+          duration: 1.8,
+          ease: "expo.out",
         },
-        "<",
-      );
+        "-=0.8",
+      )
 
-      tl.from(
+      .from(
         card.querySelector(".card-title"),
         {
           y: 40,
           opacity: 0,
-          duration: 0.6,
+          duration: 0.8,
           ease: "power3.out",
         },
-        "-=0.8",
-      );
+        "-=1.1",
+      )
 
-      tl.from(
+      .from(
         card.querySelectorAll(".card-tag"),
+        {
+          y: 15,
+          scale: 0.8,
+          opacity: 0,
+          stagger: 0.05,
+          duration: 0.5,
+          ease: "back.out(2)",
+        },
+        "-=0.5",
+      )
+
+      .from(
+        [
+          card.querySelector(".card-description"),
+          card.querySelector(".card-industry"),
+        ],
         {
           y: 20,
           opacity: 0,
-          stagger: 0.1,
-          duration: 0.4,
-          ease: "power2.out",
-        },
-        "-=0.4",
-      );
-
-      tl.from(
-        card.querySelector(".card-description"),
-        {
-          x: 50,
-          opacity: 0,
-          duration: 0.6,
+          stagger: 0.08,
+          duration: 0.7,
           ease: "power3.out",
         },
         "-=0.3",
       );
 
-      tl.from(
-        card.querySelector(".card-industry"),
-        {
-          opacity: 0,
-          y: 20,
-          duration: 0.5,
-        },
-        "-=0.2",
-      );
-    });
-  });
-  document.querySelectorAll(".portfolio-card").forEach((card) => {
-    const image = card.querySelector(".card-image");
-
+    // Hover
     card.addEventListener("mouseenter", () => {
       gsap.to(image, {
         scale: 1.08,
-        duration: 0.6,
-        ease: "power2.out",
+        duration: 0.8,
+        ease: "power3.out",
       });
     });
 
     card.addEventListener("mouseleave", () => {
       gsap.to(image, {
         scale: 1,
-        duration: 0.6,
-        ease: "power2.out",
+        duration: 0.8,
+        ease: "power3.out",
       });
     });
   });

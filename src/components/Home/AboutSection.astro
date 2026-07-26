@@ -6,14 +6,8 @@ import aboutUs from "@/assets/sectionIcon/aboutus.svg";
 import LinkButton from "../ui/LinkButton.astro";
 
 // Access frontmatter data
-const {
-  title,
-  subTitle,
-  description,
-  buttonText,
-  buttonLink,
-  images,
-} = aboutData.frontmatter;
+const { title, subTitle, description, buttonText, buttonLink, images } =
+  aboutData.frontmatter;
 
 // Create images array for rendering
 ---
@@ -30,25 +24,25 @@ const {
           alt="number section"
           width={16}
           height={14}
-          class="w-4 h-3.5 md:w-auto md:h-auto"
+          class="about-icon w-4 h-3.5 md:w-auto md:h-auto"
         />
         <h6
-          class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+          class="about-title font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
         >
           {title}
         </h6>
       </div>
       <p
-        class="font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase pb-6 md:pb-8 lg:pb-14"
+        class="about-subtitle font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase pb-14"
       >
         {subTitle}
       </p>
       <p
-        class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] mb-20"
+        class="about-description font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] mb-20"
       >
         {description}
       </p>
-      <LinkButton href={buttonLink} text={buttonText} />
+      <LinkButton href={buttonLink} text={buttonText} class="about-button" />
     </div>
 
     <!-- Right Side - Background image ONLY on right side -->
@@ -76,12 +70,14 @@ const {
     </div>
   </div>
 </section>
+
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
 
+  // ===== LEFT CONTENT TIMELINE =====
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#abouthome",
@@ -91,57 +87,111 @@ const {
   });
 
   tl.from(".aboutHome-left", {
-    x: -100,
+    x: -80,
     opacity: 0,
-    duration: 0.8,
-    stagger: 0.4,
-    ease: "power3.out",
-  });
-  tl.from("#right", {
-    y: -100,
-    opacity: 0,
-    duration: 0.5,
-    stagger: 0.08,
-    ease: "power3.out",
-  });
+    duration: 1,
+    ease: "expo.out",
+  })
 
+    // Icon
+    .from(
+      ".about-icon",
+      {
+        scale: 0,
+        rotate: -45,
+        opacity: 0,
+        duration: 0.8,
+        ease: "back.out(2)",
+      },
+      "-=0.6",
+    )
+
+    // Small Title
+    .from(
+      ".about-title",
+      {
+        x: -30,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power3.out",
+      },
+      "-=0.5",
+    )
+
+    // Subtitle
+    .from(
+      ".about-subtitle",
+      {
+        y: 70,
+        opacity: 0,
+        duration: 1.1,
+        ease: "expo.out",
+      },
+      "-=0.2",
+    )
+
+    // Description
+    .from(
+      ".about-description",
+      {
+        y: 30,
+        opacity: 0,
+        filter: "blur(8px)",
+        duration: 0.8,
+        ease: "power3.out",
+      },
+      "-=0.7",
+    )
+
+    // Button
+    .from(
+      ".about-button",
+      {
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        ease: "back.out(1.7)",
+      },
+      "-=0.4",
+    );
+
+  // ===== GALLERY REVEAL =====
   const cards = document.querySelectorAll(".gallery-card");
 
-  cards.forEach((card, index) => {
-    gsap.set(card, {
-      rotation: index % 2 === 0 ? -10 : 10,
-      y: 100,
-      opacity: 0,
-    });
+  gsap.set(cards, {
+    rotation: (i) => (i % 2 === 0 ? -8 : 8),
+    y: 120,
+    opacity: 0,
+    scale: 0.9,
   });
 
   gsap.to(cards, {
     rotation: 0,
     y: 0,
     opacity: 1,
-    duration: 1.2,
-    stagger: 0.15,
+    scale: 1,
+    duration: 1.4,
+    stagger: 0.12,
     ease: "expo.out",
     scrollTrigger: {
       trigger: "#gallery",
-      start: "top 70%",
+      start: "top 75%",
       toggleActions: "play none none reverse",
     },
   });
 
-  // Wave animation
-  gsap.utils
-    .toArray<HTMLImageElement>(".gallery-card img")
-    .forEach((img, index) =>
-      gsap.to(img, {
-        y: gsap.utils.random(-15, -8),
-        x: gsap.utils.random(-4, 4),
-        rotation: gsap.utils.random(-3, 3),
-        duration: gsap.utils.random(2.5, 4),
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-        delay: index * 0.2,
-      }),
-    );
+  // ===== FLOATING WAVE =====
+  gsap.utils.toArray(".gallery-card img").forEach((img: any, index) => {
+    gsap.to(img, {
+      y: gsap.utils.random(-15, -8),
+      x: gsap.utils.random(-4, 4),
+      rotation: gsap.utils.random(-3, 3),
+      duration: gsap.utils.random(2.5, 4),
+      ease: "sine.inOut",
+      repeat: -1,
+      yoyo: true,
+      delay: index * 0.2,
+    });
+  });
 </script>
+

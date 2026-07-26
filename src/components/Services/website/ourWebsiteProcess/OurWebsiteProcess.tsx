@@ -13,7 +13,6 @@ interface OurWebsiteProcessProps {
 }
 
 export default function OurWebsiteProcess({ data }: OurWebsiteProcessProps) {
-  // FIX 1: Default to the title of the first data item to make the first step active on load safely
   const [expandedTitle, setExpandedTitle] = useState<string>("");
 
   useEffect(() => {
@@ -25,9 +24,9 @@ export default function OurWebsiteProcess({ data }: OurWebsiteProcessProps) {
   if (!data || data.length === 0) return null;
 
   return (
-    <div className="w-full  mx-auto">
+    <div className="w-full mx-auto">
       <div
-        className="flex flex-col lg:flex-row mx-4 lg:mx-5 border border-gray-200 lg:h-100 w-full overflow-hidden"
+        className="flex flex-col lg:flex-row  border border-gray-200 lg:h-100 w-full overflow-hidden"
       >
         {data.map((step) => {
           const isExpanded = expandedTitle === step.title;
@@ -40,7 +39,6 @@ export default function OurWebsiteProcess({ data }: OurWebsiteProcessProps) {
                 duration: 0.45,
                 ease: [0.25, 1, 0.5, 1],
               }}
-              // Keeps the 40% and 20% width calculations completely fluid
               animate={{
                 flexGrow: isExpanded ? 3 : 1,
               }}

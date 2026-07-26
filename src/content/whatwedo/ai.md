@@ -20,7 +20,7 @@ features:
   - "- Copilot Design"
 
 # sevices section
-servicesImage: ""
+servicesImage: "https://i.ibb.co.com/FLz52GjG/ai-3.png"
 servicesSubTitle: "Al-driven product design that turns ideas into products Panze designs intelligent digital products that feel simple. We combine Al speed with human strategy so your Al product ships faster without losing its soul."
 servicesDescription: "We use Al for rapid interface exploration and trust- pattern    generation, then senior designers refine every choice. Your Al product design ships in days instead of months.
  Your product. Your brand. Our craft. Panze handles the heavy lifting while you maintain full ownership of your vision and your client relationships."
@@ -102,11 +102,11 @@ ourProcess:
 # services section          
 services:
   title: "Services"
-  subtitle: "We design digital products. SaaS  platforms, web apps, and mobile apps."
+  subtitle: "We design digital products. SaaS platforms, web apps, and mobile apps."
   steps:
   - step: "01"
     title: "SaaS Website Design"
-    image: ""
+    image: "https://i.ibb.co.com/cX2vCZqw/sass.png"
     description: >
       Panze designs conversion-focused landing pages for campaigns, product launches, and lead generation that turn paid and organic traffic into measurable business results from the moment they go live.
     items:
@@ -118,7 +118,7 @@ services:
 
   - step: "02"
     title: "Landing Page Design"
-    image: ""
+    image: "https://i.ibb.co.com/zWK29Z7v/landingpagedesign.png"
     description: >
       We create wireframes that define page structure,
       content hierarchy, and user journeys before moving
@@ -131,8 +131,8 @@ services:
       - "Responsive planning"
 
   - step: "03"
-    title: "Website Redesign"
-    image: ""
+    title: " Website Redesign"
+    image: "https://i.ibb.co.com/cX2vCZqw/sass.png"
     description: >
       We transform wireframes into polished visual designs
       that reflect your brand and improve usability.
@@ -145,7 +145,7 @@ services:
 
   - step: "04"
     title: "Website UX Audit and Redesign"
-    image: ""
+    image: "https://i.ibb.co.com/XZMVNYPf/websiteuiux.png"
     description: >
       We prepare developer-ready assets, test key flows,
       and ensure the website launches smoothly.
@@ -157,7 +157,7 @@ services:
       - "Launch support"
   - step: "05"
     title: "White Label Website Design"
-    image: ""
+    image: "https://i.ibb.co.com/zWK29Z7v/landingpagedesign.png"
     description: >
       We prepare developer-ready assets, test key flows,
       and ensure the website launches smoothly.
@@ -234,44 +234,55 @@ Benefits:
 # Industry Expertise
 industryExpertise:
   title: "Industry Expertise"
-  subtitle: "Industries Panze Designs Websites For"
-  description: "Panze designs websites for businesses in industries where the website is a primary sales and trust-building asset. We understand the content structures, conversion patterns, and credibility signals each market requires from a website that is actually doing its job."
+  subtitle: "Industries We Serve with Mobile App Design"
+  description: "Panze designs mobile apps for startups and agencies across high-growth industries. We understand the unique user expectations, compliance needs, and design patterns that make fintech, healthtech, and SaaS mobile products succeed."
   faqs:
   - step: "01"
-    id: 1
-    question: "SaaS Website Design"
-    image: ""
+    id: 1 
+    question: "Fintech Mobile App Design"
+    image: "https://i.ibb.co.com/d4ytwWDv/fintech-Mobile.png"
     answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
 
   - step: "02"
     id: 2
-    question: "Fintech Website Design"
-    image: ""
+    question: "Healthcare Mobile App Design"
+    image: "https://i.ibb.co.com/v4bsL1Qm/healthcare-Mobile.png"
     answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
 
   - step: "03"
     id: 3
-    question: "Startup Website Design"
-    image: ""
+    question: "HR and People Ops SaaS Design"
+    image: "https://i.ibb.co.com/k6g76rwt/hr-mobile.png"
     answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
 
   - step: "04"
     id: 4
-    question: "Agency Website Design"
-    image: ""
+    question: "Analytics and Data SaaS Design"
+    image: "https://i.ibb.co.com/20NbVHZG/analeticdata.png"
     answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
   
   - step: "05"
     id: 5
-    question: "Healthtech Website Design"
-    image: ""
+    question: "E-Commerce SaaS Design"
+    image: "https://i.ibb.co.com/kVXpPnmr/ecommercesassmobile.png"
     answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
 
   - step: "06"
     id: 6
-    question: "Enterprise Services Website Design"
-    image: ""
+    question: "EdTech SaaS Product Design"
+    image: "https://i.ibb.co.com/PzmpyHd3/edtechsassmobile.png"
     answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+  - step: "07"
+    id: 7
+    question: "Project Management SaaS Design"
+    image: "https://i.ibb.co.com/ccdyHsnh/projectmanagement.png"
+    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+  - step: "08"
+    id: 8
+    question: "Marketing SaaS Product Design"
+    image: "https://i.ibb.co.com/tpcJbCZY/marketingsass.png"
+    answer: "We design SaaS websites that turn feature lists into clear value propositions and guide potential subscribers from their first visit to a confident signup decision with as little friction as possible."
+
 
 
 # Design Expertise

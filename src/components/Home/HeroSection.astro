@@ -13,10 +13,10 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
   <div class="hidden md:block">
     <div class="flex">
       <!-- left container -->
-      <div class="sm:w-1/2 md:w-100 border-r pl-8 pr-8.25 pt-20 pb-12.75 z-10">
+      <div class="md:w-100 border-r pl-8 pr-8.25 pt-20 pb-12.75 z-10">
         <div class="w-83.75">
           <h3
-            class="subtitle font-commissioner font-semibold sm:text-[18px] md:text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary  mb-14"
+            class="subtitle font-commissioner font-semibold sm:text-[18px] md:text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary mb-14"
           >
             {subTitle}
           </h3>
@@ -42,14 +42,14 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
           </div>
 
           <h1
-            class="hero-title font-commissioner font-semibold text-[clamp(36px,8vw,108px)]
+            class="hero-title font-commissioner font-semibold text-[clamp(36px,6vw,108px)]
             uppercase leading-[110%] tracking-[-4%] text-[#301C1B] whitespace-nowrap"
           >
             {title}
           </h1>
         </div>
         <!-- img -->
-        <div id="img" class="hero-img mt-22 mb-18.75">
+        <div id="img" class="hero-img md:mt-40 lg:mt-22 mb-18.75 h-69">
           <img src={bg.src} alt="bg" />
         </div>
       </div>
@@ -58,11 +58,11 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
 
   <!-- small screen -->
   <div class="hero mx-auto">
-    <div class="block md:hidden mx-auto mb-10">
-      <div class="mt-10">
+    <div class="block md:hidden mx-auto">
+      <div class="mt-15.75">
         <!-- top -->
         <div class="pl-8 pr-8.25">
-          <div class="hero-location flex items-center gap-2 mb-10">
+          <div class="hero-location flex items-center gap-2 mb-2">
             <img src={usFlag.src} alt="icon" width={12} height={8} />
             <p
               class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
@@ -77,19 +77,19 @@ const { cta, location, description, subTitle, title } = hero.frontmatter;
             {title}
           </h1>
         </div>
-        <div class="pl-8 pr-8.25">
+        <div class="pl-8 pr-8.25 mt-22">
           <div>
             <h3
-              class="subtitle font-commissioner font-semibold text-[18px] uppercase leading-[110%] tracking-[-4%] text-primary pt-10 pb-5"
+              class="subtitle font-commissioner font-semibold text-[18px] uppercase leading-[110%] tracking-[-4%] text-primary"
             >
               {subTitle}
             </h3>
             <p
-              class="description font-dm-mono font-normal text-[12px] leading-[140%] tracking-[-4%]"
+              class="mt-6 description font-dm-mono font-normal text-[12px] leading-[140%] tracking-[-4%]"
             >
               {description}
             </p>
-            <LinkButton href={"/works"} text={cta} class="hero-button mt-5" />
+            <LinkButton href={"/works"} text={cta} class="hero-button mt-6" />
           </div>
         </div>
         <div class="hero-img mt-10 mb-9">

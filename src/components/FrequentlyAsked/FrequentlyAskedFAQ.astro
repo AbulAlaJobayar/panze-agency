@@ -5,7 +5,7 @@ import faqicon from "@/assets/sectionIcon/faq.svg";
 const whatsappUrl = import.meta.env.WHATSAPP_URL;
 const { askedQuestion } = Astro.props;
 
-const { title, subtitle, description, buttonText, faqs } =askedQuestion;
+const { title, subtitle, description, buttonText, faqs } = askedQuestion;
 ---
 
 <section id="faq" class="overflow-hidden mt-10 lg:mt-26">
@@ -18,30 +18,34 @@ const { title, subtitle, description, buttonText, faqs } =askedQuestion;
         <img
           src={faqicon.src}
           alt="number section"
-          class="w-4 h-4 md:w-auto md:h-auto"
+          class="faq-icon w-4 h-4 md:w-auto md:h-auto"
         />
         <h6
-          class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+          class="faq-label font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
         >
           {title}
         </h6>
       </div>
       <p
-        class="font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase mb-8 lg:mb-14"
+        class="faq-title font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase mb-8 lg:mb-14"
       >
         {subtitle}
       </p>
       <p
-        class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] mb-10 lg:mb-42.5"
+        class="faq-description font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] mb-10 lg:mb-42.5"
       >
         {description}
       </p>
-      <LinkButton href={whatsappUrl} text={buttonText} class="mb-12" />
+      <LinkButton
+        href={whatsappUrl}
+        text={buttonText}
+        class="faq-button mb-12"
+      />
     </div>
 
     <!-- Right Side - Background image ONLY on right side -->
     <div class="faq-right py-5 md:py-7 lg:py-10px bg-white">
-      <Faqs faqs={faqs} />
+      <Faqs faqs={faqs} class="faq-item border-white/20" />
     </div>
   </div>
 </section>
@@ -50,7 +54,6 @@ const { title, subtitle, description, buttonText, faqs } =askedQuestion;
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
-
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#faq",
@@ -59,18 +62,95 @@ const { title, subtitle, description, buttonText, faqs } =askedQuestion;
     },
   });
 
-  tl.from(".faq-left", {
-    x: -100,
+  // Icon
+  tl.from(".faq-icon", {
+    scale: 0,
+    rotate: -180,
     opacity: 0,
     duration: 0.8,
-    stagger: 0.4,
+    ease: "back.out(2)",
+  });
+
+  // Label
+  tl.from(
+    ".faq-label",
+    {
+      x: 20,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+    },
+    "-=0.5",
+  );
+
+  // Title
+  tl.from(
+    ".faq-title",
+    {
+      y: 80,
+      opacity: 0,
+      duration: 1,
+      ease: "expo.out",
+    },
+    "-=0.3",
+  );
+
+  // Description
+  tl.from(
+    ".faq-description",
+    {
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      ease: "power2.out",
+    },
+    "-=0.6",
+  );
+
+  // Button
+  tl.from(
+    ".faq-button",
+    {
+      y: 25,
+      opacity: 0,
+      scale: 0.95,
+      duration: 0.7,
+      ease: "power3.out",
+    },
+    "-=0.4",
+  );
+
+  // FAQ Right Panel Reveal
+  tl.from(
+    ".faq-right",
+    {
+      clipPath: "inset(0 0 100% 0)",
+      opacity: 0,
+      duration: 1.2,
+      ease: "expo.out",
+    },
+    "-=0.7",
+  );
+
+  // FAQ Items Stagger
+  gsap.from(".faq-item", {
+    scrollTrigger: {
+      trigger: ".faq-right",
+      start: "top 75%",
+    },
+    opacity: 0,
+    y: 40,
+    stagger: 0.08,
+    duration: 0.7,
     ease: "power3.out",
   });
-  tl.from(".faq-right", {
-    y: 110,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.08,
-    ease: "power3.out",
+
+  // Subtle floating icon
+  gsap.to(".faq-icon", {
+    y: -4,
+    duration: 2,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
   });
 </script>

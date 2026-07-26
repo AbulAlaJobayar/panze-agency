@@ -61,12 +61,12 @@ const { title, subtitle, description, categories } = IndustryData.frontmatter;
 
             <div
               style={`background-image: url(${bg.src})`}
-              class="relative overflow-hidden "
+              class="team-image-wrapper relative overflow-hidden"
             >
               <img
                 src={member.image}
                 alt={member.name}
-                class="w-full min-h-55 object-cover object-top px-4 pt-2 transition-transform duration-500 group-hover:scale-105"
+                class="team-image w-full min-h-55 object-cover object-top px-4 pt-2"
               />
             </div>
 
@@ -92,60 +92,97 @@ const { title, subtitle, description, categories } = IndustryData.frontmatter;
 
   gsap.registerPlugin(ScrollTrigger);
 
+  // =========================
+  // HEADER
+  // =========================
 
-    // Header Animation
-    const headerTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#team-section",
-        start: "top 75%",
-        toggleActions: "play none none reverse",
-      },
-    });
+  const headerTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#team-section",
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+    },
+  });
 
-    headerTl
-      .from(".team-badge", {
-        x: -60,
-        opacity: 0,
-        duration: 0.7,
-        ease: "power3.out",
-      })
-      .from(
-        ".team-subtitle",
-        {
-          y: 50,
-          opacity: 0,
-          duration: 0.9,
-          ease: "power4.out",
-        },
-        "-=0.4",
-      )
-      .from(
-        ".team-description",
-        {
-          y: 30,
-          opacity: 0,
-          duration: 0.7,
-          ease: "power2.out",
-        },
-        "-=0.5",
-      );
-
-    // Cards Animation
-    gsap.from(".team-section-card", {
-      scrollTrigger: {
-        trigger: ".team-section-card",
-        start: "top 85%",
-        toggleActions: "play none none reverse",
-      },
+  headerTl
+    .from(".team-badge", {
       opacity: 0,
-      y: 80,
-      scale: 0.95,
+      x: -80,
       duration: 0.8,
       ease: "power4.out",
-      stagger: {
-        each: 0.12,
-        from: "start",
+    })
+    .from(
+      ".team-subtitle",
+      {
+        opacity: 0,
+        y: 80,
+        duration: 1,
+        ease: "expo.out",
       },
+      "-=0.4",
+    )
+    .from(
+      ".team-description",
+      {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+      },
+      "-=0.7",
+    );
+
+  // =========================
+  // HOVER PARALLAX
+  // =========================
+
+  document.querySelectorAll(".team-section-card").forEach((card) => {
+    const image = card.querySelector("img");
+
+    card.addEventListener("mousemove", (e: any) => {
+      const rect = card.getBoundingClientRect();
+
+      const x = (e.clientX - rect.left - rect.width / 2) / 18;
+      const y = (e.clientY - rect.top - rect.height / 2) / 18;
+
+      gsap.to(image, {
+        x: x * 1.5,
+        y: y * 1.5,
+        scale: 1.06,
+        duration: 0.8,
+        ease: "power3.out",
+      });
     });
 
+    card.addEventListener("mouseleave", () => {
+      gsap.to(card, {
+        rotateX: 0,
+        rotateY: 0,
+        duration: 1,
+        ease: "expo.out",
+      });
+
+      gsap.to(image, {
+        x: 0,
+        y: 0,
+        scale: 1,
+        duration: 1,
+        ease: "expo.out",
+      });
+    });
+  });
+
+  // =========================
+  // FLOATING IMAGES
+  // =========================
+
+  gsap.utils.toArray(".team-section-card img").forEach((img: any, i) => {
+    gsap.to(img, {
+      x: i % 2 === 0 ? -6 : 6,
+      duration: gsap.utils.random(2.5, 4),
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
+  });
 </script>

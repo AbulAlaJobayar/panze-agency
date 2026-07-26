@@ -4,10 +4,10 @@ import TabSection from "./ServiceTabSection";
 import LinkButton from "@/components/ui/LinkButton.astro";
 const { services } = Astro.props;
 const { title,subtitle,steps } = services
-console.log(services,"🤦‍♀️🤦‍♀️🤦‍♀️")
+
 ---
 
-<section class="services-section ">
+<section class="services-section overflow-hidden ">
   <!-- dextop -->
   <div class="hidden lg:block bg-[#1E1212] py-26">
     <div class=" mx-8 mb-16 grid grid-cols-12 items-start">

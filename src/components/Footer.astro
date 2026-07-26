@@ -131,8 +131,10 @@ const getDateTime = () => {
 const { denverTime, bdTime } = getDateTime();
 ---
 
-<!-- pt-10 pb-2 lg:mt-20 -->
-<footer id="footer" class="text-[#301C1B] mt-26 overflow-x-hidden">
+<footer
+  id="footer"
+  class="overflow-hidden text-[#301C1B] mt-26 overflow-x-hidden"
+>
   <div class="max-w-7xl mx-auto px-8">
     <div
       class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-0 border border-black/20"
@@ -263,10 +265,10 @@ const { denverTime, bdTime } = getDateTime();
     <div class="border border-black/15 border-t-0 bg-[#FAF9F8]">
       <div class="grid lg:grid-cols-[3fr_1fr]">
         <!-- LEFT -->
-        <div class="border-r border-black/15">
+        <div class="lg:border-r border-black/15">
           <!-- Top -->
           <div
-            class="md:flex justify-between px-10 border-b border-/20 pt-10 pb-20"
+            class="md:flex justify-between px-2 lg:px-10 border-b border-/20 pt-10 pb-20"
           >
             <!-- Locations -->
             <div class="space-y-6">
@@ -278,6 +280,7 @@ const { denverTime, bdTime } = getDateTime();
                   {usLocation}
                   <span class="mx-2 text-black/30">|</span>
                   <span
+                    id="denver-time"
                     class="text-primary font-dm-mono font-normal leading-[150%] tracking-[-4%] text-[14px]"
                     >{denverTime}</span
                   >
@@ -294,6 +297,7 @@ const { denverTime, bdTime } = getDateTime();
                   {bdLocation}
                   <span class="mx-2 text-black/30">|</span>
                   <span
+                    id="bd-time"
                     class="text-primary font-dm-mono font-normal leading-[150%] tracking-[-4%] text-[14px]"
                     >{bdTime}</span
                   >
@@ -302,7 +306,7 @@ const { denverTime, bdTime } = getDateTime();
             </div>
 
             <!-- Contact -->
-            <div class="pl-10 pt-5 md:pt-0 space-y-6">
+            <div class="px-2 lg:pl-10 pt-5 md:pt-0 space-y-6">
               <a
                 href={`mailto:${email}`}
                 class="footer-location flex items-center gap-2 text-[#301C1B] font-dm-mono font-normal leading-[150%] tracking-[-4%] text-[14px] hover:text-primary transition-colors"
@@ -320,20 +324,58 @@ const { denverTime, bdTime } = getDateTime();
               </a>
             </div>
           </div>
+          <!-- small devices -->
+          <div class="block lg:hidden footer-ai border-b">
+            <!-- Top -->
+            <div class="px-2 mx-auto py-8">
+              <h2 class="text-[20px] font-semibold mb-6">Ask AI about Panze</h2>
+
+              <div class="grid grid-cols-5 gap-1 mt-5 place-items-center">
+                {
+                  aiTools.map((tool) => (
+                    <a
+                      href={tool.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex h-11 w-11 items-center justify-center transition-transform hover:scale-105"
+                      title={tool.name}
+                    >
+                      <img
+                        src={tool.icon.src}
+                        alt={tool.name}
+                        class="h-full w-full object-contain"
+                      />
+                    </a>
+                  ))
+                }
+              </div>
+            </div>
+
+            <!-- Bottom -->
+            <div class="flex justify-center gap-5 py-4">
+              <!-- Replace with your badge images -->
+              <button class="">
+                <img src={clu.src} alt="dirrableAW" class="w-18.75 h-18" />
+              </button>
+              <button class="">
+                <img src={dri.src} alt="clutchAW" class="w-18.75 h-18" />
+              </button>
+            </div>
+          </div>
 
           <!-- Bottom -->
-          <div class="footer-bottom md:flex justify-between">
+          <div class="footer-bottom flex justify-between">
             <div class="px-10 py-7">
               <a
                 href={""}
                 class="mx-auto flex items-center gap-2 text-primary font-dm-mono font-normal leading-[150%] tracking-[-4%] text-[14px] hover:text-primary transition-colors"
               >
                 <img src={companyDeckIcon.src} alt="phone" class="w-4 h-4" />
-                <span>{companyDecktext}</span>
+                <span class="whitespace-nowrap">{companyDecktext}</span>
               </a>
             </div>
-
-            <div class="px-10 py-2 md:py-7">
+            <!-- large devices -->
+            <div class="hidden lg:block px-10 py-2 md:py-7">
               <p
                 class="text-[#301C1B] font-dm-mono font-normal leading-[150%] tracking-[-4%] text-[14px]"
               >
@@ -361,11 +403,12 @@ const { denverTime, bdTime } = getDateTime();
                 ))
               }
             </div>
+            <!-- small devices -->
           </div>
         </div>
 
         <!-- RIGHT -->
-        <div class="footer-ai">
+        <div class="hidden lg:block footer-ai">
           <!-- Top -->
           <div class="px-8 py-8">
             <h2 class="text-[20px] font-semibold mb-6">Ask AI about Panze</h2>
@@ -403,114 +446,239 @@ const { denverTime, bdTime } = getDateTime();
           </div>
         </div>
       </div>
+      <div class="mx-auto text-center px-10 py-2">
+        <p
+          class="block lg:hidden text-[#301C1B] font-dm-mono font-normal leading-[150%] tracking-[-4%] text-[14px]"
+        >
+          © {new Date().getFullYear()}, {footerText}
+        </p>
+      </div>
     </div>
   </div>
 </footer>
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-
   gsap.registerPlugin(ScrollTrigger);
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#footer",
-        start: "top 80%",
-        toggleActions: "play none none reverse",
+
+  function updateTimes() {
+    const now = new Date();
+
+    const denverTime = now.toLocaleTimeString("en-US", {
+      timeZone: "America/Denver",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+
+    const bdTime = now.toLocaleTimeString("en-US", {
+      timeZone: "Asia/Dhaka",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+
+    const denverEl = document.getElementById("denver-time");
+    const bdEl = document.getElementById("bd-time");
+
+    if (denverEl) denverEl.textContent = denverTime;
+    if (bdEl) bdEl.textContent = bdTime;
+  }
+
+  updateTimes();
+  setInterval(updateTimes, 1000);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#footer",
+      start: "top 75%",
+      toggleActions: "play none none reverse",
+    },
+  });
+
+  // =====================
+  // TOP GRID
+  // =====================
+
+  tl.from(".footer-navigation", {
+    x: -120,
+    opacity: 0,
+    duration: 1.2,
+    ease: "expo.out",
+  })
+
+    .from(
+      ".footer-services",
+      {
+        y: 80,
+        opacity: 0,
+        duration: 1,
+        ease: "expo.out",
       },
-    });
+      "-=0.9",
+    )
 
-    tl.from(".footer-navigation", {
-      x: -80,
+    .from(
+      ".footer-newslatter",
+      {
+        x: 120,
+        opacity: 0,
+        duration: 1.2,
+        ease: "expo.out",
+      },
+      "-=1",
+    )
+
+    // =====================
+    // LOGO
+    // =====================
+
+    .from(
+      ".footer-logo",
+      {
+        scale: 1.3,
+        opacity: 0,
+        duration: 1.8,
+        ease: "power4.out",
+        clipPath: "inset(100% 0% 0% 0%)",
+      },
+      "-=0.7",
+    )
+
+    // =====================
+    // LOCATIONS
+    // =====================
+
+    .from(
+      ".footer-location",
+      {
+        y: 40,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.8,
+        ease: "power3.out",
+      },
+      "-=1",
+    )
+
+    // =====================
+    // BOTTOM BAR
+    // =====================
+
+    .from(
+      ".footer-bottom",
+      {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      },
+      "-=0.6",
+    )
+
+    // =====================
+    // AI PANEL
+    // =====================
+
+    .from(
+      ".footer-ai",
+      {
+        x: 80,
+        opacity: 0,
+        duration: 1,
+        ease: "expo.out",
+      },
+      "-=0.8",
+    )
+
+    .from(".footer-ai a", {
       opacity: 0,
-      duration: 1,
-      ease: "expo.out",
-    })
-
-      .from(
-        ".footer-services a",
-        {
-          y: 40,
-          opacity: 0,
-          stagger: 0.06,
-          duration: 0.8,
-          ease: "expo.out",
-        },
-        "-=0.7",
-      )
-
-      .from(
-        ".footer-newslatter",
-        {
-          y: 80,
-          scale: 0.95,
-          opacity: 0,
-          duration: 1,
-          ease: "expo.out",
-        },
-        "-=0.6",
-      )
-
-      .from(
-        ".footer-logo",
-        {
-          scale: 1.2,
-          y: 100,
-          opacity: 0,
-          duration: 1.5,
-          ease: "power4.out",
-        },
-        "-=0.8",
-      )
-
-      .from(
-        ".footer-location",
-        {
-          y: 30,
-          opacity: 0,
-          stagger: 0.15,
-          duration: 0.8,
-          ease: "power3.out",
-        },
-        "-=0.8",
-      )
-
-      .from(
-        ".footer-ai",
-        {
-          x: 60,
-          opacity: 0,
-          duration: 1,
-          ease: "expo.out",
-        },
-        "-=0.6",
-      );
-    gsap.to(".footer-logo", {
-      x: -7,
-      duration: 3,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-    });
-    gsap.from(".reveal span", {
-      yPercent: 100,
+      y: 20,
+      scale: 0.85,
       stagger: 0.08,
-      duration: 1,
-      ease: "power4.out",
+      duration: 0.6,
+      ease: "back.out(1.7)",
+      clearProps: "all",
     });
-    gsap.utils.toArray(".footer-ai a").forEach((item: any) => {
-      item.addEventListener("mouseenter", () => {
-        gsap.to(item, {
-          scale: 1.04,
-          y: -3,
+
+  // =====================
+  // LOGO FLOAT
+  // =====================
+
+  gsap.to(".footer-logo", {
+    x: -8,
+    duration: 4,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
+  });
+
+  // =====================
+  // AI ICONS
+  // =====================
+
+  gsap.utils.toArray(".footer-ai a").forEach((item: any) => {
+    item.addEventListener("mouseenter", () => {
+      gsap.to(item, {
+        y: -8,
+        scale: 1.1,
+        rotate: 5,
+        duration: 0.35,
+        ease: "back.out(2)",
+      });
+    });
+
+    item.addEventListener("mouseleave", () => {
+      gsap.to(item, {
+        y: 0,
+        scale: 1,
+        rotate: 0,
+        duration: 0.35,
+      });
+    });
+  });
+
+  // =====================
+  // SOCIAL ICONS
+  // =====================
+
+  gsap.utils.toArray(".footer-bottom a img").forEach((icon: any) => {
+    icon.addEventListener("mouseenter", () => {
+      gsap.to(icon, {
+        y: -5,
+        scale: 1.15,
+        duration: 0.3,
+        ease: "back.out(2)",
+      });
+    });
+
+    icon.addEventListener("mouseleave", () => {
+      gsap.to(icon, {
+        y: 0,
+        scale: 1,
+        duration: 0.3,
+      });
+    });
+  });
+
+  // =====================
+  // LINKS
+  // =====================
+
+  gsap.utils
+    .toArray(".footer-navigation a, .footer-services a")
+    .forEach((link: any) => {
+      link.addEventListener("mouseenter", () => {
+        gsap.to(link, {
+          x: 8,
           duration: 0.3,
-          ease: "back.out(2)",
+          ease: "power2.out",
         });
       });
 
-      item.addEventListener("mouseleave", () => {
-        gsap.to(item, {
-          scale: 1,
-          y: 0,
+      link.addEventListener("mouseleave", () => {
+        gsap.to(link, {
+          x: 0,
           duration: 0.3,
         });
       });
