@@ -45,64 +45,7 @@ export default function Stepper({ steps, data }: StepperProps) {
   const [direction, setDirection] = useState(1);
   const timelineRef = useRef<HTMLDivElement>(null);
   
-  // useEffect(() => {
-  //   if (!sectionRef.current || stepperSteps.length <= 1) return;
 
-  //   const mm = gsap.matchMedia();
-
-  //   const createStepperTrigger = (pin: boolean) => {
-  //     const totalSteps = stepperSteps.length;
-  //     let currentIndex = 0;
-
-  //     return ScrollTrigger.create({
-  //       trigger: sectionRef.current,
-  //       start: "top top",
-  //       end: "bottom bottom",
-  //       // pin,
-  //       scrub: true,
-  //       invalidateOnRefresh: true,
-
-  //       onUpdate: (self) => {
-  //         const progress = self.progress;
-
-  //         const timelineWidth = timelineRef.current?.offsetWidth || 0;
-
-  //         gsap.set(progressRef.current, {
-  //           width: `${progress * 100}%`,
-  //         });
-
-  //         gsap.set(arrowRef.current, {
-  //           x: progress * (timelineWidth - 40),
-  //         });
-
-  //         const index = Math.min(
-  //           stepperSteps.length - 1,
-  //           Math.floor(progress * stepperSteps.length),
-  //         );
-
-  //         setActive(index);
-  //       },
-  //     });
-  //   };
-
-  //   // Mobile
-  //   mm.add("(max-width: 767px)", () => {
-  //     const trigger = createStepperTrigger(false);
-
-  //     return () => trigger.kill();
-  //   });
-
-  //   // Tablet + Desktop
-  //   mm.add("(min-width: 768px)", () => {
-  //     const trigger = createStepperTrigger(true);
-
-  //     return () => trigger.kill();
-  //   });
-
-  //   return () => {
-  //     mm.revert();
-  //   };
-  // }, [stepperSteps.length]);
   useEffect(() => {
     if (!sectionRef.current || stepperSteps.length <= 1) return;
 

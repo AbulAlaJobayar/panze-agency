@@ -1,9 +1,12 @@
 ---
 import * as latestData from "@/content/home/latestwork-content.md";
 import latestWorkIcon from "@/assets/sectionIcon/latestwork.svg";
-import LatestWorkCard from "../ui/home/LatestWorkCard.astro";
+// import LatestWorkSwitcher from "@/components/Home/LatestWork/LatestWorkSwitcher";
 
-const { title, subTitle, description, card } = latestData.frontmatter;
+import * as latestdata from "@/components/Home/LatestWork/latestCardContent.md";
+import LatestWorkSwitcher from "./LatestWork/LatestWorkSwitcher";
+import LatestWorkCard from "./LatestWork/LatestWorkCard";
+const { title, subTitle, description, cards } = latestData.frontmatter;
 ---
 
 <section id="latest-work" class="bg-[#E8704E] overflow-x-hidden">
@@ -28,11 +31,10 @@ const { title, subTitle, description, card } = latestData.frontmatter;
             {title}
           </h6>
         </div>
-      </div>
-
+      </div> 
       <!-- Middle: SubTitle -->
       <div
-        class="w-full lg:w-[40%] lg:border-r border-white/20 ml-0 lg:ml-9 px-4 lg:px-9 pt-10 lg:pt-20"
+        class="w-full lg:w-[40%] lg:border-r border-white/20 ml-8 lg:px-9 pt-10 lg:pt-20"
       >
         <p
           class="latest-subtitle-text font-commissioner font-semibold text-[25px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-white"
@@ -40,7 +42,6 @@ const { title, subTitle, description, card } = latestData.frontmatter;
           {subTitle}
         </p>
       </div>
-
       <!-- Right: Description -->
       <div class="w-full lg:w-[40%] pl-9 pr-8 md:px-8 pt-10 lg:pt-20 mb-16">
         <p
@@ -50,68 +51,87 @@ const { title, subTitle, description, card } = latestData.frontmatter;
         </p>
       </div>
     </div>
-
     <!-- Bottom Container - Images Grid with Full Height Image -->
-    <div class="w-full bg-[#E8704E]">
-      <div
-        class="flex flex-col md:flex-row items-stretch min-h-75 md:min-h-125 lg:min-h-162.5 px-8"
+    <div class="hidden lg:block">
+      <div class="mx-8 border-x border-white/20">
+        <LatestWorkSwitcher cards={cards} client:load />
+      </div>
+      <!-- small devices -->
+    </div>
+        <div class="block lg:hidden mb-20">
+      <!-- bottom component  -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-2 px-8">
+        {
+          cards.map((card: any, index: any) => (
+            <div class="">
+              <div
+                class:list={[
+                  "mx-auto border border-white/20 items-center justify-center",
+                  index !== 0 && "border-t-0",
+                ]}
+              >
+                <div class=" overflow-hidden">
+  <!-- Hero Image -->
+  <div class="relative h-60 overflow-hidden">
+    <img
+      src={card.image}
+      alt={card.title}
+      class=" absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+    />
+  </div>
+
+  <!-- Content -->
+  <div class="relative bg-[#221617]">
+    <!-- Dot Pattern -->
+    <div
+      class="absolute inset-0 opacity-20"
+      style="background-image: radial-gradient(#ED7743 1px, transparent 1px); background-size: 10px 10px;"
+    />
+
+    <div class="relative z-10 p-8">
+      <!-- Title -->
+      <h3
+        class=" font-commissioner font-semibold text-[24px] leading-[110%] tracking-[-4%] text-white uppercase"
       >
-        <!-- Left Box 1 -->
-        <div
-          class="side-box overflow-hidden w-full md:w-20 lg:w-24 h-20 md:h-auto border-b md:border-b-0 md:border-l border-white/20 flex items-center justify-center bg-[#E8704E] transition-colors duration-300 shrink-0"
-        >
-          <h1
-            class="rotate-0 lg:-rotate-90 whitespace-nowrap text-white font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] uppercase"
-          >
-            EDCA
-          </h1>
-        </div>
+        {card.title}
+      </h3>
 
-        <!-- Left Box 2 -->
-        <div
-          class="side-box overflow-hidden w-full md:w-20 lg:w-24 h-20 md:h-auto border-b md:border-b-0 md:border-l border-white/20 flex items-center justify-center bg-[#E8704E] transition-colors duration-300 shrink-0"
-        >
-          <h1
-            class="rotate-0 lg:-rotate-90 whitespace-nowrap text-white font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] uppercase"
-          >
-            ZALON
-          </h1>
-        </div>
+      <!-- Tags -->
+      <div class="flex flex-wrap gap-3 mt-5">
+        {
+          card.tags.map((tag:any) => (
+            <span
+              class=" px-4 py-1 rounded-full border border-[#4A3737] text-white/70 font-dm-mono text-[12px]"
+            >
+              {tag}
+            </span>
+          ))
+        }
+      </div>
 
-        <!-- Middle Image - Full Container Height -->
-        <div
-          class=" flex-1 h-64 md:h-auto flex items-center justify-center overflow-hidden"
-        >
-          <LatestWorkCard
-            heroImage={card.image}
-            title={card.title}
-            tags={card.tags}
-            description={card.description}
-            industry={card.industry}
-          />
-        </div>
+      <!-- Description -->
+      <p
+        class=" mt-8 font-dm-mono text-[14px] leading-[150%] tracking-[-4%] text-white"
+      >
+        {card.description}
+      </p>
 
-        <!-- Right Box 1 -->
-        <div
-          class="side-box overflow-hidden w-full md:w-20 lg:w-24 h-20 md:h-auto border-t md:border-t-0 md:border-r border-white/20 flex items-center justify-center bg-[#E8704E] transition-colors duration-300 shrink-0"
-        >
-          <h1
-            class="rotate-0 lg:-rotate-90 whitespace-nowrap text-white font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] uppercase"
-          >
-            HANWAKI
-          </h1>
-        </div>
-
-        <!-- Right Box 2 -->
-        <div
-          class="w-full overflow-hidden md:w-20 lg:w-24 h-20 md:h-auto border-t md:border-t-0 md:border-r border-white/20 flex items-center justify-center bg-[#E8704E] hover:bg-primary/70 transition-colors duration-300 shrink-0"
-        >
-          <h1
-            class="rotate-0 lg:-rotate-90 whitespace-nowrap text-white font-dm-mono font-normal text-[16px] leading-[150%] tracking-[-4%] uppercase"
-          >
-            ADVAZ
-          </h1>
-        </div>
+      <!-- Industry -->
+      <p
+        class=" mt-8 font-dm-mono text-[14px] leading-[150%] tracking-[-4%] text-white"
+      >
+        Industry:
+        <span class="text-[#ED7743] font-medium ml-1">
+          {card.industry}
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+              </div>
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>
