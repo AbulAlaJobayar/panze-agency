@@ -6,15 +6,20 @@ import latestWorkIcon from "@/assets/sectionIcon/latestwork.svg";
 import * as latestdata from "@/components/Home/LatestWork/latestCardContent.md";
 import LatestWorkSwitcher from "./LatestWork/LatestWorkSwitcher";
 import LatestWorkCard from "./LatestWork/LatestWorkCard";
+import Container from "../ui/Container.astro";
 const { title, subTitle, description, cards } = latestData.frontmatter;
 ---
 
 <section id="latest-work" class="bg-[#E8704E] overflow-x-hidden">
+
   <div class="mx-auto">
     <!-- Top Container - Header Section -->
-    <div
-      class="latest-header flex flex-col lg:flex-row border-b border-white/20"
+ <div class="border-b border-white/20">
+ <Container>
+      <div
+      class="latest-header flex flex-col lg:flex-row "
     >
+  
       <!-- Left: Icon + Title -->
       <div
         class="latest-title w-full lg:w-[20%] lg:border-r border-white/20 px-4 md:px-8 pt-10 lg:pt-20"
@@ -51,11 +56,19 @@ const { title, subTitle, description, cards } = latestData.frontmatter;
         </p>
       </div>
     </div>
+    </Container>
+  </div>  
+
+   
     <!-- Bottom Container - Images Grid with Full Height Image -->
     <div class="hidden lg:block">
+      <Container>
       <div class="mx-8 border-x border-white/20">
-        <LatestWorkSwitcher cards={cards} client:load />
+        
+        <LatestWorkSwitcher cards={cards} client:load  />
+      
       </div>
+        </Container>
       <!-- small devices -->
     </div>
         <div class="block lg:hidden mb-20">
@@ -135,6 +148,7 @@ const { title, subTitle, description, cards } = latestData.frontmatter;
       </div>
     </div>
   </div>
+
 </section>
 <script>
   import gsap from "gsap";
@@ -145,7 +159,7 @@ const { title, subTitle, description, cards } = latestData.frontmatter;
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#latest-work",
-      start: "top 70%",
+      start: "top 80%",
       toggleActions: "play none none reverse",
     },
   });
@@ -163,9 +177,8 @@ const { title, subTitle, description, cards } = latestData.frontmatter;
   tl.from(
     ".latest-heading",
     {
-      y: 30,
+      x: -20,
       opacity: 0,
-      duration: 0.7,
       ease: "power3.out",
     },
     "-=0.4",
@@ -177,7 +190,7 @@ const { title, subTitle, description, cards } = latestData.frontmatter;
     {
       y: 80,
       opacity: 0,
-      duration: 1,
+      filter: "blur(8px)",
       ease: "expo.out",
     },
     "-=0.4",
@@ -188,11 +201,11 @@ const { title, subTitle, description, cards } = latestData.frontmatter;
     ".latest-description-text",
     {
       y: 30,
+      filter: "blur(8px)",
       opacity: 0,
-      duration: 0.7,
       ease: "power2.out",
     },
-    "-=0.7",
+    "-=0.4",
   );
 
   // Side Labels

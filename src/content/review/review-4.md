@@ -1,5 +1,8 @@
 ---
-title: "They always offered the best and professional solutions."
+slug: edca-review-1
+
+client: edca
+title: "edca always offered the best and professional solutions."
 
 description: "Panze successfully completed the design of the app, which is now ready to be deployed. They created a smooth workflow through clear communication, timely deliverables, and prompt responses. The team was also flexible in making changes, and their ability to deliver exactly what was needed stood out."
 image: "https://i.ibb.co.com/jv6K2vWC/image.png"

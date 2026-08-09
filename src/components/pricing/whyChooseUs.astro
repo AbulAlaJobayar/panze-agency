@@ -1,4 +1,5 @@
 ---
+import Container from "../ui/Container.astro";
 import { Icon } from "../ui/icon";
 import * as data from "@/content/pricing/why-choose-content.md";
 
@@ -6,105 +7,110 @@ const { title, subtitle, description, image, leftFeatures, rightFeatures } =
   data.frontmatter;
 ---
 
-<section id="why-choose-section" class="bg-[#E8704E] text-white py-26 mb-26 overflow-hidden">
-  <div class="mx-auto">
-    <!-- ================= Header ================= -->
-    <div
-      class="grid border-white/20px-6 pb-16 lg:grid-cols-[180px_480px_1fr] px-8"
-    >
-      <!-- Left -->
-      <div>
-        <span class="why-badge flex items-center gap-2">
-          <Icon name="sparkles" class="icon size-4" />
-          <h1
-            class="why-title font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
+<section
+  id="why-choose-section"
+  class="bg-[#E8704E] text-white py-26 mb-26 overflow-hidden"
+>
+  <Container>
+    <div class="mx-auto">
+      <!-- ================= Header ================= -->
+      <div
+        class="grid border-white/20px-6 pb-16 lg:grid-cols-[180px_480px_1fr] px-8"
+      >
+        <!-- Left -->
+        <div>
+          <span class="why-badge flex items-center gap-2">
+            <Icon name="sparkles" class="icon size-4" />
+            <h1
+              class="why-title font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
+            >
+              {title}
+            </h1>
+          </span>
+        </div>
+
+        <!-- Center -->
+        <div class="mt-8 lg:mt-0">
+          <h2
+            class="why-subtitle font-commissioner text-[24px] font-semibold uppercase leading-[110%] tracking-[-4%]"
           >
-            {title}
-          </h1>
-        </span>
+            {subtitle}
+          </h2>
+        </div>
+
+        <!-- Right -->
+        <div class="mt-10 lg:mt-0 lg:justify-self-end lg:ml-4">
+          <p
+            class="why-description font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
+          >
+            {description}
+          </p>
+        </div>
       </div>
 
-      <!-- Center -->
-      <div class="mt-8 lg:mt-0">
-        <h2
-          class="why-subtitle font-commissioner text-[24px] font-semibold uppercase leading-[110%] tracking-[-4%]"
-        >
-          {subtitle}
-        </h2>
-      </div>
+      <!-- ================= Bottom ================= -->
 
-      <!-- Right -->
-      <div class="mt-10 lg:mt-0 lg:justify-self-end lg:ml-4">
-        <p
-          class="why-description font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white"
-        >
-          {description}
-        </p>
-      </div>
-    </div>
+      <div class="grid lg:grid-cols-[1fr_380px_1fr] border-white/20 px-8">
+        <!-- LEFT FEATURES -->
 
-    <!-- ================= Bottom ================= -->
-
-    <div class="grid lg:grid-cols-[1fr_380px_1fr] border-white/20 px-8">
-      <!-- LEFT FEATURES -->
-
-      <div class="why-left-item border border-white/20">
-        {
-          leftFeatures.map((item: any) => (
-            <div class="border-b border-white/20 p-8  last:border-b-0">
-              <h3
-                class="mb-4 font-commissioner
+        <div class="why-left-item border border-white/20">
+          {
+            leftFeatures.map((item: any) => (
+              <div class="border-b border-white/20 p-8  last:border-b-0">
+                <h3
+                  class="mb-4 font-commissioner
                  text-[16px]
                  font-semibold
                  uppercase
                  leading-[150%] tracking-[-4%]"
-              >
-                {item.title}
-              </h3>
+                >
+                  {item.title}
+                </h3>
 
-              <p class=" font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white">
-                {item.description}
-              </p>
-            </div>
-          ))
-        }
-      </div>
+                <p class=" font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white">
+                  {item.description}
+                </p>
+              </div>
+            ))
+          }
+        </div>
 
-      <!-- IMAGE -->
+        <!-- IMAGE -->
 
-      <div class="mx-auto">
-        <img
-          src={image}
-          alt="Why Choose Us"
-          class="why-image h-151 w-95 object-cover"
-        />
-      </div>
+        <div class="mx-auto">
+          <img
+            src={image}
+            alt="Why Choose Us"
+            class="why-image h-151 w-95 object-cover"
+          />
+        </div>
 
-      <!-- RIGHT FEATURES -->
+        <!-- RIGHT FEATURES -->
 
-      <div class="why-right-item border border-white/20">
-        {
-          rightFeatures.map((item: any) => (
-            <div class="border-b border-white/20 p-8  last:border-b-0">
-              <h3
-                class="mb-4 font-commissioner
+        <div class="why-right-item border border-white/20">
+          {
+            rightFeatures.map((item: any) => (
+              <div class="border-b border-white/20 p-8  last:border-b-0">
+                <h3
+                  class="mb-4 font-commissioner
                  text-[16px]
                  font-semibold
                  uppercase
                  leading-[150%] tracking-[-4%]"
-              >
-                {item.title}
-              </h3>
+                >
+                  {item.title}
+                </h3>
 
-              <p class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white">
-                {item.description}
-              </p>
-            </div>
-          ))
-        }
+                <p class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-white">
+                  {item.description}
+                </p>
+              </div>
+            ))
+          }
+        </div>
       </div>
     </div>
-  </div>
+  </Container>
 </section>
 <script>
   import gsap from "gsap";
@@ -124,22 +130,19 @@ const { title, subtitle, description, image, leftFeatures, rightFeatures } =
     opacity: 0,
     rotate: 180,
     scale: 0,
-    duration: 0.8,
-    ease: "back.out(2)",
+    ease: "power4.out",
   });
   tl.from(".why-title", {
     y: 40,
     opacity: 0,
-    duration: 0.8,
-    ease: "power3.out",
+    ease: "power4.out",
   })
     .from(
       ".why-subtitle",
       {
         y: 100,
         opacity: 0,
-        duration: 1.2,
-        ease: "expo.out",
+        ease: "power4.out",
       },
       "-=0.4",
     )
@@ -149,8 +152,7 @@ const { title, subtitle, description, image, leftFeatures, rightFeatures } =
       {
         y: 40,
         opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
+        ease: "power4.out",
       },
       "-=0.8",
     )
@@ -158,11 +160,9 @@ const { title, subtitle, description, image, leftFeatures, rightFeatures } =
     .from(
       ".why-image",
       {
-        scale: 0.8,
-        opacity: 0,
-        rotate: 3,
-        duration: 1.1,
-        ease: "expo.out",
+        clipPath: "inset(0 0 100% 0)",
+        filter: "blur(12px)",
+        ease: "power4.out",
       },
       "-=0.8",
     )
@@ -172,9 +172,8 @@ const { title, subtitle, description, image, leftFeatures, rightFeatures } =
       {
         x: -80,
         opacity: 0,
-        stagger: 0.12,
-        duration: 0.8,
-        ease: "power3.out",
+        stagger: 0.08,
+        ease: "power4.out",
       },
       "-=0.8",
     )
@@ -184,9 +183,8 @@ const { title, subtitle, description, image, leftFeatures, rightFeatures } =
       {
         x: 80,
         opacity: 0,
-        stagger: 0.12,
-        duration: 0.8,
-        ease: "power3.out",
+        stagger: 0.08,
+        ease: "power4.out",
       },
       "-=1",
     );
@@ -199,5 +197,4 @@ const { title, subtitle, description, image, leftFeatures, rightFeatures } =
     yoyo: true,
     ease: "sine.inOut",
   });
-
 </script>

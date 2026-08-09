@@ -61,8 +61,8 @@ export default function OurWebsiteProcess({ data }: OurWebsiteProcessProps) {
                   <h3
                     className={` font-commissioner font-semibold text-[16px] text-[#1F1615] tracking-[-4% ] leading-[130%] transition-all duration-500 ${
                       isExpanded
-                        ? "text-xl  max-w-116"
-                        : "text-base pb-2 max-w-40"
+                        ? "text-xl  w-116"
+                        : "text-base pb-2 w-50"
                     }`}
                   >
                     {step.subTitle}

@@ -1,4 +1,6 @@
 ---
+import Container from "../ui/Container.astro";
+
 
 const blogs = Object.values(
   import.meta.glob("@/content/blogs/blog/*.{md,mdx}", {
@@ -6,7 +8,7 @@ const blogs = Object.values(
   }),
 ).map((blog: any) => blog.frontmatter);
 ---
-
+<Container>
 <section id="blog-list-section" class="mt-28.75 mb-26">
     <div class="grid sm:grid-cols-2">
       {
@@ -16,16 +18,16 @@ const blogs = Object.values(
               <img
                 src={blog.image}
                 alt={blog.thumbnailTitle}
-                class="aspect-4/3 w-full object-cover transition duration-500 group-hover:scale-102"
+                class="aspect-4/3 w-full object-cover transition duration-500 hover:scale-102"
               />
             </div>
 
             <div class="border-t">
               <div class="px-5 pt-5 pb-7">
-                <h3 class=" mt-2 font-dm-mono font-normal  text-[14px] leading-[150%] tracking-[-4%] text-primary  group-hover:text-primary transition">
+                <h3 class=" mt-2 font-dm-mono font-normal  text-[14px] leading-[150%] tracking-[-4%] text-primary  hover:text-primary transition">
                   {blog.date}
                 </h3>
-                <h3 class=" mt-2 font-commissioner font-semibold  text-[20px] leading-[110%] tracking-[-4%] text-[#301C1B]  group-hover:text-primary transition">
+                <h3 class=" mt-2 font-commissioner font-semibold  text-[20px] leading-[110%] tracking-[-4%] text-[#301C1B] hover:text-primary transition">
                   {blog.thumbnailTitle}
                 </h3>
               </div>
@@ -61,7 +63,7 @@ const blogs = Object.values(
               object-cover
               transition-transform
               duration-500
-              group-hover:scale-105
+              hover:scale-105
             "
           />
         </div>
@@ -82,7 +84,7 @@ const blogs = Object.values(
 
           <h3
             class=" mt-2
-             font-commissioner font-semibold  text-[20px] leading-[140%] tracking-[-4%] text-[#301C1B]  group-hover:text-primary transition
+             font-commissioner font-semibold  text-[20px] leading-[140%] tracking-[-4%] text-[#301C1B]  hover:text-primary transition
             "
           >
             {blog.thumbnailTitle}
@@ -93,6 +95,7 @@ const blogs = Object.values(
   }
 </div>
 </section>
+</Container>
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -102,7 +105,7 @@ const blogs = Object.values(
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#blog-list-section",
-      start: "top 75%",
+      start: "top 90%",
       toggleActions: "play none none reverse",
     },
   });
@@ -111,17 +114,15 @@ const blogs = Object.values(
   tl.from(".featured-blog", {
     y: 80,
     opacity: 0,
-    duration: 1,
-    stagger: 0.2,
-    ease: "expo.out",
+    stagger: 0.08,
+    ease: "power4.out",
   })
   .from(
       "#blog-list-section",
       {
-        y: 120,
+        y: 80,
         opacity:0,
-        duration: 0.8,
-        ease: "power3.out",
+        ease: "power4.out",
       },
       "-=0.5",
     )
@@ -132,12 +133,11 @@ const blogs = Object.values(
       {
         y: 60,
         opacity: 0,
-        duration: 0.8,
         stagger: {
-          amount: 0.6,
+          amount: 0.08,
           
         },
-        ease: "power3.out",
+        ease: "power4.out",
       },
       "-=0.3",
     );

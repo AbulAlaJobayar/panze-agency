@@ -1,4 +1,6 @@
 ---
+import Container from "../ui/Container.astro";
+
 const works = Object.values(
   import.meta.glob("../../content/works/work/*.md", { eager: true }),
 ).sort((a: any, b: any) => a.frontmatter.order - b.frontmatter.order);
@@ -9,8 +11,8 @@ for (let i = 0; i < works.length; i += 2) {
   rows.push(works.slice(i, i + 2));
 }
 ---
-
-<section id="works-grid-section" class=" px-8 py-26">
+<Container>
+<section id="works-gallary-section" class=" px-8 py-26">
   <div class="space-y-12">
     {
       rows.map((row, rowIndex) => {
@@ -34,20 +36,20 @@ for (let i = 0; i < works.length; i += 2) {
                 <!-- Image Border -->
                 <div
                     class:list={[
-                    "border border-primary p-4 ",
+                    "border border-primary p-4 overflow-hidden",
                     index === 0 && "lg:border-r-0",
                     ]}
                 >
                     <img
                     src={project.frontmatter.thumbnail}
                     alt={project.frontmatter.title}
-                    class="work-image w-full h-112 object-cover transition-transform duration-500 ease-out group-hover:scale-102"
+                    class="work-image w-full h-112 object-cover transition-transform duration-500 ease-out hover:scale-102"
                     />
                 </div>
 
                 <!-- Content  -->
                 <div class="flex-1 flex flex-col mt-5">
-                    <h3 class="work-title font-commissioner font-semibold text-[16px] leading-[110%] tracking-[-0.04em] text-[#1E1212]">
+                    <h3 class="work-title font-commissioner font-semibold text-[16px] leading-[110%] tracking-[-0.04em] text-[#1E1212] transition-colors duration-200 ease-out hover:text-primary ">
                     {project.frontmatter.title}
                     </h3>
 
@@ -70,6 +72,7 @@ for (let i = 0; i < works.length; i += 2) {
     }
   </div>
 </section>
+</Container>
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -78,19 +81,17 @@ for (let i = 0; i < works.length; i += 2) {
 
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: "#works-grid-section",
-      start: "top 75%",
+      trigger: "#works-gallary-section",
+      start: "top 80%",
       toggleActions: "play none none reverse",
     },
   });
 
   // Images
   tl.from(".work-image", {
-  x: 0,
-  opacity: 0,
-  duration: 1,
-  stagger: 0.2,
-  ease: "expo.out",
+ clipPath: "inset(0 0 100% 0)",
+    filter: "blur(12px)",
+    ease: "power4.out",
   })
 
     // Titles
@@ -101,7 +102,7 @@ for (let i = 0; i < works.length; i += 2) {
         opacity: 0,
         duration: 0.8,
         stagger: 0.12,
-        ease: "power3.out",
+        ease: "power4.out",
       },
       "-=0.8",
     )
@@ -112,11 +113,10 @@ for (let i = 0; i < works.length; i += 2) {
       {
         y: 15,
         opacity: 0,
-        scale: 0.85,
-        duration: 0.5,
         stagger: 0.03,
-        ease: "back.out(1.7)",
+        ease: "power4.out",
       },
       "-=0.5",
     );
+
 </script>

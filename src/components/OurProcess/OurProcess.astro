@@ -1,4 +1,5 @@
 ---
+import Container from "../ui/Container.astro";
 import LinkButton from "../ui/LinkButton.astro";
 import Stepper from "./Stepper";
 import sectionIcon from "@/assets/sectionIcon/networkIcon.svg";
@@ -39,91 +40,92 @@ const sanitizedSteps = Array.isArray(steps)
   : [];
 ---
 
-<section>
-  <!-- large device -->
-  <div class="hidden lg:block">
-    <Stepper client:load data={data} steps={sanitizedSteps} />
-  </div>
 
-  <!-- smallDevices -->
-  <div class="block lg:hidden mb-20">
-    <div class="flex flex-col">
-      <!-- Left Side - Fixed width with white background -->
-      <div class="px-8 w-full mt-20 mb-10 shrink-0 bg-white">
-        <div class="process-badge flex items-center gap-2 mb-6">
-          <img
-            src={sectionIcon.src}
-            alt="icon"
-            class="w-4 h-4 md:w-auto md:h-auto"
-          />
-          <h6
-            class="process-title font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
+  <section>
+    <!-- large device -->
+    <div class="hidden lg:block">
+      <Stepper client:load data={data} steps={sanitizedSteps} />
+    </div>
+
+    <!-- smallDevices -->
+    <div class="block lg:hidden mb-20">
+      <div class="flex flex-col">
+        <!-- Left Side - Fixed width with white background -->
+        <div class="px-8 w-full mt-20 mb-10 shrink-0 bg-white">
+          <div class="process-badge flex items-center gap-2 mb-6">
+            <img
+              src={sectionIcon.src}
+              alt="icon"
+              class="w-4 h-4 md:w-auto md:h-auto"
+            />
+            <h6
+              class="process-title font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
+            >
+              {data.title}
+            </h6>
+          </div>
+          <p
+            class="process-subtitle font-commissioner font-semiboldtext-[24px] leading-[110%] tracking-[-4%] uppercase mb-8"
           >
-            {data.title}
-          </h6>
-        </div>
-        <p
-          class="process-subtitle font-commissioner font-semiboldtext-[24px] leading-[110%] tracking-[-4%] uppercase mb-8"
-        >
-          {data.subTitle}
-        </p>
-        <p
-          class="process-description font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] mb-10"
-        >
-          {data.description}
-        </p>
-        <div class="process-button">
-          <LinkButton href={buttonLink} text={buttonText} />
+            {data.subTitle}
+          </p>
+          <p
+            class="process-description font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] mb-10"
+          >
+            {data.description}
+          </p>
+          <div class="process-button">
+            <LinkButton href={buttonLink} text={buttonText} />
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- bottom component  -->
-    <div>
-      {
-        steps.map((step: any, index: any) => (
-          <div class="mx-8">
-            <div
-              class:list={[
-                "step-card mx-auto py-12 px-15 border border-black/20 grid md:grid-cols-2 gap-2 items-center justify-center",
-                index !== 0 && "border-t-0",
-              ]}
-            >
-              {/* Image Section */}
-              <div class="step-image mb-10 h-80 w-64.75 rounded-[180px] bg-gray-100 overflow-hidden relative">
-                <img
-                  src={step.image}
-                  alt={step.imageAlt}
-                  class="absolute inset-0 w-full h-full object-cover"
-                />
-              </div>
-              {/* Content Section */}
+      <!-- bottom component  -->
+      <div>
+        {
+          steps.map((step: any, index: any) => (
+            <div class="mx-8">
+              <div
+                class:list={[
+                  "step-card mx-auto py-12 px-15 border border-black/20 grid md:grid-cols-2 gap-2 items-center justify-center",
+                  index !== 0 && "border-t-0",
+                ]}
+              >
+                {/* Image Section */}
+                <div class="step-image mb-10 h-80 w-64.75 rounded-[180px] bg-gray-100 overflow-hidden relative">
+                  <img
+                    src={step.image}
+                    alt={step.imageAlt}
+                    class="absolute inset-0 w-full h-full object-cover"
+                  />
+                </div>
+                {/* Content Section */}
 
-              <div class="step-content">
-                <h3 class="font-commissioner font-semibold text-[22px] uppercase mb-4">
-                  {step.title}{" "}
-                </h3>
-                <p class="font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] mb-9">
-                  {step.description}
-                </p>
-                <ul>
-                  {step.points.map((item: any) => (
-                    <li class="flex items-center gap-3">
-                      <span class="text-[#301C1B] mt-1">-</span>
-                      <span class="font-dm-mono font-normal text-[14px] text-[#301C1B] leading-[150%] tracking-[-4%]">
-                        {item}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                <div class="step-content">
+                  <h3 class="font-commissioner font-semibold text-[22px] uppercase mb-4">
+                    {step.title}{" "}
+                  </h3>
+                  <p class="font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] mb-9">
+                    {step.description}
+                  </p>
+                  <ul>
+                    {step.points.map((item: any) => (
+                      <li class="flex items-center gap-3">
+                        <span class="text-[#301C1B] mt-1">-</span>
+                        <span class="font-dm-mono font-normal text-[14px] text-[#301C1B] leading-[150%] tracking-[-4%]">
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -321,5 +323,3 @@ const sanitizedSteps = Array.isArray(steps)
     });
   });
 </script>
-
-

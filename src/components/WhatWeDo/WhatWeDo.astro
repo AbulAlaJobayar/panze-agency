@@ -4,6 +4,7 @@ import LinkButton from "../ui/LinkButton.astro";
 import secIcon from "@/assets/sectionIcon/whatWeDo.svg"
 import TabSection from "./TabSection";
 import { Image } from "astro:assets";
+import Container from "../ui/Container.astro";
 const { sectiondata, services } = Astro.props;
 const { label, description,icon } = sectiondata.frontmatter;
 
@@ -68,6 +69,10 @@ const sortedServices = sanitizedServices.sort((a, b) =>
 <section class="services-section ">
   <!-- dextop -->
   <div class="desktop-services hidden lg:block bg-[#1E1212] py-26">
+
+    
+      <div class="border-b border-white/5">
+        <Container>
     <div class="desktop-header mx-8 mb-16 grid grid-cols-12 items-start">
       <div class="desktop-badge w-66 col-span-3 flex items-center gap-2">
         <img
@@ -82,12 +87,16 @@ const sortedServices = sanitizedServices.sort((a, b) =>
         </h6>
       </div>
       <p
-        class="desktop-description col-span-6 font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-white"
+        class="desktop-description col-span-6 pr-4 font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-white"
       >
         {description}
       </p>
     </div>
+  </Container>
+  </div>
+   
     <div class="desktop-tabs">
+      <Container>
     <TabSection
       client:load
       services={sortedServices}
@@ -95,10 +104,12 @@ const sortedServices = sanitizedServices.sort((a, b) =>
       description={description}
       icon={icon}
     />
+  </Container>
     </div>
   </div>
   <!-- small screen -->
   <div class="block lg:hidden bg-[#1E1212] py-20">
+
     <!-- top side  -->
     <div class="section-header mx-8 mb-16 flex flex-col gap-7">
       <div class="section-badge w-66 col-span-3 flex items-center gap-2">
@@ -185,6 +196,7 @@ const sortedServices = sanitizedServices.sort((a, b) =>
   ))
 }
   </div>
+
 </section>
 
 <script>
@@ -207,7 +219,6 @@ const sortedServices = sanitizedServices.sort((a, b) =>
       .from(".section-badge", {
         opacity: 0,
         x: -60,
-        duration: 0.8,
         ease: "power3.out",
       })
       .from(
@@ -215,7 +226,6 @@ const sortedServices = sanitizedServices.sort((a, b) =>
         {
           opacity: 0,
           y: 40,
-          duration: 1,
           ease: "power4.out",
         },
         "-=0.4",
@@ -240,7 +250,6 @@ const sortedServices = sanitizedServices.sort((a, b) =>
       .from(card, {
         opacity: 0,
         y: 100,
-        duration: 0.8,
         ease: "power4.out",
       })
       .from(
@@ -248,7 +257,6 @@ const sortedServices = sanitizedServices.sort((a, b) =>
         {
           scale: 1.15,
           opacity: 0,
-          duration: 1,
           ease: "power4.out",
         },
         "-=0.5",
@@ -259,7 +267,6 @@ const sortedServices = sanitizedServices.sort((a, b) =>
           opacity: 0,
           y: 25,
           stagger: 0.08,
-          duration: 0.5,
           ease: "power2.out",
         },
         "-=0.6",
@@ -281,7 +288,6 @@ const sortedServices = sanitizedServices.sort((a, b) =>
       scale: 0.2,
       rotate: -180,
       opacity: 0,
-      duration: 0.9,
       ease: "back.out(2)",
     });
 
@@ -291,7 +297,6 @@ const sortedServices = sanitizedServices.sort((a, b) =>
       {
         x: -30,
         opacity: 0,
-        duration: 0.7,
         ease: "power3.out",
       },
       "-=0.5",
@@ -303,7 +308,6 @@ const sortedServices = sanitizedServices.sort((a, b) =>
       {
         y: 80,
         opacity: 0,
-        duration: 1,
         ease: "expo.out",
       },
       "-=0.4",
@@ -315,7 +319,6 @@ const sortedServices = sanitizedServices.sort((a, b) =>
       {
         clipPath: "inset(0 0 100% 0)",
         opacity: 0,
-        duration: 1.2,
         ease: "expo.out",
       },
       "-=0.3",

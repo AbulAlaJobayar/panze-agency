@@ -9,28 +9,20 @@ import {
 
 const { class: className, faqs } = Astro.props;
 ---
-
 <div class={cn("", className)}>
-  <div class="">
-    <Accordion collapsible>
+  <div id="faq-accordion" class="h-150.5 overflow-hidden">
+    <Accordion defaultValue={faqs[0]?.id} collapsible>
       {
         faqs.map((item: any, index: number) => (
           <AccordionItem
             value={item.id}
-            class="accordion-item group lg:w-200 px-10 py-2.5 border-b border-[#301C1B]/10 transition-all duration-300 hover:bg-[#F8F5F4]"
+            class="accordion-item group lg:w-200  px-4 py-3.5 border-b border-[#301C1B]/10 last:border-b-0"
           >
-            <AccordionTrigger
-              class={
-                "accordion-trigger font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-[#301C1B] transition-all duration-300 hover:text-primary"
-              }
-            >
+            <AccordionTrigger class="accordion-trigger cursor-pointer  font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-[#301C1B]">
               {index + 1}. {item.question}
             </AccordionTrigger>
-            <AccordionContent
-              class={
-                "accordion-content font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-[#301C1B] data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up"
-              }
-            >
+
+            <AccordionContent class="accordion-content pr-8 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-[#301C1B]/70">
               {item.answer}
             </AccordionContent>
           </AccordionItem>
@@ -39,67 +31,77 @@ const { class: className, faqs } = Astro.props;
     </Accordion>
   </div>
 </div>
-<style>
-  /* Accordion Content */
-  [data-state="open"] .accordion-content {
-    animation: slideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initFaqAnimation() {
+    const accordion = document.querySelector("#faq-accordion");
+
+    if (!accordion) return;
+
+    // Scroll Trigger Animation
+    gsap.from(accordion.querySelectorAll(".accordion-item"), {
+      opacity: 0,
+      y: 60,
+      duration: 0.5,
+      stagger: 0.08,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: accordion,
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    // First opened item animation
+    requestAnimationFrame(() => {
+      const firstOpen = accordion.querySelector(
+        '.accordion-item[data-state="open"] .accordion-content',
+      );
+
+      if (firstOpen) {
+        gsap.from(firstOpen, {
+          opacity: 0,
+          y: 20,
+
+          ease: "power4.out",
+        });
+      }
+    });
+
+    // Click animation
+    accordion.querySelectorAll(".accordion-trigger").forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        requestAnimationFrame(() => {
+          const item = trigger.closest(".accordion-item");
+
+          if (item && item.getAttribute("data-state") === "open") {
+            const content = item.querySelector(".accordion-content");
+
+            gsap.fromTo(
+              content,
+              {
+                opacity: 0,
+                y: 20,
+              },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.45,
+                ease: "power3.out",
+              },
+            );
+          }
+        });
+      });
+    });
   }
 
-  [data-state="closed"] .accordion-content {
-    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
+  document.addEventListener("astro:page-load", initFaqAnimation);
 
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      max-height: 0;
-      transform: translateY(-8px);
-    }
-    to {
-      opacity: 1;
-      max-height: 500px;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideUp {
-    from {
-      opacity: 1;
-      max-height: 500px;
-      transform: translateY(0);
-    }
-    to {
-      opacity: 0;
-      max-height: 0;
-      transform: translateY(-8px);
-    }
-  }
-
-  /* Trigger Hover Effect */
-  .accordion-trigger {
-    transition: all 0.3s ease;
-  }
-
-  .accordion-trigger:hover {
-    padding-left: 8px;
-  }
-
-  /* Number Animation */
-  .accordion-item {
-    transition: all 0.3s ease;
-    border-bottom: 1px solid rgba(48, 28, 27, 0.08);
-  }
-
-  .accordion-item[data-state="open"] {
-    background: linear-gradient(90deg, rgba(235, 106, 66, 0.03), transparent);
-  }
-
-  /* Plus / Minus Rotation */
-  .accordion-trigger svg {
-    transition: transform 0.35s ease;
-  }
-
-  .accordion-item[data-state="open"] .accordion-trigger svg {
-    transform: rotate(180deg);
-  }
-</style>
+  initFaqAnimation();
+</script>

@@ -1,78 +1,80 @@
 ---
-import { Image } from "astro:assets";
 import icon from "@/assets/sectionIcon/expertise.svg";
+import Container from "@/components/ui/Container.astro";
 const { designExpertise } = Astro.props;
 ---
 
-<section id="design-expertise-section">
-  <div class="px-8 my-26">
-    <!-- left -->
-    <div class="flex flex-col lg:flex-row border-b border-white/20">
-      <!-- Left: Icon + Title -->
-      <div
-        class="w-full lg:w-50 border-b lg:border-b-0 lg:border-r border-white/20"
-      >
-        <div class="flex items-center gap-2">
-          <img
-            src={icon.src}
-            alt={designExpertise.title}
-            class="w-4 h-4 md:w-auto md:h-auto design-icon"
-          />
-          <h6
-            class="design-label font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
+<Container>
+  <section id="design-expertise-section">
+    <div class="px-8 my-26">
+      <!-- left -->
+      <div class="flex flex-col lg:flex-row border-b border-white/20">
+        <!-- Left: Icon + Title -->
+        <div
+          class="w-full lg:w-50 border-b lg:border-b-0 lg:border-r border-white/20"
+        >
+          <div class="flex items-center gap-2">
+            <img
+              src={icon.src}
+              alt={designExpertise.title}
+              class="w-4 h-4 md:w-auto md:h-auto design-icon"
+            />
+            <h6
+              class="design-label font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
+            >
+              {designExpertise.title}
+            </h6>
+          </div>
+        </div>
+
+        <!-- Middle: SubTitle -->
+        <div
+          class="w-full lg:w-92 border-b lg:border-b-0 lg:border-r border-white/20"
+        >
+          <p
+            class="my-9.5 lg:my-0 design-subtitle font-commissioner font-semibold text-[24px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-[#301C1B]"
           >
-            {designExpertise.title}
-          </h6>
+            {designExpertise.subtitle}
+          </p>
+        </div>
+
+        <!-- Right: Description -->
+        <div class="w-full lg:w-116 ml-auto mb-16">
+          <p
+            class="design-description text-[#301C1B] font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
+          >
+            {designExpertise.description}
+          </p>
         </div>
       </div>
-
-      <!-- Middle: SubTitle -->
+      <!-- right  -->
       <div
-        class="w-full lg:w-92 border-b lg:border-b-0 lg:border-r border-white/20"
+        class="design-card grid grid-cols-1 lg:grid-cols-2 border-t lg:border-t-0 border-l lg:border-l-0 border-black/10"
       >
-        <p
-          class="my-9.5 lg:my-0 design-subtitle font-commissioner font-semibold text-[24px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-[#301C1B]"
-        >
-          {designExpertise.subtitle}
-        </p>
-      </div>
+        {
+          designExpertise.steps.map((service: any, index: any) => (
+            <article
+              class:list={[
+                "grid md:grid-cols-[180px_1fr] min-h-42.5 p-8 gap-8",
 
-      <!-- Right: Description -->
-      <div class="w-full lg:w-116 ml-auto mb-16">
-        <p
-          class="design-description text-[#301C1B] font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
-        >
-          {designExpertise.description}
-        </p>
+                // Mobile
+                "border-r border-b border-black/10",
+
+                // Desktop
+                index % 2 === 1 && "lg:border-r-0",
+              ]}
+            >
+              <h3 class="design-card-title font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-primary">
+                {service.title}
+              </h3>
+              <p class="design-card-description">{service.description}</p>
+            </article>
+          ))
+        }
       </div>
     </div>
-    <!-- right  -->
-    <div
-      class="design-card grid grid-cols-1 lg:grid-cols-2 border-t lg:border-t-0 border-l lg:border-l-0 border-black/10"
-    >
-      {
-        designExpertise.steps.map((service: any, index: any) => (
-          <article
-            class:list={[
-              "grid md:grid-cols-[180px_1fr] min-h-42.5 p-8 gap-8",
-
-              // Mobile
-              "border-r border-b border-black/10",
-
-              // Desktop
-              index % 2 === 1 && "lg:border-r-0",
-            ]}
-          >
-            <h3 class="design-card-title font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-primary">
-              {service.title}
-            </h3>
-            <p class="design-card-description">{service.description}</p>
-          </article>
-        ))
-      }
-    </div>
-  </div>
-</section>
+  </section>
+</Container>
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -82,7 +84,7 @@ const { designExpertise } = Astro.props;
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#design-expertise-section",
-      start: "top 75%",
+      start: "top 80%",
       toggleActions: "play none none reverse",
     },
   });
@@ -92,8 +94,7 @@ const { designExpertise } = Astro.props;
     scale: 0.4,
     rotate: -20,
     opacity: 0,
-    duration: 0.8,
-    ease: "back.out(2)",
+    ease: "power4.out",
   })
 
     // Label
@@ -102,8 +103,7 @@ const { designExpertise } = Astro.props;
       {
         x: -20,
         opacity: 0,
-        duration: 0.6,
-        ease: "power3.out",
+        ease: "power4.out",
       },
       "-=0.5",
     )
@@ -114,10 +114,10 @@ const { designExpertise } = Astro.props;
       {
         y: 80,
         opacity: 0,
-        duration: 1.2,
-        ease: "expo.out",
+        filter: "blur(20px)",
+        ease: "power4.out",
       },
-      "-=0.2",
+      "-=0.4",
     )
 
     // Description
@@ -126,11 +126,10 @@ const { designExpertise } = Astro.props;
       {
         y: 40,
         opacity: 0,
-        filter: "blur(8px)",
-        duration: 0.9,
-        ease: "power3.out",
+        filter: "blur(20px)",
+        ease: "power4.out",
       },
-      "-=0.8",
+      "-=0.4",
     )
 
     // Cards
@@ -139,28 +138,26 @@ const { designExpertise } = Astro.props;
       {
         y: 60,
         opacity: 0,
-        duration: 0.9,
         stagger: {
-          amount: 0.6,
+          amount: 0.05,
           grid: "auto",
           from: "start",
         },
-        ease: "power3.out",
+        ease: "power4.out",
       },
-      "-=0.3",
+      "-=0.5",
     )
 
     // Titles
     .from(
       ".design-card-title",
       {
-        x: -20,
+        y: 20,
         opacity: 0,
-        duration: 0.7,
         stagger: 0.08,
-        ease: "power3.out",
+        ease: "power4.out",
       },
-      "-=0.6",
+      "-=0.8",
     )
 
     // Descriptions
@@ -169,9 +166,8 @@ const { designExpertise } = Astro.props;
       {
         y: 20,
         opacity: 0,
-        duration: 0.6,
         stagger: 0.05,
-        ease: "power2.out",
+        ease: "power4.out",
       },
       "-=0.5",
     );

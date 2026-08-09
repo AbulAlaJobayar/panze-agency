@@ -30,7 +30,7 @@ export default function LatestWorkSwitcher({ cards }: Props) {
           <div
             key={card.name}
             className={`
-              transition-all duration-700 ease-out
+             
               border-white/20
               ${isActive ? "flex-8" : "flex-1"}
               ${index !== cards.length - 1 ? "border-r" : ""}

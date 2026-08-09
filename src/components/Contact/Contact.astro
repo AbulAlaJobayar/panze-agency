@@ -8,100 +8,102 @@ import { NavigationMenuLink } from "../ui/navigation-menu";
 import PanzeContactForm from "./ContactForm";
 import LinkButton from "../ui/LinkButton.astro";
 import * as contactData from "@/content/contact-page-content.md";
+import Container from "../ui/Container.astro";
 const contactUrl = import.meta.env.CONTACT_URL;
 const whatsappUrl = import.meta.env.WHATSAPP_URL;
 const { title, description, name, designation, ceoImage, meetDescription } =
   contactData.frontmatter;
 ---
 
-<section id="contact-page-section" class="overflow-x-hidden">
-  <div>
-    <div
-      class=".contact-page-profile flex flex-col lg:flex-row items-stretch border-b border-black/20"
-    >
-      <!-- Left Side - Fixed width with white background -->
-
+<section id="contact-page-section" class="overflow-hidden">
+  <div class="border-b border-black/20">
+    <Container>
       <div
-        class="w-full lg:w-116 shrink-0 border-b lg:border-b-0 lg:border-r border-black/20 pb-26"
+        class=".contact-page-profile flex flex-col lg:flex-row items-stretch"
       >
-        <div class="pl-8 pt-18 pr-20">
-          <h1
-            class="contact-page-title font-commissioner font-semibold leading-[110%] tracking-[-4%] uppercase text-[28px] text-primary pb-7"
-          >
-            {title}
-          </h1>
-          <p
-            class="contact-page-description mb-21.25 font-dm-mono font-normal text-[14px] leading-[110%] tracking-[-4%]"
-          >
-            {description}
-          </p>
-        </div>
+        <!-- Left Side - Fixed width with white background -->
 
-        <div class="mx-auto w-fit">
-          <div class="w-[288px] mt-16 border border-primary">
-            {/* Image */}
-            <div
-              class="contact-page-profile relative overflow-hidden"
-              style={`background-image: url(${pattern.src}); background-size: cover;`}
+        <div
+          class="w-full lg:w-116 shrink-0 border-b lg:border-b-0 lg:border-r border-black/20 pb-26"
+        >
+          <div class="pl-8 pt-18 pr-20">
+            <h1
+              class="contact-page-title font-commissioner font-semibold leading-[110%] tracking-[-4%] uppercase text-[28px] text-primary pb-7"
             >
-              <Image
-                src={ceoImage}
-                alt={name}
-                width={400}
-                height={500}
-                class="w-full max-h-80 object-cover object-top transition-transform duration-500 hover:scale-105"
-              />
-            </div>
-
-            {/* Content */}
-            <div
-              class="contact-page-badge
-            pl-8 py-5 border-t border-primary"
+              {title}
+            </h1>
+            <p
+              class="contact-page-description mb-21.25 font-dm-mono font-normal text-[14px] leading-[110%] tracking-[-4%]"
             >
-              <h3
-                class="contact-page-title text-[#301C1B] font-dm-mono text-[18px] leading-[150%] font-medium tracking-[-4%]"
-              >
-                {name}
-              </h3>
-
-              <p
-                class="contact-page-description text-[#301C1B] font-dm-mono text-[14px] leading-[150%] font-normal tracking-[-4%]"
-              >
-                {designation}
-              </p>
-            </div>
+              {description}
+            </p>
           </div>
-          <!-- left bottom side -->
-          <div class="bg-[#301C1B] w-[288px]">
-            <div class="contact-page-badge px-8 pt-8 pb-3.75">
-              <img
-                src={meet.src}
-                alt="Google Meet"
-                class="contact-page-title mb-7"
-              />
-              <h1 class="text-primary contact-page-description">
-                {meetDescription}
-              </h1>
+
+          <div class="mx-auto w-fit">
+            <div class="w-[288px] mt-16 border border-primary">
+              {/* Image */}
               <div
-                class="flex items-center gap-3 mt-14"
+                class="contact-page-profile relative overflow-hidden"
+                style={`background-image: url(${pattern.src}); background-size: cover;`}
               >
-                <LinkButton href={contactUrl} text="Shedule call" />
-                <NavigationMenuLink href={whatsappUrl} class="hover:scale-3d">
-                  <img src={whatappIcon.src} alt="icon" />
-                </NavigationMenuLink>
+                <Image
+                  src={ceoImage}
+                  alt={name}
+                  width={400}
+                  height={500}
+                  class="w-full max-h-80 object-cover object-top transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+
+              {/* Content */}
+              <div
+                class="contact-page-badge
+            pl-8 py-5 border-t border-primary"
+              >
+                <h3
+                  class="contact-page-title text-[#301C1B] font-dm-mono text-[18px] leading-[150%] font-medium tracking-[-4%]"
+                >
+                  {name}
+                </h3>
+
+                <p
+                  class="contact-page-description text-[#301C1B] font-dm-mono text-[14px] leading-[150%] font-normal tracking-[-4%]"
+                >
+                  {designation}
+                </p>
+              </div>
+            </div>
+            <!-- left bottom side -->
+            <div class="bg-[#301C1B] w-[288px]">
+              <div class="contact-page-badge px-8 pt-8 pb-3.75">
+                <img
+                  src={meet.src}
+                  alt="Google Meet"
+                  class="contact-page-title mb-7"
+                />
+                <h1 class="text-primary contact-page-description">
+                  {meetDescription}
+                </h1>
+                <div class="flex items-center gap-3 mt-14">
+                  <LinkButton href={contactUrl} text="Shedule call" />
+                  <NavigationMenuLink href={whatsappUrl} class="hover:scale-3d">
+                    <img src={whatappIcon.src} alt="icon" />
+                  </NavigationMenuLink>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Right Side - Background image ONLY on right side -->
-      <div class="contact-page-form-wrapper pt-16 mt-17 lg:ml-16 pb:10 lg:pb-0">
-        <PanzeContactForm client:load />
+        <!-- Right Side - Background image ONLY on right side -->
+        <div class="pt-16 mt-17 lg:ml-16 pb:10 lg:pb-0">
+          <PanzeContactForm client:load />
+        </div>
       </div>
-    </div>
+    </Container>
   </div>
 </section>
+
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -110,7 +112,7 @@ const { title, description, name, designation, ceoImage, meetDescription } =
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#contact-page-section",
-      start: "top 75%",
+      start: "top 90%",
       toggleActions: "play none none reverse",
     },
   });
@@ -121,13 +123,6 @@ const { title, description, name, designation, ceoImage, meetDescription } =
     rotate: -4,
     filter: "blur(20px)",
     opacity: 0,
-  });
-
-  gsap.set(".contact-page-form-wrapper", {
-    x: 120,
-    rotateY: -12,
-    opacity: 0,
-    transformPerspective: 1200,
   });
 
   // Cinematic sequence
@@ -184,7 +179,7 @@ const { title, description, name, designation, ceoImage, meetDescription } =
 
   // Luxury floating image
   gsap.to(".contact-page-profile img", {
-    y:0,
+    y: 0,
     duration: 4,
     repeat: -1,
     yoyo: true,
@@ -193,7 +188,7 @@ const { title, description, name, designation, ceoImage, meetDescription } =
 
   // Scroll parallax
   gsap.to(".contact-page-profile img", {
-    yPercent:0,
+    yPercent: 0,
     ease: "none",
     scrollTrigger: {
       trigger: "#contact-page-section",
@@ -234,8 +229,6 @@ const { title, description, name, designation, ceoImage, meetDescription } =
       });
     });
   });
-
-
 </script>
 <style>
   #contact-page-section {

@@ -29,33 +29,37 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
   }, []);
 
   return (
-    <div className="max-h-144.25 overflow-hidden mx-auto border-t border-white/10 md:border-t-0   border-b">
+    <div className="h-144.25 overflow-hidden mx-auto border-t border-white/10 md:border-t-0   ">
       {/* Tabs Container */}
       <div className="bg-[#1E1212] overflow-hidden">
         <div className="flex flex-col lg:grid lg:grid-cols-12 min-h-125">
           {/* LEFT: Tab List */}
           <LayoutGroup>
-            <div
-              className=" border-t border-white/5 w-full lg:col-span-3 flex flex-col "
-              role="tablist"
-            >
+            <div className="w-full lg:col-span-3 flex flex-col " role="tablist">
               {services.map((service) => {
                 const isActive = activeTab === service.title;
+
                 return (
                   <motion.button
                     key={service.title}
                     role="tab"
+                    transition={{
+                      layout: {
+                        duration: 0.75,
+                        ease: [0.22, 1, 0.36, 1],
+                      },
+                    }}
                     aria-selected={isActive}
                     aria-controls={`panel-${service.title}`}
                     id={`tab-${service.title}`}
                     onClick={() => handleTabClick(service.title)}
-                    className={` 
-                      relative flex flex-col justify-center shrink-0 lg:shrink-0 w-full py-10 px-8 text-left transition-all duration-300 cursor-pointer
-                      border-b border-white/5  last:border-b  lg:border-white/5
+                    className={`
+                      relative flex flex-col justify-center shrink-0 lg:shrink-0 py-10 px-8 text-left transition-all duration-300 cursor-pointer
+                      border-b border-white/5  last:border-b   lg:border-white/5
                       ${
                         isActive
-                          ? "bg-primary text-white"
-                          : "text-white/60 hover:text-white hover:bg-white/5"
+                          ? "bg-primary text-white h-39"
+                          : "h-25.25 text-white/60 hover:text-white hover:bg-white/5"
                       }
                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EF7B59]
                     `}
@@ -66,15 +70,18 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
                           layoutId="active-service-tab"
                           className="absolute inset-0 bg-[#EB6A42]"
                           transition={{
-                            type: "spring",
-                            stiffness: 350,
-                            damping: 30,
+                            duration: 0.75,
+                            ease: [0.22, 1, 0.36, 1],
                           }}
                         />
 
                         <motion.div
                           layoutId="active-service-pattern"
                           className="absolute inset-0"
+                          transition={{
+                            duration: 0.75,
+                            ease: [0.22, 1, 0.36, 1],
+                          }}
                           style={{
                             backgroundImage:
                               "radial-gradient(rgba(255,255,255,.15) 1px, transparent 1px)",
@@ -86,7 +93,6 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
                     {/* tab text */}
                     <div className="relative z-10 w-full ">
                       <motion.h3
-                        layout
                         className={`font-commissioner font-normal text-[16px] leading-[130%] tracking-[-4%] ${
                           isActive
                             ? "font-semibold text-white text-[20px]"
@@ -113,7 +119,7 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
                               y: -8,
                             }}
                             transition={{
-                              duration: 0.2,
+                              duration: 0,
                             }}
                             className="hidden lg:block font-dm-mono font-normal text-sm tracking-[-4%] leading-[150%] text-white/80 mt-2"
                           >
@@ -128,7 +134,7 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
             </div>
           </LayoutGroup>
           {/* MIDDLE: Image */}
-          <div className="lg:col-span-6 relative overflow-hidden border-r border-white/10 ">
+          <div className="lg:col-span-6  relative overflow-hidden ">
             <AnimatePresence mode="wait">
               {services
                 .filter((service) => activeTab === service.title)
@@ -160,7 +166,8 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
           </div>
 
           {/* RIGHT: Tab Content */}
-          <div className="w-full lg:col-span-3 bg-[#1E1212]  border-t border-white/10">
+
+          <div className="border-b border-[#453332] w-full lg:col-span-3 bg-[#1E1212]">
             <AnimatePresence mode="wait">
               {services
                 .filter((service) => service.title === activeTab)

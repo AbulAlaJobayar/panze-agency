@@ -30,120 +30,126 @@ type Props = {
   }[];
 };
 import navrighticon from "../assets/navrighticon.svg";
+import Container from "./ui/Container.astro";
 
 const { class: className, logo, navigation } = Astro.props;
 const pathname = Astro.url.pathname;
 ---
 
 <Header class={cn("border-b-[0.5px] px-0", className)}>
-  <HeaderContainer
-    class="justify-between h-12 pl-2"
-    style={`background-image: url(${navbgvector.src})`}
-  >
-    <HeaderGroup
-      class={"  pr-12 w-47 text-center pl-6 py-3 border-r-[0.5px] bg-white"}
+  <Container>
+    <HeaderContainer
+      class="justify-between h-12 pl-2"
+      style={`background-image: url(${navbgvector.src})`}
     >
-      <!-- logo -->
-      <Logo href={logo.href} id="logo">
-        <LogoImage src={logo.src} alt={logo.alt} />
-      </Logo>
-    </HeaderGroup>
-    <NavigationMenu
-      class="absolute left-1/2 hidden max-w-none -translate-x-1/2 lg:flex mt-1.5"
-      align="center"
-    >
-      <NavigationMenuList>
-        {
-          navigation.map((item, index) => (
-            <NavigationMenuItem value={`nav-${index}`} id="nav-item">
-              <NavigationMenuLink
-                href={item.href}
-                class={`nav-link ${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%] uppercase tracking-[-4%] ${
-                  pathname === item.href
-                    ? "text-[#E8704E]"
-                    : "text-gray-900 hover:text-[#E8704E]"
-                }`}
-              >
-                {item.label}
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-          ))
-        }
-      </NavigationMenuList>
-    </NavigationMenu>
-
-    <!-- right side -->
-    <HeaderGroup id="contact" class="ml-auto hidden justify-end lg:flex">
-      <NavigationMenuLink
-        href="/contact"
-        class="contact-btn relative overflow-hidden bg-primary w-51.75 text-center py-3 px-5 flex justify-center items-center gap-2 cursor-pointer rounded-none"
+      <HeaderGroup
+        class={"  pr-12 w-47 text-center pl-6 py-3 border-r-[0.5px] bg-white"}
       >
-        <span class="contact-btn-bg"></span>
-
-        <img
-          src={navrighticon.src}
-          alt="icon"
-          class="contact-btn-icon h-5 w-5 relative z-10"
-        />
-
-        <p class="text-white text-base font-dm-mono relative z-10">Contact</p>
-      </NavigationMenuLink>
-    </HeaderGroup>
-
-    <Sheet class="lg:hidden pt-2 pr-4">
-      <SheetTrigger
-        variant="ghost"
-        size="icon-sm"
-        class="ml-auto"
-        aria-label="Open menu"
+        <!-- logo -->
+        <Logo href={logo.href} id="logo">
+          <LogoImage src={logo.src} alt={logo.alt} />
+        </Logo>
+      </HeaderGroup>
+      <NavigationMenu
+        class="absolute left-1/2 hidden max-w-none -translate-x-1/2 lg:flex mt-1.5"
+        align="center"
       >
-        <Icon name="menu" id={"#icon"} />
-      </SheetTrigger>
-
-      <SheetContent side="right" class="p-0">
-        <div class="flex h-full flex-col gap-6 overflow-y-auto px-4 py-12">
-          <nav aria-label="Main navigation" class="flex flex-col gap-4">
-            {
-              navigation.map((item) => (
-                <div class="grid gap-1">
-                  <SheetClose variant="ghost" class="justify-start font-medium">
-                    <NavigationMenuLink
-                      href={item.href}
-                      class={`${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%]  ${
-                        pathname === item.href
-                          ? "text-[#E8704E] "
-                          : "text-gray-900 hover:text-[#E8704E]"
-                      }`}
-                    >
-                      {item.label}
-                    </NavigationMenuLink>
-                  </SheetClose>
-                </div>
-              ))
-            }
-            <!-- Static Extra Item -->
-            <div class="grid gap-1">
-              <SheetClose variant="ghost" class="justify-start font-medium">
+        <NavigationMenuList>
+          {
+            navigation.map((item, index) => (
+              <NavigationMenuItem value={`nav-${index}`} id="nav-item">
                 <NavigationMenuLink
-                  href="/contact"
-                  class={`${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%] uppercase tracking-[-4%] ${
-                    pathname === "/case-studies"
+                  href={item.href}
+                  class={`nav-link ${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%] uppercase tracking-[-4%] ${
+                    pathname === item.href
                       ? "text-[#E8704E]"
                       : "text-gray-900 hover:text-[#E8704E]"
                   }`}
                 >
-                  Contact
+                  {item.label}
                 </NavigationMenuLink>
-              </SheetClose>
+              </NavigationMenuItem>
+            ))
+          }
+        </NavigationMenuList>
+      </NavigationMenu>
+
+      <!-- right side -->
+      <HeaderGroup id="contact" class="ml-auto hidden justify-end lg:flex">
+        <NavigationMenuLink
+          href="/contact"
+          class="contact-btn relative overflow-hidden bg-primary w-51.75 text-center py-3 px-5 flex justify-center items-center gap-2 cursor-pointer rounded-none"
+        >
+          <span class="contact-btn-bg"></span>
+
+          <img
+            src={navrighticon.src}
+            alt="icon"
+            class="contact-btn-icon h-5 w-5 relative z-10"
+          />
+
+          <p class="text-white text-base font-dm-mono relative z-10">Contact</p>
+        </NavigationMenuLink>
+      </HeaderGroup>
+
+      <Sheet class="lg:hidden pt-2 pr-4">
+        <SheetTrigger
+          variant="ghost"
+          size="icon-sm"
+          class="ml-auto"
+          aria-label="Open menu"
+        >
+          <Icon name="menu" id={"#icon"} />
+        </SheetTrigger>
+
+        <SheetContent side="right" class="p-0">
+          <div class="flex h-full flex-col gap-6 overflow-y-auto px-4 py-12">
+            <nav aria-label="Main navigation" class="flex flex-col gap-4">
+              {
+                navigation.map((item) => (
+                  <div class="grid gap-1">
+                    <SheetClose
+                      variant="ghost"
+                      class="justify-start font-medium"
+                    >
+                      <NavigationMenuLink
+                        href={item.href}
+                        class={`${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%]    uppercase  tracking-[-4%]  ${
+                          pathname === item.href
+                            ? "text-[#E8704E] "
+                            : "text-gray-900 hover:text-[#E8704E]"
+                        }`}
+                      >
+                        {item.label}
+                      </NavigationMenuLink>
+                    </SheetClose>
+                  </div>
+                ))
+              }
+              <!-- Static Extra Item -->
+              <div class="grid gap-1">
+                <SheetClose variant="ghost" class="justify-start font-medium">
+                  <NavigationMenuLink
+                    href="/contact"
+                    class={`${navigationMenuTriggerStyle()} font-dm-mono font-normal text-[14px] leading-[150%] uppercase tracking-[-4%] ${
+                      pathname === "/case-studies"
+                        ? "text-[#E8704E]"
+                        : "text-gray-900 hover:text-[#E8704E]"
+                    }`}
+                  >
+                    Contact
+                  </NavigationMenuLink>
+                </SheetClose>
+              </div>
+            </nav>
+            <div class="mt-auto flex flex-col gap-2">
+              <slot />
             </div>
-          </nav>
-          <div class="mt-auto flex flex-col gap-2">
-            <slot />
           </div>
-        </div>
-      </SheetContent>
-    </Sheet>
-  </HeaderContainer>
+        </SheetContent>
+      </Sheet>
+    </HeaderContainer>
+  </Container>
 </Header>
 
 <script>
@@ -181,10 +187,7 @@ const pathname = Astro.url.pathname;
       ease: "power3.out",
     });
   });
-
-  // ==========================
   // NAV LINK HOVER
-  // ==========================
 
   document.querySelectorAll(".nav-link").forEach((link) => {
     link.addEventListener("mouseenter", () => {
@@ -202,65 +205,6 @@ const pathname = Astro.url.pathname;
         ease: "power3.out",
       });
     });
-  });
-
-  // ==========================
-  // NAVBAR INTRO
-  // ==========================
-
-  const tl = gsap.timeline({
-    defaults: {
-      ease: "expo.out",
-    },
-  });
-
-  tl.from("#logo", {
-    x: -80,
-    opacity: 0,
-    duration: 1,
-  })
-
-    .from(
-      ".nav-item",
-      {
-        y: -50,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.08,
-      },
-      "-=0.55",
-    )
-
-    .from(
-      "#contact",
-      {
-        x: 60,
-        opacity: 0,
-        duration: 0.8,
-      },
-      "-=0.7",
-    )
-
-    .from(
-      "#icon",
-      {
-        x: 30,
-        opacity: 0,
-        duration: 0.6,
-      },
-      "-=0.8",
-    );
-
-  // ==========================
-  // LOGO FLOAT
-  // ==========================
-
-  gsap.to("#logo", {
-    y: -2,
-    duration: 2.5,
-    repeat: -1,
-    yoyo: true,
-    ease: "sine.inOut",
   });
 </script>
 <style>

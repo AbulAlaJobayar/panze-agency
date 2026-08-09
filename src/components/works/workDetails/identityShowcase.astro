@@ -1,6 +1,9 @@
 ---
+import Container from "@/components/ui/Container.astro";
+
 const { identityShowcase } = Astro.props;
 ---
+<Container>
 <section id="identity-showcase-section" class="mt-15.5">
   <div class="overflow-hidden px-8">
     <img
@@ -10,6 +13,7 @@ const { identityShowcase } = Astro.props;
     />
   </div>
 </section>
+</Container>
 
 <script>
   import gsap from "gsap";
@@ -20,16 +24,14 @@ const { identityShowcase } = Astro.props;
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#identity-showcase-section",
-      start: "top 75%",
+      start: "top 80%",
       toggleActions: "play none none reverse",
     },
   });
 
   tl.from(".identity-showcase-image", {
     clipPath: "inset(0 0 100% 0)",
-    scale: 1.2,
-    filter: "blur(12px)",
-    duration: 2,
-    ease: "expo.out",
+    filter: "blur(20px)",
+    ease: "power4.out",
   });
 </script>

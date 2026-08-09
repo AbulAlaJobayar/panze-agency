@@ -1,40 +1,44 @@
 ---
+import Container from "@/components/ui/Container.astro";
+
 const { projectScope } = Astro.props;
 ---
 
-<section id="project-scope-section">
-  <div class="flex flex-col lg:flex-row mt-26">
-    <!-- Left -->
-    <div class="w-full lg:w-100 shrink-0 px-8">
-      <h2
-        class="scope-title font-commissioner font-semibold uppercase text-[24px] leading-[110%]tracking-[-4%] text-[#301C1B] mb-9.5 lg:mb-0"
-      >
-        {projectScope.sectionTitle}
-      </h2>
-    </div>
+<Container>
+  <section id="project-scope-section">
+    <div class="flex flex-col lg:flex-row mt-26">
+      <!-- Left -->
+      <div class="w-full lg:w-100 shrink-0 px-8">
+        <h2
+          class="scope-title font-commissioner font-semibold uppercase text-[24px] leading-[110%]tracking-[-4%] text-[#301C1B] mb-9.5 lg:mb-0"
+        >
+          {projectScope.sectionTitle}
+        </h2>
+      </div>
 
-    <!-- Right -->
-    <div class="flex-1 pr-8">
-      <div
-        class="scope-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-black/10"
-      >
-        {
-          projectScope.items.map((item: any) => (
-            <div class="scope-item border-r border-b border-black/10 p-8">
-              <h3 class="font-commissioner font-semibold uppercase text-[24px] leading-[110%] tracking-[-0.04em] text-primary">
-                {item.number}
-              </h3>
+      <!-- Right -->
+      <div class="flex-1 pr-8">
+        <div
+          class="scope-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-black/10"
+        >
+          {
+            projectScope.items.map((item: any) => (
+              <div class="scope-item border-r border-b border-black/10 p-8">
+                <h3 class="font-commissioner font-semibold uppercase text-[24px] leading-[110%] tracking-[-0.04em] text-primary">
+                  {item.number}
+                </h3>
 
-              <p class="scope-description mt-4  font-dm-mono text-[14px] leading-[150%] tracking-[-4%] text-[#301C1B]">
-                {item.description}
-              </p>
-            </div>
-          ))
-        }
+                <p class="scope-description mt-4  font-dm-mono text-[14px] leading-[150%] tracking-[-4%] text-[#301C1B]">
+                  {item.description}
+                </p>
+              </div>
+            ))
+          }
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</Container>
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -44,7 +48,7 @@ const { projectScope } = Astro.props;
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#project-scope-section",
-      start: "top 75%",
+      start: "top 90%",
       toggleActions: "play none none reverse",
     },
   });
@@ -53,8 +57,7 @@ const { projectScope } = Astro.props;
   tl.from(".scope-title", {
     y: 80,
     opacity: 0,
-    duration: 1,
-    ease: "expo.out",
+    ease: "power4.out",
   })
 
     // Grid container
@@ -62,9 +65,8 @@ const { projectScope } = Astro.props;
       ".scope-grid",
       {
         opacity: 0,
-        duration: 0.4,
       },
-      "-=0.8",
+      "-=0.4",
     )
 
     // Cards
@@ -73,15 +75,14 @@ const { projectScope } = Astro.props;
       {
         y: 60,
         opacity: 0,
-        duration: 0.9,
         stagger: {
-          amount: 0.5,
+          amount: 0.08,
           grid: "auto",
           from: "start",
         },
-        ease: "power3.out",
+        ease: "power4.out",
       },
-      "-=0.2",
+      "-=0.6",
     )
 
     // Numbers
@@ -90,9 +91,8 @@ const { projectScope } = Astro.props;
       {
         scale: 0.6,
         opacity: 0,
-        duration: 0.7,
         stagger: 0.08,
-        ease: "back.out(2)",
+        ease: "power4.out",
       },
       "-=0.6",
     )
@@ -101,10 +101,9 @@ const { projectScope } = Astro.props;
       {
         y: 20,
         opacity: 0,
-        duration: 0.6,
         stagger: 0.05,
-        ease: "power2.out",
+        ease: "power4.out",
       },
-      "-=0.5",
+      "-=0.4",
     );
 </script>

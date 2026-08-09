@@ -3,78 +3,83 @@ const { data } = Astro.props;
 const { title, description, content } = data.frontmatter;
 import sectionIcon from "@/assets/sectionIcon/networkIcon.svg";
 import CountUp from "@/components/ui/CountUp.astro";
+import Container from "../ui/Container.astro";
 ---
 
-<section id="number" class="overflow-hidden mx-8">
-  <div class="flex flex-col lg:flex-row items-stretch lg:items-center">
-    <!-- leftside - fixed width 400px -->
-    <div
-      class="w-full lg:w-91.75 shrink-0 border-b lg:border-b-0 py-10 md:py-16 lg:py-28.25"
-    >
-      <div class="number-left flex items-center gap-2 mb-6 md:mb-9">
-        <img
-          src={sectionIcon.src}
-          alt="number section"
-          class="w-3 h-3 md:w-auto md:h-auto"
-        />
-        <h6
-          class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
-        >
-          {title}
-        </h6>
-      </div>
-      <p
-        class="number-left font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-[#301C1B]"
+<Container>
+  <section id="number" class="overflow-hidden mx-8" data-animate>
+    <div class="flex flex-col lg:flex-row items-stretch lg:items-center">
+      <!-- leftside - fixed width 400px -->
+      <div
+        class="w-full lg:w-91.75 shrink-0 border-b lg:border-b-0 py-10 md:py-16 lg:py-28.25"
       >
-        {description}
-      </p>
-    </div>
+        <div class="flex items-center gap-2 mb-6 md:mb-9">
+          <img
+            src={sectionIcon.src}
+            alt="number section"
+            class="w-3 h-3 md:w-auto md:h-auto number-icon"
+          />
+          <h6
+            class="number-section-text font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+          >
+            {title}
+          </h6>
+        </div>
+        <p
+          class="number-left font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-[#301C1B]"
+        >
+          {description}
+        </p>
+      </div>
 
-    <!-- right side - fills remaining space -->
-    <div class="flex-1 min-w-0">
-      <div class="flex flex-wrap sm:flex-nowrap border-l md:border-l-0 lg:border-l">
-        {
-          content.map((item: any, index: number) => (
-            <div
-              class=""
-              class:list={[
-                "flex w-1/2 sm:flex-1 flex-col items-start justify-between border-b border-r border-l-0 pl-6 py-27 fast:border",
-                // Mobile
-                "border-b",
-                index % 2 === 0 && "border-l",
-                "border-r",
-                "last:border-b  last:border-r",
+      <!-- right side - fills remaining space -->
+      <div class="flex-1 min-w-0">
+        <div
+          class="flex flex-wrap sm:flex-nowrap border-l md:border-l-0 lg:border-l"
+        >
+          {
+            content.map((item: any, index: number) => (
+              <div
+                class=""
+                class:list={[
+                  "flex w-1/2 sm:flex-1 flex-col items-start justify-between border-b border-r border-l-0 pl-6 py-27 fast:border",
+                  // Mobile
+                  "border-b",
+                  index % 2 === 0 && "border-l",
+                  "border-r",
+                  "last:border-b  last:border-r",
 
-                // Desktop
-                "lg:border-b-0",
-                "lg:border-l-0",
-                "last:border-0",
-                index === 0 && "sm:border-l",
-                "lg:border-r",
-              ]}
-            >
-              <h3
-                id="number-right"
-                class="font-dm-mono text-[14px] font-normal leading-[150%] tracking-[-4%] text-primary pr-[10.6px] pb-20"
+                  // Desktop
+                  "lg:border-b-0",
+                  "lg:border-l-0",
+                  "last:border-0",
+                  index === 0 && "sm:border-l",
+                  "lg:border-r",
+                ]}
               >
-                {item.title}
-              </h3>
+                <h3
+                  id="number-right"
+                  class="font-dm-mono text-[14px] font-normal leading-[150%] tracking-[-4%] text-primary pr-[10.6px] pb-20"
+                >
+                  {item.title}
+                </h3>
 
-              <p class="number-card font-commissioner text-[20px] font-semibold leading-[110%] tracking-[-4%] uppercase sm:text-[22px]  md:text-[24px]  pr-6">
-                <CountUp
-                  value={item.number}
-                  suffix={item?.sufix}
-                  prefix={item?.prefix}
-                  duration={2500}
-                />
-              </p>
-            </div>
-          ))
-        }
+                <p class="number-card font-commissioner text-[20px] font-semibold leading-[110%] tracking-[-4%] uppercase sm:text-[22px]  md:text-[24px]  pr-6">
+                  <CountUp
+                    value={item.number}
+                    suffix={item?.sufix}
+                    prefix={item?.prefix}
+                    duration={2500}
+                  />
+                </p>
+              </div>
+            ))
+          }
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</Container>
 
 <script>
   import gsap from "gsap";
@@ -90,25 +95,40 @@ import CountUp from "@/components/ui/CountUp.astro";
     .timeline({
       scrollTrigger: {
         trigger: "#number",
-        start: "top 75%",
+        start: "top 80%",
         toggleActions: "play none none reverse",
       },
     })
     .from(".number-left", {
-      x: -100,
+      y: 100,
       opacity: 0,
-      stagger: 0.1,
-      duration: 0.8,
-      ease: "power3.out",
+      filter: "blur(20px)",
+      ease: "power4.out",
     })
+    .from(
+      "#number .number-icon",
+      {
+        opacity: 0,
+        rotate: 90,
+      },
+      "-=0.05",
+    )
+    .from(
+      "#number .number-section-text",
+      {
+        x: -10,
+        opacity: 0,
+      },
+      "-=0.10",
+    )
+
     .from(
       ".number-right",
       {
         y: -80,
         opacity: 0,
         stagger: 0.08,
-        duration: 0.5,
-        ease: "power3.out",
+        ease: "power4.out",
       },
       "-=0.4",
     );

@@ -1,33 +1,37 @@
 ---
+import Container from "@/components/ui/Container.astro";
+
 const { challenges } = Astro.props;
 ---
 
-<section id="challenges-section">
-  <div class="grid grid-cols-1 lg:grid-cols-3 mx-8">
-    {
-      challenges.items.map((item: any, index: number) => (
-        <div
-          class:list={[
-            "challenge-card p-6 pb-4.25",
-            "border-b border-black/20 last:border-b-0",
-            // Desktop
-            "lg:border-b-0",
-            "lg:border-l",
-            index === challenges.items.length - 1 && "lg:border-r",
-          ]}
-        >
-          <h3 class="challenge-title font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary">
-            {item.title}
-          </h3>
+<Container>
+  <section id="challenges-works-section">
+    <div class="grid grid-cols-1 lg:grid-cols-3 mx-8">
+      {
+        challenges.items.map((item: any, index: number) => (
+          <div
+            class:list={[
+              "challenge-card p-6 pb-4.25",
+              "border-b border-black/20 last:border-b-0",
+              // Desktop
+              "lg:border-b-0",
+              "lg:border-l",
+              index === challenges.items.length - 1 && "lg:border-r",
+            ]}
+          >
+            <h3 class="challenge-title font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary">
+              {item.title}
+            </h3>
 
-          <p class="challenge-description mt-8 max-w-[320px] font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-[#301C1B]">
-            {item.description}
-          </p>
-        </div>
-      ))
-    }
-  </div>
-</section>
+            <p class="challenge-description mt-8 max-w-[320px] font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-[#301C1B]">
+              {item.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Container>
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -36,8 +40,8 @@ const { challenges } = Astro.props;
 
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: "#challenges-section",
-      start: "top 75%",
+      trigger: "#challenges-works-section",
+      start: "top 80%",
       toggleActions: "play none none reverse",
     },
   });
@@ -46,12 +50,11 @@ const { challenges } = Astro.props;
   tl.from(".challenge-card", {
     y: 70,
     opacity: 0,
-    duration: 1,
     stagger: {
       amount: 0.4,
       from: "start",
     },
-    ease: "expo.out",
+    ease: "power4.out",
   })
 
     .from(
@@ -59,11 +62,10 @@ const { challenges } = Astro.props;
       {
         y: 20,
         opacity: 0,
-        duration: 0.7,
         stagger: 0.08,
-        ease: "power3.out",
+        ease: "power4.out",
       },
-      "-=0.7",
+      "-=0.5",
     )
 
     // Descriptions
@@ -72,7 +74,6 @@ const { challenges } = Astro.props;
       {
         y: 30,
         opacity: 0,
-        duration: 0.8,
         stagger: 0.08,
         ease: "power2.out",
       },

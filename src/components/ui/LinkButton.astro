@@ -16,25 +16,6 @@ const { href, text, class: className = "", id = "" } = Astro.props;
   class={`cta-button relative overflow-hidden
   w-36.25 h-11.25 bg-primary text-white ${className}`}
 >
-  <!-- Shimmer -->
-  <div
-    class="shimmer absolute top-0 left-[-60%]
-    h-full w-[40%]
-    skew-x-[-20deg]
-    bg-linear-to-r
-    from-transparent
-    via-white/60
-    to-transparent
-    pointer-events-none"
-  >
-  </div>
-
-  <!-- Border -->
-  <div
-    class="border-sweep absolute bottom-0 left-[-20%]
-  h-0.5 w-[40%] bg-white pointer-events-none"
-  >
-  </div>
   {
     href ? (
       <NavigationMenuLink
@@ -84,55 +65,16 @@ const { href, text, class: className = "", id = "" } = Astro.props;
   import gsap from "gsap";
 
   document.querySelectorAll(".cta-button").forEach((button) => {
-    const shimmer = button.querySelector(".shimmer");
-    const border = button.querySelector(".border-sweep");
     const arrow = button.querySelector(".arrow");
-
-    gsap.set(shimmer, {
-      xPercent: -250,
-    });
-
-    gsap.set(border, {
-      xPercent: -120,
-    });
 
     button.addEventListener("mouseenter", () => {
       const tl = gsap.timeline();
-
-      // Shimmer
-      tl.fromTo(
-        shimmer,
-        {
-          xPercent: -250,
-        },
-        {
-          xPercent: 700,
-          duration: 2,
-          ease: "power2.inOut",
-        },
-        0,
-      );
-
-      // Bottom white runner
-      tl.fromTo(
-        border,
-        {
-          xPercent: -120,
-        },
-        {
-          xPercent: 700,
-          duration: 5,
-          ease: "expo.out",
-        },
-        0,
-      );
 
       // Arrow
       tl.to(
         arrow,
         {
-          x: 5,
-          y: -2,
+          rotate: 45,
           duration: 0.3,
           ease: "power2.out",
         },
@@ -143,7 +85,7 @@ const { href, text, class: className = "", id = "" } = Astro.props;
       tl.to(
         button,
         {
-          scale: 1.02,
+          scale: 1,
           duration: 0.3,
           ease: "power2.out",
         },
@@ -155,20 +97,13 @@ const { href, text, class: className = "", id = "" } = Astro.props;
       gsap.to(arrow, {
         x: 0,
         y: 0,
+        rotate: 0,
         duration: 0.3,
       });
 
       gsap.to(button, {
         scale: 1,
         duration: 0.3,
-      });
-
-      gsap.set(shimmer, {
-        xPercent: -250,
-      });
-
-      gsap.set(border, {
-        xPercent: -120,
       });
     });
   });

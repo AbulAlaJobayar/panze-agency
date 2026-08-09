@@ -1,10 +1,11 @@
 ---
 import ServicesCard from "@/components/Services/ServicesCard.astro";
+import Container from "../ui/Container.astro";
 const services = Object.values(
   import.meta.glob("../../content/whatwedo/*.md", { eager: true }),
 ).sort((a: any, b: any) => a.frontmatter.order - b.frontmatter.order);
 ---
-
+<Container>
 <section id="wedo-secton-card" class="mx-8 mt-20 mb-26">
   <div class="">
     <div class="border last:border-b-0 wedo-card">
@@ -21,6 +22,7 @@ const services = Object.values(
     </div>
   </div>
 </section>
+</Container>
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -36,7 +38,6 @@ const services = Object.values(
   tl.from(".wedo-card", {
     y: 120,
     opacity: 0,
-    duration: 0.6,
-    stagger: 0.7,
+    stagger: 0.08,
   });
 </script>

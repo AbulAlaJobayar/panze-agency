@@ -1,28 +1,30 @@
 ---
 const { testimonial } = Astro.props;
 import quate from "@/assets/icons/quate.svg";
+import Container from "@/components/ui/Container.astro";
 ---
 
 <section id="work-testimonial-section" class="mt-16">
   <div class="works-testimonial-border border-t border-black/20 mx-8"></div>
-  <div class="flex flex-col lg:flex-row pt-14">
-    <!-- Left -->
-    <div
-      class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 border-black/20"
-    >
-      <h2
-        class="works-testimonial-title px-8 font-commissioner font-semibold uppercase text-[24px] leading-[110%] tracking-[-0.04em] text-[#301C1B]"
+  <Container>
+    <div class="flex flex-col lg:flex-row pt-14">
+      <!-- Left -->
+      <div
+        class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 border-black/20"
       >
-        {testimonial.sectionTitle}
-      </h2>
-    </div>
+        <h2
+          class="works-testimonial-title px-8 font-commissioner font-semibold uppercase text-[24px] leading-[110%] tracking-[-0.04em] text-[#301C1B]"
+        >
+          {testimonial.sectionTitle}
+        </h2>
+      </div>
 
-    <!-- Right -->
-    <div class="flex-1 mr-8">
-      <!-- Quote -->
-      <img src={quate.src} alt="" class="work-testimonial-quote-icon" />
-      <blockquote
-        class="work-testimonial-quote mt-4 pb-8
+      <!-- Right -->
+      <div class="flex-1 mr-8">
+        <!-- Quote -->
+        <img src={quate.src} alt="" class="work-testimonial-quote-icon" />
+        <blockquote
+          class="work-testimonial-quote mt-4 pb-8
                max-w-190
                font-dm-mono
                font-normal
@@ -30,17 +32,18 @@ import quate from "@/assets/icons/quate.svg";
                leading-[150%]
                tracking-[-0.04em]
                text-[#301C1B]"
-      >
-        {testimonial.quote}
-      </blockquote>
+        >
+          {testimonial.quote}
+        </blockquote>
 
-      <div class="border-t border-primary work-testimonial-author-line">
-        <p class="mt-5 testimonial-author">
-          {testimonial.author}
-        </p>
+        <div class="border-t border-primary work-testimonial-author-line">
+          <p class="mt-5 testimonial-author">
+            {testimonial.author}
+          </p>
+        </div>
       </div>
     </div>
-  </div>
+  </Container>
 </section>
 
 <script>
@@ -52,7 +55,7 @@ import quate from "@/assets/icons/quate.svg";
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#work-testimonial-section",
-      start: "top 75%",
+      start: "top 90%",
       toggleActions: "play none none reverse",
     },
   });
@@ -62,7 +65,7 @@ import quate from "@/assets/icons/quate.svg";
     scaleX: 0,
     transformOrigin: "left center",
     duration: 1,
-    ease: "power3.out",
+    ease: "power4.out",
   })
 
     // Section title
@@ -71,7 +74,6 @@ import quate from "@/assets/icons/quate.svg";
       {
         y: 60,
         opacity: 0,
-        duration: 1,
         ease: "expo.out",
       },
       "-=0.6",
@@ -84,8 +86,7 @@ import quate from "@/assets/icons/quate.svg";
         scale: 0.4,
         rotate: -20,
         opacity: 0,
-        duration: 0.8,
-        ease: "back.out(2)",
+        ease: "power4.out",
       },
       "-=0.5",
     )
@@ -97,8 +98,7 @@ import quate from "@/assets/icons/quate.svg";
         y: 40,
         opacity: 0,
         filter: "blur(8px)",
-        duration: 1,
-        ease: "power3.out",
+        ease: "power4.out",
       },
       "-=0.4",
     )
@@ -109,8 +109,7 @@ import quate from "@/assets/icons/quate.svg";
       {
         scaleX: 0,
         transformOrigin: "left center",
-        duration: 0.8,
-        ease: "power3.out",
+        ease: "power4.out",
       },
       "-=0.5",
     )
@@ -121,8 +120,7 @@ import quate from "@/assets/icons/quate.svg";
       {
         y: 20,
         opacity: 0,
-        duration: 0.6,
-        ease: "power2.out",
+        ease: "power4.out",
       },
       "-=0.3",
     );

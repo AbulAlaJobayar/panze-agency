@@ -11,12 +11,16 @@ import {
 import Icon from "../ui/icon/icon.astro";
 import ctaIcon2 from "@/assets/icons/chevron-down.svg";
 import LinkButton from "../ui/LinkButton.astro";
+import Container from "../ui/Container.astro";
 
 const { title, description, buttonLink,buttonText,buttonLink2, buttonText2, testimonials } = data.frontmatter;
 ---
 
 <!-- hero section -->
-<div id="pricing-hero-section" class="flex flex-col border-t border-border lg:flex-row lg:border-b overflow-hidden">
+
+  <div class=" border-border lg:border-b">
+     <Container>
+<div id="pricing-hero-section" class="flex flex-col lg:flex-row  overflow-hidden">
   <!-- Left Content -->
   <div
     class="px-8  pt-21.25 w-full shrink-0 border-b border-border 8 lg:w-100 lg:border-b-0 lg:border-r"
@@ -123,6 +127,8 @@ const { title, description, buttonLink,buttonText,buttonLink2, buttonText2, test
   </Carousel>
 </div>
 </div>
+</Container>
+</div>
 
 <script>
   import gsap from "gsap";
@@ -133,7 +139,7 @@ const { title, description, buttonLink,buttonText,buttonLink2, buttonText2, test
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#pricing-hero-section",
-      start: "top 75%",
+      start: "top 90%",
       toggleActions: "play none none reverse",
     },
   });
@@ -141,8 +147,7 @@ const { title, description, buttonLink,buttonText,buttonLink2, buttonText2, test
   tl.from(".pricing-title", {
     y: 100,
     opacity: 0,
-    duration: 1.2,
-    ease: "expo.out",
+    ease: "power4.out",
   })
 
     .from(
@@ -150,10 +155,9 @@ const { title, description, buttonLink,buttonText,buttonLink2, buttonText2, test
       {
         y: 40,
         opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
+        ease: "power4.out",
       },
-      "-=0.8",
+      "-=0.4",
     )
 
     .from(
@@ -161,9 +165,8 @@ const { title, description, buttonLink,buttonText,buttonLink2, buttonText2, test
       {
         y: 30,
         opacity: 0,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: "back.out(1.7)",
+        stagger: 0.08,
+        ease: "power4.out",
       },
       "-=0.4",
     )
@@ -171,12 +174,11 @@ const { title, description, buttonLink,buttonText,buttonLink2, buttonText2, test
     .from(
       ".pricing-slider",
       {
-        x: 80,
+        y: 80,
         opacity: 0,
-        duration: 1,
-        ease: "expo.out",
+        ease: "power4.out",
       },
-      "-=1",
+      "-=0.4",
     )
 
     .from(
@@ -185,8 +187,7 @@ const { title, description, buttonLink,buttonText,buttonLink2, buttonText2, test
         scale: 0.3,
         rotate: -25,
         opacity: 0,
-        duration: 0.8,
-        ease: "back.out(2)",
+        ease: "power4.out",
       },
       "-=0.5",
     )
@@ -197,7 +198,7 @@ const { title, description, buttonLink,buttonText,buttonLink2, buttonText2, test
         y: 50,
         opacity: 0,
         duration: 1,
-        ease: "power3.out",
+        ease: "power4.out",
       },
       "-=0.4",
     )
@@ -207,8 +208,7 @@ const { title, description, buttonLink,buttonText,buttonLink2, buttonText2, test
       {
         scale: 0.6,
         opacity: 0,
-        duration: 0.8,
-        ease: "back.out(2)",
+        ease: "power4.out",
       },
       "-=0.5",
     )
@@ -219,7 +219,7 @@ const { title, description, buttonLink,buttonText,buttonLink2, buttonText2, test
         y: 20,
         opacity: 0,
         duration: 0.6,
-        ease: "power3.out",
+        ease: "power4.out",
       },
       "-=0.4",
     )
@@ -230,7 +230,7 @@ const { title, description, buttonLink,buttonText,buttonLink2, buttonText2, test
         y: 15,
         opacity: 0,
         duration: 0.5,
-        ease: "power3.out",
+        ease: "power4.out",
       },
       "-=0.4",
     );
@@ -241,7 +241,7 @@ const { title, description, buttonLink,buttonText,buttonLink2, buttonText2, test
     duration: 2.5,
     repeat: -1,
     yoyo: true,
-    ease: "sine.inOut",
+    ease: "power4.out",
   });
   
 </script>

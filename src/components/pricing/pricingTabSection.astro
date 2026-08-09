@@ -1,8 +1,10 @@
 ---
+import Container from "../ui/Container.astro";
 import PricingSection from "./PricingTabs/PricingSection";
 import * as data from "@/content/pricing/pricing-content.md";
 const { plans } = data.frontmatter;
-
 ---
 
-<PricingSection client:load data={plans} />
+<Container>
+  <PricingSection client:load data={plans} />
+</Container>

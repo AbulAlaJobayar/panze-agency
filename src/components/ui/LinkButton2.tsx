@@ -28,60 +28,6 @@ export default function LinkButton({
       whileHover="hover"
       animate="rest"
     >
-      {/* Shimmer */}
-      <motion.div
-        variants={{
-          rest: {
-            x: "-250%",
-          },
-          hover: {
-            x: "700%",
-            transition: {
-              duration: 1.5,
-              ease: "easeInOut",
-            },
-          },
-        }}
-        className="
-          absolute
-          top-0
-          left-0
-          h-full
-          w-[40%]
-          skew-x-[-20deg]
-          bg-linear-to-r
-          from-transparent
-          via-white/60
-          to-transparent
-          pointer-events-none
-        "
-      />
-
-      {/* Border Sweep */}
-      <motion.div
-        variants={{
-          rest: {
-            scaleX: 0,
-            originX: 1,
-          },
-          hover: {
-            scaleX: 1,
-            originX: 0,
-            transition: {
-              duration: 0.8,
-            },
-          },
-        }}
-        className="
-          absolute
-          bottom-0
-          left-0
-          h-0.5
-          w-full
-          bg-white
-        "
-      />
-
       {/* Content */}
       <motion.div
         variants={{
@@ -116,8 +62,7 @@ export default function LinkButton({
               y: 0,
             },
             hover: {
-              x: 5,
-              y: -2,
+              rotate: 45,
               transition: {
                 duration: 0.3,
               },

@@ -140,7 +140,7 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.45 }}
+                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <div className="h-full px-7 py-7 flex flex-col">
                       <div>
@@ -149,9 +149,9 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
                         </p>
                       </div>
 
-                      <div className="mt-auto">
+                      <motion.div className="mt-auto">
                         <LinkButton href="/contact" text="Schedule a call" />
-                      </div>
+                      </motion.div>
                     </div>
                   </motion.div>
                 ))}

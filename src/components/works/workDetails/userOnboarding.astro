@@ -1,16 +1,20 @@
 ---
+import Container from "@/components/ui/Container.astro";
+
 const { userOnboarding } = Astro.props;
 ---
 
-<section id="user-onboarding-section" class="my-26">
-  <div class="overflow-hidden px-8">
-    <img
-      src={userOnboarding.image}
-      alt={userOnboarding.name}
-      class="w-full h-auto object-cover user-onboarding-image"
-    />
-  </div>
-</section>
+<Container>
+  <section id="user-onboarding-section" class="my-26">
+    <div class="overflow-hidden px-8">
+      <img
+        src={userOnboarding.image}
+        alt={userOnboarding.name}
+        class="w-full h-auto object-cover user-onboarding-image"
+      />
+    </div>
+  </section>
+</Container>
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -20,7 +24,7 @@ const { userOnboarding } = Astro.props;
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#user-onboarding-section",
-      start: "top 75%",
+      start: "top 90%",
       toggleActions: "play none none reverse",
     },
   });
@@ -28,7 +32,6 @@ const { userOnboarding } = Astro.props;
   tl.from(".user-onboarding-image", {
     clipPath: "inset(0 0 100% 0)",
     scale: 1,
-    duration: 5,
-    ease: "expo.out",
+    ease: "power4.out",
   });
 </script>

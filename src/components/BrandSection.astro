@@ -1,5 +1,6 @@
 ---
 import * as brandsData from "@/content/brand-content.md";
+import Container from "./ui/Container.astro";
 
 const { brands } = brandsData.frontmatter;
 
@@ -26,28 +27,30 @@ const brandRows = splitIntoRows(brands);
   id="brands-section"
   class="overflow-hidden my-9 sm:my-18 md:my-36 mx-6 sm:mx-12 md:mx-22.25"
 >
-  {
-    brandRows.map((row, rowIndex) => (
-      <div
-        class:list={[
-          "overflow-hidden",
-          rowIndex !== brandRows.length - 1 && " mb-4 md:mb-8",
-        ]}
-      >
+  <Container>
+    {
+      brandRows.map((row, rowIndex) => (
         <div
-          class={`brand-track flex items-center gap-4 md:gap-8  ${
-            rowIndex % 2 === 0 ? "left" : "right"
-          }`}
+          class:list={[
+            "overflow-hidden",
+            rowIndex !== brandRows.length - 1 && " mb-4 md:mb-8",
+          ]}
         >
-          {[...row, ...row, ...row].map((brand) => (
-            <div class="shrink-0 w-1/6 flex justify-center">
-              <img src={brand.image} alt={brand.name} />
-            </div>
-          ))}
+          <div
+            class={`brand-track flex items-center gap-4 md:gap-8  ${
+              rowIndex % 2 === 0 ? "left" : "right"
+            }`}
+          >
+            {[...row, ...row, ...row].map((brand) => (
+              <div class="shrink-0 w-1/6 flex justify-center">
+                <img src={brand.image} alt={brand.name} />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    ))
-  }
+      ))
+    }
+  </Container>
 </section>
 <script>
   import gsap from "gsap";

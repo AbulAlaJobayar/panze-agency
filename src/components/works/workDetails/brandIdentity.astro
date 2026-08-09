@@ -1,16 +1,20 @@
 ---
+import Container from "@/components/ui/Container.astro";
+
 const { brandIdentity } = Astro.props;
 ---
 
-<section id="brand-identity-section" class="mt-15.5">
-  <div class="overflow-hidden px-8">
-    <img
-      src={brandIdentity.image}
-      alt={brandIdentity.name}
-      class="brand-identity-image w-full h-full object-cover"
-    />
-  </div>
-</section>
+<Container>
+  <section id="brand-identity-section" class="mt-15.5">
+    <div class="overflow-hidden px-8">
+      <img
+        src={brandIdentity.image}
+        alt={brandIdentity.name}
+        class="brand-identity-image w-full h-full object-cover"
+      />
+    </div>
+  </section>
+</Container>
 
 <script>
   import gsap from "gsap";
@@ -21,7 +25,7 @@ const { brandIdentity } = Astro.props;
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#brand-identity-section",
-      start: "top 75%",
+      start: "top 80%",
       toggleActions: "play none none reverse",
     },
   });
@@ -30,7 +34,6 @@ const { brandIdentity } = Astro.props;
     clipPath: "inset(0 0 100% 0)",
     scale: 1.2,
     filter: "blur(12px)",
-    duration: 2,
-    ease: "expo.out",
+    ease: "power4.out",
   });
 </script>

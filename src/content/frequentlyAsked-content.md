@@ -17,33 +17,35 @@ faqs:
   - question: "What types of businesses do you work with?"
     id: 2
     answer: >
-      We work with startups, SaaS companies, agencies, eCommerce brands,
-      and established businesses looking to improve their digital products
-      and user experience.
+      We specialize in UI/UX design, website design, SaaS product design,
+      Framer development, landing pages, design systems, and custom digital
+      experiences tailored to your business goals.  .
 
   - question: "How long does a typical project take?"
     id: 3
     answer: >
-      Project timelines vary depending on scope, but most projects take
-      between 2–8 weeks from discovery to final delivery.
+      We specialize in UI/UX design, website design, SaaS product design,
+      Framer development, landing pages, design systems, and custom digital
+      experiences tailored to your business goals.
 
   - question: "Do you provide development services as well?"
     id: 4
     answer: >
-      Yes. Along with UI/UX and website design, we also provide Framer
-      development and collaborate with development teams to ensure
-      pixel-perfect implementation.
+      We specialize in UI/UX design, website design, SaaS product design,
+      Framer development, landing pages, design systems, and custom digital
+      experiences tailored to your business goals.
 
   - question: "How much does a project cost?"
     id: 5
     answer: >
-      Pricing depends on the project's scope, complexity, and timeline.
-      Contact us for a custom quote based on your requirements.
+      We specialize in UI/UX design, website design, SaaS product design,
+      Framer development, landing pages, design systems, and custom digital
+      experiences tailored to your business goals.
 
   - question: "What is your design process?"
     id: 6
     answer: >
-      Our process includes discovery, research, wireframing, UI design,
-      prototyping, revisions, and final handoff to ensure a seamless
-      experience from start to finish.
+      We specialize in UI/UX design, website design, SaaS product design,
+      Framer development, landing pages, design systems, and custom digital
+      experiences tailored to your business goals.
 ---

@@ -19,64 +19,11 @@ const { title } = Astro.props;
   </head>
 
   <body>
-    <div id="main" class="w-full max-w-300 mx-auto">
+    <div class="">
       <div class="sticky top-0 bg-white z-50">
         <Navbar />
-        <!-- <section
-          class="relative overflow-hidden bg-[#1E1212] border-y border-white/10 py-4"
-        >
-
-          <div
-            class="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-linear-to-r from-[#1E1212] to-transparent"
-          >
-          </div>
-
-          <div
-            class="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-linear-to-l from-[#1E1212] to-transparent"
-          >
-          </div>
-
-          <div class="marquee flex whitespace-nowrap">
-            {
-              Array.from({ length: 12 }).map(() => (
-                <span class="mx-8 font-dm-mono text-sm uppercase tracking-[0.15em] text-white/70">
-                  This website is currently under development, so some features
-                  and functionality may not work as expected.
-                </span>
-              ))
-            }
-          </div>
-        </section> -->
       </div>
       <slot />
     </div>
   </body>
 </html>
-
-<script>
-  import gsap from "gsap";
-  const marquee = document.querySelector(".marquee");
-
-  if (marquee) {
-    const width = marquee.scrollWidth / 2;
-
-    gsap.to(marquee, {
-      x: -width,
-      duration: 100,
-      ease: "none",
-      repeat: -1,
-      modifiers: {
-        x: gsap.utils.unitize((x) => parseFloat(x) % width),
-      },
-    });
-  }
-  const main = document.querySelector("#main");
-  main?.addEventListener("mousemove", function (dets: any) {
-    gsap.to("#cursor", {
-      x: dets.x,
-      y: dets.y,
-      duration: 1,
-      ease: "back.out(4)",
-    });
-  });
-</script>

@@ -1,36 +1,40 @@
 ---
+import Container from "@/components/ui/Container.astro";
+
 const { overview } = Astro.props;
 ---
 
-<section id="overview-section" class="mt-14 overflow-hidden">
-  <div class="flex flex-col lg:flex-row">
-    <!-- Left -->
-    <div class="w-full lg:max-w-100 shrink-0 px-8">
-      <h2
-        class="overview-title font-commissioner font-semibold uppercase
+<Container>
+  <section id="overview-section" class="mt-14 overflow-hidden">
+    <div class="flex flex-col lg:flex-row">
+      <!-- Left -->
+      <div class="w-full lg:max-w-100 shrink-0 px-8">
+        <h2
+          class="overview-title font-commissioner font-semibold uppercase
                text-[24px] leading-[110%]
                tracking-[-4%]
                text-[#301C1B]"
-      >
-        {overview.title}
-      </h2>
-    </div>
+        >
+          {overview.title}
+        </h2>
+      </div>
 
-    <!-- Right -->
-    <div class="w-full px-8 lg:px-0  lg:pr-8 mt-9.5 lg:mt-0">
-      <p
-        class="overview-content font-dm-mono
+      <!-- Right -->
+      <div class="w-full px-8 lg:px-0 lg:pr-8 mt-9.5 lg:mt-0">
+        <p
+          class="overview-content font-dm-mono
                font-normal
                text-[14px]
                leading-[150%]
                tracking-[-4%]
                text-[#301C1B]"
-      >
-        {overview.content}
-      </p>
+        >
+          {overview.content}
+        </p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</Container>
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -40,7 +44,7 @@ const { overview } = Astro.props;
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#overview-section",
-      start: "top 75%",
+      start: "top 90%",
       toggleActions: "play none none reverse",
     },
   });
@@ -48,7 +52,6 @@ const { overview } = Astro.props;
   // Border reveal
   tl.from("#overview-section", {
     clipPath: "inset(0 100% 0 0)",
-    duration: 1,
     ease: "power4.out",
   })
 
@@ -58,7 +61,6 @@ const { overview } = Astro.props;
       {
         y: 60,
         opacity: 0,
-        duration: 1,
         ease: "expo.out",
       },
       "-=0.6",
@@ -70,9 +72,8 @@ const { overview } = Astro.props;
       {
         y: 30,
         opacity: 0,
-        duration: 0.8,
         ease: "power3.out",
       },
-      "-=0.7",
+      "-=0.5",
     );
 </script>

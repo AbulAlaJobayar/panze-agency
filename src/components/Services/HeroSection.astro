@@ -4,6 +4,7 @@ import { NavigationMenuLink } from "../ui/navigation-menu";
 import LinkButton from "../ui/LinkButton.astro";
 import background from "@/assets/background/services-hero-bg.svg";
 import chevronDown from "@/assets/icons/chevron-down.svg";
+import Container from "../ui/Container.astro";
 
 // Access frontmatter data
 const {
@@ -16,26 +17,27 @@ const {
 } = herodata.frontmatter;
 ---
 
-<section id="services-hero-section" class="overflow-hidden">
-  <div class="flex flex-col lg:flex-row items-stretch">
-    <!-- Left Side - Fixed width with white background -->
-    <div
-      class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-8"
-    >
-      <h3
-        class="services-hero-title mt-20 font-commissioner font-semibold text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary"
+<Container>
+  <section id="services-hero-section" class="overflow-hidden">
+    <div class="flex flex-col lg:flex-row items-stretch">
+      <!-- Left Side - Fixed width with white background -->
+      <div
+        class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r px-8"
       >
-        {subTitle}
-      </h3>
-      <p
-        class="services-hero-description mt-14 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
-      >
-        {description}
-      </p>
-      <!-- button -->
-      <div class="mb-13 mt-49.25 flex gap-2">
-        <LinkButton href={buttonLink} text={buttonText} />
-        <!-- <NavigationMenuLink
+        <h3
+          class="services-hero-title mt-20 font-commissioner font-semibold text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary"
+        >
+          {subTitle}
+        </h3>
+        <p
+          class="services-hero-description mt-14 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
+        >
+          {description}
+        </p>
+        <!-- button -->
+        <div class="mb-13 mt-49.25 flex gap-2">
+          <LinkButton href={buttonLink} text={buttonText} />
+          <!-- <NavigationMenuLink
           class="w-36.25 h-11.25 py-3 px-2.5 bg-primary my-10 mt-5 lg:mt-26 hover:bg-primary cursor-pointer flex items-center justify-center gap-2 rounded-none"
         >
           <span
@@ -44,28 +46,29 @@ const {
           </span>
           <img src={ctaIcon.src} alt="icon" class="h-2 w-2" />
         </NavigationMenuLink> -->
-        <NavigationMenuLink
-          href={buttonLink2}
-          class="services-hero-buttons w-36.25 border h-11.25 px-2.5 cursor-pointer flex items-center justify-center gap-2 rounded-none"
-        >
-          <span
-            class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-[#301C1B]"
+          <NavigationMenuLink
+            href={buttonLink2}
+            class="services-hero-buttons w-36.25 border h-11.25 px-2.5 cursor-pointer flex items-center justify-center gap-2 rounded-none"
           >
-            {buttonText2}
-          </span>
-          <img src={chevronDown.src} alt="icon" class="animate-bounce" />
-        </NavigationMenuLink>
+            <span
+              class="font-commissioner font-normal text-[14px] leading-[150%] tracking-[-4%] text-[#301C1B]"
+            >
+              {buttonText2}
+            </span>
+            <img src={chevronDown.src} alt="icon" class="animate-bounce" />
+          </NavigationMenuLink>
+        </div>
+      </div>
+
+      <!-- Right Side - Background image ONLY on right side -->
+      <div
+        style={{ backgroundImage: `url(${background.src})` }}
+        class="services-hero-bg flex-1 bg-cover bg-center bg-no-repeat p-4 md:p-6 lg:p-8 min-h-100 lg:min-h-[unset]"
+      >
       </div>
     </div>
-
-    <!-- Right Side - Background image ONLY on right side -->
-    <div
-      style={{ backgroundImage: `url(${background.src})` }}
-      class="services-hero-bg flex-1 bg-cover bg-center bg-no-repeat p-4 md:p-6 lg:p-8 min-h-100 lg:min-h-[unset]"
-    >
-    </div>
-  </div>
-</section>
+  </section>
+</Container>
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -83,22 +86,23 @@ const {
   tl.from(".services-hero-title", {
     y: 80,
     opacity: 0,
-    duration: 1,
+    filter: "blur(20px)",
   })
     .from(
       ".services-hero-description",
       {
         y: 30,
         opacity: 0,
+        filter: "blur(20px)",
       },
-      "-=0.5",
+      "-=0.6",
     )
     .from(
       ".services-hero-buttons > *",
       {
         y: 20,
         opacity: 0,
-        stagger: 0.15,
+        stagger: 0.1,
       },
       "-=0.4",
     )
@@ -107,7 +111,6 @@ const {
       {
         scale: 1.1,
         opacity: 0,
-        duration: 1.2,
       },
       "-=1",
     );

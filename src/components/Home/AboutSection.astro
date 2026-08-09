@@ -4,6 +4,7 @@ import * as aboutData from "@/content/home/aboutus-content.md";
 import bg from "@/assets/background/aboutSDottedbg.svg";
 import aboutUs from "@/assets/sectionIcon/aboutus.svg";
 import LinkButton from "../ui/LinkButton.astro";
+import Container from "../ui/Container.astro";
 
 // Access frontmatter data
 const { title, subTitle, description, buttonText, buttonLink, images } =
@@ -13,62 +14,64 @@ const { title, subTitle, description, buttonText, buttonLink, images } =
 ---
 
 <section id="abouthome" class="border-b lg:border-t overflow-hidden">
-  <div class="flex flex-col lg:flex-row items-stretch">
-    <!-- Left Side - Fixed width with white background -->
-    <div
-      class="aboutHome-left w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r py-26 pl-8 pr-8.25"
-    >
-      <div class="flex items-center gap-2 mb-9.5">
-        <Image
-          src={aboutUs}
-          alt="number section"
-          width={16}
-          height={14}
-          class="about-icon w-4 h-3.5 md:w-auto md:h-auto"
-        />
-        <h6
-          class="about-title font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+  <Container>
+    <div class="flex flex-col lg:flex-row items-stretch">
+      <!-- Left Side - Fixed width with white background -->
+      <div
+        class="aboutHome-left w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r py-26 pl-8 pr-8.25"
+      >
+        <div class="flex items-center gap-2 mb-9.5">
+          <Image
+            src={aboutUs}
+            alt="number section"
+            width={16}
+            height={14}
+            class="about-icon w-4 h-3.5 md:w-auto md:h-auto"
+          />
+          <h6
+            class="about-title font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+          >
+            {title}
+          </h6>
+        </div>
+        <p
+          class="about-subtitle text-[#301C1B] font-commissioner font-semibold text-[24px] leading-[110%] tracking-[-4%] uppercase pb-14"
         >
-          {title}
-        </h6>
+          {subTitle}
+        </p>
+        <p
+          class="text-[#301C1B]/70 about-description font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] mb-20"
+        >
+          {description}
+        </p>
+        <LinkButton href={buttonLink} text={buttonText} class="about-button" />
       </div>
-      <p
-        class="about-subtitle font-commissioner font-semibold text-[20px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase pb-14"
-      >
-        {subTitle}
-      </p>
-      <p
-        class="about-description font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] mb-20"
-      >
-        {description}
-      </p>
-      <LinkButton href={buttonLink} text={buttonText} class="about-button" />
-    </div>
 
-    <!-- Right Side - Background image ONLY on right side -->
+      <!-- Right Side - Background image ONLY on right side -->
 
-    <div
-      style={{ backgroundImage: `url(${bg.src})` }}
-      class="flex-1 bg-cover bg-center bg-no-repeat mt-3 ml-3 mb-2 pt-21.5"
-    >
-      <div id="gallery" class="grid grid-cols-2 gap-2">
-        {
-          images.map((img: any, index: number) => (
-            <div
-              class="gallery-card flex items-center justify-center pb-10"
-              data-index={index}
-            >
-              <img
-                src={img.src}
-                alt={img.name}
-                class="w-auto h-auto max-w-full"
-              />
-            </div>
-          ))
-        }
+      <div
+        style={{ backgroundImage: `url(${bg.src})` }}
+        class="flex-1 bg-cover bg-center bg-no-repeat mt-3 ml-3 mb-2 pt-21.5"
+      >
+        <div id="gallery" class="grid grid-cols-2 gap-2">
+          {
+            images.map((img: any, index: number) => (
+              <div
+                class="gallery-card flex items-center justify-center pb-10"
+                data-index={index}
+              >
+                <img
+                  src={img.src}
+                  alt={img.name}
+                  class="w-auto h-auto max-w-full"
+                />
+              </div>
+            ))
+          }
+        </div>
       </div>
     </div>
-  </div>
+  </Container>
 </section>
 
 <script>
@@ -76,20 +79,17 @@ const { title, subTitle, description, buttonText, buttonLink, images } =
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
-
-  // ===== LEFT CONTENT TIMELINE =====
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#abouthome",
-      start: "top 70%",
+      start: "top 80%",
       toggleActions: "play none none reverse",
     },
   });
 
   tl.from(".aboutHome-left", {
-    x: -80,
+    y: 100,
     opacity: 0,
-    duration: 1,
     ease: "expo.out",
   })
 
@@ -97,13 +97,11 @@ const { title, subTitle, description, buttonText, buttonLink, images } =
     .from(
       ".about-icon",
       {
-        scale: 0,
         rotate: -45,
         opacity: 0,
-        duration: 0.8,
         ease: "back.out(2)",
       },
-      "-=0.6",
+      "+=0.4",
     )
 
     // Small Title
@@ -112,7 +110,6 @@ const { title, subTitle, description, buttonText, buttonLink, images } =
       {
         x: -30,
         opacity: 0,
-        duration: 0.7,
         ease: "power3.out",
       },
       "-=0.5",
@@ -124,7 +121,7 @@ const { title, subTitle, description, buttonText, buttonLink, images } =
       {
         y: 70,
         opacity: 0,
-        duration: 1.1,
+        filter: "blur(8px)",
         ease: "expo.out",
       },
       "-=0.2",
@@ -137,7 +134,6 @@ const { title, subTitle, description, buttonText, buttonLink, images } =
         y: 30,
         opacity: 0,
         filter: "blur(8px)",
-        duration: 0.8,
         ease: "power3.out",
       },
       "-=0.7",
@@ -149,7 +145,7 @@ const { title, subTitle, description, buttonText, buttonLink, images } =
       {
         y: 20,
         opacity: 0,
-        duration: 0.6,
+        filter: "blur(8px)",
         ease: "back.out(1.7)",
       },
       "-=0.4",
@@ -190,8 +186,7 @@ const { title, subTitle, description, buttonText, buttonLink, images } =
       ease: "sine.inOut",
       repeat: -1,
       yoyo: true,
-      delay: index * 0.2,
+      delay: index * 0.1,
     });
   });
 </script>
-

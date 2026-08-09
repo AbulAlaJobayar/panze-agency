@@ -1,4 +1,5 @@
 ---
+import Container from "@/components/ui/Container.astro";
 import LinkButton from "@/components/ui/LinkButton.astro";
 
 const recentBlogs = Object.values(
@@ -11,45 +12,47 @@ const recentBlogs = Object.values(
   .slice(0, 2);
 ---
 
-<section id="related-blogs-section" class="mx-8 my-26">
-  <div class="flex items-center justify-between mb-16">
-    <h2
-      class="related-title font-commissioner text-[20px] md:text-[24px] leading-[110%] font-semibold uppercase tracking-[-0.04em] text-[#301C1B]"
+<Container>
+  <section id="related-blogs-section" class="mx-8 my-26">
+    <div class="flex items-center justify-between mb-16">
+      <h2
+        class="related-title font-commissioner text-[20px] md:text-[24px] leading-[110%] font-semibold uppercase tracking-[-0.04em] text-[#301C1B]"
+      >
+        Related Blogs
+      </h2>
+      <LinkButton href="/blog" text="All Works" class="related-button" />
+    </div>
+
+    <div
+      class="related-blog-card grid grid-cols-1 lg:grid-cols-2 border-[#D9D4CF]"
     >
-      Related Blogs
-    </h2>
-    <LinkButton href="/blog" text="All Works" class="related-button" />
-  </div>
-
-  <div
-    class="related-blog-card grid grid-cols-1 lg:grid-cols-2 border-[#D9D4CF]"
-  >
-    {
-      recentBlogs.map((blog: any) => (
-        <a href={`/blog/${blog.slug}`} class="group  border last:border-l-0">
-          <div class="overflow-hidden p-5 related-blog-image">
-            <img
-              src={blog.image}
-              alt={blog.thumbnailTitle}
-              class=" aspect-4/3 w-full object-cover transition duration-500 group-hover:scale-102"
-            />
-          </div>
-
-          <div class="border-t">
-            <div class="px-5 pt-5 pb-7 related-blog-date">
-              <h3 class=" font-dm-mono font-normal  text-[14px] leading-[150%] tracking-[-4%] text-primary  group-hover:text-primary transition">
-                {blog.date}
-              </h3>
-              <h3 class="mt-2 font-commissioner font-semibold  text-[20px] leading-[110%] tracking-[-4%] text-[#301C1B]  group-hover:text-primary transition">
-                {blog.thumbnailTitle}
-              </h3>
+      {
+        recentBlogs.map((blog: any) => (
+          <a href={`/blog/${blog.slug}`} class="  border last:border-l-0">
+            <div class="overflow-hidden p-5 related-blog-image">
+              <img
+                src={blog.image}
+                alt={blog.thumbnailTitle}
+                class=" aspect-4/3 w-full object-cover transition duration-500 hover:scale-102"
+              />
             </div>
-          </div>
-        </a>
-      ))
-    }
-  </div>
-</section>
+
+            <div class="border-t">
+              <div class="px-5 pt-5 pb-7 related-blog-date">
+                <h3 class=" font-dm-mono font-normal  text-[14px] leading-[150%] tracking-[-4%] text-primary  hover:text-primary transition">
+                  {blog.date}
+                </h3>
+                <h3 class="mt-2 font-commissioner font-semibold  text-[20px] leading-[110%] tracking-[-4%] text-[#301C1B]  hover:text-primary transition">
+                  {blog.thumbnailTitle}
+                </h3>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Container>
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -59,7 +62,7 @@ const recentBlogs = Object.values(
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#related-blogs-section",
-      start: "top 75%",
+      start: "top 90%",
       toggleActions: "play none none reverse",
     },
   });
@@ -68,19 +71,17 @@ const recentBlogs = Object.values(
   tl.from(".related-title", {
     y: 60,
     opacity: 0,
-    duration: 1,
-    ease: "expo.out",
+    ease: "power4.out",
   })
 
     .from(
       ".related-button",
       {
-        x: 40,
+        y: 40,
         opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
+        ease: "power4.out",
       },
-      "-=0.7",
+      "-=0.5",
     )
 
     // Cards
@@ -89,9 +90,8 @@ const recentBlogs = Object.values(
       {
         y: 80,
         opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "expo.out",
+        stagger: 0.08,
+        ease: "power4.out",
       },
       "-=0.4",
     )
@@ -102,11 +102,10 @@ const recentBlogs = Object.values(
       {
         scale: 1.15,
         opacity: 0,
-        duration: 1.2,
-        stagger: 0.15,
-        ease: "power3.out",
+        stagger: 0.08,
+        ease: "power4.out",
       },
-      "-=0.9",
+      "-=0.5",
     )
 
     // Dates
@@ -115,11 +114,10 @@ const recentBlogs = Object.values(
       {
         y: 20,
         opacity: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "power2.out",
+        stagger: 0.08,
+        ease: "power4.out",
       },
-      "-=0.8",
+      "-=0.5",
     )
 
     // Titles
@@ -128,9 +126,8 @@ const recentBlogs = Object.values(
       {
         y: 35,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out",
+        stagger: 0.08,
+        ease: "power4.out",
       },
       "-=0.5",
     );

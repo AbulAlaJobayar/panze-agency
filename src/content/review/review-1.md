@@ -1,5 +1,8 @@
 ---
-title: "They were very communicative about any changes or updates and listened to what we asked."
+slug: wpstar-review-1
+
+client: wpstar
+title: "wpsatar were very communicative about any changes or updates and listened to what we asked."
 
 description: "Panze - UX Design Studio delivered a pleasing product. The team was highly communicative and attentive to the client's needs, making changes quickly throughout the engagement. Moreover, Panze - UX Design Studio's detailed work and effective communication were hallmarks of their performance."
 image: "https://i.ibb.co.com/jv6K2vWC/image.png"

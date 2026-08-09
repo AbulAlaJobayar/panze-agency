@@ -13,13 +13,12 @@ const blogs = Object.values(
 ).sort((a: any, b: any) => a.frontmatter.order - b.frontmatter.order);
 
 const reviews = blogs.map((blog: any) => ({
+  client: blog.frontmatter.client,
   title: blog.frontmatter.title,
   description: blog.frontmatter.description,
   image: blog.frontmatter.image,
   name: blog.frontmatter.name,
   designation: blog.frontmatter.designation,
-  reviewUrl: blog.frontmatter.reviewUrl,
-  tags: blog.frontmatter.tags,
 }));
 ---
 
@@ -42,27 +41,32 @@ const reviews = blogs.map((blog: any) => ({
         <div
           class="hidden lg:w-[25%] lg:flex h-full flex-col justify-evenly gap-73 text-white"
         >
-          <h2
-            class="left-card text-center font-commissioner font-normal text-[24px] leading-[110%] tracking-[-4%]"
+          <button
+            data-client="msgly"
+            class="cursor-pointer left-card text-center font-commissioner font-normal text-[24px] leading-[110%] tracking-[-4%]"
           >
             #msgly
-          </h2>
-          <h2
-            class="left-card ml-16 text-center font-commissioner font-normal text-[36px] leading-[110%] tracking-[-4%]"
+          </button>
+          <button
+            data-client="wpstar"
+            class="cursor-pointer left-card ml-16 text-center font-commissioner font-normal text-[36px] leading-[110%] tracking-[-4%]"
           >
             #wpstar
-          </h2>
+          </button>
         </div>
 
         <!-- Carousel -->
 
         <div class="card w-full max-w-150 pt-4.5">
-          <Carousel class="w-full overflow-hidden">
+          <Carousel id="review-carousel" class="w-full overflow-hidden">
             <CarouselContent>
               {
                 reviews.map((review: any) => (
-                  <CarouselItem class=" flex justify-center basis-full">
-                    <article class="w-full max-w-120 border border-[#4A2D2A] bg-[#2D1A1A] p-7 will-change-transform">
+                  <CarouselItem
+                    class="flex justify-center basis-full"
+                    data-client={review.client}
+                  >
+                    <article class="w-full max-w-120 min-h-145.5 border border-[#4A2D2A] bg-[#2D1A1A] p-7 flex flex-col will-change-transform">
                       {/* Image */}
                       <img
                         src={review.image}
@@ -71,17 +75,17 @@ const reviews = blogs.map((blog: any) => ({
                       />
 
                       {/* Title */}
-                      <h3 class="card-child font-dm-mono font-medium text-[20px] leading-[140%] tracking-[-4%] text-white  mt-7 mb-8">
+                      <h3 class="card-child font-dm-mono font-medium text-[20px] leading-[140%] tracking-[-4%] text-white my-7 mb-8">
                         {review.title}
                       </h3>
 
                       {/* Description */}
-                      <p class="card-child font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-white/70  mb-8">
+                      <p class="card-child font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-white/70">
                         {review.description}
                       </p>
 
                       {/* Footer */}
-                      <div class="card-child mt-5 pt-4 border-t border-[#F46B45] flex items-center justify-between gap-5">
+                      <div class="card-child mt-auto pt-4 border-t border-[#F46B45] flex items-center justify-between gap-5">
                         <h4 class="font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-[#F46B45]">
                           {review.name}
                         </h4>
@@ -102,121 +106,179 @@ const reviews = blogs.map((blog: any) => ({
         <div
           class="hidden lg:w-[25%] lg:flex h-full flex-col justify-evenly gap-54.25 text-right text-white"
         >
-          <h2
-            class="left-card -ml-34 text-center font-commissioner font-normal text-[32px] leading-[110%] tracking-[-4%]"
+          <button
+            data-client="zalon"
+            class="cursor-pointer left-card -ml-34 text-center font-commissioner font-normal text-[32px] leading-[110%] tracking-[-4%]"
           >
             #zalon
-          </h2>
-          <h2
-            class="left-card text-center font-commissioner font-normal text-[48px] leading-[110%] tracking-[-4%]"
+          </button>
+          <button
+            data-client="edca"
+            class="cursor-pointer left-card text-center font-commissioner font-normal text-[48px] leading-[110%] tracking-[-4%]"
           >
             #edca
-          </h2>
+          </button>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
 
+  function initReviewCarousel() {
+    const carouselRoot = document.querySelector("#review-carousel");
+
+    if (!carouselRoot) {
+      console.log("Review carousel not found");
+      return;
+    }
+
+    const waitForApi = () => {
+      const api = (carouselRoot as any).__fulldevCarouselApi;
+
+      if (!api) {
+        requestAnimationFrame(waitForApi);
+        return;
+      }
+
+      let clientMap = {} as any;
+
+      carouselRoot
+        .querySelectorAll('[data-slot="carousel-item"]')
+        .forEach((item: any, index) => {
+          const client: any = item.dataset.client;
+
+          if (client && !(client in clientMap)) {
+            clientMap[client] = index;
+          }
+        });
+
+      console.log("Client Map:", clientMap);
+
+      document
+        .querySelectorAll("button[data-client]")
+        .forEach((button: any) => {
+          button.addEventListener("click", () => {
+            const client: any = button.dataset.client;
+
+            console.log("Clicked:", client);
+
+            const index = clientMap[client];
+
+            console.log("Index:", index);
+
+            if (index !== undefined) {
+              api.scrollTo(index);
+            }
+          });
+        });
+
+      // Default = wpstar
+      if (clientMap.wpstar !== undefined) {
+        api.scrollTo(clientMap.wpstar, true);
+      }
+    };
+
+    waitForApi();
+  }
+
+  // Astro page load
+  document.addEventListener("astro:page-load", initReviewCarousel);
+
+  // First page load
+  initReviewCarousel();
+
+  // =========================
+  // GSAP Animations
+  // =========================
+
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#review",
-      start: "top 70%",
+      start: "top 80%",
       toggleActions: "play none none reverse",
     },
   });
 
-  // Top CTA
   tl.from(".animate-button", {
     y: -60,
     opacity: 0,
-    duration: 1,
     ease: "expo.out",
   });
 
-  // Left tags
   tl.from(
     ".left-card",
     {
       opacity: 0,
       y: 80,
       rotate: gsap.utils.random(-8, 8),
-      duration: 1.2,
       stagger: 0.15,
       ease: "expo.out",
     },
     "-=0.5",
   );
 
-  // Main review card
   tl.from(
     ".card article",
     {
       opacity: 0,
       scale: 0.92,
       y: 100,
-      duration: 1.3,
       ease: "expo.out",
     },
     "-=0.8",
   );
 
-  // Review image
   tl.from(
     ".card-child:first-child",
     {
       clipPath: "inset(100% 0 0 0)",
       scale: 1.2,
-      duration: 1.4,
       ease: "expo.out",
     },
     "-=1",
   );
 
-  // Content stagger
   tl.from(
     ".card-child:not(:first-child)",
     {
       opacity: 0,
       y: 40,
       stagger: 0.12,
-      duration: 0.8,
       ease: "power3.out",
     },
-    "-=0.8",
+    "-=0.4",
   );
 
-  // Mouse move parallax
   document.querySelectorAll(".card article").forEach((reviewCard) => {
-  reviewCard.addEventListener("mousemove", (e:any) => {
-    const rect = reviewCard.getBoundingClientRect();
+    reviewCard.addEventListener("mousemove", (e: any) => {
+      const rect = reviewCard.getBoundingClientRect();
 
-    const x = (e.clientX - rect.left - rect.width / 2) / 25;
-    const y = (e.clientY - rect.top - rect.height / 2) / 25;
+      const x = (e.clientX - rect.left - rect.width / 2) / 25;
+      const y = (e.clientY - rect.top - rect.height / 2) / 25;
 
-    gsap.to(reviewCard, {
-      rotateY: x,
-      rotateX: -y,
-      transformPerspective: 1200,
-      transformOrigin: "center center",
-      duration: 0.6,
-      ease: "power3.out",
+      gsap.to(reviewCard, {
+        rotateY: x,
+        rotateX: -y,
+        transformPerspective: 1200,
+        transformOrigin: "center center",
+        duration: 0.6,
+        ease: "power3.out",
+      });
+    });
+
+    reviewCard.addEventListener("mouseleave", () => {
+      gsap.to(reviewCard, {
+        rotateX: 0,
+        rotateY: 0,
+        duration: 1,
+        ease: "expo.out",
+      });
     });
   });
-
-  reviewCard.addEventListener("mouseleave", () => {
-    gsap.to(reviewCard, {
-      rotateX: 0,
-      rotateY: 0,
-      duration: 1,
-      ease: "expo.out",
-    });
-  });
-});
-
 </script>

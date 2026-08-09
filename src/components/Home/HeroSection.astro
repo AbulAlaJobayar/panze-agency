@@ -1,235 +1,220 @@
 ---
 import usFlag from "@/assets/home/heroimage/usflag.svg";
-import bg from "@/assets/home/heroimage/bg.svg";
+import bg from "@/assets/background/herobg.svg";
 import LinkButton from "../ui/LinkButton.astro";
+import Container from "../ui/Container.astro";
+import Carousel from "../ui/carousel/carousel.astro";
+import CarouselContent from "../ui/carousel/carousel-content.astro";
+import { CarouselItem } from "../ui/carousel";
 
 const { hero } = Astro.props;
-const { cta, location, description, subTitle, title } = hero.frontmatter;
+const { cta, location, description, subTitle, title, image } = hero.frontmatter;
+console.log(image, "image");
 ---
 
 <!-- hero section -->
-<div class="hero overflow-hidden">
-  <!-- dextop screen -->
-  <div class="hidden md:block">
-    <div class="flex">
-      <!-- left container -->
-      <div class="md:w-100 border-r pl-8 pr-8.25 pt-20 pb-12.75 z-10">
-        <div class="w-83.75">
-          <h3
-            class="subtitle font-commissioner font-semibold sm:text-[18px] md:text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary mb-14"
-          >
-            {subTitle}
-          </h3>
-          <p
-            class="description mb-31.25 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
-          >
-            {description}
-          </p>
-          <LinkButton href={"/works"} text={cta} class={"hero-button"} />
-        </div>
-      </div>
-      <!-- right container -->
-      <div class="mt-15.75">
-        <!-- top -->
-        <div class="ml-4.25 mr-6.50">
-          <div class="hero-location flex items-center gap-2">
-            <img src={usFlag.src} alt="icon" width={24} height={16} />
-            <p
-              class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
-            >
-              {location}
-            </p>
-          </div>
-
-          <h1
-            class="hero-title font-commissioner font-semibold text-[clamp(36px,6vw,108px)]
-            uppercase leading-[110%] tracking-[-4%] text-[#301C1B] whitespace-nowrap"
-          >
-            {title}
-          </h1>
-        </div>
-        <!-- img -->
-        <div id="img" class="hero-img md:mt-40 lg:mt-22 mb-18.75 h-69">
-          <img src={bg.src} alt="bg" />
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- small screen -->
-  <div class="hero mx-auto">
-    <div class="block md:hidden mx-auto">
-      <div class="mt-15.75">
-        <!-- top -->
-        <div class="pl-8 pr-8.25">
-          <div class="hero-location flex items-center gap-2 mb-2">
-            <img src={usFlag.src} alt="icon" width={12} height={8} />
-            <p
-              class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
-            >
-              {location}
-            </p>
-          </div>
-
-          <h1
-            class="hero-title text-[clamp(2.25rem,10vw,6.75rem)] font-commissioner font-semibold uppercase leading-[120%] tracking-[-4%] text-[#301C1B] whitespace-nowrap"
-          >
-            {title}
-          </h1>
-        </div>
-        <div class="pl-8 pr-8.25 mt-22">
-          <div>
+<Container>
+  <div id="home-hero" class="overflow-hidden" data-animate>
+    <!-- dextop screen -->
+    <div class="hidden md:block">
+      <div class="flex">
+        <!-- left container -->
+        <div class="md:w-100 border-r pl-8 pr-8.25 pt-20 pb-12.75 z-10">
+          <div class="w-83.75">
             <h3
-              class="subtitle font-commissioner font-semibold text-[18px] uppercase leading-[110%] tracking-[-4%] text-primary"
+              class="subtitle font-commissioner font-semibold sm:text-[18px] md:text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary mb-14"
             >
               {subTitle}
             </h3>
             <p
-              class="mt-6 description font-dm-mono font-normal text-[12px] leading-[140%] tracking-[-4%]"
+              class="description mb-31.25 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-[#301C1B]/70"
             >
               {description}
             </p>
-            <LinkButton href={"/works"} text={cta} class="hero-button mt-6" />
+            <LinkButton href={"/works"} text={cta} class={"hero-button"} />
           </div>
         </div>
-        <div class="hero-img mt-10 mb-9">
-          <img src={bg.src} alt="bg" />
+        <!-- right container -->
+        <div class="mt-15.75">
+          <!-- top -->
+          <div class="ml-4.25 mr-6.50">
+            <div class="flex items-center gap-2">
+              <img
+                src={usFlag.src}
+                alt="icon"
+                width={24}
+                height={16}
+                class="hero-icon"
+              />
+              <p
+                class="hero-location font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
+              >
+                {location}
+              </p>
+            </div>
+
+            <h1
+              class="hero-title font-commissioner font-semibold text-[clamp(36px,6vw,108px)]
+            uppercase leading-[110%] tracking-[-4%] text-[#301C1B] whitespace-nowrap"
+            >
+              {title}
+            </h1>
+          </div>
+          <!-- img -->
+          <div class="hero-img md:mt-40 lg:mt-22 mb-18.75 h-69">
+            <Carousel
+              class="w-full"
+              style={{
+                backgroundImage: `url(${bg.src})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <CarouselContent class="flex gap-3.5">
+                {
+                  image.map((item: any) => (
+                    <CarouselItem class="md:basis-[50%] lg:basis-[40%] ">
+                      <img src={item} alt="bg" class="h-69 w-92" />
+                    </CarouselItem>
+                  ))
+                }
+              </CarouselContent>
+            </Carousel>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- small screen -->
+    <div class="hero mx-auto">
+      <div class="block md:hidden mx-auto">
+        <div class="mt-15.75">
+          <!-- top -->
+          <div class="pl-8 pr-8.25">
+            <div class="hero-location flex items-center gap-2 mb-2">
+              <img src={usFlag.src} alt="icon" width={12} height={8} />
+              <p
+                class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
+              >
+                {location}
+              </p>
+            </div>
+
+            <h1
+              class="hero-title text-[clamp(2.25rem,10vw,6.75rem)] font-commissioner font-semibold uppercase leading-[120%] tracking-[-4%] text-[#301C1B] whitespace-nowrap"
+            >
+              {title}
+            </h1>
+          </div>
+          <div class="pl-8 pr-8.25 mt-22">
+            <div>
+              <h3
+                class="subtitle font-commissioner font-semibold text-[18px] uppercase leading-[110%] tracking-[-4%] text-primary"
+              >
+                {subTitle}
+              </h3>
+              <p
+                class="text-[#301C1B]/70 mt-6 description font-dm-mono font-normal text-[12px] leading-[140%] tracking-[-4%]"
+              >
+                {description}
+              </p>
+              <LinkButton href={"/works"} text={cta} class="hero-button mt-6" />
+            </div>
+          </div>
+          <div class="hero-img mt-10 mb-9">
+            <Carousel
+              class="w-full"
+              style={{
+                backgroundImage: `url(${bg.src})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <CarouselContent class="flex gap-3.5">
+                {
+                  image.map((item: any) => (
+                    <CarouselItem class="basis-[40%] ">
+                      <img src={item} alt="bg" class="h-69 w-92" />
+                    </CarouselItem>
+                  ))
+                }
+              </CarouselContent>
+            </Carousel>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
+</Container>
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
-  // Split title into chars
-  document.querySelectorAll(".hero-title").forEach((title) => {
-    const text = title.textContent || "";
 
-    const chars = text.split("");
-
-    const orderedChars: any = [];
-
-    let left = 0;
-    let right = chars.length - 1;
-
-    while (left <= right) {
-      if (left === right) {
-        orderedChars.push({
-          char: chars[left],
-          index: left,
-        });
-      } else {
-        orderedChars.push({
-          char: chars[left],
-          index: left,
-        });
-
-        orderedChars.push({
-          char: chars[right],
-          index: right,
-        });
-      }
-
-      left++;
-      right--;
-    }
-
-    title.innerHTML = chars
-      .map(
-        (char, index) =>
-          `<span class="hero-char inline-block" data-order="${orderedChars.findIndex(
-            (c: any) => c.index === index,
-          )}">
-        ${char === " " ? "&nbsp;" : char}
-      </span>`,
-      )
-      .join("");
-  });
-  const charsEls = gsap.utils.toArray(".hero-char");
-
-  gsap.from(charsEls, {
-    yPercent: 120,
-    opacity: 0,
-    duration: 1,
-    ease: "expo.out",
-    stagger: (index, target) => {
-      return Number(target.dataset.order) * 0.04;
-    },
-  });
-  // Entrance timeline
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: ".hero",
-      start: "top 75%",
-      toggleActions: "play none none reverse",
-    },
-    defaults: {
-      ease: "power4.out",
+      trigger: "#home-hero",
     },
   });
 
-  tl.from(".subtitle", {
-    x: -80,
+  tl.from("#home-hero .subtitle", {
+    y: 100,
     opacity: 0,
-    duration: 0.8,
+    filter: "blur(20px)",
   })
-
     .from(
-      ".description",
+      "#home-hero .description",
       {
-        x: -60,
+        y: 100,
         opacity: 0,
-        duration: 0.8,
+        filter: "blur(20px)",
       },
-      "-=0.5",
+      "-=0.3",
     )
-
     .from(
-      ".hero-button",
+      "#home-hero .hero-button",
       {
-        scale: 0.85,
+        y: 100,
         opacity: 0,
-        duration: 0.7,
+        filter: "blur(20px)",
       },
-      "-=0.5",
-    )
-
-    .from(
-      ".hero-location",
-      {
-        x: 60,
-        opacity: 0,
-        duration: 0.8,
-      },
-      "-=0.8",
-    )
-    .from(".hero-img", {
-      opacity: 0,
-      y: 80,
-      duration: 1.2,
-      ease: "expo.out",
-    });
-  gsap.to(".hero-title", {
-    y: -80,
-    ease: "none",
+      "-=0.2",
+    );
+  const rl = gsap.timeline({
     scrollTrigger: {
-      trigger: ".hero",
-      start: "top top",
-      end: "bottom top",
-      scrub: true,
+      trigger: "#home-hero",
+      start: "top 80%",
     },
   });
-  //   y: -120,
-  //   ease: "none",
-  //   scrollTrigger: {
-  //     trigger: ".hero",
-  //     start: "top top",
-  //     end: "bottom top",
-  //     scrub: true,
-  //   },
-  // });
+  rl.from("#home-hero .hero-title", {
+    y: 100,
+    opacity: 0,
+    filter: "blur(20px)",
+  });
+  rl.from(
+    "#home-hero .hero-img",
+    {
+      y: 100,
+      opacity: 0,
+      filter: "blur(20px)",
+    },
+    "+=0.10",
+  );
+  rl.from(
+    "#home-hero .hero-icon",
+    {
+      opacity: 0,
+      rotate: 90,
+    },
+    "+=0.10",
+  );
+  rl.from(
+    "#home-hero .hero-location",
+    {
+      x: -20,
+      opacity: 0,
+    },
+    "-=0.10",
+  );
 </script>

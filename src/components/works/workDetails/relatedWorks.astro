@@ -1,4 +1,5 @@
 ---
+import Container from "@/components/ui/Container.astro";
 import LinkButton from "@/components/ui/LinkButton.astro";
 
 const { relatedWork } = Astro.props;
@@ -8,7 +9,7 @@ for (let i = 0; i < relatedWork.items.length; i += 2) {
   rows.push(relatedWork.items.slice(i, i + 2));
 }
 ---
-
+<Container>
 <section id="related-work-section" class="py-26">
   <div class="px-8 ">
     <div class="mb-16 flex items-center justify-between">
@@ -55,13 +56,13 @@ for (let i = 0; i < relatedWork.items.length; i += 2) {
                     <img
                     src={project.thumbnail}
                     alt={project.title}
-                    class="related-work-image w-full h-112 object-cover transition-transform duration-500 ease-out group-hover:scale-102"
+                    class="related-work-image w-full h-112 object-cover transition-transform duration-500 ease-out hover:scale-102"
                     />
                 </div>
 
                 <!-- Content  -->
                 <div class="flex-1 flex flex-col mt-5">
-                    <h3 class="related-work-name font-commissioner font-semibold text-[16px] leading-[110%] tracking-[-0.04em] text-[#1E1212]">
+                    <h3 class="related-work-name font-commissioner font-semibold text-[16px] leading-[110%] tracking-[-0.04em] text-[#1E1212] hover:text-primary ">
                     {project.title}
                     </h3>
 
@@ -85,6 +86,7 @@ for (let i = 0; i < relatedWork.items.length; i += 2) {
   </div>
   </div>
 </section>
+</Container>
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";

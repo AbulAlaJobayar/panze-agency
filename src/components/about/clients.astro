@@ -7,7 +7,7 @@ const { title, description, clients, industries } = data.frontmatter;
 const { firstRow, secondRow } = industries;
 ---
 
-<section id="clients-abuot-section" class="bg-[#2E1C1B]  px-8">
+<section id="clients-abuot-section" class="bg-[#2E1C1B] px-8">
   <div class="mx-auto max-w-300 py-26">
     <!-- Header -->
     <div
@@ -38,7 +38,7 @@ const { firstRow, secondRow } = industries;
       {
         clients.map((client: any) => (
           <div
-            class="client-anout-card flex py-19.25 items-center justify-center
+            class=" flex py-19.25 items-center justify-center
                    border-r border-b border-[#4A3432]
                    px-9.25 transition-colors duration-300
                    hover:bg-[#35211F]"
@@ -46,7 +46,7 @@ const { firstRow, secondRow } = industries;
             <img
               src={client.logo}
               alt={client.name}
-              class="max-h-12 w-auto object-contain opacity-95"
+              class="client-anout-card max-h-12 w-auto object-contain opacity-95"
             />
           </div>
         ))
@@ -123,8 +123,7 @@ const { firstRow, secondRow } = industries;
     y: 80,
     opacity: 0,
     filter: "blur(20px)",
-    duration: 1.2,
-    ease: "expo.out",
+    ease: "power4.out",
   });
 
   // Logo Cards Cascade
@@ -134,14 +133,14 @@ const { firstRow, secondRow } = industries;
       y: 60,
       opacity: 0,
       scale: 0.9,
+      filter:"blur(20px)",
       stagger: {
         each: 0.05,
         from: "start",
       },
-      duration: 0.8,
       ease: "power4.out",
     },
-    "-=0.6",
+    "-=0.3",
   );
 
   // Industry Tags Wave
@@ -151,7 +150,6 @@ const { firstRow, secondRow } = industries;
       y: 30,
       opacity: 0,
       stagger: 0.03,
-      duration: 0.6,
       ease: "power3.out",
     },
     "-=0.5",
@@ -170,7 +168,7 @@ const { firstRow, secondRow } = industries;
       gsap.to(logo, {
         scale: 1.08,
         duration: 0.4,
-        ease: "power3.out",
+        ease: "power4.out",
       });
     });
 

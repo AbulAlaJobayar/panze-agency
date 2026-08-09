@@ -2,90 +2,95 @@
 import * as IndustryData from "@/content/team-content.md";
 import sectionIcon from "@/assets/sectionIcon/team.svg";
 import bg from "@/assets/background/teambg.png";
+import Container from "./ui/Container.astro";
 
 // Access the frontmatter data
 const { title, subtitle, description, categories } = IndustryData.frontmatter;
 ---
 
-<section id="team-section" class="mt-10 md:mt-20 lg:mt-26 px-8 font-sans">
-  <div class="max-w-7xl mx-auto">
-    <!-- Header -->
-    <div class="flex flex-col lg:flex-row border-b border-white/20">
-      <!-- Left: Icon + Title -->
-      <div
-        class="team-badge mb-6 lg:mb-0 w-full lg:w-[20%] border-b lg:border-b-0 lg:border-r border-white/20"
-      >
-        <div class="flex items-center gap-2">
-          <img
-            src={sectionIcon.src}
-            alt="team"
-            class="w-4 h-4 md:w-auto md:h-auto"
-          />
-          <h6
-            class="font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+<Container>
+  <section id="team-section" class="mt-10 md:mt-20 lg:mt-26 px-8 font-sans">
+    <div class="max-w-7xl mx-auto">
+      <!-- Header -->
+      <div class="flex flex-col lg:flex-row border-b border-white/20">
+        <!-- Left: Icon + Title -->
+        <div
+          class="mb-6 lg:mb-0 w-full lg:w-[20%] border-b lg:border-b-0 lg:border-r border-white/20"
+        >
+          <div class="flex items-center gap-2">
+            <img
+              src={sectionIcon.src}
+              alt="team"
+              class="w-4 h-4 md:w-auto md:h-auto team-section-icon"
+            />
+            <h6
+              class="team-section-title font-dm-mono font-normal text-[12px] sm:text-[14px] leading-[150%] tracking-[-4%] text-primary"
+            >
+              {title}
+            </h6>
+          </div>
+        </div>
+
+        <!-- Middle: SubTitle -->
+        <div
+          class="team-section-subtitle mb-8 lg:mb-0 w-full lg:w-[32%] border-b lg:border-b-0 lg:border-r border-white/20"
+        >
+          <p
+            class="font-commissioner font-semibold text-[25px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-[#301C1B]"
           >
-            {title}
-          </h6>
+            {subtitle}
+          </p>
+        </div>
+
+        <!-- Right: Description -->
+        <div
+          class="team-section-description mb-10 w-full lg:w-[48%] lg:pl-[7%] lg:mb-16"
+        >
+          <p
+            class="text-[#301C1B] font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
+          >
+            {description}
+          </p>
         </div>
       </div>
 
-      <!-- Middle: SubTitle -->
+      <!-- Team Grid -->
       <div
-        class="team-subtitle mb-8 lg:mb-0 w-full lg:w-[32%] border-b lg:border-b-0 lg:border-r border-white/20"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-l border-t border-primary"
       >
-        <p
-          class="font-commissioner font-semibold text-[25px] sm:text-[22px] md:text-[24px] leading-[110%] tracking-[-4%] uppercase text-[#301C1B]"
-        >
-          {subtitle}
-        </p>
-      </div>
+        {
+          categories?.map((member: any) => (
+            <div class=" group border-r border-b border-primary bg-[#FFFDFC]">
+              {/* Image */}
 
-      <!-- Right: Description -->
-      <div class="team-description mb-10 w-full lg:w-[48%] lg:pl-[7%] lg:mb-16">
-        <p
-          class="text-[#301C1B] font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
-        >
-          {description}
-        </p>
+              <div
+                style={`background-image: url(${bg.src})`}
+                class="team-image-wrapper relative overflow-hidden team-section-card "
+              >
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  class="team-image w-full min-h-55 object-cover object-top px-4 pt-2"
+                />
+              </div>
+
+              {/* Content */}
+              <div class="bg-white text-center px-6 pt-3.75 pb-5.75 border-t border-primary">
+                <h3 class="font-dm-mono text-[18px] leading-[150%] font-medium tracking-[-4%] text-center text-[#301C1B]">
+                  {member.name}
+                </h3>
+
+                <p class="mt-1 font-dm-mono text-[14px] leading-[150%] font-normal tracking-[-4%] text-center text-[#301C1B]">
+                  {member.designation}
+                </p>
+              </div>
+            </div>
+          ))
+        }
       </div>
     </div>
-
-    <!-- Team Grid -->
-    <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-l border-t border-primary"
-    >
-      {
-        categories?.map((member: any) => (
-          <div class="team-section-card group border-r border-b border-primary bg-[#FFFDFC]">
-            {/* Image */}
-
-            <div
-              style={`background-image: url(${bg.src})`}
-              class="team-image-wrapper relative overflow-hidden"
-            >
-              <img
-                src={member.image}
-                alt={member.name}
-                class="team-image w-full min-h-55 object-cover object-top px-4 pt-2"
-              />
-            </div>
-
-            {/* Content */}
-            <div class="bg-white text-center px-6 py-5 border-t border-primary">
-              <h3 class="font-dm-mono text-[18px] leading-[150%] font-medium tracking-[-4%] text-center text-[#301C1B]">
-                {member.name}
-              </h3>
-
-              <p class="mt-2 font-dm-mono text-[14px] leading-[150%] font-normal tracking-[-4%] text-center text-[#301C1B]">
-                {member.designation}
-              </p>
-            </div>
-          </div>
-        ))
-      }
-    </div>
-  </div>
-</section>
+  </section>
+</Container>
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -99,37 +104,43 @@ const { title, subtitle, description, categories } = IndustryData.frontmatter;
   const headerTl = gsap.timeline({
     scrollTrigger: {
       trigger: "#team-section",
-      start: "top 75%",
+      start: "top 80%",
       toggleActions: "play none none reverse",
     },
   });
 
   headerTl
-    .from(".team-badge", {
+    .from(".team-section-icon", {
+      rotate: -90,
       opacity: 0,
-      x: -80,
-      duration: 0.8,
       ease: "power4.out",
     })
     .from(
-      ".team-subtitle",
+      ".team-section-title",
       {
         opacity: 0,
-        y: 80,
-        duration: 1,
-        ease: "expo.out",
+        x: -20,
+        ease: "power4.out",
       },
       "-=0.4",
     )
     .from(
-      ".team-description",
+      ".team-section-subtitle",
+      {
+        opacity: 0,
+        y: 80,
+        ease: "expo4.out",
+      },
+      "-=0.5",
+    )
+    .from(
+      ".team-section-description",
       {
         opacity: 0,
         y: 40,
-        duration: 0.8,
-        ease: "power3.out",
+        ease: "power4.out",
       },
-      "-=0.7",
+      "-=0.4",
     );
 
   // =========================

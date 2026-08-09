@@ -1,43 +1,46 @@
 ---
 import * as data from "@/content/about/about-hero-content.md";
+import Container from "../ui/Container.astro";
 const { subTitle, description, logo } = data.frontmatter;
 ---
 
 <section id="about-hero" class="border-b overflow-hidden">
-  <div class="flex flex-col lg:flex-row items-stretch">
-    <!-- Left Side - Fixed width with white background -->
-    <div
-      class="hero-content w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r pt-20 mb-13.5 px-8"
-    >
-      <h3
-        class="about-hero-title font-commissioner font-semibold text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary"
+  <Container>
+    <div class="flex flex-col lg:flex-row items-stretch">
+      <!-- Left Side - Fixed width with white background -->
+      <div
+        class="hero-content w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r pt-20 mb-13.5 px-8"
       >
-        The White Label <br /> Digital Product <br /> Design Agency That <br /> Does
-        One Thing Well
-      </h3>
-      <p
-        class="about-hero-subtitle mt-20.75 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
-      >
-        {subTitle}
-      </p>
-      <p
-        class="about-hero-description font-dm-mono mt-10 font-normal text-[14px] leading-[150%] tracking-[-4%]"
-      >
-        {description}
-      </p>
-    </div>
+        <h3
+          class="about-hero-title font-commissioner font-semibold text-[28px] uppercase leading-[110%] tracking-[-4%] text-primary"
+        >
+          The White Label <br /> Digital Product <br /> Design Agency That <br
+          /> Does One Thing Well
+        </h3>
+        <p
+          class="about-hero-subtitle mt-20.75 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
+        >
+          {subTitle}
+        </p>
+        <p
+          class="about-hero-description font-dm-mono mt-10 font-normal text-[14px] leading-[150%] tracking-[-4%]"
+        >
+          {description}
+        </p>
+      </div>
 
-    <!-- Right Side -->
-    <div
-      class="min-h-159.75 about-hero-logo-wrapper flex-1 bg-[#1E1212] flex items-center justify-center"
-    >
-      <h1
-        class="font-dm-mono text-[216px] leading-[150%] tracking-[-4%] font-normal uppercase text-primary"
+      <!-- Right Side -->
+      <div
+        class="min-h-159.75 about-hero-logo-wrapper flex-1 bg-[#1E1212] flex items-center justify-center"
       >
-        <img src={logo} alt="panze" class="about-hero-logo" />
-      </h1>
+        <h1
+          class="font-dm-mono text-[216px] leading-[150%] tracking-[-4%] font-normal uppercase text-primary"
+        >
+          <img src={logo} alt="panze" class="about-hero-logo" />
+        </h1>
+      </div>
     </div>
-  </div>
+  </Container>
 </section>
 <script>
   import gsap from "gsap";
@@ -64,25 +67,25 @@ const { subTitle, description, logo } = data.frontmatter;
   tl.from(".about-hero-title", {
     y: 120,
     opacity: 0,
-    duration: 1.2,
+    filter: "blur(20px)",
   })
     .from(
       ".about-hero-subtitle",
       {
         y: 40,
         opacity: 0,
-        duration: 0.8,
+        filter: "blur(20px)",
       },
-      "-=0.7",
+      "-=0.3",
     )
     .from(
       ".about-hero-description",
       {
         y: 40,
         opacity: 0,
-        duration: 0.8,
+        filter: "blur(20px)",
       },
-      "-=0.6",
+      "-=0.4",
     )
     .to(
       ".about-hero-logo",

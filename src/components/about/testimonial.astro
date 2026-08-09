@@ -9,91 +9,94 @@ import {
 import * as data from "@/content/about/testimonial-content.md";
 import icon from "@/assets/sectionIcon/networkIcon.svg";
 import LinkButton from "../ui/LinkButton.astro";
+import Container from "../ui/Container.astro";
 
 const { title, description, testimonials } = data.frontmatter;
 ---
 
-<section
-  id="about-testimonial-section"
-  class="border border-black/20 my-26 mx-8"
->
-  <div class="flex flex-col lg:flex-row">
-    <!-- Left Side -->
-    <div
-      class="testimonial-left flex w-full flex-col justify-between border-b border-r border-[#D9D9D9] p-8 lg:border-b-0 lg:w-md"
-    >
-      <div>
-        <div class="flex items-center gap-2 text-[#F26C3A]">
-          <img src={icon.src} alt={title} />
-          <span
-            class="font-dm-mono font-normal
+<Container>
+  <section
+    id="about-testimonial-section"
+    class="border border-black/20 my-26 mx-8"
+  >
+    <div class="flex flex-col lg:flex-row">
+      <!-- Left Side --> 
+      <div
+        class="testimonial-left flex w-full flex-col justify-between border-b border-r border-[#D9D9D9] p-8 lg:border-b-0 lg:w-md"
+      >
+        <div>
+          <div class="flex items-center gap-2 text-[#F26C3A]">
+            <img src={icon.src} alt={title} />
+            <span
+              class="font-dm-mono font-normal
                  leading-[150%] tracking-[-4%] text-[14px]"
-            >{title}</span
-          >
-        </div>
+              >{title}</span
+            >
+          </div>
 
-        <h2
-          class="mt-8 font-commissioner font-semibold uppercase
+          <h2
+            class="mt-8 font-commissioner font-semibold uppercase
                  
                 leading-[110%] tracking-[-4%] text-[24px]"
-        >
-          {description}
-        </h2>
+          >
+            {description}
+          </h2>
+        </div>
+        <LinkButton href="/contact" text="Let'talk" class="mt-10 lg:mt-0" />
       </div>
-      <LinkButton href="/contact" text="Let'talk" class="mt-10 lg:mt-0" />
-    </div>
 
-    <!-- Right Side -->
-    <div class="relative flex-1 p-8">
-      <Carousel class="w-full">
-        <CarouselContent>
-          {
-            testimonials.map((item: any) => (
-              <CarouselItem class="testimonial-item">
-                <div class="flex flex-col justify-between">
-                  <p
-                    class="testimonial-text font-dm-mono font-normal 
+      <!-- Right Side -->
+      <div class="relative flex-1 p-8">
+        <Carousel class="w-full">
+          <CarouselContent>
+            {
+              testimonials.map((item: any) => (
+                <CarouselItem class="testimonial-item">
+                  <div class="flex flex-col justify-between">
+                    <p
+                      class="testimonial-text font-dm-mono font-normal 
                  leading-[150%] tracking-[-4%] text-[16px]"
-                  >
-                    {item.description}
-                  </p>
+                    >
+                      {item.description}
+                    </p>
 
-                  <div class="testimonial-author mt-12 flex items-center gap-5">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      class="h-14 w-14 object-cover"
-                    />
+                    <div class="testimonial-author mt-12 flex items-center gap-5">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        class="h-14 w-14 object-cover"
+                      />
 
-                    <div>
-                      <h4 class="font-dm-mono font-medium  leading-[150%] tracking-[-4%] text-[14px]">
-                        {" "}
-                        {item.name}
-                      </h4>
-                      <p class="mt-1 font-dm-mono font-normal  leading-[150%] tracking-[-4%] text-[14px]">
-                        {" "}
-                        {item.designation}
-                      </p>
+                      <div>
+                        <h4 class="font-dm-mono font-medium  leading-[150%] tracking-[-4%] text-[14px]">
+                          {" "}
+                          {item.name}
+                        </h4>
+                        <p class="mt-1 font-dm-mono font-normal  leading-[150%] tracking-[-4%] text-[14px]">
+                          {" "}
+                          {item.designation}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </CarouselItem>
-            ))
-          }
-        </CarouselContent>
+                </CarouselItem>
+              ))
+            }
+          </CarouselContent>
 
-        <!-- Navigation -->
-        <div class="absolute bottom-0 right-0 flex items-center">
-          <CarouselPrevious
-            class="static h-6 w-6 rounded-none border-r border-[#D9D9D9] shadow-none"
-          />
+          <!-- Navigation -->
+          <div class="absolute bottom-0 right-0 flex items-center">
+            <CarouselPrevious
+              class="static h-6 w-6 rounded-none border-r border-[#D9D9D9] shadow-none"
+            />
 
-          <CarouselNext class="static h-6 w-6 rounded-none shadow-none" />
-        </div>
-      </Carousel>
+            <CarouselNext class="static h-6 w-6 rounded-none shadow-none" />
+          </div>
+        </Carousel>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</Container>
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -110,9 +113,8 @@ const { title, description, testimonials } = data.frontmatter;
 
   // Left Panel
   tl.from(".testimonial-left", {
-    x: -80,
+    y: 80,
     opacity: 0,
-    duration: 1.2,
     ease: "expo.out",
   });
 
@@ -123,10 +125,9 @@ const { title, description, testimonials } = data.frontmatter;
       y: 50,
       opacity: 0,
       filter: "blur(12px)",
-      duration: 1,
       ease: "power4.out",
     },
-    "-=0.8",
+    "-=0.3",
   );
 
   // Author
@@ -135,10 +136,9 @@ const { title, description, testimonials } = data.frontmatter;
     {
       y: 30,
       opacity: 0,
-      duration: 0.8,
-      ease: "power3.out",
+      ease: "power4.out",
     },
-    "-=0.6",
+    "-=0.3",
   );
 
   // Avatar Hover
@@ -146,7 +146,6 @@ const { title, description, testimonials } = data.frontmatter;
     img.addEventListener("mouseenter", () => {
       gsap.to(img, {
         scale: 1.08,
-        duration: 0.3,
         ease: "back.out(2)",
       });
     });
@@ -158,5 +157,4 @@ const { title, description, testimonials } = data.frontmatter;
       });
     });
   });
-
 </script>

@@ -2,6 +2,7 @@
 import * as blogContent from "@/content/home/blog-content.md";
 import sectionIcon from "@/assets/sectionIcon/blogArticale.svg";
 import LinkButton from "../ui/LinkButton.astro";
+import Container from "../ui/Container.astro";
 const { title, subtitle, description, buttonText, buttonLink } =
   blogContent.frontmatter;
 
@@ -10,67 +11,70 @@ const blogs = Object.values(
 );
 ---
 
-<div
-  id="blog-section"
-  class="mt-22.75 flex flex-col lg:flex-row items-stretch border-y"
->
-  <!-- Left Side - Fixed width with white background -->
-  <div
-    class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r bg-white"
-  >
-    <div class="mx-8 mt-13 lg:mt-26">
-      <div class="home-blog-section-badge flex items-center gap-2 mb-6 lg:mb-9">
-        <img
-          src={sectionIcon.src}
-          alt="blog"
-          class="w-4 h-4 md:w-auto md:h-auto"
-        />
-        <h6
-          class="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
-        >
-          {title}
-        </h6>
-      </div>
-      <p
-        class="home-blog-section-subtitle font-commissioner font-semibold text-[24px] leading-[110%] tracking-[-4%] uppercase mb-8 lg:mb-49"
+<section class="mt-22.75 border-y">
+  <Container>
+    <div id="home-blog-section" class="flex flex-col lg:flex-row items-stretch">
+      <!-- Left Side - Fixed width with white background -->
+      <div
+        class="w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r bg-white"
       >
-        {subtitle}
-      </p>
-      <p
-        class="home-blog-section-description mb-10 lg:mb-16 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
-      >
-        {description}
-      </p>
-      <LinkButton
-        href={buttonLink}
-        text={buttonText}
-        class="home-blog-section-button mb-10"
-      />
-    </div>
-  </div>
-  <div class="grid sm:grid-cols-2 my-10 lg:my-20 gap-4 ml-8 lg:ml-4.25 mr-8">
-    {
-      blogs.slice(0, 4).map((blog: any) => (
-        <a
-          href={`/blog/${blog.frontmatter.slug}`}
-          class="group mb-6 home-blog-section-card"
-        >
-          <div class="blog-image-wrapper overflow-hidden">
+        <div class="mx-8 mt-13 lg:mt-26">
+          <div class="flex items-center gap-2 mb-6 lg:mb-9">
             <img
-              src={blog.frontmatter.image}
-              alt={blog.frontmatter.thumbnailTitle}
-              class="blog-image aspect-4/3 w-full object-cover"
+              src={sectionIcon.src}
+              alt="blog"
+              class="w-4 h-4 md:w-auto md:h-auto home-blog-section-icon"
             />
+            <h6
+              class="home-blog-section-title font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-primary"
+            >
+              {title}
+            </h6>
           </div>
+          <p
+            class="home-blog-section-subtitle font-commissioner font-semibold text-[24px] leading-[110%] tracking-[-4%] uppercase mb-8 lg:mb-49"
+          >
+            {subtitle}
+          </p>
+          <p
+            class="home-blog-section-description mb-10 lg:mb-16 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]"
+          >
+            {description}
+          </p>
+          <LinkButton
+            href={buttonLink}
+            text={buttonText}
+            class="home-blog-section-button mb-10"
+          />
+        </div>
+      </div>
+      <div
+        class="grid sm:grid-cols-2 my-10 lg:my-20 gap-4 ml-8 lg:ml-4.25 mr-8"
+      >
+        {
+          blogs.slice(0, 4).map((blog: any) => (
+            <a
+              href={`/blog/${blog.frontmatter.slug}`}
+              class="group mb-6 home-blog-section-card"
+            >
+              <div class="blog-image-wrapper home-blog-section-img overflow-hidden">
+                <img
+                  src={blog.frontmatter.image}
+                  alt={blog.frontmatter.thumbnailTitle}
+                  class="blog-image aspect-4/3 w-full object-cover "
+                />
+              </div>
 
-          <h3 class="blog-title mt-2 font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-[#301C1B]">
-            {blog.frontmatter.title}
-          </h3>
-        </a>
-      ))
-    }
-  </div>
-</div>
+              <h3 class="blog-title mt-2 font-dm-mono font-medium text-[16px] leading-[150%] tracking-[-4%] text-[#301C1B] hover:text-primary transition-colors duration-300">
+                {blog.frontmatter.title}
+              </h3>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</section>
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -80,7 +84,7 @@ const blogs = Object.values(
   const initBlogSection = () => {
     // Kill old triggers
     ScrollTrigger.getAll().forEach((st) => {
-      if (st.trigger?.closest?.("#blog-section")) {
+      if (st.trigger?.closest?.("#home-blog-section")) {
         st.kill();
       }
     });
@@ -91,24 +95,29 @@ const blogs = Object.values(
 
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: "#blog-section",
-        start: "top 75%",
+        trigger: "#home-blog-section",
+        start: "top 80%",
       },
     });
 
-    tl.from(".home-blog-section-badge", {
+    tl.from(".home-blog-section-icon", {
       opacity: 0,
-      x: -80,
-      duration: 0.8,
+      y: 20,
+      rotate: -90,
       ease: "power4.out",
     })
+      .from(".home-blog-section-title", {
+        opacity: 0,
+        x: -20,
+        ease: "power4.out",
+      })
       .from(
         ".home-blog-section-subtitle",
         {
           opacity: 0,
           y: 60,
-          duration: 1,
-          ease: "expo.out",
+          filter: "blur(20px)",
+          ease: "power4.out",
         },
         "-=0.4",
       )
@@ -117,20 +126,19 @@ const blogs = Object.values(
         {
           opacity: 0,
           y: 30,
-          duration: 0.8,
+          filter: "blur(20px)",
           ease: "power3.out",
         },
-        "-=0.7",
+        "-=0.4",
       )
       .from(
         ".home-blog-section-button",
         {
           opacity: 0,
           y: 20,
-          duration: 0.8,
-          ease: "power2.out",
+          ease: "power4.out",
         },
-        "-=0.6",
+        "-=0.4",
       );
 
     // =====================
@@ -139,14 +147,14 @@ const blogs = Object.values(
 
     gsap.from(".home-blog-section-card", {
       scrollTrigger: {
-        trigger: "#blog-section",
+        trigger: "#home-blog-section",
         start: "top 65%",
       },
       opacity: 0,
       y: 100,
       duration: 1.2,
       stagger: 0.15,
-      ease: "expo.out",
+      ease: "power4.out",
     });
 
     // =====================
@@ -162,7 +170,7 @@ const blogs = Object.values(
         scale: 1.2,
         clipPath: "inset(100% 0 0 0)",
         duration: 1.4,
-        ease: "expo.out",
+        ease: "power4.out",
       });
     });
 
@@ -170,7 +178,7 @@ const blogs = Object.values(
     // HOVER IMAGE PARALLAX
     // =====================
 
-    document.querySelectorAll(".home-blog-section-card").forEach((card) => {
+    document.querySelectorAll(".home-blog-section-img").forEach((card) => {
       const image = card.querySelector("img");
 
       if (!image) return;
@@ -179,7 +187,7 @@ const blogs = Object.values(
         gsap.to(image, {
           scale: 1.08,
           duration: 0.6,
-          ease: "power3.out",
+          ease: "power4.out",
         });
       });
 
@@ -187,7 +195,7 @@ const blogs = Object.values(
         gsap.to(image, {
           scale: 1,
           duration: 0.8,
-          ease: "expo.out",
+          ease: "power4.out",
         });
       });
 
@@ -202,7 +210,7 @@ const blogs = Object.values(
           x,
           y,
           duration: 0.8,
-          ease: "power3.out",
+          ease: "power4.out",
         });
       });
     });

@@ -1,6 +1,7 @@
 ---
 title: "About Us"
-subTitle: "A Digital Product Design Agency Built for Agencies, and End Clients"
+subTitle: "A Digital Product Design Agency Built for Agencies,  and End Clients"
+
 description: "Panze is a white label digital product design agency. We work behind the scenes, designing Saas platforms, mobile applications, dashboards, and web products that agencies deliver to their clients under their own name. We are not a generalist creative studio that also does product design. It is the only work we do. That focus means deeper UX thinking, cleaner handoffs, and design that holds up when development begins. As a white label digital product design company, we give your agency the specialist capability it needs without the overhead of building it internally. "
 
 buttonText: "About PANZE"

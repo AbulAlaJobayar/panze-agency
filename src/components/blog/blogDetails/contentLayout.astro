@@ -11,6 +11,7 @@ import pr from "@/assets/footer/preplax.svg";
 import clude from "@/assets/footer/clude.svg";
 import grok from "@/assets/footer/grok.svg";
 import star from "@/assets/icons/StarFour.svg";
+import Container from "@/components/ui/Container.astro";
 const { frontmatter, Content } = Astro.props;
 
 const mdxComponents = {
@@ -87,52 +88,55 @@ const aiTools = [
 ];
 ---
 
-<section class="border-t border-black/10 overflow-hidden">
-  <div class="flex flex-col lg:flex-row">
-    <!-- LEFT SIDEBAR -->
-    <aside
-      class="blog-details-sidebar w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r border-black/10"
-    >
-      <div class="blog-details-meta">
-        <div class="px-8 pt-27">
-          <!-- Date & Read Time -->
-          <div
-            class="flex flex-wrap items-center gap-5 text-primary font-dm-mono text-[14px]"
-          >
-            <div class="flex items-center gap-1">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M8 2V5M16 2V5M3 9H21M5 5H19C20.1046 5 21 5.89543 21 7V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V7C3 5.89543 3.89543 5 5 5Z"
-                  stroke="currentColor"
-                  stroke-width="2"></path>
-              </svg>
+<Container>
+  <section class="border-t border-black/10 overflow-hidden">
+    <div class="flex flex-col lg:flex-row">
+      <!-- LEFT SIDEBAR -->
+      <aside
+        class="blog-details-sidebar w-full lg:w-100 shrink-0 border-b lg:border-b-0 lg:border-r border-black/10"
+      >
+        <div class="blog-details-meta">
+          <div class="px-8 pt-27">
+            <!-- Date & Read Time -->
+            <div
+              class="flex flex-wrap items-center gap-5 text-primary font-dm-mono text-[14px]"
+            >
+              <div class="flex items-center gap-1">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M8 2V5M16 2V5M3 9H21M5 5H19C20.1046 5 21 5.89543 21 7V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V7C3 5.89543 3.89543 5 5 5Z"
+                    stroke="currentColor"
+                    stroke-width="2"></path>
+                </svg>
 
-              <span class="font-normal leading-[150%] tracking-[-4%]"
-                >{frontmatter.date}</span
-              >
+                <span class="font-normal leading-[150%] tracking-[-4%]"
+                  >{frontmatter.date}</span
+                >
+              </div>
+
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 6V12L16 14"
+                    stroke="currentColor"
+                    stroke-width="2"></path>
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="9"
+                    stroke="currentColor"
+                    stroke-width="2"></circle>
+                </svg>
+
+                <span class="font-normal leading-[150%] tracking-[-4%]"
+                  >{frontmatter.readTime}</span
+                >
+              </div>
             </div>
 
-            <div class="flex items-center gap-2">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2"
-                ></path>
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="9"
-                  stroke="currentColor"
-                  stroke-width="2"></circle>
-              </svg>
-
-              <span class="font-normal leading-[150%] tracking-[-4%]"
-                >{frontmatter.readTime}</span
-              >
-            </div>
-          </div>
-
-          <!-- Title -->
-          <h1
-            class="blog-details-title mt-5
+            <!-- Title -->
+            <h1
+              class="blog-details-title mt-5
               font-commissioner
               text-[28px]
               font-semibold
@@ -140,107 +144,112 @@ const aiTools = [
               leading-[110%]
               tracking-[-4%]
               text-[#301C1B]"
-          >
-            {frontmatter.title}
-          </h1>
-        </div>
+            >
+              {frontmatter.title}
+            </h1>
+          </div>
 
-        <!-- Summarize -->
-        <div class="border-b border-black/10">
-          <div class="max-w-54 ml-8 mt-37.25 mb-6">
-            <h3
-              class="font-dm-mono
+          <!-- Summarize -->
+          <div class="border-b border-black/10">
+            <div class="max-w-54 ml-8 mt-37.25 mb-6">
+              <h3
+                class="font-dm-mono
               text-[16px]
               font-medium
               leading-[150%]
               tracking-[-4%]
               text-[#301C1B]"
-            >
-              Summarize the Blog
-            </h3>
+              >
+                Summarize the Blog
+              </h3>
 
-            <div class="grid grid-cols-5 mt-5 gap-3">
-              {
-                aiTools.map((tool) => (
-                  <a
-                    href={tool.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="flex h-11 w-11 items-center justify-center transition-transform hover:scale-105"
-                    title={tool.name}
-                  >
-                    <img
-                      src={tool.icon.src}
-                      alt={tool.name}
-                      class="h-full w-full object-contain"
-                    />
-                  </a>
-                ))
-              }
+              <div class="grid grid-cols-5 mt-5 gap-3">
+                {
+                  aiTools.map((tool) => (
+                    <a
+                      href={tool.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex h-11 w-11 items-center justify-center transition-transform hover:scale-105"
+                      title={tool.name}
+                    >
+                      <img
+                        src={tool.icon.src}
+                        alt={tool.name}
+                        class="h-full w-full object-contain"
+                      />
+                    </a>
+                  ))
+                }
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Share -->
-        <div class="border-b border-black/10 pt-6 pb-8">
-          <div class="px-8">
-            <h3
-              class="font-dm-mono
+          <!-- Share -->
+          <div class="border-b border-black/10 pt-6 pb-8">
+            <div class="px-8">
+              <h3
+                class="font-dm-mono
               text-[16px]
               font-medium
               leading-[150%]
               tracking-[-4%]
               text-[#301C1B]"
-            >
-              Share
-            </h3>
+              >
+                Share
+              </h3>
 
-            <div class="blog-details-social flex items-center gap-5 mt-3">
-              {
-                socialLinks.map((item) => (
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class=" "
-                  >
-                    <img src={item.icon.src} alt="social-icon"class={"size-5"} />
-                  </a>
-                ))
-              }
+              <div class="blog-details-social flex items-center gap-5 mt-3">
+                {
+                  socialLinks.map((item) => (
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class=" "
+                    >
+                      <img
+                        src={item.icon.src}
+                        alt="social-icon"
+                        class={"size-5"}
+                      />
+                    </a>
+                  ))
+                }
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Summarize Button -->
-        <div class="mt-25.5 ml-12 mb-25 lg:mb-0">
-          <button
-            id="summarize-btn"
-            class="blog-details-button flex items-center justify-center gap-3 min-w-46.25 py-3 px-5 border border-primary bg-white text-primary font-commissioner text-sm leading-[150%] cursor-pointer tracking-[-4%] transition-colors"
-            data-title={frontmatter.title}
-          >
-            <span class="whitespace-nowrap">Summarize the Blog</span>
-            <img src={star.src} alt="star" />
-          </button>
+          <!-- Summarize Button -->
+          <div class="mt-25.5 ml-12 mb-25 lg:mb-0">
+            <button
+              id="summarize-btn"
+              class="blog-details-button flex items-center justify-center gap-3 min-w-46.25 py-3 px-5 border border-primary bg-white text-primary font-commissioner text-sm leading-[150%] cursor-pointer tracking-[-4%] transition-colors"
+              data-title={frontmatter.title}
+            >
+              <span class="whitespace-nowrap">Summarize the Blog</span>
+              <img src={star.src} alt="star" />
+            </button>
+          </div>
         </div>
-      </div>
-    </aside>
+      </aside>
 
-    <!-- RIGHT CONTENT -->
-    <main
-      class="blog-content flex-1 border-b
+      <!-- RIGHT CONTENT -->
+      <main
+        class="blog-content flex-1 border-b
         lg:max-w-200
         px-8
         lg:px-13
         py-8
         lg:py-13"
-    >
-      <div class="max-w-none prose prose-lg prose-invert lg:prose-xl">
-        <Content components={mdxComponents} />
-      </div>
-    </main>
-  </div>
-</section>
+      >
+        <div class="max-w-none prose prose-lg prose-invert lg:prose-xl">
+          <Content components={mdxComponents} />
+        </div>
+      </main>
+    </div>
+  </section>
+</Container>
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -250,7 +259,7 @@ const aiTools = [
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: ".blog-details-sidebar",
-      start: "top 75%",
+      start: "top 90%",
       toggleActions: "play none none reverse",
     },
   });
@@ -258,8 +267,7 @@ const aiTools = [
   tl.from(".blog-details-meta", {
     y: 30,
     opacity: 0,
-    duration: 0.5,
-    ease: "power3.out",
+    ease: "power4.out",
   })
 
     .from(
@@ -267,10 +275,9 @@ const aiTools = [
       {
         y: 80,
         opacity: 0,
-        duration: 0.5,
-        ease: "expo.out",
+        ease: "power4.out",
       },
-      "-=0.4",
+      "-=0.6",
     )
 
     .from(
@@ -279,8 +286,7 @@ const aiTools = [
         scale: 0,
         opacity: 0,
         stagger: 0.08,
-        duration: 0.5,
-        ease: "back.out(2)",
+        ease: "power4.out",
       },
       "-=0.6",
     )
@@ -291,10 +297,9 @@ const aiTools = [
         y: 20,
         opacity: 0,
         stagger: 0.08,
-        duration: 0.5,
-        ease: "power3.out",
+        ease: "power4.out",
       },
-      "-=0.3",
+      "-=0.6",
     )
 
     .from(
@@ -303,21 +308,19 @@ const aiTools = [
         y: 30,
         opacity: 0,
         scale: 0.9,
-        duration: 0.5,
-        ease: "back.out(1.7)",
+        ease: "power4.out",
       },
-      "-=0.2",
+      "-=0.6",
     );
 
   tl.from(
     ".blog-content",
     {
-      x: 60,
+      y: 60,
       opacity: 0,
-      duration: 0.5,
-      ease: "expo.out",
+      ease: "power4.out",
     },
-    "-=0.8",
+    "-=0.6",
   )
 
     .from(
@@ -326,45 +329,28 @@ const aiTools = [
         y: 40,
         opacity: 0,
         stagger: 0.08,
-        duration: 0.7,
-        ease: "power3.out",
+        ease: "power4.out",
       },
       "-=0.8",
     )
-
+    .from(
+      ".prose blockquote",
+      {
+        x: -40,
+        opacity: 0,
+        ease: "power4.out",
+      },
+      "-=0.8",
+    )
     .from(
       ".prose p",
       {
         y: 25,
         opacity: 0,
         stagger: 0.03,
-        duration: 0.5,
-        ease: "power2.out",
+        ease: "power4.out",
       },
-      "-=0.6",
-    )
-
-    .from(
-      ".prose img",
-      {
-        scale: 1.08,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: "expo.out",
-      },
-      "-=0.8",
-    )
-
-    .from(
-      ".prose blockquote",
-      {
-        x: -40,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
-      },
-      "-=0.5",
+      "-=0.4",
     );
 </script>
 

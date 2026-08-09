@@ -277,53 +277,17 @@ export default function PanzeContactForm() {
           type="submit"
           disabled={status.type === "loading"}
           whileTap={{ scale: 0.98 }}
-          className="relative overflow-hidden w-36.25 h-11.25 bg-primary text-white flex items-center justify-center mb-12 lg:mb-0"
+          className="relative overflow-hidden w-36.25 h-11.25 bg-primary text-white flex items-center justify-center mb-12 lg:mb-0 cursor-pointer"
           initial="rest"
           whileHover="hover"
           animate="rest"
         >
-          {/* Shimmer */}
-          <motion.div
-            variants={{
-              rest: {
-                x: "-250%",
-              },
-              hover: {
-                x: "700%",
-                transition: {
-                  duration: 1.5,
-                  ease: "easeInOut",
-                },
-              },
-            }}
-            className="absolute top-0 left-0 h-full w-[40%] skew-x-[-20deg]  bg-linear-to-r from-transparentvia-white/60 to-transparent pointer-events-none"
-          />
-          {/* Border Sweep */}
-          <motion.div
-            variants={{
-              rest: {
-                scaleX: 0,
-                originX: 1,
-              },
-              hover: {
-                scaleX: 1,
-                originX: 0,
-                transition: {
-                  duration: 0.8,
-                },
-              },
-            }}
-            className=" absolute bottom-0 left-0 h-0.5 w-full bg-white
-        "
-          />
-          {/* content */}
           <motion.div
             variants={{
               rest: {
                 scale: 1,
               },
               hover: {
-                scale: 1.02,
                 transition: {
                   duration: 0.3,
                 },
@@ -343,8 +307,7 @@ export default function PanzeContactForm() {
                   y: 0,
                 },
                 hover: {
-                  x: 5,
-                  y: -2,
+                 rotate: 45,
                   transition: {
                     duration: 0.3,
                   },
