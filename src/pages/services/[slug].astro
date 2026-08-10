@@ -27,6 +27,12 @@ const { slug } = Astro.params;
 const service = services.find(
   ({ frontmatter }: any) => frontmatter.slug === slug,
 );
+if (!service) {
+  return new Response(null, {
+    status: 404,
+    statusText: "Not Found",
+  });
+}
 const { frontmatter } = service as any;
 ---
 

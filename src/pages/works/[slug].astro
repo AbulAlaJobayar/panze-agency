@@ -32,8 +32,13 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 
 const work = works.find(({ frontmatter }: any) => frontmatter.slug === slug);
-
-const { frontmatter, Content } = work as any;
+if (!work) {
+  return new Response(null, {
+    status: 404,
+    statusText: "Not Found",
+  });
+}
+const { frontmatter } = work as any;
 ---
 
 <Layout title="WORKS | PANZE">
@@ -74,11 +79,7 @@ const { frontmatter, Content } = work as any;
       <UserOnboarding userOnboarding={frontmatter.userOnboarding} />
     )
   }
-  {
-    frontmatter.results && (
-        <ProjectScope projectScope={frontmatter.results} />
-    )
-  }
+  {frontmatter.results && <ProjectScope projectScope={frontmatter.results} />}
   {
     frontmatter.testimonial && (
       <TestimonialSection testimonial={frontmatter.testimonial} />

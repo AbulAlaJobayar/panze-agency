@@ -20,10 +20,13 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 
-const blog = blogs.find(({ frontmatter }: any) => frontmatter.slug === slug);
+const blog = blogs.find((item: any) => item.frontmatter.slug === slug);
 
 if (!blog) {
-  return Astro.redirect("/blog");
+  return new Response(null, {
+    status: 404,
+    statusText: "Not Found",
+  });
 }
 
 const { frontmatter, Content } = blog as any;
