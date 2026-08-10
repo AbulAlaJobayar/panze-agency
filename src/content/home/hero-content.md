@@ -13,7 +13,6 @@ image:
   - "https://i.ibb.co.com/LXkNRGmh/image-1012-1.png"
   - "https://i.ibb.co.com/4Z66TK2P/image-1013-2.png"
   - "https://i.ibb.co.com/qFF76x95/image-1016.png"
-  - "https://i.ibb.co.com/XZKtMdt6/image-1011.png"
-  - "https://i.ibb.co.com/nMk55g30/image-1009.png"
+  - "https://i.ibb.co.com/M58z9M7Y/image-1011.jpg"
 
 ---

@@ -48,10 +48,13 @@ export default function PricingCard({ plan, index, total }: any) {
             </div>
             {/* Featcher */}
             <div className="mt-5 space-y-3">
-              {plan.features.map((item: any,i:any) => (
+              {plan.features.map((item: any, i: any) => (
                 <div className="flex gap-2 items-center my-3" key={i}>
                   <span>
                     <svg
+                    className={`${
+                      item === "Cancel any time" ? "text-primary" : ""
+                    }`}
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
                       height="16"
@@ -76,9 +79,16 @@ export default function PricingCard({ plan, index, total }: any) {
                       />
                     </svg>
                   </span>
-                  <span className="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]">
+                  <span
+                    className={`font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] ${
+                      item === "Cancel any time" ? "text-primary" : ""
+                    }`}
+                  >
                     {item}
                   </span>
+                  {/* <span className="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%]">
+                    {item}
+                  </span> */}
                 </div>
               ))}
             </div>
@@ -103,7 +113,7 @@ export default function PricingCard({ plan, index, total }: any) {
                 </div>
 
                 {/* description  */}
-                <p className="max-w-190 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] ">
+                <p className="max-w-190 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] text-black/70">
                   {plan.testimonial.quote}
                 </p>
 
@@ -120,7 +130,7 @@ export default function PricingCard({ plan, index, total }: any) {
                         {plan.testimonial.author}
                       </h4>
                     </div>
-                    <p className="mt-1 font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal ">
+                    <p className="mt-1 font-dm-mono text-[14px] leading-[150%] tracking-[-4%] font-normal text-black/70 ">
                       {plan.testimonial.designation}
                     </p>
                   </div>
@@ -131,7 +141,11 @@ export default function PricingCard({ plan, index, total }: any) {
           </div>
           {/* button */}
           <div className=" mt-auto pt-8">
-            <LinkButton href={plan.link} text=" Choose plan" className="w-full "/>
+            <LinkButton
+              href={plan.link}
+              text=" Choose plan"
+              className="w-full "
+            />
           </div>
         </div>
       </div>

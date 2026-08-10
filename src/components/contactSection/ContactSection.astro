@@ -160,7 +160,7 @@ const { name, designation, ceoImage, title, meetDescription } =
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#contact-section",
-      start: "top 80%",
+      start: "top 90%",
       toggleActions: "play none none reverse",
     },
   });
@@ -181,7 +181,7 @@ const { name, designation, ceoImage, title, meetDescription } =
         x: -20,
         ease: "power4.out",
       },
-      "+=0.4",
+      "-=0.4",
     )
 
     .from(
@@ -191,7 +191,7 @@ const { name, designation, ceoImage, title, meetDescription } =
         y: 40,
         ease: "power4.out",
       },
-      "-=0.3",
+      "-=0.4",
     );
 
   // ======================
@@ -207,7 +207,7 @@ const { name, designation, ceoImage, title, meetDescription } =
       clipPath: "inset(100% 0 0 0)",
       ease: "expo.out",
     },
-    "-=0.7",
+    "-=0.4",
   );
 
   // ======================

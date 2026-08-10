@@ -191,7 +191,7 @@ export default function Stepper({ steps, data }: StepperProps) {
               </motion.p>
               <motion.p
                 variants={itemVariants}
-                className="font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] pb-10 lg:pb-20"
+                className="text-black/70 font-dm-mono font-normal text-[14px] leading-[150%] tracking-[-4%] pb-10 lg:pb-20"
               >
                 {data.description}
               </motion.p>

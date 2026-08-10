@@ -1,39 +1,44 @@
 ---
 import icon from "@/assets/sectionIcon/purphelosofyIcon.svg";
 import * as data from "@/content/team/pur-philosophy-content.md";
+import Container from "../ui/Container.astro";
 const { title, subtitle, description } = data.frontmatter;
 ---
 
 <section id="philosophy-section">
-  <div class="mx-8 flex flex-col lg:flex-row mt-26 border-b pb-16 space-x-10">
-    <!-- Left Content -->
-    <div class="max-w-100 pr-8">
-      <div class="flex items-center gap-2">
-        <!-- Icon -->
-        <img src={icon.src} alt={title} class="philosophy-icon size-4" />
+  <div class="mt-26 border-b pb-16">
+    <Container>
+      <div class="mx-8 flex flex-col lg:flex-row space-x-10">
+        <!-- Left Content -->
+        <div class="max-w-100 pr-8">
+          <div class="flex items-center gap-2">
+            <!-- Icon -->
+            <img src={icon.src} alt={title} class="philosophy-icon size-4" />
 
-        <span
-          class="philosophy-label font-dm-mono text-[14px] font-normal tracking-[-4%] leading-[150%] text-[#FF6B3D]"
-        >
-          {title}
-        </span>
+            <span
+              class="philosophy-label font-dm-mono text-[14px] font-normal tracking-[-4%] leading-[150%] text-[#FF6B3D]"
+            >
+              {title}
+            </span>
+          </div>
+
+          <p
+            class="philosophy-description mt-13 font-dm-mono text-[14px] font-normal tracking-[-4%] leading-[150%] text-black/70"
+          >
+            {description}
+          </p>
+        </div>
+
+        <!-- Right Heading -->
+        <div class="flex justify-start lg:justify-end mt-13 lg:mt-0">
+          <h2
+            class="philosophy-title font-commissioner text-[48px] font-semibold uppercase leading-[110%] tracking-[-4%] text-[#4A302F]"
+          >
+            {subtitle}
+          </h2>
+        </div>
       </div>
-
-      <p
-        class="philosophy-description mt-13 font-dm-mono text-[14px] font-normal tracking-[-4%] leading-[150%] text-[#5A403F]"
-      >
-        {description}
-      </p>
-    </div>
-
-    <!-- Right Heading -->
-    <div class="flex justify-start lg:justify-end mt-13 lg:mt-0">
-      <h2
-        class="philosophy-title font-commissioner text-[48px] font-semibold uppercase leading-[110%] tracking-[-4%] text-[#4A302F]"
-      >
-        {subtitle}
-      </h2>
-    </div>
+    </Container>
   </div>
 </section>
 <script>
@@ -45,17 +50,16 @@ const { title, subtitle, description } = data.frontmatter;
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#philosophy-section",
-      start: "top 75%",
+      start: "top 90%",
       toggleActions: "play none none reverse",
     },
     defaults: {
-      ease: "expo.out",
+      ease: "power4.out",
     },
   });
 
   // Initial states
   gsap.set(".philosophy-icon", {
-    scale: 0,
     rotate: -180,
     opacity: 0,
   });
@@ -66,7 +70,7 @@ const { title, subtitle, description } = data.frontmatter;
   });
 
   gsap.set(".philosophy-description", {
-    y: 40,
+    y: 80,
     opacity: 0,
   });
 
@@ -74,15 +78,12 @@ const { title, subtitle, description } = data.frontmatter;
     scale: 1,
     rotate: 0,
     opacity: 1,
-    duration: 0.8,
   })
 
     .from(
       ".philosophy-label",
       {
         x: -30,
-        opacity: 0,
-        duration: 0.7,
       },
       "-=0.5",
     )
@@ -92,7 +93,6 @@ const { title, subtitle, description } = data.frontmatter;
       {
         y: 0,
         opacity: 1,
-        duration: 1,
       },
       "-=0.3",
     )
@@ -102,7 +102,6 @@ const { title, subtitle, description } = data.frontmatter;
       {
         y: 0,
         opacity: 1,
-        duration: 1.4,
       },
       "-=0.8",
     );

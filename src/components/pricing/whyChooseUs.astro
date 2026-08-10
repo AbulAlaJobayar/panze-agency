@@ -121,7 +121,7 @@ const { title, subtitle, description, image, leftFeatures, rightFeatures } =
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#why-choose-section",
-      start: "top 75%",
+      start: "top 90%",
       toggleActions: "play none none reverse",
     },
   });
@@ -154,7 +154,7 @@ const { title, subtitle, description, image, leftFeatures, rightFeatures } =
         opacity: 0,
         ease: "power4.out",
       },
-      "-=0.8",
+      "-=0.4",
     )
 
     .from(
@@ -170,7 +170,7 @@ const { title, subtitle, description, image, leftFeatures, rightFeatures } =
     .from(
       ".why-left-item",
       {
-        x: -80,
+        y: 80,
         opacity: 0,
         stagger: 0.08,
         ease: "power4.out",
@@ -181,12 +181,12 @@ const { title, subtitle, description, image, leftFeatures, rightFeatures } =
     .from(
       ".why-right-item",
       {
-        x: 80,
+        y: 80,
         opacity: 0,
         stagger: 0.08,
         ease: "power4.out",
       },
-      "-=1",
+      "-=0.8",
     );
 
   // Floating image

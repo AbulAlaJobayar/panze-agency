@@ -59,7 +59,7 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
                       ${
                         isActive
                           ? "bg-primary text-white h-39"
-                          : "h-25.25 text-white/60 hover:text-white hover:bg-white/5"
+                          : "h-25.25 text-black/70 hover:text-white hover:bg-white/5"
                       }
                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EF7B59]
                     `}
@@ -96,7 +96,7 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
                         className={`font-commissioner font-normal text-[16px] leading-[130%] tracking-[-4%] ${
                           isActive
                             ? "font-semibold text-white text-[20px]"
-                            : "font-normal text-white/60"
+                            : "font-normal text-white/70"
                         }`}
                       >
                         {service.tabTitle}
@@ -194,7 +194,7 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
                   >
                     <div className="h-full  px-7.25 pt-7 bg-[#1E1212] flex flex-col justify-between">
                       <div>
-                        <p className="font-dm-mono text-[12px] md:text-[14px] leading-[150%] font-normal tracking-[-4%] text-white mb-10">
+                        <p className="font-dm-mono text-[12px] md:text-[14px] leading-[150%] font-normal tracking-[-4%] text-white/70 mb-10">
                           {service.description}
                         </p>
 
@@ -209,7 +209,7 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
                               },
                             },
                           }}
-                          className="space-y-1 md:space-y-2"
+                          className="space-y-1 md:space-y-2 text-white/70"
                         >
                           {service.features.map((feature, index) => (
                             <motion.li
@@ -224,7 +224,7 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
                                   x: 0,
                                 },
                               }}
-                              className="font-dm-mono text-[14px] leading-[150%] font-normal tracking-[-4%] text-white gap-2 flex items-start"
+                              className="font-dm-mono text-[14px] leading-[150%] font-normal tracking-[-4%] text-white/70 gap-2 flex items-start"
                             >
                               <span className="text-white shrink-0">-</span>
                               <span>{feature}</span>

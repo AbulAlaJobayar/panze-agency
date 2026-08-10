@@ -48,7 +48,7 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
                       ${
                         isActive
                           ? "bg-primary text-white"
-                          : "text-white/60 hover:text-white hover:bg-white/5"
+                          : "text-white/70 hover:text-white hover:bg-white/5"
                       }
                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EF7B59]
                     `}
@@ -144,7 +144,7 @@ const TabSection: React.FC<TabSectionProps> = ({ services }) => {
                   >
                     <div className="h-full px-7 py-7 flex flex-col">
                       <div>
-                        <p className="font-dm-mono text-[12px] md:text-[14px] leading-[150%] font-normal tracking-[-4%] text-white">
+                        <p className="font-dm-mono text-[12px] md:text-[14px] leading-[150%] font-normal tracking-[-4%] text-white/70">
                           {service.description}
                         </p>
                       </div>
