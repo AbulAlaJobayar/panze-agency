@@ -88,23 +88,23 @@ const footerNavigation = [
 const footerServices = [
   {
     title: "Mobile App Design",
-    href: "/services/mobile-app-design",
+    href: "/services/mobile",
   },
   {
     title: "SaaS Product Design",
-    href: "/services/saas-product-design",
+    href: "/services/sass",
   },
   {
     title: "AI Product Design",
-    href: "/services/ai-product-design",
+    href: "/services/ai",
   },
   {
     title: "Logo & Branding",
-    href: "/services/logo-branding",
+    href: "/services/logoBranding",
   },
   {
     title: "Website UI/UX Design",
-    href: "/services/website-ui-ux-design",
+    href: "/services/website",
   },
 ];
 
@@ -319,13 +319,17 @@ const { denverTime, bdTime } = getDateTime();
                   <span>{email}</span>
                 </a>
 
-                <a
-                  href={`tel:${phoneNumber.replace(/\s+/g, "")}`}
-                  class="footer-location flex items-center gap-2 text-[#301C1B] font-dm-mono font-normal leading-[150%] tracking-[-4%] text-[14px] hover:text-primary transition-colors"
-                >
-                  <img src={phone.src} alt="phone" class="w-4 h-4" />
-                  <span>{phoneNumber}</span>
-                </a>
+                {
+                  phoneNumber && (
+                    <a
+                      href={`tel:${phoneNumber.replace(/\s+/g, "")}`}
+                      class="footer-location flex items-center gap-2 text-[#301C1B] font-dm-mono font-normal leading-[150%] tracking-[-4%] text-[14px] hover:text-primary transition-colors"
+                    >
+                      <img src={phone.src} alt="phone" class="w-4 h-4" />
+                      <span>{phoneNumber}</span>
+                    </a>
+                  )
+                }
               </div>
             </div>
             <!-- small devices -->
